@@ -10,6 +10,7 @@ import android.view.*;
  */
 public class PolygonalTraverseView extends View {
     private int n = 3,j=0;
+    private OnClickListener onClickListener;
     private boolean isAnimated = false;
     private int color = Color.parseColor("#3F51B5");
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -28,6 +29,9 @@ public class PolygonalTraverseView extends View {
     }
     public void setColor(int color) {
         this.color = color;
+    }
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     public void onDraw(Canvas canvas) {
         int w = canvas.getWidth()/2,h = canvas.getHeight()/2;
@@ -51,6 +55,9 @@ public class PolygonalTraverseView extends View {
             j++;
             if(j == n) {
                 isAnimated = false;
+                if(onClickListener != null) {
+                    onClickListener.onClick(this);
+                }
             }
             try {
                 Thread.sleep(150);
@@ -61,9 +68,16 @@ public class PolygonalTraverseView extends View {
         }
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && j== 0) {
-            isAnimated = true;
-            postInvalidate();
+        if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+            if(j==0) {
+                isAnimated = true;
+                postInvalidate();
+            }
+            else {
+                if(onClickListener != null) {
+                    onClickListener.onClick(this);
+                }
+            }
         }
         return true;
     }
