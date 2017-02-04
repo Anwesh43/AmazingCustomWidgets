@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
 import com.anwesome.ui.fourbutton.FourButtons;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showFourButtons();
+                showCircularButtonChooser();
             }
         });
     }
@@ -37,5 +38,18 @@ public class MainActivity extends AppCompatActivity {
             });
             fourButtons.show();
         }
+    }
+    public void showCircularButtonChooser() {
+        CircularButtonChooser circularButtonChooser = new CircularButtonChooser(this);
+        for(int i=0;i<actions.length;i++) {
+            final int curIndex = i;
+            circularButtonChooser.addCircularButton(BitmapFactory.decodeResource(getResources(), images[i]), new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(MainActivity.this, actions[curIndex], Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        circularButtonChooser.show(400,400);
     }
 }
