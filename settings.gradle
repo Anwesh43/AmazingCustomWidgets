@@ -1,1 +1,1 @@
-include ':app', ':polygonaltraverseview', ':fourbutton'
+include ':app', ':polygonaltraverseview', ':fourbutton', ':circularbuttonchooser'
