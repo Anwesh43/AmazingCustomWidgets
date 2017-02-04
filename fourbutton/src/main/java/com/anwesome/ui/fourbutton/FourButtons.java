@@ -38,7 +38,7 @@ public class FourButtons {
     }
     public void show() {
         if(elements.size() == 4) {
-            FourButtonsView fourButtonsView= new FourButtonsView(activity);
+            fourButtonsView= new FourButtonsView(activity);
             activity.addContentView(fourButtonsView,new ViewGroup.LayoutParams(w,h));
         }
     }
@@ -100,7 +100,7 @@ public class FourButtons {
         }
         public boolean handleTap(float x,float y) {
             boolean insideButton = x>=this.x-this.r && x<=this.x+this.r && y>=this.y-this.r && y<=this.y+this.r;
-            if(insideButton) {
+            if(insideButton && !isAnimated) {
                 xDir = w/2>this.x?1:-1;
                 yDir = h/2>this.y?1:-1;
             }
@@ -168,6 +168,9 @@ public class FourButtons {
                 else {
                     if(selectedObject!=null && xDir == 0 && yDir == 0) {
                         if(selectedObject.handleTap(event.getX(),event.getY())) {
+                            if(selectedObject.getClickListener()!=null) {
+                                selectedObject.getClickListener().onClick(this);
+                            }
                             dismiss();
                         }
                     }
