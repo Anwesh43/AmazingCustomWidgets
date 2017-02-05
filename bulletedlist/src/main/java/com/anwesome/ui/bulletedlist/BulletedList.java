@@ -89,7 +89,26 @@ public class BulletedList {
         }
         public boolean onTouchEvent(MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
-               
+                if(hn == 0) {
+                    hnDir = 1;
+                    isAnimated = true;
+                    triangle.startAnimating();
+                    postInvalidate();
+                }
+                else  {
+                    for(BulletedElement element:elements) {
+                        if(element.containsTap(event.getY())) {
+                            currentItem = element.getItem();
+                            isAnimated = true;
+                            hnDir = -1;
+                            break;
+                        }
+                        if(hnDir == -1 && isAnimated) {
+                            triangle.startAnimating();
+                            postInvalidate();
+                        }
+                    }
+                }
             }
             return true;
         }
