@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/bulletedlist" />
             <option value="$PROJECT_DIR$/circularbuttonchooser" />
             <option value="$PROJECT_DIR$/fourbutton" />
             <option value="$PROJECT_DIR$/polygonaltraverseview" />
@@ -18,6 +19,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/bulletedlist" />
             <option value="$PROJECT_DIR$/circularbuttonchooser" />
             <option value="$PROJECT_DIR$/fourbutton" />
             <option value="$PROJECT_DIR$/polygonaltraverseview" />
