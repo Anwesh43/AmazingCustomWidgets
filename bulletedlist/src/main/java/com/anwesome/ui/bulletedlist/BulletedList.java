@@ -3,8 +3,12 @@ package com.anwesome.ui.bulletedlist;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.*;
+import android.hardware.display.DisplayManager;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
 import java.util.*;
 
 /**
@@ -13,13 +17,26 @@ import java.util.*;
 public class BulletedList {
     private String currentItem = "Select";
     private Activity activity;
+    private int w=300,h=300;
     private int color = Color.BLACK;
     private List<String> items = new ArrayList<>();
     public BulletedList(Activity activity) {
         this.activity = activity;
+        initDimensions();
+    }
+    public void initDimensions() {
+        DisplayManager displayManager = (DisplayManager)activity.getSystemService(Context.DISPLAY_SERVICE);
+        Display display = displayManager.getDisplay(0);
+        if(display!=null) {
+            Point size = new Point();
+            display.getRealSize(size);
+            w = size.x;
+            h = size.y;
+        }
     }
     public void show() {
-
+        BulletedListView bulletedListView = new BulletedListView(activity);
+        activity.addContentView(bulletedListView,new ViewGroup.LayoutParams(w/2,h/3));
     }
     public void addItem(String item) {
         this.items.add(item);
