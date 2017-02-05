@@ -34,6 +34,7 @@ public class BulletedList {
     }
     public class BulletedListView extends View {
         private int time = 0;
+        private float hn = 0,maxHn = 0,hnDir = 1;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         private boolean isAnimated = false;
         private List<BulletedElement> elements = new ArrayList<>();
@@ -45,20 +46,38 @@ public class BulletedList {
         public void onDraw(Canvas canvas) {
             int w = canvas.getWidth(),h = canvas.getHeight();
             int n = 2;
-            float h1 = h/(2+items.size());
+            float h1 = h/(n+items.size());
+            maxHn = h1*(n-1+items.size());
             float y_item = 2*h1;
             if(time == 0) {
-                triangle = new Triangle(9*w/10,h/4,h/6);
+                triangle = new Triangle(9*w/10,h1/4,h1/6);
+                elements.add(new BulletedElement(currentItem,h1,h1,w));
                 for(String item:items) {
                     elements.add(new BulletedElement(item,y_item,h1,w));
                 }
             }
+            paint.setColor(Color.WHITE);
+            canvas.drawRect(new RectF(0,0,w,h1),paint);
+            canvas.drawLine(w/20,h1,19*w/20,h1,paint);
+            paint.setTextSize(h1/3);
+            canvas.drawText(currentItem,w/2-paint.measureText(currentItem),h1/2,paint);
             triangle.render(canvas,paint);
+            Path path = new Path();
+            path.addRect(new RectF(0,h1,w,h1+hn), Path.Direction.CCW);
             for(BulletedElement element:elements) {
                 element.draw(canvas,paint);
             }
             time++;
             if(isAnimated) {
+                hn+=hnDir*(h1*(n-1+items.size()))/3;
+                if(hn <= 0 && hnDir == -1) {
+                    hn = 0;
+                    isAnimated = false;
+                }
+                else if(hn>=maxHn && hnDir == 1) {
+                    hn = maxHn;
+                    isAnimated = false;
+                }
                 try {
                     Thread.sleep(50);
                     invalidate();
@@ -70,7 +89,7 @@ public class BulletedList {
         }
         public boolean onTouchEvent(MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
-
+               
             }
             return true;
         }
@@ -118,6 +137,9 @@ public class BulletedList {
             this.y = y;
             this.h = h;
             this.w = w;
+        }
+        public String getItem() {
+            return item;
         }
         public void draw(Canvas canvas,Paint paint) {
             paint.setColor(color);
