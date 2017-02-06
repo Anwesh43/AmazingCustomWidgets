@@ -198,7 +198,7 @@ public class BulletedList {
             paint.setColor(Color.WHITE);
             canvas.drawRect(0,y,w,y+h,paint);
             paint.setColor(color);
-            canvas.drawCircle(w/10,y+h/4,w/40,paint);
+            canvas.drawCircle(w/10,y+h/3,w/40,paint);
             canvas.drawLine(w/20,y+h,19*w/20,y+h,paint);
             paint.setTextSize(h/3);
             canvas.drawText(item,w/2-paint.measureText(item),y+h/2,paint);
