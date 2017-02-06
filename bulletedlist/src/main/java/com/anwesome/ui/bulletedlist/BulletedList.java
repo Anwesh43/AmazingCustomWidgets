@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.*;
 import android.hardware.display.DisplayManager;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -67,9 +68,10 @@ public class BulletedList {
             int n = 2;
             float h1 = h/(n+items.size());
             maxHn = h1*(n-1+items.size());
+            Log.d("w,h1",w+","+h1);
             float y_item = 2*h1;
             if(time == 0) {
-                triangle = new Triangle((4*w)/5,h1/4,h1/3);
+                triangle = new Triangle((9*w)/10,h1/3+h1/8,h1/6);
                 elements.add(new BulletedElement(currentItem,h1,h1,w));
                 for(String item:items) {
                     elements.add(new BulletedElement(item,y_item,h1,w));
@@ -105,7 +107,7 @@ public class BulletedList {
                     triangle.setDeg(0);
                 }
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(20);
                     invalidate();
                 }
                 catch(Exception ex) {
@@ -148,8 +150,6 @@ public class BulletedList {
         }
         public void render(Canvas canvas,Paint paint) {
             paint.setColor(Color.BLACK);
-            canvas.save();
-            canvas.translate(x,y);
             float theta = 30+deg;
             Path path = new Path();
             for(int i=0;i<=3;i++) {
@@ -160,11 +160,13 @@ public class BulletedList {
                 else {
                     path.lineTo(x1,y1);
                 }
-                theta = theta+i*120;
+                Log.d("x,y",x1+","+y1+","+theta);
+                theta = theta+120;
                 theta%=360;
+
             }
             canvas.drawPath(path,paint);
-            canvas.restore();
+
             deg+=rot;
             rot = deg%180 == 0?0:rot;
         }
