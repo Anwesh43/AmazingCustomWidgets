@@ -148,7 +148,8 @@ public class BulletedList {
         }
         public void render(Canvas canvas,Paint paint) {
             paint.setColor(Color.BLACK);
-
+            canvas.save();
+            canvas.translate(x,y);
             float theta = 30+deg;
             Path path = new Path();
             for(int i=0;i<=3;i++) {

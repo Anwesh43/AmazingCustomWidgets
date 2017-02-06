@@ -26,4 +26,5 @@ dependencies {
     compile project(':polygonaltraverseview')
     compile project(':fourbutton')
     compile project(':circularbuttonchooser')
+    compile project(':bulletedlist')
 }
