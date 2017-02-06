@@ -34,8 +34,10 @@ public class BulletedList {
             h = size.y;
         }
     }
-    public void show() {
+    public void show(int x,int y) {
         BulletedListView bulletedListView = new BulletedListView(activity);
+        bulletedListView.setX(x);
+        bulletedListView.setY(y);
         activity.addContentView(bulletedListView,new ViewGroup.LayoutParams(w/2,h/3));
     }
     public void addItem(String item) {
@@ -67,33 +69,40 @@ public class BulletedList {
             maxHn = h1*(n-1+items.size());
             float y_item = 2*h1;
             if(time == 0) {
-                triangle = new Triangle(9*w/10,h1/4,h1/6);
+                triangle = new Triangle((4*w)/5,h1/4,h1/3);
                 elements.add(new BulletedElement(currentItem,h1,h1,w));
                 for(String item:items) {
                     elements.add(new BulletedElement(item,y_item,h1,w));
+                    y_item +=h1;
                 }
             }
             paint.setColor(Color.WHITE);
             canvas.drawRect(new RectF(0,0,w,h1),paint);
+            paint.setColor(Color.BLACK);
             canvas.drawLine(w/20,h1,19*w/20,h1,paint);
             paint.setTextSize(h1/3);
             canvas.drawText(currentItem,w/2-paint.measureText(currentItem),h1/2,paint);
             triangle.render(canvas,paint);
             Path path = new Path();
             path.addRect(new RectF(0,h1,w,h1+hn), Path.Direction.CCW);
+            canvas.clipPath(path);
             for(BulletedElement element:elements) {
                 element.draw(canvas,paint);
             }
             time++;
             if(isAnimated) {
-                hn+=hnDir*(h1*(n-1+items.size()))/3;
+                hn+=hnDir*(h-h1)/6;
                 if(hn <= 0 && hnDir == -1) {
                     hn = 0;
                     isAnimated = false;
+                    triangle.setDeg(180);
+                    triangle.setRot(0);
                 }
                 else if(hn>=maxHn && hnDir == 1) {
                     hn = maxHn;
                     isAnimated = false;
+                    triangle.setRot(0);
+                    triangle.setDeg(0);
                 }
                 try {
                     Thread.sleep(50);
@@ -120,10 +129,10 @@ public class BulletedList {
                             hnDir = -1;
                             break;
                         }
-                        if(hnDir == -1 && isAnimated) {
-                            triangle.startAnimating();
-                            postInvalidate();
-                        }
+                    }
+                    if(hnDir == -1 && isAnimated) {
+                        triangle.startAnimating();
+                        postInvalidate();
                     }
                 }
             }
@@ -139,25 +148,30 @@ public class BulletedList {
         }
         public void render(Canvas canvas,Paint paint) {
             paint.setColor(Color.BLACK);
-            canvas.save();
-            canvas.translate(x,y);
-            canvas.rotate(deg);
-            int theta = 30;
+
+            float theta = 30+deg;
             Path path = new Path();
             for(int i=0;i<=3;i++) {
-                theta = theta+i*120;
-                float x1 = (float)(r*Math.cos(theta*Math.PI/180)),y1 = (float)(r*Math.sin(theta*Math.PI/180));
+                float x1 = (float)(x+r*Math.cos(theta*Math.PI/180)),y1 = (float)(y+r*Math.sin(theta*Math.PI/180));
                 if(i == 0) {
                     path.moveTo(x1,y1);
                 }
                 else {
                     path.lineTo(x1,y1);
                 }
-                canvas.drawPath(path,paint);
+                theta = theta+i*120;
+                theta%=360;
             }
+            canvas.drawPath(path,paint);
             canvas.restore();
             deg+=rot;
             rot = deg%180 == 0?0:rot;
+        }
+        public void setRot(float rot) {
+            this.rot = rot;
+        }
+        public void setDeg(float deg) {
+            this.deg = deg;
         }
         public void startAnimating() {
             if(rot == 0 && deg%180 == 0) {
@@ -178,11 +192,13 @@ public class BulletedList {
             return item;
         }
         public void draw(Canvas canvas,Paint paint) {
+            paint.setColor(Color.WHITE);
+            canvas.drawRect(0,y,w,y+h,paint);
             paint.setColor(color);
-            canvas.drawCircle(w/10,h/4,w/20,paint);
-            canvas.drawLine(w/20,h,19*w/20,h,paint);
+            canvas.drawCircle(w/10,y+h/4,w/40,paint);
+            canvas.drawLine(w/20,y+h,19*w/20,y+h,paint);
             paint.setTextSize(h/3);
-            canvas.drawText(item,w/2-paint.measureText(item),h/2,paint);
+            canvas.drawText(item,w/2-paint.measureText(item),y+h/2,paint);
         }
         public boolean containsTap(float y) {
             return y>this.y && y<this.y+this.h;
