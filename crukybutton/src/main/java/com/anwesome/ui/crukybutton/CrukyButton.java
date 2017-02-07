@@ -15,6 +15,7 @@ public class CrukyButton {
     private int w,h;
     private int color = Color.parseColor("#43A047");
     private View.OnClickListener onClickListener;
+    private CrukyButtonView crukyButtonView;
     public CrukyButton(Activity activity) {
         this.mActivity = activity;
         Point size = DimensionsUtil.getDeviceDimension(mActivity);
@@ -27,14 +28,18 @@ public class CrukyButton {
         this.onClickListener = onClickListener;
     }
     public void show() {
-        CrukyButtonView crukyButtonView = new CrukyButtonView(mActivity);
-        mActivity.addContentView(crukyButtonView,new ViewGroup.LayoutParams(w/4,h/4));
+        if(crukyButtonView == null) {
+            crukyButtonView = new CrukyButtonView(mActivity);
+            mActivity.addContentView(crukyButtonView, new ViewGroup.LayoutParams(w / 4, h / 4));
+        }
     }
     public void show(int x,int y) {
-        CrukyButtonView crukyButtonView = new CrukyButtonView(mActivity);
+        if(crukyButtonView == null) {
+            crukyButtonView = new CrukyButtonView(mActivity);
+            mActivity.addContentView(crukyButtonView, new ViewGroup.LayoutParams(w / 4, h / 4));
+        }
         crukyButtonView.setX(x);
         crukyButtonView.setY(y);
-        mActivity.addContentView(crukyButtonView,new ViewGroup.LayoutParams(w/4,h/4));
     }
     private class CrukyButtonView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
