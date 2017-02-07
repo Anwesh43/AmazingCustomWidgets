@@ -54,7 +54,7 @@ public class CrukyButton {
             canvas.translate(cw/2,ch/2);
             canvas.rotate(deg);
             paint.setColor(color);
-            canvas.drawRoundRect(new RectF(-cw/4,-ch/4,cw/4,ch/4),cw/8,ch/8,paint);
+            canvas.drawRoundRect(new RectF(-cw/4,-ch/4,cw/4,ch/4),cw/8,cw/8,paint);
             for(int i = 0;i<4;i++) {
                 paint.setColor(Color.WHITE);
                 canvas.drawCircle(cw/8*xlDir[i],ch/8*ylDir[i],cw/16,paint);
