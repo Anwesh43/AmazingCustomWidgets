@@ -28,4 +28,5 @@ dependencies {
     compile project(':circularbuttonchooser')
     compile project(':bulletedlist')
     compile project(':completeballbuttons')
+    compile project(':crukybutton')
 }
