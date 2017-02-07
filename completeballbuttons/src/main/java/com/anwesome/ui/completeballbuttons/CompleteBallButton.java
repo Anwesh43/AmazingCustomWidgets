@@ -22,15 +22,12 @@ public class CompleteBallButton {
     private Activity activity;
     private int color = Color.parseColor("#FF5722");
     private List<BallButton> ballButtons = new ArrayList<>();
-    int w,h,n=3;
+    int w,h,n=0;
     public void setColor(int color) {
         this.color = color;
     }
-    public CompleteBallButton(Activity activity,int n) {
+    public CompleteBallButton(Activity activity) {
         this.activity = activity;
-        if(n>=this.n) {
-            this.n = n;
-        }
         Point size = DimensionsUtil.getDeviceDimension(activity);
         if(size!=null) {
             w = size.x;
@@ -40,10 +37,13 @@ public class CompleteBallButton {
     }
     public void addBallButton(BallButton ballButton) {
         ballButtons.add(ballButton);
+        n++;
     }
     public void show() {
-        CompleteBallView completeBallView = new CompleteBallView(activity);
-        activity.addContentView(completeBallView,new ViewGroup.LayoutParams(w/3,w/3));
+        if(n!=0) {
+            CompleteBallView completeBallView = new CompleteBallView(activity);
+            activity.addContentView(completeBallView, new ViewGroup.LayoutParams(w / 3, w / 3));
+        }
     }
     private class CompleteBallView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
