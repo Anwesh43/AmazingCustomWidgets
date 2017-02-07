@@ -53,7 +53,7 @@ public class BallButton {
         paint.setColor(color);
         canvas.drawCircle(0,0,r,paint);
         paint.setColor(Color.WHITE);
-        canvas.drawText(""+label,0,0,paint);
+        canvas.drawText(""+label,-paint.measureText(""+label)/2,0,paint);
         canvas.restore();
         scale+=scaleSpeed;
         degLabel+=degSpeed;
