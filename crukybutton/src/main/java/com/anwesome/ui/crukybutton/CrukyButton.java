@@ -75,6 +75,9 @@ public class CrukyButton {
                     dir = 0;
                     shouldAnimate = false;
                     degTime = 0;
+                    if(onClickListener != null) {
+                        onClickListener.onClick(this);
+                    }
                 }
                 try {
                     Thread.sleep(20);
