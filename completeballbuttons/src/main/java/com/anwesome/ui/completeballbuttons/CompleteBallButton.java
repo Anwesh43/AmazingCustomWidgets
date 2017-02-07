@@ -44,7 +44,8 @@ public class CompleteBallButton {
             CompleteBallView completeBallView = new CompleteBallView(activity);
             completeBallView.setX(x);
             completeBallView.setY(y);
-            activity.addContentView(completeBallView, new ViewGroup.LayoutParams(w / 2, w / 2));
+            int dimen = Math.max(w,h);
+            activity.addContentView(completeBallView, new ViewGroup.LayoutParams(dimen/3,dimen/3));
         }
     }
     private class CompleteBallView extends View {
@@ -57,12 +58,13 @@ public class CompleteBallButton {
         }
         public void onDraw(Canvas canvas) {
             int w = canvas.getWidth(),h = canvas.getHeight();
-            float gap_deg = 360/n,deg = 0;
+            float gap_deg = 360/n,deg = gap_deg/2;
             if(time == 0) {
                 for(BallButton ballButton:ballButtons) {
                     ballButton.setDimensions(deg,w/2,h/2,9*w/20,w/20);
                     deg += gap_deg;
                 }
+                paint.setStrokeWidth(w/60);
             }
             for(BallButton ballButton:ballButtons) {
                 canvas.save();
