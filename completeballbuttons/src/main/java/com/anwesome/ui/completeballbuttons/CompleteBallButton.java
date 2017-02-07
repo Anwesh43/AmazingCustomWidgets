@@ -39,10 +39,12 @@ public class CompleteBallButton {
         ballButtons.add(ballButton);
         n++;
     }
-    public void show() {
+    public void show(int x,int y) {
         if(n!=0) {
             CompleteBallView completeBallView = new CompleteBallView(activity);
-            activity.addContentView(completeBallView, new ViewGroup.LayoutParams(w / 3, w / 3));
+            completeBallView.setX(x);
+            completeBallView.setY(y);
+            activity.addContentView(completeBallView, new ViewGroup.LayoutParams(w / 2, w / 2));
         }
     }
     private class CompleteBallView extends View {
@@ -55,23 +57,22 @@ public class CompleteBallButton {
         }
         public void onDraw(Canvas canvas) {
             int w = canvas.getWidth(),h = canvas.getHeight();
-            int i = 0;
-            float deg = 360/n;
+            float gap_deg = 360/n,deg = 0;
             if(time == 0) {
                 for(BallButton ballButton:ballButtons) {
-                    ballButton.setDimensions((i+1/2)*(int)deg,w/2,h/2,7*w/20,w/20);
-                    i++;
+                    ballButton.setDimensions(deg,w/2,h/2,9*w/20,w/20);
+                    deg += gap_deg;
                 }
             }
             for(BallButton ballButton:ballButtons) {
                 canvas.save();
                 canvas.translate(w/2,h/2);
                 canvas.rotate(ballButton.getDeg());
-                paint.setColor(Color.BLACK);
+                paint.setColor(Color.parseColor("#9E9E9E"));
                 if(currButton!=null && currButton.equals(ballButton)) {
                     paint.setColor(color);
                 }
-                canvas.drawLine(0,0,0,3*w/10,paint);
+                canvas.drawLine(0,0,4*w/10,0,paint);
                 ballButton.draw(canvas,paint,color);
                 canvas.restore();
             }
@@ -95,9 +96,12 @@ public class CompleteBallButton {
                     if(ballButton.handleTap(x,y) && ballButton!=currButton) {
                         prevButton = currButton;
                         currButton = ballButton;
-                        prevButton.setSpeed(-1);
+                        if(prevButton!=null) {
+                            prevButton.setSpeed(-1);
+                        }
                         currButton.setSpeed(1);
                         isAnimated = true;
+                        postInvalidate();
                     }
                 }
             }
