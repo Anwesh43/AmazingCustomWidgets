@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.anwesome.ui.bulletedlist.BulletedList;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
+import com.anwesome.ui.completeballbuttons.BallButton;
+import com.anwesome.ui.completeballbuttons.CompleteBallButton;
 import com.anwesome.ui.fourbutton.FourButtons;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showBulletedList();
+                showCompleteButtons();
             }
         });
     }
@@ -57,5 +59,14 @@ public class MainActivity extends AppCompatActivity {
         BulletedList bulletedList = new BulletedList(this);
         bulletedList.setItems(actions);
         bulletedList.show(300,600);
+    }
+    public void showCompleteButtons() {
+        CompleteBallButton completeBallButton = new CompleteBallButton(this);
+        completeBallButton.addBallButton(new BallButton('A'));
+        completeBallButton.addBallButton(new BallButton('B'));
+        completeBallButton.addBallButton(new BallButton('C'));
+        completeBallButton.addBallButton(new BallButton('D'));
+        completeBallButton.addBallButton(new BallButton('E'));
+        completeBallButton.show(0,600);
     }
 }
