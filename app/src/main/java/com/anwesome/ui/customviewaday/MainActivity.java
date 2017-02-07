@@ -72,8 +72,20 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showCrukyButton() {
         CrukyButton crukyButton = new CrukyButton(this);
+        crukyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "First CrukyButton", Toast.LENGTH_SHORT).show();
+            }
+        });
         crukyButton.show();
         CrukyButton crukyButton1 = new CrukyButton(this);
-        crukyButton.show(300,300);
+        crukyButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Second CrukyButton", Toast.LENGTH_SHORT).show();
+            }
+        });
+        crukyButton1.show(300,300);
     }
 }
