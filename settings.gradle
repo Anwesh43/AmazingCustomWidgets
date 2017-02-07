@@ -1,1 +1,1 @@
-include ':app', ':polygonaltraverseview', ':fourbutton', ':circularbuttonchooser', ':bulletedlist', ':completeballbuttons', ':dimensionsutil'
+include ':app', ':polygonaltraverseview', ':fourbutton', ':circularbuttonchooser', ':bulletedlist', ':completeballbuttons', ':dimensionsutil', ':crukybutton'
