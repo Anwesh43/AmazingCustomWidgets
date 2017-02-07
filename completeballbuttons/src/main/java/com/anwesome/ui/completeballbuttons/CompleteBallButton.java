@@ -9,6 +9,8 @@ import android.graphics.Point;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
 import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,8 @@ public class CompleteBallButton {
         ballButtons.add(ballButton);
     }
     public void show() {
-
+        CompleteBallView completeBallView = new CompleteBallView(activity);
+        activity.addContentView(completeBallView,new ViewGroup.LayoutParams(w/3,w/3));
     }
     private class CompleteBallView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
