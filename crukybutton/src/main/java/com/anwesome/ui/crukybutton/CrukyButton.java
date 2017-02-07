@@ -28,7 +28,13 @@ public class CrukyButton {
     }
     public void show() {
         CrukyButtonView crukyButtonView = new CrukyButtonView(mActivity);
-        mActivity.addContentView(crukyButtonView,new ViewGroup.LayoutParams(w/4,h/6));
+        mActivity.addContentView(crukyButtonView,new ViewGroup.LayoutParams(w/4,h/4));
+    }
+    public void show(int x,int y) {
+        CrukyButtonView crukyButtonView = new CrukyButtonView(mActivity);
+        crukyButtonView.setX(x);
+        crukyButtonView.setY(y);
+        mActivity.addContentView(crukyButtonView,new ViewGroup.LayoutParams(w/4,h/4));
     }
     private class CrukyButtonView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
