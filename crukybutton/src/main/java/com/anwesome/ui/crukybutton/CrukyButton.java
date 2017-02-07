@@ -27,7 +27,8 @@ public class CrukyButton {
         this.onClickListener = onClickListener;
     }
     public void show() {
-
+        CrukyButtonView crukyButtonView = new CrukyButtonView(mActivity);
+        mActivity.addContentView(crukyButtonView,new ViewGroup.LayoutParams(w/4,h/6));
     }
     private class CrukyButtonView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
