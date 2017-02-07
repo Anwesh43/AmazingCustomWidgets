@@ -10,6 +10,7 @@ import com.anwesome.ui.bulletedlist.BulletedList;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
 import com.anwesome.ui.completeballbuttons.BallButton;
 import com.anwesome.ui.completeballbuttons.CompleteBallButton;
+import com.anwesome.ui.crukybutton.CrukyButton;
 import com.anwesome.ui.fourbutton.FourButtons;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCompleteButtons();
+                showCrukyButton();
             }
         });
     }
@@ -68,5 +69,11 @@ public class MainActivity extends AppCompatActivity {
         completeBallButton.addBallButton(new BallButton('D'));
         completeBallButton.addBallButton(new BallButton('E'));
         completeBallButton.show(0,600);
+    }
+    public void showCrukyButton() {
+        CrukyButton crukyButton = new CrukyButton(this);
+        crukyButton.show();
+        CrukyButton crukyButton1 = new CrukyButton(this);
+        crukyButton.show(300,300);
     }
 }
