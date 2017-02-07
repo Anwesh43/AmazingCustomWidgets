@@ -47,6 +47,9 @@ public class BallButton {
     public int hashCode() {
         return (int)x+(int)y+deg+label;
     }
+    public boolean handleTap(float x,float y) {
+        return x>=this.x-r && x<=this.x+r && y>=this.y-r && y<=this.y+r;
+    }
     public void setOnClickListener(View.OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
     }
