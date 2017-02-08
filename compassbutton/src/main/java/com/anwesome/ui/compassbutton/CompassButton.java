@@ -12,10 +12,14 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
  */
 public class CompassButton {
     private Activity activity;
-    private int circleColor = Color.parseColor("#e53935"),triangleColor = Color.parseColor("#0097A7");
+    private View.OnClickListener onClickListener;
+    private int circleColor = Color.parseColor("#00BCD4"),triangleColor = Color.parseColor("#5E35B1");
     private CompassButtonView compassButtonView;
     public CompassButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     public void setCircleColor(int circleColor) {
         this.circleColor = circleColor;
@@ -41,7 +45,7 @@ public class CompassButton {
     }
     private class CompassButtonView extends View {
         private boolean isAnimated = false;
-        private float deg = 0,dir = 1;
+        private float deg = 0,dir = 0;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         public CompassButtonView(Context context) {
             super(context);
@@ -51,22 +55,27 @@ public class CompassButton {
             if(h<w) {
                 r = h/2;
             }
+            paint.setColor(circleColor);
             canvas.drawCircle(w/2,h/2,r,paint);
             canvas.save();
             canvas.translate(w/2,h/2);
             canvas.rotate(deg);
             drawTriangle(canvas,paint,w);
             canvas.restore();
-            if(!isAnimated) {
-                deg+=dir*20;
-                if(deg>=180) {
+            if(isAnimated) {
+                deg+=dir*25;
+                if(deg>=200) {
                     dir = -1;
                 }
                 if(deg<=0) {
                     dir = 0;
+                    isAnimated = false;
+                    if(onClickListener!=null) {
+                        onClickListener.onClick(this);
+                    }
                 }
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(70);
                     invalidate();
                 } catch (Exception ex) {
 
@@ -74,15 +83,16 @@ public class CompassButton {
             }
         }
         public void drawTriangle(Canvas canvas,Paint paint,int w) {
+            paint.setColor(triangleColor);
             Path path = new Path();
-            path.moveTo(w/4,0);
-            path.lineTo(0,-w/4);
-            path.lineTo(-w/4,0);
-            path.lineTo(w/4,0);
+            path.moveTo(w/3,0);
+            path.lineTo(0,-w/3);
+            path.lineTo(-w/3,0);
+            path.lineTo(w/3,0);
             int l[] = {1,-1};
             for(int i=0;i<2;i++) {
                 canvas.save();
-                canvas.scale(1,l[i]);
+                canvas.scale(1.0f/(i*3+1),l[i]);
                 canvas.drawPath(path,paint);
                 canvas.restore();
             }
