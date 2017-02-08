@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.anwesome.ui.bulletedlist.BulletedList;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
+import com.anwesome.ui.compassbutton.CompassButton;
 import com.anwesome.ui.completeballbuttons.BallButton;
 import com.anwesome.ui.completeballbuttons.CompleteBallButton;
 import com.anwesome.ui.crukybutton.CrukyButton;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCrukyButton();
+                showCompassButton();
             }
         });
     }
@@ -87,5 +88,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         crukyButton1.show(300,300);
+    }
+    public void showCompassButton() {
+        CompassButton compassButton = new CompassButton(this);
+        compassButton.show(400,400);
+        compassButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this,"Clicked On Compass",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

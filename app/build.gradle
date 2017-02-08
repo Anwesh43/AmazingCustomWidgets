@@ -29,4 +29,5 @@ dependencies {
     compile project(':bulletedlist')
     compile project(':completeballbuttons')
     compile project(':crukybutton')
+    compile project(':compassbutton')
 }
