@@ -13,9 +13,13 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 public class TriCircledButton {
     private Activity activity;
     private TriCircledButtonView circledButtonView;
+    private View.OnClickListener onClickListener;
     private int triangleColor=Color.parseColor("#2196F3"),circleColor = Color.parseColor("#ffffff");
     public TriCircledButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     public void show(int x,int y) {
         if(circledButtonView == null) {
@@ -66,6 +70,9 @@ public class TriCircledButton {
                     dir = 0;
                     deg = 0;
                     shouldAnimate = false;
+                    if(onClickListener != null) {
+                        onClickListener.onClick(this);
+                    }
                 }
                 try {
                     Thread.sleep(50);
