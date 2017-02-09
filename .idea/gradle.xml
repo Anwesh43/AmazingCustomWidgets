@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/dimensionsutil" />
             <option value="$PROJECT_DIR$/fourbutton" />
             <option value="$PROJECT_DIR$/polygonaltraverseview" />
+            <option value="$PROJECT_DIR$/tricircledbutton" />
           </set>
         </option>
         <option name="myModules">
@@ -31,6 +32,7 @@
             <option value="$PROJECT_DIR$/dimensionsutil" />
             <option value="$PROJECT_DIR$/fourbutton" />
             <option value="$PROJECT_DIR$/polygonaltraverseview" />
+            <option value="$PROJECT_DIR$/tricircledbutton" />
           </set>
         </option>
       </GradleProjectSettings>
