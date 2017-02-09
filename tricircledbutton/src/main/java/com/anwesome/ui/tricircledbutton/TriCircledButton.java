@@ -57,6 +57,31 @@ public class TriCircledButton {
             canvas.drawCircle(-w/4,h/4,w/8,paint);
             canvas.drawCircle(0,-h/4,w/8,paint);
             canvas.restore();
+            if(shouldAnimate) {
+                deg+=dir*15;
+                if(deg>=60) {
+                    dir = -1;
+                }
+                if(deg<=0) {
+                    dir = 0;
+                    deg = 0;
+                    shouldAnimate = false;
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch(Exception ex) {
+
+                }
+            }
+        }
+        public boolean onTouchEvent(MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !shouldAnimate && dir == 0) {
+                dir = 1;
+                shouldAnimate = true;
+            }
+            return true;
         }
     }
 }
