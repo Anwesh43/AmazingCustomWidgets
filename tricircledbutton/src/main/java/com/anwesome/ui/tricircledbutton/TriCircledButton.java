@@ -4,12 +4,34 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.*;
 import android.view.*;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
+
 /**
  * Created by anweshmishra on 10/02/17.
  */
 public class TriCircledButton {
     private Activity activity;
+    private TriCircledButtonView circledButtonView;
+    private int triangleColor=Color.parseColor("#2196F3"),circleColor = Color.parseColor("#ffffff");
     public TriCircledButton(Activity activity) {
+        this.activity = activity;
+    }
+    public void show(int x,int y) {
+        if(circledButtonView == null) {
+            circledButtonView = new TriCircledButtonView(activity);
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            int w = size.x,h = size.y;
+            activity.addContentView(circledButtonView,new ViewGroup.LayoutParams(h/4,h/4));
+        }
+        circledButtonView.setX(x);
+        circledButtonView.setY(y);
+    }
+    public void setTriangleColor(int triangleColor) {
+        this.triangleColor = triangleColor;
+    }
+    public void setCircleColor(int circleColor) {
+        this.circleColor = circleColor;
     }
     private class TriCircledButtonView extends View {
         private float deg = 0,dir = 0;
@@ -28,8 +50,12 @@ public class TriCircledButton {
             path.lineTo(0,-h/2);
             path.lineTo(-w/2,h/2);
             path.lineTo(w/2,h/2);
-            
+            paint.setColor(triangleColor);
             canvas.drawPath(path,paint);
+            paint.setColor(circleColor);
+            canvas.drawCircle(w/4,h/4,w/8,paint);
+            canvas.drawCircle(-w/4,h/4,w/8,paint);
+            canvas.drawCircle(0,-h/4,w/8,paint);
             canvas.restore();
         }
     }
