@@ -14,6 +14,7 @@ import com.anwesome.ui.completeballbuttons.CompleteBallButton;
 import com.anwesome.ui.crukybutton.CrukyButton;
 import com.anwesome.ui.fourbutton.FourButtons;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
+import com.anwesome.ui.tricircledbutton.TriCircledButton;
 
 public class MainActivity extends AppCompatActivity {
     private String actions[] = {"action1","action2","action3","action4"};
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCompassButton();
+                showTriCircledButton();
             }
         });
     }
@@ -98,5 +99,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"Clicked On Compass",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showTriCircledButton() {
+        TriCircledButton triCircledButton = new TriCircledButton(this);
+        triCircledButton.show(300,300);
     }
 }
