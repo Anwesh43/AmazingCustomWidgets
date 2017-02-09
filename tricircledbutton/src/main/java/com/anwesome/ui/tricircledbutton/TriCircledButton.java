@@ -22,7 +22,7 @@ public class TriCircledButton {
             circledButtonView = new TriCircledButtonView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
             int w = size.x,h = size.y;
-            activity.addContentView(circledButtonView,new ViewGroup.LayoutParams(h/4,h/4));
+            activity.addContentView(circledButtonView,new ViewGroup.LayoutParams(h/3,h/3));
         }
         circledButtonView.setX(x);
         circledButtonView.setY(y);
@@ -41,9 +41,9 @@ public class TriCircledButton {
             super(context);
         }
         public void onDraw(Canvas canvas) {
-            int w = canvas.getWidth(),h = canvas.getHeight();
+            int w1 = canvas.getWidth(),h1 = canvas.getHeight(),w = canvas.getWidth()/2,h = canvas.getHeight()/2;
             canvas.save();
-            canvas.translate(w/2,h/2);
+            canvas.translate(w1/2,h1/2);
             canvas.rotate(deg);
             Path path = new Path();
             path.lineTo(w/2,h/2);
@@ -80,6 +80,7 @@ public class TriCircledButton {
             if(event.getAction() == MotionEvent.ACTION_DOWN && !shouldAnimate && dir == 0) {
                 dir = 1;
                 shouldAnimate = true;
+                postInvalidate();
             }
             return true;
         }
