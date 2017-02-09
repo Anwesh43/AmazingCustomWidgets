@@ -1,6 +1,7 @@
 package com.anwesome.ui.customviewaday;
 
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -102,6 +103,13 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showTriCircledButton() {
         TriCircledButton triCircledButton = new TriCircledButton(this);
+        triCircledButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "clicked on triangle", Toast.LENGTH_SHORT).show();
+            }
+        });
+        triCircledButton.setTriangleColor(Color.parseColor("#0097A7"));
         triCircledButton.show(300,300);
     }
 }
