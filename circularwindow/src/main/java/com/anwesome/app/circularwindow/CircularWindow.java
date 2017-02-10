@@ -11,6 +11,7 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
  * Created by anweshmishra on 11/02/17.
  */
 public class CircularWindow {
+    private View.OnClickListener onClickListener;
     private int color = Color.parseColor("#0B4762");
     private Activity activity;
     private CircularWindowView circularWindowView;
@@ -34,6 +35,9 @@ public class CircularWindow {
         circularWindowView.setX(x);
         circularWindowView.setY(y);
     }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
     private class CircularWindowView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         private boolean isAnimated = false;
@@ -41,6 +45,7 @@ public class CircularWindow {
         public CircularWindowView(Context context) {
             super(context);
         }
+
         public void onDraw(Canvas canvas) {
             int w= canvas.getWidth(),h = canvas.getHeight();
             canvas.save();
@@ -64,6 +69,9 @@ public class CircularWindow {
                     deg = 0;
                     dir = 0;
                     isAnimated = false;
+                    if(onClickListener != null){
+                        onClickListener.onClick(this);
+                    }
                 }
                 Thread.sleep(50);
                 invalidate();
