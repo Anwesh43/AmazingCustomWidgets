@@ -115,6 +115,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showCircularWindow() {
         CircularWindow circularWindow = new CircularWindow(this);
+        circularWindow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this,"Showing text",Toast.LENGTH_SHORT).show();
+            }
+        });
         circularWindow.show(400,400);
     }
 }
