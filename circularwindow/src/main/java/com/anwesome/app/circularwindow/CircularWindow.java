@@ -5,6 +5,8 @@ import android.content.Context;
 import android.graphics.*;
 import android.view.*;
 
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
+
 /**
  * Created by anweshmishra on 11/02/17.
  */
@@ -21,8 +23,13 @@ public class CircularWindow {
     }
     public void show(int x,int y) {
         if(circularWindowView==null) {
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            int dimension = size.y/4;
+            if(size.x>size.y) {
+                dimension = size.x/4;
+            }
             circularWindowView = new CircularWindowView(activity);
-            activity.addContentView(circularWindowView,new ViewGroup.LayoutParams(300,300));
+            activity.addContentView(circularWindowView,new ViewGroup.LayoutParams(dimension,dimension));
         }
         circularWindowView.setX(x);
         circularWindowView.setY(y);
