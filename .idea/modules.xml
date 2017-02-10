@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/bulletedlist/bulletedlist.iml" filepath="$PROJECT_DIR$/bulletedlist/bulletedlist.iml" />
       <module fileurl="file://$PROJECT_DIR$/circularbuttonchooser/circularbuttonchooser.iml" filepath="$PROJECT_DIR$/circularbuttonchooser/circularbuttonchooser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/circularwindow/circularwindow.iml" filepath="$PROJECT_DIR$/circularwindow/circularwindow.iml" />
       <module fileurl="file://$PROJECT_DIR$/compassbutton/compassbutton.iml" filepath="$PROJECT_DIR$/compassbutton/compassbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/completeballbuttons/completeballbuttons.iml" filepath="$PROJECT_DIR$/completeballbuttons/completeballbuttons.iml" />
       <module fileurl="file://$PROJECT_DIR$/crukybutton/crukybutton.iml" filepath="$PROJECT_DIR$/crukybutton/crukybutton.iml" />
