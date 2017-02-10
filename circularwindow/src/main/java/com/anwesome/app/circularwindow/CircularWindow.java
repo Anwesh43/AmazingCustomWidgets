@@ -60,24 +60,25 @@ public class CircularWindow {
                 canvas.drawRoundRect(new RectF(x,y,x1,y1),w/32,h/32,paint);
             }
             canvas.restore();
-            try {
-                deg+=dir*10;
-                if(deg>=90) {
-                    dir = -1;
-                }
-                if(deg<=0) {
-                    deg = 0;
-                    dir = 0;
-                    isAnimated = false;
-                    if(onClickListener != null){
-                        onClickListener.onClick(this);
+            if(isAnimated) {
+                try {
+                    deg += dir * 10;
+                    if (deg >= 90) {
+                        dir = -1;
                     }
-                }
-                Thread.sleep(50);
-                invalidate();
-            }
-            catch(Exception ex) {
+                    if (deg <= 0) {
+                        deg = 0;
+                        dir = 0;
+                        isAnimated = false;
+                        if (onClickListener != null) {
+                            onClickListener.onClick(this);
+                        }
+                    }
+                    Thread.sleep(50);
+                    invalidate();
+                } catch (Exception ex) {
 
+                }
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
