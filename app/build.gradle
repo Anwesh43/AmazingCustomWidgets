@@ -31,4 +31,5 @@ dependencies {
     compile project(':crukybutton')
     compile project(':compassbutton')
     compile project(':tricircledbutton')
+    compile project(':circularwindow')
 }
