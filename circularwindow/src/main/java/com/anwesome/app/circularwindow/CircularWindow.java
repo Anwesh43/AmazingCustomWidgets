@@ -49,15 +49,15 @@ public class CircularWindow {
             paint.setColor(color);
             canvas.drawCircle(0,0,w/2,paint);
             paint.setColor(Color.WHITE);
-            int xl[] = {-1,1,-1,1},yl[] = {-1,-1,1,1};
+            int xl[] = {-2,1,-2,1},yl[] = {-2,-2,1,1};
             for(int i=0;i<4;i++) {
-                float x = w/8*xl[i],y = w/8*yl[i],x1 = x+w/8,y1 = y+h/8;
+                float x = w/6*xl[i],y = w/6*yl[i],x1 = x+w/6,y1 = y+w/6;
                 canvas.drawRoundRect(new RectF(x,y,x1,y1),w/32,h/32,paint);
             }
             canvas.restore();
             try {
                 deg+=dir*10;
-                if(deg>=60) {
+                if(deg>=90) {
                     dir = -1;
                 }
                 if(deg<=0) {
