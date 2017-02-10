@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.anwesome.app.circularwindow.CircularWindow;
 import com.anwesome.ui.bulletedlist.BulletedList;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
 import com.anwesome.ui.compassbutton.CompassButton;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTriCircledButton();
+                showCircularWindow();
             }
         });
     }
@@ -111,5 +112,9 @@ public class MainActivity extends AppCompatActivity {
         });
         triCircledButton.setTriangleColor(Color.parseColor("#0097A7"));
         triCircledButton.show(300,300);
+    }
+    public void showCircularWindow() {
+        CircularWindow circularWindow = new CircularWindow(this);
+        circularWindow.show(400,400);
     }
 }
