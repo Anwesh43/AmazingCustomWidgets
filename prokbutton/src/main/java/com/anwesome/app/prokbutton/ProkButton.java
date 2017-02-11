@@ -3,6 +3,7 @@ package com.anwesome.app.prokbutton;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.*;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -63,6 +64,14 @@ public class ProkButton {
 
                 }
             }
+        }
+        public boolean onTouchEvent(MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && dir == 0) {
+                dir = 1;
+                isAnimated = true;
+                postInvalidate();
+            }
+            return true;
         }
     }
 }
