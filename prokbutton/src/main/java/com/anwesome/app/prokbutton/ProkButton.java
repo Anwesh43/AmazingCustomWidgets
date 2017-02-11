@@ -15,6 +15,7 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 public class ProkButton {
     private Activity activity;
     private ProkButtonView prokButtonView;
+    private int color = Color.parseColor("#00695C");
     public ProkButton(Activity activity) {
         this.activity = activity;
     }
@@ -40,7 +41,8 @@ public class ProkButton {
             super(context);
         }
         public void onDraw(Canvas canvas) {
-            int w = canvas.getWidth(),h = canvas.getHeight();
+            paint.setColor(color);
+            int w = canvas.getWidth()/2,h = canvas.getHeight()/2;
             int x = w/2,y = 2*h/3,startDeg = -60,endDeg = 240,r = h/3;
             canvas.save();
             canvas.translate(x,y);
