@@ -126,6 +126,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showProkButton() {
         ProkButton prokButton = new ProkButton(this);
+        prokButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Clicked On ProkButton", Toast.LENGTH_SHORT).show();
+            }
+        });
         prokButton.show(500,500);
     }
 }
