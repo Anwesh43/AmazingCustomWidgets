@@ -7,6 +7,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
+
 /**
  * Created by anweshmishra on 12/02/17.
  */
@@ -19,7 +21,12 @@ public class ProkButton {
     public void show(int x,int y) {
         if(prokButtonView == null) {
             prokButtonView = new ProkButtonView(activity);
-            activity.addContentView(prokButtonView,new ViewGroup.LayoutParams(300,300));
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            int w = size.x,h = size.y,dimension = h/6;
+            if(w>h) {
+                dimension = w/6;
+            }
+            activity.addContentView(prokButtonView,new ViewGroup.LayoutParams(dimension,dimension));
         }
         prokButtonView.setX(x);
         prokButtonView.setY(y);
