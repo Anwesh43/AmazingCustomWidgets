@@ -15,9 +15,13 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 public class ProkButton {
     private Activity activity;
     private ProkButtonView prokButtonView;
+    private View.OnClickListener onClickListener;
     private int color = Color.parseColor("#00695C");
     public ProkButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     public void show(int x,int y) {
         if(prokButtonView == null) {
@@ -64,6 +68,9 @@ public class ProkButton {
                 if(deg<=0) {
                     dir = 0;
                     isAnimated = false;
+                    if(onClickListener != null) {
+                        onClickListener.onClick(this);
+                    }
                 }
                 try {
                     Thread.sleep(50);
