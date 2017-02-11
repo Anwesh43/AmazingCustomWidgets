@@ -23,9 +23,9 @@ public class ProkButton {
         if(prokButtonView == null) {
             prokButtonView = new ProkButtonView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
-            int w = size.x,h = size.y,dimension = h/6;
+            int w = size.x,h = size.y,dimension = h/3;
             if(w>h) {
-                dimension = w/6;
+                dimension = w/3;
             }
             activity.addContentView(prokButtonView,new ViewGroup.LayoutParams(dimension,dimension));
         }
