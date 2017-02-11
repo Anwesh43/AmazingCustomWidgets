@@ -32,4 +32,5 @@ dependencies {
     compile project(':compassbutton')
     compile project(':tricircledbutton')
     compile project(':circularwindow')
+    compile project(':prokbutton')
 }

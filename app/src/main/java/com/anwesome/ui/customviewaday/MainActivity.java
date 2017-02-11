@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.anwesome.app.circularwindow.CircularWindow;
+import com.anwesome.app.prokbutton.ProkButton;
 import com.anwesome.ui.bulletedlist.BulletedList;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
 import com.anwesome.ui.compassbutton.CompassButton;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCircularWindow();
+                showProkButton();
             }
         });
     }
@@ -122,5 +123,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         circularWindow.show(400,400);
+    }
+    public void showProkButton() {
+        ProkButton prokButton = new ProkButton(this);
+        prokButton.show(500,500);
     }
 }
