@@ -27,17 +27,19 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private String actions[] = {"action1","action2","action3","action4"};
+    private MenuExpander menuExpander;
     private int images[] = {R.drawable.delivered,R.drawable.restart,R.drawable.onway,R.drawable.order};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PolygonalTraverseView ppView = (PolygonalTraverseView)findViewById(R.id.ppview);
+        final PolygonalTraverseView ppView = (PolygonalTraverseView)findViewById(R.id.ppview);
         ppView.setN(6);
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showExpanderMenu();
+                ppView.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -155,8 +157,13 @@ public class MainActivity extends AppCompatActivity {
             i++;
             menus.add(menu);
         }
-        MenuExpander menuExpander = new MenuExpander(this);
+        menuExpander = new MenuExpander(this);
         menuExpander.setMenuContainer(new MenuContainer(menus));
         menuExpander.show();
+    }
+    public void onBackPressed() {
+        if(!menuExpander.handleBackPressed()) {
+            super.onBackPressed();
+        }
     }
 }
