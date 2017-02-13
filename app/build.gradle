@@ -34,4 +34,5 @@ dependencies {
     compile project(':circularwindow')
     compile project(':prokbutton')
     compile project(':menuexpander')
+    compile project(':buttonintriangle')
 }

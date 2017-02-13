@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.anwesome.app.buttonintriangle.ButtonsTriangle;
 import com.anwesome.app.circularwindow.CircularWindow;
 import com.anwesome.app.menuexpander.Menu;
 import com.anwesome.app.menuexpander.MenuContainer;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showExpanderMenu();
+                showButtonsInTriangle();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -165,5 +166,9 @@ public class MainActivity extends AppCompatActivity {
         if(!(menuExpander!=null && menuExpander.handleBackPressed())) {
             super.onBackPressed();
         }
+    }
+    public void showButtonsInTriangle() {
+        ButtonsTriangle buttonsTriangle = new ButtonsTriangle(this);
+        buttonsTriangle.show(300,300);
     }
 }
