@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         menuExpander.show();
     }
     public void onBackPressed() {
-        if(!menuExpander.handleBackPressed()) {
+        if(!(menuExpander!=null && menuExpander.handleBackPressed())) {
             super.onBackPressed();
         }
     }
