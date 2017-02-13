@@ -11,6 +11,7 @@ import android.view.*;
 public class MenuExpander {
     private Activity activity;
     private MenuContainer menuContainer;
+    private MenuExpanderView view;
     public MenuExpander(Activity activity) {
         this.activity = activity;
     }
@@ -18,7 +19,7 @@ public class MenuExpander {
         this.menuContainer = menuContainer;
     }
     public void show() {
-        MenuExpanderView view = new MenuExpanderView(activity);
+        view = new MenuExpanderView(activity);
         activity.addContentView(view,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
     }
@@ -46,5 +47,12 @@ public class MenuExpander {
             }
             return true;
         }
+    }
+    public boolean handleBackPressed() {
+       boolean condition =  menuContainer.handleBackPressed();
+        if(condition && view!=null) {
+            view.invalidate();
+        }
+        return  condition;
     }
 }

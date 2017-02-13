@@ -68,6 +68,12 @@ public class MenuContainer {
                     isAnimated = false;
                     expanded = true;
                 }
+                if(deg<=0) {
+                    deg = 0;
+                    dir = 0;
+                    scale = 0.2f;
+                    isAnimated = false;
+                }
             }
             else {
                 if(currentMenu!=null) {
@@ -107,6 +113,15 @@ public class MenuContainer {
                 }
             }
         }
+    }
+    public boolean handleBackPressed() {
+        final boolean condition = expanded;
+        if(expanded) {
+            isAnimated = true;
+            dir = -1;
+            expanded = false;
+        }
+        return condition;
     }
 
 }
