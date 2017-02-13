@@ -31,14 +31,14 @@ public class MenuContainer {
         this.boundH = h*scale;
         float gap = w/7;
         int i = 0;
-        float xm = gap/2,ym = h/10;
+        float xm = gap/2-w/2,ym = h/10-h/2;
         for(Menu menu:menus) {
-            menu.setDimensions(xm,ym,gap/2);
-            x+=gap;
+            menu.setDimensions(xm,ym,gap);
+            xm+=2*gap;
             i++;
             if(i%3 == 0){
-                x = gap/2;
-                h+=3*gap/2;
+                xm = gap/2-w/2;
+                ym+=2*gap;
             }
         }
     }
@@ -59,7 +59,7 @@ public class MenuContainer {
     public void render(View view) {
         if(isAnimated) {
             if(!expanded) {
-                deg+=30*dir;
+                deg+=72*dir;
                 scale+=0.2f*dir;
                 if(deg>=360) {
                     deg = 360;
@@ -95,6 +95,8 @@ public class MenuContainer {
                     view.postInvalidate();
                 }
             } else {
+                x = x-w/2;
+                y = y-h/2;
                 for (Menu menu : menus) {
                     if (menu.handleTap(x, y)) {
                         currentMenu = menu;

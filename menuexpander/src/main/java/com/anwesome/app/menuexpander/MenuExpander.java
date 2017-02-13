@@ -3,11 +3,7 @@ package com.anwesome.app.menuexpander;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.*;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.menu.ExpandedMenuView;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 
 /**
  * Created by anweshmishra on 13/02/17.
