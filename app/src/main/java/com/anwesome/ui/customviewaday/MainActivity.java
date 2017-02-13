@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.anwesome.app.circularwindow.CircularWindow;
+import com.anwesome.app.menuexpander.Menu;
+import com.anwesome.app.menuexpander.MenuContainer;
+import com.anwesome.app.menuexpander.MenuExpander;
 import com.anwesome.app.prokbutton.ProkButton;
 import com.anwesome.ui.bulletedlist.BulletedList;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
@@ -18,6 +21,9 @@ import com.anwesome.ui.crukybutton.CrukyButton;
 import com.anwesome.ui.fourbutton.FourButtons;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 import com.anwesome.ui.tricircledbutton.TriCircledButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private String actions[] = {"action1","action2","action3","action4"};
@@ -31,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showProkButton();
+                showExpanderMenu();
             }
         });
     }
@@ -133,5 +139,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         prokButton.show(500,500);
+    }
+    public void showExpanderMenu() {
+        List<Menu> menus = new ArrayList<>();
+        int i = 0;
+        for(int image:images) {
+            final int index = i;
+            Menu menu = new Menu(BitmapFactory.decodeResource(getResources(),image));
+            menu.setOnClickListener(new Menu.MenuClickListener() {
+                @Override
+                public void onClick() {
+                    Toast.makeText(MainActivity.this,actions[index],Toast.LENGTH_SHORT).show();
+                }
+            });
+            i++;
+            menus.add(menu);
+        }
+        MenuExpander menuExpander = new MenuExpander(this);
+        menuExpander.setMenuContainer(new MenuContainer(menus));
+        menuExpander.show();
     }
 }
