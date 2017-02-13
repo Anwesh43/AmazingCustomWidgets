@@ -31,9 +31,9 @@ public class MenuExpander {
             super(context);
         }
         public void onDraw(Canvas canvas) {
-            int w = canvas.getWidth(),h = canvas.getHeight();
+            int w = (canvas.getWidth()*9)/10,h = (canvas.getHeight()*9)/10;
             if(time == 0) {
-                menuContainer.setDimensions(w/2,h/2,w,h);
+                menuContainer.setDimensions(w/2+w/20,h/2+h/20,w,h);
             }
             menuContainer.draw(canvas,paint);
             menuContainer.render(this);
