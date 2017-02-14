@@ -169,6 +169,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showButtonsInTriangle() {
         ButtonsTriangle buttonsTriangle = new ButtonsTriangle(this);
+        buttonsTriangle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this,"clicked",Toast.LENGTH_SHORT).show();
+            }
+        });
         buttonsTriangle.show(300,300);
     }
 }

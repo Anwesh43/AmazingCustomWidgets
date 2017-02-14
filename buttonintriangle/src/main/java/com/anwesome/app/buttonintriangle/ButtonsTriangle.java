@@ -11,8 +11,12 @@ import android.view.*;
 public class ButtonsTriangle {
     private Activity activity;
     private ButtonsTriangleView view;
+    private View.OnClickListener onClickListener;
     public ButtonsTriangle(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     public void show(int x,int y) {
         if(view == null) {
@@ -30,17 +34,20 @@ public class ButtonsTriangle {
             super(context);
         }
         public void onDraw(Canvas canvas) {
-            int w = canvas.getWidth() / 2, h = canvas.getHeight() / 2;
+            int w = canvas.getWidth(), h = canvas.getHeight();
+            float h1 = ((float)Math.sqrt(3)/2)*w;
             canvas.save();
-            canvas.translate(w, h);
+            canvas.translate(w/2, h/2);
             canvas.rotate(deg);
+            canvas.scale(0.4f,0.4f);
             paint.setStyle(Paint.Style.STROKE);
             paint.setColor(Color.parseColor("#1565C0"));
+            paint.setStrokeWidth(15);
             Path path = new Path();
-            path.moveTo(0, -w / 2);
-            path.lineTo(-w / 2, w / 2);
-            path.lineTo(w / 2, w / 2);
-            path.lineTo(0, -w / 2);
+            path.moveTo(0, -h1/2);
+            path.lineTo(-w / 2, h1/2);
+            path.lineTo(w / 2, h1/2);
+            path.lineTo(0, -h1/2);
             canvas.drawPath(path, paint);
             paint.setStyle(Paint.Style.FILL);
             paint.setColor(Color.parseColor("#e53935"));
@@ -50,7 +57,11 @@ public class ButtonsTriangle {
                 deg+=dir*20;
                 if(deg%120 == 0) {
                     dir = 0;
+                    deg -= deg%120;
                     isAnimated = false;
+                    if(onClickListener!=null) {
+                        onClickListener.onClick(this);
+                    }
                 }
                 try {
                     Thread.sleep(50);
