@@ -112,7 +112,7 @@ public class GroupImageButton {
         x+=xdir;
         y+=ydir;
         scale+=scaleSpeed;
-        deg+=scaleSpeed;
+        deg+=degSpeed;
         if(mode == 0) {
             if((ydir<0 && y<finalY) || (ydir>0 && y>finalY)) {
                 ydir = 0;
@@ -123,11 +123,13 @@ public class GroupImageButton {
                 scaleSpeed = 0;
                 if(ydir>0) {
                     scale = 0.2f;
+                    deg = 0;
                 }
                 else {
                     scale = 1.0f;
+                    deg = 360;
                 }
-                deg -= deg%360;
+
                 stoppedMoving = true;
             }
         }
@@ -147,5 +149,13 @@ public class GroupImageButton {
     }
     public boolean handleTap(float x,float y) {
         return x>=this.x-0.1f*w && x<=this.x+0.1f*w && y>=this.y-0.1f*h && y<=this.y+0.1f*h;
+    }
+    public void setResetPosition() {
+        x = finalX;
+        y = finalY;
+        degSpeed = 0;
+        scaleSpeed = 0;
+        scale = 0.2f;
+        deg = 0;
     }
 }

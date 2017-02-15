@@ -57,6 +57,9 @@ public class GroupImageButtons {
             time++;
             if(isAnimated) {
                 if(currButton.isStoppedMoving()) {
+                    if(prevButton!=null) {
+                        prevButton.setResetPosition();
+                    }
                     prevButton = currButton;
                     currButton = null;
                     isAnimated = false;
@@ -93,7 +96,10 @@ public class GroupImageButtons {
             float x = event.getX(),y = event.getY(),prevX=0,prevY=0;
             if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated ) {
                 for(GroupImageButton groupImageButton:imageButtons) {
-                    if(groupImageButton.handleTap(x,y) && currButton==null && (prevButton == null || prevButton!=groupImageButton)) {
+                    if(prevButton!=null && prevButton==groupImageButton) {
+                        continue;
+                    }
+                    if(groupImageButton.handleTap(x,y) && currButton==null) {
                         isAnimated = true;
                         currButton = groupImageButton;
                         currButton.startAnimating(0,viewW/2,viewH/2,0.2f,72);
