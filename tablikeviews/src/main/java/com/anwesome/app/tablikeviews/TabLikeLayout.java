@@ -83,6 +83,19 @@ public class TabLikeLayout {
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
+            float x = event.getX(),y = event.getY();
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+                for(TabElement tabElement:tabs) {
+                    if(tabElement.handleTap(x,y) && tabElement!=prevTab) {
+                        currTab = tabElement;
+                        break;
+                    }
+                }
+                if(currTab!=null) {
+                    isAnimated = true;
+                    postInvalidate();
+                }
+            }
             return true;
         }
     }
