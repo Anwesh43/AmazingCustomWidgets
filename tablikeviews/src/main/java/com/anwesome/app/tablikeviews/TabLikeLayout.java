@@ -9,6 +9,9 @@ import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
+
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -26,7 +29,7 @@ public class TabLikeLayout {
         initWH();
     }
     public void initWH() {
-        Point size = new Point();
+        Point size = DimensionsUtil.getDeviceDimension(activity);
         w = size.x;
         h = size.y;
         paint.setTextSize(h/60);
