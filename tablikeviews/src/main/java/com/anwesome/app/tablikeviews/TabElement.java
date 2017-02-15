@@ -1,4 +1,4 @@
-package com.anwesome.ui.customviewaday;
+package com.anwesome.app.tablikeviews;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,8 +11,8 @@ import android.support.v4.app.Fragment;
  */
 public class TabElement {
     private Fragment fragment;
-    private String title;
-    private float x,y,w,h,scale = 0f,deg=0,dir = 0;
+    private String title="";
+    private float x=0,y=0,w=0,h=0,scale = 0f,deg=0,dir = 0;
     public TabElement(Fragment fragment,String title) {
         this.fragment = fragment;
         this.title = title;
@@ -59,6 +59,6 @@ public class TabElement {
         return (x>=this.x && x<=this.x+this.h && y>=this.y && y<=this.y+h);
     }
     public int hashCode() {
-        return fragment.hashCode()+(int)x+(int)y+(int)h+title.hashCode();
+        return fragment!=null?fragment.hashCode():0+(int)x+(int)y+(int)h+title.hashCode();
     }
 }
