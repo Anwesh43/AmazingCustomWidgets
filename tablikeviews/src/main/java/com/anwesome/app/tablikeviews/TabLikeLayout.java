@@ -1,6 +1,7 @@
 package com.anwesome.app.tablikeviews;
 
 import android.content.Context;
+import android.content.pm.ProviderInfo;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -9,10 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-
 import com.anwesome.ui.dimensionsutil.DimensionsUtil;
-
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -53,18 +51,20 @@ public class TabLikeLayout {
     }
     public void show() {
         if(tabLikeView == null) {
+            FragmentTransactionManager.addViews(activity,tabs,w,h-tabH,tabH);
             tabLikeView = new TabLikeView(activity);
             tabH = tabH+3*(int)paint.getTextSize();
             activity.addContentView(tabLikeView,new ViewGroup.LayoutParams(tabW,tabH));
-            FragmentTransactionManager.addViews(activity,tabs,w,h-tabH,tabH);
+            tabLikeView.setX(0);
+            tabLikeView.setY(0);
         }
     }
     private class TabLikeView extends View {
         private TabElement currTab,prevTab;
         private boolean isAnimated = false;
+        private int time = 0;
         public TabLikeView(Context context){
             super(context);
-            initPrevTab();
         }
         public void initPrevTab() {
             for(TabElement tab:tabs) {
@@ -83,10 +83,14 @@ public class TabLikeLayout {
             });
         }
         public void onDraw(Canvas canvas) {
+            if(time == 0) {
+                initPrevTab();
+            }
             canvas.drawColor(Color.parseColor("#00BCD4"));
             for(TabElement tab:tabs) {
                 tab.draw(canvas,paint);
             }
+            time++;
             if(isAnimated) {
                 if(currTab!=null) {
                     currTab.update();
