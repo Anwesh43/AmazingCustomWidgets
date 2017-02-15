@@ -69,4 +69,7 @@ public class GroupImageButton {
             }
         }
     }
+    public int hashCode() {
+        return bitmap.hashCode()+(int)x+(int)y;
+    }
 }
