@@ -4,22 +4,22 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.support.v4.app.Fragment;
+import android.view.View;
 
 /**
  * Created by anweshmishra on 15/02/17.
  */
 public class TabElement {
-    private Fragment fragment;
+    private View fragment;
     private String title="";
     private float x=0,y=0,w=0,h=0,scale = 0f,deg=0,dir = 0;
     private  boolean animStopped = false;
-    public TabElement(Fragment fragment,String title) {
+    public TabElement(View fragment,String title) {
         this.fragment = fragment;
         this.title = title;
     }
 
-    public Fragment getFragment() {
+    public View getFragment() {
         return fragment;
     }
 
