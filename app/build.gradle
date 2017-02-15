@@ -35,4 +35,5 @@ dependencies {
     compile project(':prokbutton')
     compile project(':menuexpander')
     compile project(':buttonintriangle')
+    compile project(':tablikeviews')
 }
