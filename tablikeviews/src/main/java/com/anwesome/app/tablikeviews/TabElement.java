@@ -62,9 +62,12 @@ public class TabElement {
         paint.setColor(Color.parseColor("#AA00695C"));
         canvas.save();
         canvas.translate(x+w/2,y+h/2);
-        canvas.rotate(deg);
+        //canvas.rotate(deg);
+        canvas.scale(scale,scale);
         canvas.drawRect(new RectF(-w/2,-h/2,w/2,h/2),paint);
         canvas.restore();
+        paint.setColor(Color.WHITE);
+        canvas.drawText(title,x+w/2-paint.measureText(title)/2,y+h/2+paint.getTextSize()/4,paint);
     }
     public boolean isAnimStopped() {
         return animStopped;
@@ -75,7 +78,7 @@ public class TabElement {
     public void update() {
         this.scale+=0.2f*dir;
         this.deg+=72*dir;
-        if(this.dir == 1 && this.scale>360) {
+        if(this.dir == 1 && this.scale>1) {
             this.scale = 1;
             this.deg = 360;
             this.dir = 0;
@@ -93,7 +96,7 @@ public class TabElement {
         this.dir = dir;
     }
     public boolean handleTap(float x,float y) {
-        return (x>=this.x && x<=this.x+this.h && y>=this.y && y<=this.y+h);
+        return (x>=this.x && x<=this.x+this.w && y>=this.y && y<=this.y+h);
     }
     public int hashCode() {
         return fragment!=null?fragment.hashCode():0+(int)x+(int)y+(int)h+title.hashCode();
