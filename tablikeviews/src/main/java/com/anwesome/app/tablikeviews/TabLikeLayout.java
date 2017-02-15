@@ -3,6 +3,7 @@ package com.anwesome.app.tablikeviews;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
@@ -50,11 +51,36 @@ public class TabLikeLayout {
         }
     }
     private class TabLikeView extends View {
+        private TabElement currTab,prevTab;
+        private boolean isAnimated = false;
         public TabLikeView(Context context){
             super(context);
         }
         public void onDraw(Canvas canvas) {
+            paint.setColor(Color.parseColor("#00BCD4"));
+            for(TabElement tab:tabs) {
+                tab.draw(canvas,paint);
+            }
+            if(isAnimated) {
+                if(currTab!=null) {
+                    currTab.update();
+                }
+                if(prevTab!=null) {
+                    prevTab.update();
+                }
+                if((currTab!=null && currTab.isAnimStopped()) && (prevTab == null || (prevTab!=null && prevTab.isAnimStopped()))) {
+                    isAnimated = false;
+                    prevTab = currTab;
+                    currTab = null;
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
 
+                }
+            }
         }
         public boolean onTouchEvent(MotionEvent event) {
             return true;
