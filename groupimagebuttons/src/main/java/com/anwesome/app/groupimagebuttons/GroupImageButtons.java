@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 public class GroupImageButtons {
     private Activity activity;
     private GroupImageButtonsView groupImageButtonsView;
+
     public GroupImageButtons(Activity activity) {
         this.activity = activity;
     }

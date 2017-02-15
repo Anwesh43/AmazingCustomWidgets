@@ -72,4 +72,7 @@ public class GroupImageButton {
     public int hashCode() {
         return bitmap.hashCode()+(int)x+(int)y;
     }
+    public boolean handleTap(float x,float y) {
+        return x>=this.x && x<=this.x+w && y>=this.y && y<=this.y+h;
+    }
 }
