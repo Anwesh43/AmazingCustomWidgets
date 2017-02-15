@@ -9,7 +9,64 @@ public class GroupImageButton {
     private Bitmap bitmap;
     private int mode = 0;
     public float x,y,w,h,scale = 0.2f,deg = 0,xdir = 0,ydir = 0,finalX,finalY,scaleSpeed=0,degSpeed=0;
-    private boolean moving = false;
+    private boolean stoppedMoving = false;
+
+    public float getY() {
+        return y;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public int getMode() {
+        return mode;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getW() {
+        return w;
+    }
+
+    public float getH() {
+        return h;
+    }
+
+    public float getScale() {
+        return scale;
+    }
+
+    public float getDeg() {
+        return deg;
+    }
+
+    public float getXdir() {
+        return xdir;
+    }
+
+    public float getYdir() {
+        return ydir;
+    }
+
+    public float getFinalX() {
+        return finalX;
+    }
+
+    public float getFinalY() {
+        return finalY;
+    }
+
+    public float getScaleSpeed() {
+        return scaleSpeed;
+    }
+
+    public float getDegSpeed() {
+        return degSpeed;
+    }
+
     public GroupImageButton(Bitmap bitmap) {
         this.bitmap = bitmap;
     }
@@ -21,6 +78,7 @@ public class GroupImageButton {
         this.degSpeed = degSpeed;
         this.xdir = (finalX-x)/5;
         this.ydir = (finalY-y)/5;
+        this.stoppedMoving = false;
     }
     public void setDimensions(float x,float y,float w,float h) {
         this.x = x;
@@ -29,10 +87,10 @@ public class GroupImageButton {
         this.h = h;
         this.finalX = x;
         this.finalY = y;
-        this.moving = true;
+        this.stoppedMoving = true;
     }
-    public boolean isMoving() {
-        return moving;
+    public boolean isStoppedMoving() {
+        return stoppedMoving;
     }
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
@@ -56,6 +114,13 @@ public class GroupImageButton {
                 y = finalY;
                 degSpeed = 0;
                 scaleSpeed = 0;
+                if(ydir>0) {
+                    scale = 0.2f;
+                }
+                else {
+                    scale = 1.0f;
+                }
+                deg -= deg%360;
             }
         }
         else if(mode == 1) {
