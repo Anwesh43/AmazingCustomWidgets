@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.anwesome.app.buttonintriangle.ButtonsTriangle;
 import com.anwesome.app.circularwindow.CircularWindow;
+import com.anwesome.app.groupimagebuttons.GroupImageButton;
+import com.anwesome.app.groupimagebuttons.GroupImageButtons;
 import com.anwesome.app.menuexpander.Menu;
 import com.anwesome.app.menuexpander.MenuContainer;
 import com.anwesome.app.menuexpander.MenuExpander;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTabLikeViews();
+                showGroupImageButtons();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -188,5 +190,12 @@ public class MainActivity extends AppCompatActivity {
             tabLikeLayout.addTab(new TabElement(coloredView, "tab" + (i + 1)));
         }
         tabLikeLayout.show();
+    }
+    public void showGroupImageButtons() {
+        GroupImageButtons groupImageButtons = new GroupImageButtons(this);
+        for(int i=0;i<images.length;i++) {
+            groupImageButtons.addImageButton(new GroupImageButton(BitmapFactory.decodeResource(getResources(),images[i])));
+        }
+        groupImageButtons.show();
     }
 }
