@@ -1,14 +1,15 @@
 package com.anwesome.app.tablikeviews;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
@@ -18,13 +19,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * Created by anweshmishra on 15/02/17.
  */
 public class TabLikeLayout {
-    private Activity activity;
+    private AppCompatActivity activity;
     private TabLikeView tabLikeView;
     private ConcurrentLinkedQueue<TabElement> tabs = new ConcurrentLinkedQueue<>();
-    private int w,h,tabW,tabH;
+    private int w,h,tabW,tabH,viewW,viewH;
     private float x = 0;
+    private boolean tabChanging = false;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    public TabLikeLayout(Activity activity) {
+    public TabLikeLayout(AppCompatActivity activity) {
         this.activity = activity;
         initWH();
     }
@@ -46,11 +48,15 @@ public class TabLikeLayout {
         tabElement.setDimensions(x,tabH,currTabW,currTabh);
         x+=currTabW;
         tabs.add(tabElement);
+        viewW =  tabW;
+        viewH = h-tabH;
     }
     public void show() {
         if(tabLikeView == null) {
             tabLikeView = new TabLikeView(activity);
-            activity.addContentView(tabLikeView,new ViewGroup.LayoutParams(tabW,tabH+3*(int)paint.getTextSize()));
+            tabH = tabH+3*(int)paint.getTextSize();
+            activity.addContentView(tabLikeView,new ViewGroup.LayoutParams(tabW,tabH));
+            FragmentTransactionManager.addViews(activity,tabs,w,h-tabH,tabH);
         }
     }
     private class TabLikeView extends View {
@@ -58,6 +64,23 @@ public class TabLikeLayout {
         private boolean isAnimated = false;
         public TabLikeView(Context context){
             super(context);
+            initPrevTab();
+        }
+        public void initPrevTab() {
+            for(TabElement tab:tabs) {
+                prevTab = tab;
+                break;
+            }
+            if(prevTab!=null) {
+                prevTab.setDefault();
+                FragmentTransactionManager.setDefaultView(prevTab);
+            }
+            FragmentTransactionManager.setOnTrsactionEndListener(new FragmentTransactionManager.TransactionEndHandler() {
+                @Override
+                public void handle() {
+                    tabChanging = false;
+                }
+            });
         }
         public void onDraw(Canvas canvas) {
             canvas.drawColor(Color.parseColor("#00BCD4"));
@@ -87,7 +110,7 @@ public class TabLikeLayout {
         }
         public boolean onTouchEvent(MotionEvent event) {
             float x = event.getX(),y = event.getY();
-            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && !tabChanging) {
                 for(TabElement tabElement:tabs) {
                     if(tabElement.handleTap(x,y) && tabElement!=prevTab) {
                         currTab = tabElement;
@@ -100,8 +123,10 @@ public class TabLikeLayout {
                     if(prevTab!=null) {
                         prevTab.setDir(-1);
                         prevTab.startAnimation();
+                        FragmentTransactionManager.switchView(activity,currTab.getFragment(),prevTab.getFragment());
                     }
                     isAnimated = true;
+                    tabChanging = true;
                     postInvalidate();
                 }
             }
