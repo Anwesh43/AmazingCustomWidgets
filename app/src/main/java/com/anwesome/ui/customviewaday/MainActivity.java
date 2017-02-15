@@ -2,6 +2,7 @@ package com.anwesome.ui.customviewaday;
 
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -180,15 +181,12 @@ public class MainActivity extends AppCompatActivity {
         buttonsTriangle.show(300,300);
     }
     public void showTabLikeViews() {
+        String colorStrings[] = {"#f44336","#F57F17","#009688","#311B92","#F50057","#FFEE58"};
         TabLikeLayout tabLikeLayout = new TabLikeLayout(this);
-        tabLikeLayout.addTab(new TabElement(null,"tab1"));
-        tabLikeLayout.addTab(new TabElement(null,"tab2"));
-        tabLikeLayout.addTab(new TabElement(null,"tab3"));
-        tabLikeLayout.addTab(new TabElement(null,"tab4"));
-        tabLikeLayout.addTab(new TabElement(null,"tab5"));
-        tabLikeLayout.addTab(new TabElement(null,"tab6"));
-        tabLikeLayout.addTab(new TabElement(null,"tab7"));
-        tabLikeLayout.addTab(new TabElement(null,"tab8"));
+        for(int i=0;i<colorStrings.length;i++) {
+            View coloredView = new ColoredFragment(this,Color.parseColor(colorStrings[i]),(i+1));
+            tabLikeLayout.addTab(new TabElement(coloredView, "tab" + (i + 1)));
+        }
         tabLikeLayout.show();
     }
 }
