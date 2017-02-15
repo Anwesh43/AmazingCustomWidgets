@@ -13,6 +13,8 @@ import com.anwesome.app.menuexpander.Menu;
 import com.anwesome.app.menuexpander.MenuContainer;
 import com.anwesome.app.menuexpander.MenuExpander;
 import com.anwesome.app.prokbutton.ProkButton;
+import com.anwesome.app.tablikeviews.TabElement;
+import com.anwesome.app.tablikeviews.TabLikeLayout;
 import com.anwesome.ui.bulletedlist.BulletedList;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
 import com.anwesome.ui.compassbutton.CompassButton;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showButtonsInTriangle();
+                showTabLikeViews();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -176,5 +178,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         buttonsTriangle.show(300,300);
+    }
+    public void showTabLikeViews() {
+        TabLikeLayout tabLikeLayout = new TabLikeLayout(this);
+        tabLikeLayout.addTab(new TabElement(null,"tab1"));
+        tabLikeLayout.addTab(new TabElement(null,"tab2"));
+        tabLikeLayout.addTab(new TabElement(null,"tab3"));
+        tabLikeLayout.addTab(new TabElement(null,"tab4"));
+        tabLikeLayout.addTab(new TabElement(null,"tab5"));
+        tabLikeLayout.addTab(new TabElement(null,"tab6"));
+        tabLikeLayout.addTab(new TabElement(null,"tab7"));
+        tabLikeLayout.addTab(new TabElement(null,"tab8"));
+        tabLikeLayout.show();
     }
 }
