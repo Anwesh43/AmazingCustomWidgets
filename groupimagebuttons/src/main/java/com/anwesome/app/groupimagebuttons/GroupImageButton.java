@@ -87,8 +87,13 @@ public class GroupImageButton {
         this.h = h;
         this.finalX = x;
         this.finalY = y;
-        this.stoppedMoving = true;
+        bitmap = Bitmap.createScaledBitmap(bitmap,(int)w,(int)h,true);
     }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
     public boolean isStoppedMoving() {
         return stoppedMoving;
     }
@@ -106,6 +111,8 @@ public class GroupImageButton {
     public void update() {
         x+=xdir;
         y+=ydir;
+        scale+=scaleSpeed;
+        deg+=scaleSpeed;
         if(mode == 0) {
             if((ydir<0 && y<finalY) || (ydir>0 && y>finalY)) {
                 ydir = 0;
@@ -121,6 +128,7 @@ public class GroupImageButton {
                     scale = 1.0f;
                 }
                 deg -= deg%360;
+                stoppedMoving = true;
             }
         }
         else if(mode == 1) {
@@ -138,6 +146,6 @@ public class GroupImageButton {
         return bitmap.hashCode()+(int)x+(int)y;
     }
     public boolean handleTap(float x,float y) {
-        return x>=this.x && x<=this.x+w && y>=this.y && y<=this.y+h;
+        return x>=this.x-0.1f*w && x<=this.x+0.1f*w && y>=this.y-0.1f*h && y<=this.y+0.1f*h;
     }
 }
