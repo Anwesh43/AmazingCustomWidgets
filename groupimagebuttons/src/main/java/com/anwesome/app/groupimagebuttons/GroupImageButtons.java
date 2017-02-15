@@ -25,6 +25,9 @@ public class GroupImageButtons {
             activity.addContentView(groupImageButtonsView,new ViewGroup.LayoutParams(400,400));
         }
     }
+    public void addImageButton(GroupImageButton groupImageButton) {
+        imageButtons.add(groupImageButton);
+    }
     private class GroupImageButtonsView extends View {
         private boolean isAnimated = false;
         private float viewW,viewH;
