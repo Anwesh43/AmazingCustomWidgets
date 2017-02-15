@@ -32,7 +32,7 @@ public class TabLikeLayout {
         Point size = DimensionsUtil.getDeviceDimension(activity);
         w = size.x;
         h = size.y;
-        paint.setTextSize(h/60);
+        paint.setTextSize(h/40);
         tabW = w;
         tabH = h/40;
     }
@@ -60,7 +60,7 @@ public class TabLikeLayout {
             super(context);
         }
         public void onDraw(Canvas canvas) {
-            paint.setColor(Color.parseColor("#00BCD4"));
+            canvas.drawColor(Color.parseColor("#00BCD4"));
             for(TabElement tab:tabs) {
                 tab.draw(canvas,paint);
             }
@@ -95,6 +95,12 @@ public class TabLikeLayout {
                     }
                 }
                 if(currTab!=null) {
+                    currTab.setDir(1);
+                    currTab.startAnimation();
+                    if(prevTab!=null) {
+                        prevTab.setDir(-1);
+                        prevTab.startAnimation();
+                    }
                     isAnimated = true;
                     postInvalidate();
                 }
