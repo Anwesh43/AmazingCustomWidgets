@@ -1,7 +1,6 @@
 package com.anwesome.app.tablikeviews;
 
 import android.content.Context;
-import android.content.pm.ProviderInfo;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
