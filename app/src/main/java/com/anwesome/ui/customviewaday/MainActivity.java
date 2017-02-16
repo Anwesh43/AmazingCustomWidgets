@@ -34,6 +34,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private String actions[] = {"action1","action2","action3","action4"};
     private MenuExpander menuExpander;
+    private int tImages[] = {R.drawable.t1,R.drawable.t2,R.drawable.t3,R.drawable.t4};
     private int images[] = {R.drawable.delivered,R.drawable.restart,R.drawable.onway,R.drawable.order};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,8 +194,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showGroupImageButtons() {
         GroupImageButtons groupImageButtons = new GroupImageButtons(this);
-        for(int i=0;i<images.length;i++) {
-            groupImageButtons.addImageButton(new GroupImageButton(BitmapFactory.decodeResource(getResources(),images[i])));
+        for(int i=0;i<5*images.length;i++) {
+            groupImageButtons.addImageButton(new GroupImageButton(BitmapFactory.decodeResource(getResources(),tImages[i%4])));
         }
         groupImageButtons.show();
     }
