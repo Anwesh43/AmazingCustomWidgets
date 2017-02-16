@@ -39,7 +39,7 @@ public class GroupImageButtons {
     }
     private class GroupImageButtonsView extends View {
         private boolean isAnimated = false;
-        private float viewW,viewH,buttonsGap,lastX=0,lastY=0;
+        private float viewW,viewH,buttonsGap,lastX=0,lastY=0,edgeX= 0;
         private int time = 0;
         public GroupImageButtonsView(Context context) {
             super(context);
@@ -78,6 +78,7 @@ public class GroupImageButtons {
             for(int i=0;i<imageButtons.size();i++) {
                 x+=buttonsGap;
                 if(x>viewW) {
+                    edgeX = x-buttonsGap;
                     h += buttonsGap;
                     x = buttonsGap;
                 }
@@ -109,7 +110,7 @@ public class GroupImageButtons {
                     if(groupImageButton.handleTap(x,y) && currButton==null) {
                         isAnimated = true;
                         currButton = groupImageButton;
-                        currButton.startAnimating(0,viewW/2,viewH/2,0.1f,72);
+                        currButton.startAnimating(0,viewW/2,viewH/6,0.1f,72);
                         prevX = currButton.getX();
                         prevY = currButton.getY();
                         break;
@@ -120,15 +121,17 @@ public class GroupImageButtons {
                         if(currButton==groupImageButton && prevButton!=null && prevButton==groupImageButton) {
                             continue;
                         }
-                        if(groupImageButton.getX()>prevX) {
-                            groupImageButton.startAnimating(1,groupImageButton.getX()-buttonsGap,groupImageButton.getY(),0,0);
-                        }
-                        else if(groupImageButton.getY()<prevY) {
-                            if(x >=buttonsGap && x<2*buttonsGap) {
-                                groupImageButton.startAnimating(1,viewW-2*buttonsGap,groupImageButton.getY()-buttonsGap,0,0);
-                            }
-                            else {
+                        if(groupImageButton.getY()>=prevY) {
+                            if(groupImageButton.getY() == prevY && groupImageButton.getX()>prevX) {
                                 groupImageButton.startAnimating(1,groupImageButton.getX()-buttonsGap,groupImageButton.getY(),0,0);
+                            }
+                            else if(groupImageButton.getY()>prevY && groupImageButton.getY()!=buttonsGap/2){
+                                if(groupImageButton.getX() == buttonsGap) {
+                                    groupImageButton.startAnimating(1,edgeX,groupImageButton.getY()-buttonsGap,0,0);
+                                }
+                                else {
+                                    groupImageButton.startAnimating(1,groupImageButton.getX()-buttonsGap,groupImageButton.getY(),0,0);
+                                }
                             }
                         }
                     }
