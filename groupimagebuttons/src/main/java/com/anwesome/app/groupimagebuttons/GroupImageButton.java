@@ -126,7 +126,7 @@ public class GroupImageButton {
                     deg = 0;
                 }
                 else {
-                    scale = 1.0f;
+                    scale = 0.7f;
                     deg = 360;
                 }
 

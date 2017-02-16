@@ -39,7 +39,7 @@ public class GroupImageButtons {
     }
     private class GroupImageButtonsView extends View {
         private boolean isAnimated = false;
-        private float viewW,viewH;
+        private float viewW,viewH,buttonsGap,lastX=0,lastY=0;
         private int time = 0;
         public GroupImageButtonsView(Context context) {
             super(context);
@@ -73,23 +73,30 @@ public class GroupImageButtons {
             }
         }
         private void initImageButtonDimensions() {
-            float y = 0,w = viewW/2,h=w*0.2f,x = w*0.2f;
+            float y = 0,w = 2*viewW/5,h=w*0.2f,x = 2*w*0.2f;
+            buttonsGap = w*0.2f*2;
             for(int i=0;i<imageButtons.size();i++) {
-                x+=w*0.2f*2;
+                x+=buttonsGap;
                 if(x>viewW) {
-                    h += w*0.2f;
-                    x = w*0.2f;
+                    h += buttonsGap;
+                    x = buttonsGap;
                 }
             }
-            x = w*0.2f;
+            x = buttonsGap;
             y = viewH-h;
             for(GroupImageButton imageButton:imageButtons) {
                 imageButton.setDimensions(x,y,w,w);
-                x+=w*0.2f*2;
+                x+=buttonsGap;
                 if(x>viewW) {
-                    y += w*0.2f;
-                    x = 0;
+                    y += buttonsGap;
+                    x = buttonsGap;
                 }
+            }
+            lastX = x-2*buttonsGap;
+            lastY = y;
+            if(lastX == 0) {
+                lastX = viewW - 2*buttonsGap;
+                lastY = y - buttonsGap;
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
@@ -102,20 +109,32 @@ public class GroupImageButtons {
                     if(groupImageButton.handleTap(x,y) && currButton==null) {
                         isAnimated = true;
                         currButton = groupImageButton;
-                        currButton.startAnimating(0,viewW/2,viewH/2,0.2f,72);
+                        currButton.startAnimating(0,viewW/2,viewH/2,0.1f,72);
                         prevX = currButton.getX();
                         prevY = currButton.getY();
+                        break;
                     }
-                    else if(currButton!=null) {
-                        groupImageButton.startAnimating(1,prevX,prevY,0,0);
-                        prevX = groupImageButton.getX();
-                        prevY = groupImageButton.getY();
-                    }
-                }
-                if(prevButton!=null) {
-                    prevButton.startAnimating(1,prevX,prevY,-0.2f,-72);
                 }
                 if(currButton!=null) {
+                    for (GroupImageButton groupImageButton : imageButtons) {
+                        if(currButton==groupImageButton && prevButton!=null && prevButton==groupImageButton) {
+                            continue;
+                        }
+                        if(groupImageButton.getX()>prevX) {
+                            groupImageButton.startAnimating(1,groupImageButton.getX()-buttonsGap,groupImageButton.getY(),0,0);
+                        }
+                        else if(groupImageButton.getY()<prevY) {
+                            if(x >=buttonsGap && x<2*buttonsGap) {
+                                groupImageButton.startAnimating(1,viewW-2*buttonsGap,groupImageButton.getY()-buttonsGap,0,0);
+                            }
+                            else {
+                                groupImageButton.startAnimating(1,groupImageButton.getX()-buttonsGap,groupImageButton.getY(),0,0);
+                            }
+                        }
+                    }
+                    if (prevButton != null) {
+                        prevButton.startAnimating(0, lastX, lastY, -0.1f, -72);
+                    }
                     isAnimated = true;
                     postInvalidate();
                 }
