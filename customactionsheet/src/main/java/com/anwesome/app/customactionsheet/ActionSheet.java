@@ -111,4 +111,12 @@ public class ActionSheet {
             return x>=this.x && x<=this.x+this.w && y>=this.y && y<=this.y+h;
         }
     }
+    private class OverlayView extends View {
+        public OverlayView(Context context) {
+            super(context);
+        }
+        public void onDraw(Canvas canvas) {
+            canvas.drawColor(Color.parseColor("#AA000000"));
+        }
+    }
 }
