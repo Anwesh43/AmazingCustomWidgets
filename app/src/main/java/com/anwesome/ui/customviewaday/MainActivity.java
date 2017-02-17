@@ -35,6 +35,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private String actions[] = {"action1","action2","action3","action4"};
     private MenuExpander menuExpander;
+    private ActionSheet actionSheet;
     private int tImages[] = {R.drawable.t1,R.drawable.t2,R.drawable.t3,R.drawable.t4};
     private int images[] = {R.drawable.delivered,R.drawable.restart,R.drawable.onway,R.drawable.order};
     @Override
@@ -200,7 +201,9 @@ public class MainActivity extends AppCompatActivity {
         groupImageButtons.show();
     }
     public void showActionSheet() {
-        ActionSheet actionSheet = new ActionSheet(this);
+        if(actionSheet == null) {
+            actionSheet = new ActionSheet(this);
+        }
         actionSheet.setTitle("Some Actions");
         addActions(actionSheet,"Delete","Add","Make","More");
         actionSheet.show();
