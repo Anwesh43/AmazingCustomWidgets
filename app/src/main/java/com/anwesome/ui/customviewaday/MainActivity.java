@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.anwesome.app.buttonintriangle.ButtonsTriangle;
 import com.anwesome.app.circularwindow.CircularWindow;
+import com.anwesome.app.customactionsheet.ActionSheet;
 import com.anwesome.app.groupimagebuttons.GroupImageButton;
 import com.anwesome.app.groupimagebuttons.GroupImageButtons;
 import com.anwesome.app.menuexpander.Menu;
@@ -45,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showGroupImageButtons();
-                ppView.setVisibility(View.INVISIBLE);
+                showActionSheet();
             }
         });
     }
@@ -198,5 +198,22 @@ public class MainActivity extends AppCompatActivity {
             groupImageButtons.addImageButton(new GroupImageButton(BitmapFactory.decodeResource(getResources(),tImages[i%4])));
         }
         groupImageButtons.show();
+    }
+    public void showActionSheet() {
+        ActionSheet actionSheet = new ActionSheet(this);
+        actionSheet.setTitle("Some Actions");
+        addActions(actionSheet,"Delete","Add","Make","More");
+        actionSheet.show();
+    }
+    private void addActions(ActionSheet actionSheet,String ...actions) {
+        for(String action:actions) {
+            final String text = action;
+            actionSheet.addAction(action, new ActionSheet.ActionListener() {
+                @Override
+                public void doAction() {
+                    Toast.makeText(MainActivity.this,text,Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }
