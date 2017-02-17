@@ -1,5 +1,6 @@
 package com.anwesome.app.customactionsheet;
 
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -23,9 +24,11 @@ public class ActionSheet {
     private Activity activity;
     private boolean isAnimating = false;
     private String title;
+    private OverlayView overlayView;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private List<ActionButton> actionButtons = new ArrayList<>();
     private ActionSheetView actionSheetView;
+    private ValueAnimator inAnim,outAnim;
     public ActionSheet(Activity activity) {
         this.activity = activity;
     }
@@ -37,7 +40,8 @@ public class ActionSheet {
     }
 
     public void show() {
-        if(actionSheetView == null) {
+        if(actionSheetView == null && overlayView == null) {
+            overlayView = new OverlayView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
             int w = size.x,h = size.y;
             actionSheetView = new ActionSheetView(activity);
@@ -46,9 +50,17 @@ public class ActionSheet {
                 actionButton.setDimensions(x,y,w,ActionSheetConstants.TEXT_FONT+40);
                 y+=ActionSheetConstants.TEXT_FONT+40;
             }
+            overlayView.setVisibility(View.INVISIBLE);
+            overlayView.setX(0);
+            overlayView.setY(0);
+            activity.addContentView(overlayView,new ViewGroup.LayoutParams(w,h-y));
+            actionSheetView.setX(0);
+            actionSheetView.setY(h);
             activity.addContentView(actionSheetView,new ViewGroup.LayoutParams(w,y));
-
         }
+        overlayView.setVisibility(View.VISIBLE);
+
+
     }
     class ActionSheetView extends View {
         public ActionSheetView(Context context) {
