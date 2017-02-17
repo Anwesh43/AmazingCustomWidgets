@@ -60,7 +60,7 @@ public class ActionSheet {
             actionSheetView.setY(h);
             activity.addContentView(actionSheetView,new ViewGroup.LayoutParams(w,y));
             inAnim = ValueAnimator.ofFloat(h,h-y);
-            outAnim = ValueAnimator.ofFloat(h-y,h);
+            outAnim = ValueAnimator.ofFloat(h-y,h+ActionSheetConstants.TITLE_FONT);
             inAnim.setDuration(500);
             outAnim.setDuration(500);
             AnimatorAdapter animatorAdapter = getActionSheetAnimAdapter();
@@ -94,9 +94,9 @@ public class ActionSheet {
             int w = canvas.getWidth(),h = canvas.getHeight();
             paint.setColor(Color.parseColor("#f9f9f9"));
             int r = Math.max(w,h)/10;
-            canvas.drawRoundRect(new RectF(0,0,w,h),r/10,r/10,paint);
-            paint.setColor(Color.parseColor("#d6d6da"));
-            paint.setTextSize(25);
+            canvas.drawRoundRect(new RectF(0,0,w,h),r,r,paint);
+            paint.setColor(Color.GRAY);
+            paint.setTextSize(ActionSheetConstants.TITLE_FONT);
             canvas.drawText(title,w/2-paint.measureText(title)/2,20+paint.getTextSize()/2,paint);
             int y = ActionSheetConstants.TITLE_FONT+25;
             for(ActionButton button:actionButtons) {
