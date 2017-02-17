@@ -37,4 +37,5 @@ dependencies {
     compile project(':buttonintriangle')
     compile project(':tablikeviews')
     compile project(':groupimagebuttons')
+    compile project(':customactionsheet')
 }
