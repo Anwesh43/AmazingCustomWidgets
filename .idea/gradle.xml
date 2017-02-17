@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/actionsheettutorial" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/bulletedlist" />
             <option value="$PROJECT_DIR$/buttonintriangle" />
@@ -25,11 +26,13 @@
             <option value="$PROJECT_DIR$/prokbutton" />
             <option value="$PROJECT_DIR$/tablikeviews" />
             <option value="$PROJECT_DIR$/tricircledbutton" />
+            <option value="$PROJECT_DIR$/valueanimatoradapter" />
           </set>
         </option>
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/actionsheettutorial" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/bulletedlist" />
             <option value="$PROJECT_DIR$/buttonintriangle" />
@@ -47,6 +50,7 @@
             <option value="$PROJECT_DIR$/prokbutton" />
             <option value="$PROJECT_DIR$/tablikeviews" />
             <option value="$PROJECT_DIR$/tricircledbutton" />
+            <option value="$PROJECT_DIR$/valueanimatoradapter" />
           </set>
         </option>
       </GradleProjectSettings>

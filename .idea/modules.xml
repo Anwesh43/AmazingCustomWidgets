@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CustomViewADay.iml" filepath="$PROJECT_DIR$/CustomViewADay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/actionsheettutorial/actionsheettutorial.iml" filepath="$PROJECT_DIR$/actionsheettutorial/actionsheettutorial.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/bulletedlist/bulletedlist.iml" filepath="$PROJECT_DIR$/bulletedlist/bulletedlist.iml" />
       <module fileurl="file://$PROJECT_DIR$/buttonintriangle/buttonintriangle.iml" filepath="$PROJECT_DIR$/buttonintriangle/buttonintriangle.iml" />
@@ -20,6 +21,7 @@
       <module fileurl="file://$PROJECT_DIR$/prokbutton/prokbutton.iml" filepath="$PROJECT_DIR$/prokbutton/prokbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/tablikeviews/tablikeviews.iml" filepath="$PROJECT_DIR$/tablikeviews/tablikeviews.iml" />
       <module fileurl="file://$PROJECT_DIR$/tricircledbutton/tricircledbutton.iml" filepath="$PROJECT_DIR$/tricircledbutton/tricircledbutton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/valueanimatoradapter/valueanimatoradapter.iml" filepath="$PROJECT_DIR$/valueanimatoradapter/valueanimatoradapter.iml" />
     </modules>
   </component>
 </project>
