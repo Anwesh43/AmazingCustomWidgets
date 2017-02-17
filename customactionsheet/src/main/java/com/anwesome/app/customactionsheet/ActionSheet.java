@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.RectF;
-import android.renderscript.Sampler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,20 +49,20 @@ public class ActionSheet {
             actionSheetView = new ActionSheetView(activity);
             int x = 0,y = ActionSheetConstants.TITLE_FONT+25;
             for(ActionButton actionButton:actionButtons) {
-                actionButton.setDimensions(x,y,w,ActionSheetConstants.TEXT_FONT+40);
-                y+=ActionSheetConstants.TEXT_FONT+40;
+                actionButton.setDimensions(x,y,w,2*ActionSheetConstants.TEXT_FONT);
+                y+=2*ActionSheetConstants.TEXT_FONT;
             }
             overlayView.setVisibility(View.INVISIBLE);
             overlayView.setX(0);
             overlayView.setY(0);
-            activity.addContentView(overlayView,new ViewGroup.LayoutParams(w,h-y));
+            activity.addContentView(overlayView,new ViewGroup.LayoutParams(w,h));
             actionSheetView.setX(0);
             actionSheetView.setY(h);
             activity.addContentView(actionSheetView,new ViewGroup.LayoutParams(w,y));
             inAnim = ValueAnimator.ofFloat(h,h-y);
             outAnim = ValueAnimator.ofFloat(h-y,h);
-            inAnim.setDuration(1000);
-            outAnim.setDuration(1000);
+            inAnim.setDuration(500);
+            outAnim.setDuration(500);
             AnimatorAdapter animatorAdapter = getActionSheetAnimAdapter();
             inAnim.addUpdateListener(animatorAdapter);
             inAnim.addListener(animatorAdapter);
@@ -76,7 +75,8 @@ public class ActionSheet {
     private AnimatorAdapter getActionSheetAnimAdapter() {
         return new AnimatorAdapter(){
             public void onAnimationUpdate(ValueAnimator animator) {
-                actionSheetView.setY((float)animator.getAnimatedValue());
+                float y = (float)animator.getAnimatedValue();
+                actionSheetView.setY(y-actionSheetView.getMeasuredHeight()/2);
             }
             public void onAnimationStart(Animator animator) {
                 isAnimating = true;
@@ -97,12 +97,13 @@ public class ActionSheet {
             canvas.drawRoundRect(new RectF(0,0,w,h),r/10,r/10,paint);
             paint.setColor(Color.parseColor("#d6d6da"));
             paint.setTextSize(25);
-            canvas.drawText(title,w-paint.measureText(title)/2,20,paint);
+            canvas.drawText(title,w/2-paint.measureText(title)/2,20+paint.getTextSize()/2,paint);
             int y = ActionSheetConstants.TITLE_FONT+25;
             for(ActionButton button:actionButtons) {
                 paint.setColor(Color.parseColor("#d6d6da"));
                 canvas.drawLine(0,y,w,y,paint);
                 button.draw(canvas,paint);
+                y+=button.getH();
             }
         }
         public boolean onTouchEvent(MotionEvent event){
@@ -197,7 +198,7 @@ public class ActionSheet {
         public void draw(Canvas canvas, Paint paint) {
             paint.setTextSize(ActionSheetConstants.TEXT_FONT);
             paint.setColor(Color.parseColor("#448AFF"));
-            canvas.drawText(text,x+w/2-paint.measureText(text)/2,y+h/2,paint);
+            canvas.drawText(text,x+w/2-paint.measureText(text)/2,y+h/2+paint.getTextSize()/3,paint);
         }
         public int hashCode() {
             return text.hashCode()+(int)y;
