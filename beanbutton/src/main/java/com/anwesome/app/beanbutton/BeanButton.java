@@ -17,7 +17,7 @@ public class BeanButton {
         this.activity = activity;
     }
     public void show(int x,int y) {
-        if(beanButtonView != null) {
+        if(beanButtonView == null) {
             beanButtonView = new BeanButtonView(activity);
             activity.addContentView(beanButtonView,new ViewGroup.LayoutParams(200,200));
         }
@@ -29,6 +29,7 @@ public class BeanButton {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         private int mode = 0;
         private float deg = 0,rot = 0,fx=0,dir = 0;
+        private int l[] = {1,-1};
         public BeanButtonView(Context context) {
             super(context);
             paint.setColor(Color.parseColor("#b71c1c"));
@@ -40,6 +41,7 @@ public class BeanButton {
                 canvas.save();
                 canvas.translate(w/2,h/2);
                 canvas.rotate(deg);
+                canvas.scale(1,l[i]);
                 canvas.drawArc(new RectF(-r,fx-r,r,fx+r),0,180,true,paint);
                 canvas.restore();
             }
