@@ -16,10 +16,13 @@ public class BeanButton {
     public BeanButton(Activity activity) {
         this.activity = activity;
     }
-    public void show() {
+    public void show(int x,int y) {
         if(beanButtonView != null) {
-            beanButtonView = new BeanButtonView(this);
+            beanButtonView = new BeanButtonView(activity);
+            activity.addContentView(beanButtonView,new ViewGroup.LayoutParams(200,200));
         }
+        beanButtonView.setX(x);
+        beanButtonView.setY(y);
     }
     private class BeanButtonView extends View {
         private boolean isAnimated = false;
