@@ -58,16 +58,21 @@ public class BeanButton {
         private void update() {
             switch(mode) {
                 case 0:
-                    fx+=5;
+                    fx+=5*dir;
                     if(fx>=20) {
                         mode = 1;
+                    }
+                    if(fx<=0 && dir == -1) {
+                        mode = 0;
+                        isAnimated = false;
                     }
                     break;
                 case 1:
                     deg+=20;
                     if(deg%180 == 0) {
                         mode = 0;
-                        isAnimated = false;
+                        dir =-1;
+
                     }
                     break;
                 default:
@@ -77,6 +82,7 @@ public class BeanButton {
         public boolean onTouchEvent(MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
                 isAnimated = true;
+                dir = 1;
                 postInvalidate();
             }
             return true;
