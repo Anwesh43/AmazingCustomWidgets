@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.anwesome.app.beanbutton.BeanButton;
 import com.anwesome.app.buttonintriangle.ButtonsTriangle;
 import com.anwesome.app.circularwindow.CircularWindow;
 import com.anwesome.app.customactionsheet.ActionSheet;
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showActionSheet();
+                showBeanButtons();
+                ppView.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -218,5 +220,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    public void showBeanButtons() {
+        BeanButton beanButton = new BeanButton(this);
+        beanButton.show(200,200);
     }
 }

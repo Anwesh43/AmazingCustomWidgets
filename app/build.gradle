@@ -38,4 +38,5 @@ dependencies {
     compile project(':tablikeviews')
     compile project(':groupimagebuttons')
     compile project(':customactionsheet')
+    compile project(':beanbutton')
 }
