@@ -132,6 +132,7 @@ public class CustomFloatingActionButton {
     }
 
     private class FloatingActionButtonView extends View {
+        private ActionIcon clickedIcon = null;
         public FloatingActionButtonView(Context context) {
             super(context);
         }
@@ -141,7 +142,17 @@ public class CustomFloatingActionButton {
                 mainActionButton.draw(canvas, paint);
             }
             if (isAnimated) {
-                mainActionButton.update();
+                if(clickedIcon == null) {
+                    mainActionButton.update();
+                }
+                else {
+                    clickedIcon.animateOnClick();
+                    if(clickedIcon.getScaleDir() == 0) {
+                        clickedIcon.click(this);
+                        clickedIcon = null;
+                        isAnimated = false;
+                    }
+                }
                 try {
                     Thread.sleep(50);
                     invalidate();
@@ -155,16 +166,15 @@ public class CustomFloatingActionButton {
             float x = event.getX(), y = event.getY();
             if (event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
                 if (expanded) {
-                    ActionIcon clickedActionIcon = null;
+
                     for (ActionIcon actionIcon : actionIcons) {
                         if (actionIcon.handleTap(x, y)) {
-                            clickedActionIcon = actionIcon;
-                            clickedActionIcon.click(this);
+                            clickedIcon = actionIcon;
                             break;
                         }
                     }
                 }
-                if (mainActionButton != null && mainActionButton.handleTap(x, y)) {
+                if ((mainActionButton != null && mainActionButton.handleTap(x, y)) || clickedIcon!=null) {
                     isAnimated = true;
                     postInvalidate();
                 }
