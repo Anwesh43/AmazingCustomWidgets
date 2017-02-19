@@ -9,7 +9,8 @@ import android.view.View;
  */
 public class ActionIcon {
     private Bitmap bitmap;
-    private float x,y,w,cy,intialY,dir = 0;
+    private float x,y,w,cy,intialY,dir = 1;
+    private boolean takenPosition = false;
     private View.OnClickListener onClickListener;
     public ActionIcon(Bitmap bitmap) {
         this.bitmap = bitmap;
@@ -30,13 +31,17 @@ public class ActionIcon {
         Path path = new Path();
         path.addCircle(x,cy,r, Path.Direction.CCW);
         paint.setColor(Color.GRAY);
-        canvas.drawCircle(x,cy,r,paint);
+        canvas.save();
+        canvas.drawPath(path,paint);
         canvas.clipPath(path);
         canvas.drawBitmap(bitmap,x-r/2,cy-r/2,paint);
+        canvas.restore();
     }
     public void update() {
         float speed = Math.abs(y-intialY)/5;
-        y+=speed*dir;
+        if(!takenPosition) {
+            cy += speed * dir;
+        }
         if((dir == 1 && cy>=y) || (dir == -1 && cy<=intialY)) {
             if(dir == 1) {
                 cy = y;
@@ -44,8 +49,15 @@ public class ActionIcon {
             else {
                 cy = intialY;
             }
-            dir = 0;
+            takenPosition = true;
+            dir *= -1;
         }
+    }
+    public void setTakenPosition(boolean takenPosition) {
+        this.takenPosition = takenPosition;
+    }
+    public boolean isTakenPosition() {
+        return takenPosition;
     }
     public int hashCode() {
         return bitmap.hashCode()+(int)y;
