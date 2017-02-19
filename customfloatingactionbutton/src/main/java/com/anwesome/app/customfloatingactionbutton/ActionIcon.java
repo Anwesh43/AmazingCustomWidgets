@@ -9,8 +9,11 @@ import android.view.View;
  */
 public class ActionIcon {
     private Bitmap bitmap;
-    private float x,y,w,cy,intialY,dir = 1;
+    private float x,y,w,cy,intialY,dir = 1,scale=0.7f,scaleDir = 0;
     private boolean takenPosition = false;
+    public float getScaleDir() {
+        return scaleDir;
+    }
     private View.OnClickListener onClickListener;
     public ActionIcon(Bitmap bitmap) {
         this.bitmap = bitmap;
@@ -26,15 +29,26 @@ public class ActionIcon {
         this.intialY = cy;
         bitmap = Bitmap.createScaledBitmap(bitmap,(int)w/2,(int)w/2,true);
     }
+    public void animateOnClick() {
+        scale+=scaleDir;
+        if(scale>=1) {
+            scaleDir = -1;
+        }
+        if(scale<=0.7f) {
+            scaleDir = 0;
+            scale = 0.7f;
+        }
+    }
     public void draw(Canvas canvas, Paint paint) {
         float r = w/2;
-        Path path = new Path();
-        path.addCircle(x,cy,r, Path.Direction.CCW);
-        paint.setColor(Color.GRAY);
         canvas.save();
+        canvas.translate(x,cy);
+        Path path = new Path();
+        path.addCircle(0,0,r, Path.Direction.CCW);
+        paint.setColor(Color.GRAY);
         canvas.drawPath(path,paint);
         canvas.clipPath(path);
-        canvas.drawBitmap(bitmap,x-r/2,cy-r/2,paint);
+        canvas.drawBitmap(bitmap,-r/2,-r/2,paint);
         canvas.restore();
     }
     public void update() {
@@ -66,7 +80,11 @@ public class ActionIcon {
         this.onClickListener = onClickListener;
     }
     public boolean handleTap(float x,float y) {
-        return x>=this.x-w/2 && x<=this.x+w/2 && y>=this.y-w/2 && y<=this.y+w/2;
+        boolean condition =  x>=this.x-w/2 && x<=this.x+w/2 && y>=this.y-w/2 && y<=this.y+w/2;
+        if(condition) {
+            scaleDir = 1;
+        }
+        return true;
     }
     public void click(View view) {
         if(onClickListener!=null) {
