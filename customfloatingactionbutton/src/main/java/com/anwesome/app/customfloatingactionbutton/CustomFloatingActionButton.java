@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.*;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
@@ -40,6 +41,7 @@ public class CustomFloatingActionButton {
             }
             mainActionButton = new MainActionButton(x,y,r);
             floatingActionButtonView = new FloatingActionButtonView(activity);
+            activity.addContentView(floatingActionButtonView,new ViewGroup.LayoutParams((int)(w/2+h/10),(int)(y1+h/30)));
         }
 
     }
