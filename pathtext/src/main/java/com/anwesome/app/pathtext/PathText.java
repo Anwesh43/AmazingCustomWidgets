@@ -2,15 +2,9 @@ package com.anwesome.app.pathtext;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PointF;
-import android.view.MotionEvent;
-import android.view.View;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.graphics.*;
+import android.view.*;
+import java.util.*;
 
 /**
  * Created by anweshmishra on 20/02/17.
@@ -18,12 +12,18 @@ import java.util.List;
 public class PathText {
     private Activity activity;
     private String text;
+    private PathTextView pathTextView;
     public PathText(Activity activity,String text) {
         this.activity = activity;
         this.text = text;
     }
-    public void show() {
-
+    public void show(int x,int y) {
+        if(pathTextView == null) {
+            pathTextView = new PathTextView(activity);
+            activity.addContentView(pathTextView,new ViewGroup.LayoutParams(200,200));
+        }
+        pathTextView.setX(x);
+        pathTextView.setY(y);
     }
     private class PathTextView extends View {
         private List<PointF> points = new ArrayList<>();
