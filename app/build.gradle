@@ -40,4 +40,5 @@ dependencies {
     compile project(':customactionsheet')
     compile project(':beanbutton')
     compile project(':customfloatingactionbutton')
+    compile project(':pathtext')
 }
