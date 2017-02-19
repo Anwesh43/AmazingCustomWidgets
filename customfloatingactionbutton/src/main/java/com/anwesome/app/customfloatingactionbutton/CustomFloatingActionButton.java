@@ -14,7 +14,9 @@ import java.util.*;
  */
 public class CustomFloatingActionButton {
     private Activity activity;
-    private float y = 0,x=0,r=10;
+    private float y = 0,x=0,r=10,dir = 1;
+    private MainActionButton mainActionButton;
+    private FloatingActionButtonView floatingActionButtonView;
     private int color = Color.parseColor("#303F9F");
     private List<ActionIcon> actionIcons = new ArrayList<>();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -28,14 +30,16 @@ public class CustomFloatingActionButton {
         actionIcons.add(actionIcon);
     }
     public void show() {
-        Point size = DimensionsUtil.getDeviceDimension(activity);
-        float w = size.x,h = size.y,y1 = h/10+h/40+h/30;
-        x = w/2;
-        y = h/20;
-        r = h/20;
-        for(ActionIcon actionIcon:actionIcons) {
-            actionIcon.setDimensions(w/2,y1,h/15,y);
-            y1+=h/40+h/30;
+        if(floatingActionButtonView == null) {
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            float w = size.x, h = size.y, y1 = h / 10 + h / 40 + h / 30;
+            x = w / 2;
+            y = h / 20;
+            r = h / 20;
+            for (ActionIcon actionIcon : actionIcons) {
+                actionIcon.setDimensions(w / 2, y1, h / 15, y);
+                y1 += h / 40 + h / 30;
+            }
         }
 
     }
@@ -61,7 +65,10 @@ public class CustomFloatingActionButton {
             canvas.restore();
         }
         public void update() {
-
+            deg+=9*dir;
+            for(ActionIcon actionIcon:actionIcons) {
+                actionIcon.update();
+            }
         }
     }
     private class FloatingActionButtonView extends View {
