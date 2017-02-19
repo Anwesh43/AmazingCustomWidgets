@@ -78,6 +78,7 @@ public class CustomFloatingActionButton {
             }
             if(deg>=45) {
                 dir = -1;
+                isAnimated = false;
             }
             if(deg<=0) {
                 dir = 1;
