@@ -39,4 +39,5 @@ dependencies {
     compile project(':groupimagebuttons')
     compile project(':customactionsheet')
     compile project(':beanbutton')
+    compile project(':customfloatingactionbutton')
 }
