@@ -2,6 +2,7 @@ package com.anwesome.app.customfloatingactionbutton;
 
 
 import android.graphics.*;
+import android.view.View;
 
 /**
  * Created by anweshmishra on 19/02/17.
@@ -9,6 +10,7 @@ import android.graphics.*;
 public class ActionIcon {
     private Bitmap bitmap;
     private float x,y,w,cy,intialY,dir = 0;
+    private View.OnClickListener onClickListener;
     public ActionIcon(Bitmap bitmap) {
         this.bitmap = bitmap;
     }
@@ -47,5 +49,8 @@ public class ActionIcon {
     }
     public int hashCode() {
         return bitmap.hashCode()+(int)y;
+    }
+    public boolean handleTap(float x,float y) {
+        return x>=this.x-w/2 && x<=this.x+w/2 && y>=this.y-w/2 && y<=this.y+w/2;
     }
 }
