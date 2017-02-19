@@ -30,7 +30,7 @@ public class ActionIcon {
         bitmap = Bitmap.createScaledBitmap(bitmap,(int)w/2,(int)w/2,true);
     }
     public void animateOnClick() {
-        scale+=scaleDir;
+        scale+=scaleDir*0.1f;
         if(scale>=1) {
             scaleDir = -1;
         }
@@ -43,6 +43,7 @@ public class ActionIcon {
         float r = w/2;
         canvas.save();
         canvas.translate(x,cy);
+        canvas.scale(scale,scale);
         Path path = new Path();
         path.addCircle(0,0,r, Path.Direction.CCW);
         paint.setColor(Color.GRAY);
@@ -84,7 +85,7 @@ public class ActionIcon {
         if(condition) {
             scaleDir = 1;
         }
-        return true;
+        return condition;
     }
     public void click(View view) {
         if(onClickListener!=null) {
