@@ -16,7 +16,7 @@ import java.util.*;
  */
 public class CustomFloatingActionButton {
     private Activity activity;
-    private boolean isAnimated = false;
+    private boolean isAnimated = false,expanded = false;
     private MainActionButton mainActionButton;
     private FloatingActionButtonView floatingActionButtonView;
     private int color = Color.parseColor("#303F9F");
@@ -46,7 +46,6 @@ public class CustomFloatingActionButton {
 
     }
     private class MainActionButton {
-        private boolean expanded = false;
         private float deg = 0,x=0,y=0,r=10,dir = 1;
         public MainActionButton(float x,float y,float r) {
             this.x = x;
@@ -71,6 +70,9 @@ public class CustomFloatingActionButton {
             }
             canvas.restore();
         }
+        public void setDir(float dir) {
+            this.dir = dir;
+        }
         public void update() {
             deg+=9*dir;
             for(ActionIcon actionIcon:actionIcons) {
@@ -79,11 +81,15 @@ public class CustomFloatingActionButton {
             if(deg>=45) {
                 dir = -1;
                 isAnimated = false;
+                expanded = true;
             }
             if(deg<=0) {
                 dir = 1;
                 isAnimated = false;
             }
+        }
+        public boolean handleTap(float x,float y) {
+            return x>=this.x-r && x<=this.x+r && y>=this.y-r && y<=this.y+r;
         }
     }
     private class FloatingActionButtonView extends View {
@@ -106,9 +112,35 @@ public class CustomFloatingActionButton {
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
+            float x = event.getX(),y = event.getY();
             if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
-                postInvalidate();
-                isAnimated = true;
+                if(!expanded) {
+                    if(mainActionButton!=null && mainActionButton.handleTap(x,y)) {
+                        mainActionButton.setDir(1);
+
+                        for (ActionIcon actionIcon : actionIcons) {
+                            actionIcon.setDir(1);
+                        }
+                    }
+                    isAnimated = true;
+                    postInvalidate();
+                }
+                else {
+                    if(mainActionButton!=null && mainActionButton.handleTap(x,y)) {
+                        mainActionButton.setDir(-1);
+                        for (ActionIcon actionIcon : actionIcons) {
+                            actionIcon.setDir(-1);
+                        }
+                    }
+                    ActionIcon clickedActionIcon = null;
+                    for(ActionIcon actionIcon:actionIcons) {
+                        if(actionIcon.handleTap(x,y)) {
+                            clickedActionIcon = actionIcon;
+                            clickedActionIcon.click(this);
+                            break;
+                        }
+                    }
+                }
             }
             return true;
         }

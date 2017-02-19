@@ -50,7 +50,15 @@ public class ActionIcon {
     public int hashCode() {
         return bitmap.hashCode()+(int)y;
     }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
     public boolean handleTap(float x,float y) {
         return x>=this.x-w/2 && x<=this.x+w/2 && y>=this.y-w/2 && y<=this.y+w/2;
+    }
+    public void click(View view) {
+        if(onClickListener!=null) {
+            onClickListener.onClick(view);
+        }
     }
 }
