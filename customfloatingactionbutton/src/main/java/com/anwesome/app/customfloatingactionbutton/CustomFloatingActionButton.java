@@ -3,6 +3,7 @@ package com.anwesome.app.customfloatingactionbutton;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.*;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.anwesome.ui.dimensionsutil.DimensionsUtil;
@@ -100,6 +101,13 @@ public class CustomFloatingActionButton {
 
                 }
             }
+        }
+        public boolean onTouchEvent(MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+                postInvalidate();
+                isAnimated = true;
+            }
+            return true;
         }
     }
 
