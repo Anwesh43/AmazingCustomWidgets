@@ -19,6 +19,7 @@ import com.anwesome.app.groupimagebuttons.GroupImageButtons;
 import com.anwesome.app.menuexpander.Menu;
 import com.anwesome.app.menuexpander.MenuContainer;
 import com.anwesome.app.menuexpander.MenuExpander;
+import com.anwesome.app.pathtext.PathText;
 import com.anwesome.app.prokbutton.ProkButton;
 import com.anwesome.app.tablikeviews.TabElement;
 import com.anwesome.app.tablikeviews.TabLikeLayout;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCustomFloatingActionButton();
+                showPathText();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -241,5 +242,9 @@ public class MainActivity extends AppCompatActivity {
             customFloatingActionButton.addActionIcon(actionIcon);
         }
         customFloatingActionButton.show();
+    }
+    public void showPathText() {
+        PathText pathText = new PathText(this,"Hello");
+        pathText.show(200,200);
     }
 }
