@@ -19,7 +19,7 @@ public class BeanButton {
     public void show(int x,int y) {
         if(beanButtonView == null) {
             beanButtonView = new BeanButtonView(activity);
-            activity.addContentView(beanButtonView,new ViewGroup.LayoutParams(200,200));
+            activity.addContentView(beanButtonView,new ViewGroup.LayoutParams(400,400));
         }
         beanButtonView.setX(x);
         beanButtonView.setY(y);
