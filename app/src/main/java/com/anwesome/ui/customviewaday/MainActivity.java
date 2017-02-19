@@ -12,6 +12,8 @@ import com.anwesome.app.beanbutton.BeanButton;
 import com.anwesome.app.buttonintriangle.ButtonsTriangle;
 import com.anwesome.app.circularwindow.CircularWindow;
 import com.anwesome.app.customactionsheet.ActionSheet;
+import com.anwesome.app.customfloatingactionbutton.ActionIcon;
+import com.anwesome.app.customfloatingactionbutton.CustomFloatingActionButton;
 import com.anwesome.app.groupimagebuttons.GroupImageButton;
 import com.anwesome.app.groupimagebuttons.GroupImageButtons;
 import com.anwesome.app.menuexpander.Menu;
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showBeanButtons();
+                showCustomFloatingActionButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -224,5 +226,20 @@ public class MainActivity extends AppCompatActivity {
     public void showBeanButtons() {
         BeanButton beanButton = new BeanButton(this);
         beanButton.show(200,200);
+    }
+    public void showCustomFloatingActionButton() {
+        CustomFloatingActionButton customFloatingActionButton = new CustomFloatingActionButton(this);
+        for(int i=0;i<images.length;i++) {
+            final int index = i;
+            ActionIcon actionIcon = new ActionIcon(BitmapFactory.decodeResource(getResources(),images[i]));
+            actionIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(MainActivity.this,actions[index],Toast.LENGTH_LONG).show();
+                }
+            });
+            customFloatingActionButton.addActionIcon(actionIcon);
+        }
+        customFloatingActionButton.show();
     }
 }
