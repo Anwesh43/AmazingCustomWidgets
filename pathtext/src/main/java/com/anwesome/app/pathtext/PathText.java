@@ -20,7 +20,7 @@ public class PathText {
     public void show(int x,int y) {
         if(pathTextView == null) {
             pathTextView = new PathTextView(activity);
-            activity.addContentView(pathTextView,new ViewGroup.LayoutParams(200,200));
+            activity.addContentView(pathTextView,new ViewGroup.LayoutParams(600,600));
         }
         pathTextView.setX(x);
         pathTextView.setY(y);
@@ -30,7 +30,7 @@ public class PathText {
         private int render = 0;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         private int currIndex = 0,maxTimes = 0;
-        private boolean isAnimated = true;
+        private boolean isAnimated = false;
         public PathTextView(Context context) {
             super(context);
         }
@@ -51,7 +51,8 @@ public class PathText {
                     }
                 }
             }
-            canvas.drawTextOnPath(text,path,0,0,paint);
+            paint.setTextSize(40);
+            canvas.drawTextOnPath(text,path,40,40,paint);
             render++;
             if(isAnimated) {
                 currIndex+=20;
@@ -76,7 +77,7 @@ public class PathText {
                 points.add(new PointF(w/2+i*gap,h/2));
             }
             for(int i=0;i<360;i++) {
-                float r = Math.min(w,h);
+                float r = Math.min(w,h)/3;
                 float x = (float)(w/2+r*Math.cos(i*Math.PI/180)),y = (float)(h/2+r*Math.sin(i*Math.PI/180));
                 points.add(new PointF(x,y));
             }
