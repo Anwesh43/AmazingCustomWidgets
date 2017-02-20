@@ -5,15 +5,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by anweshmishra on 21/02/17.
  */
 public class LineMover {
-    private List<MoverDimension> dimensions = new ArrayList<>();
+    private ConcurrentLinkedQueue<MoverDimension> dimensions = new ConcurrentLinkedQueue<>();
     private float pivotX,pivotY,r;
     public LineMover(float x,float y,float r) {
         this.pivotX = x;
@@ -24,14 +22,15 @@ public class LineMover {
         return dimensions.size() == 0;
     }
     public boolean shouldStart() {
-        return dimensions.size() == 10;
+        return dimensions.size() == 30;
     }
     public void draw(Canvas canvas, Paint paint) {
+        paint.setStrokeWidth(paint.getStrokeWidth()+10);
         paint.setColor(Color.GREEN);
         int index = 0;
         Path path = new Path();
         int speed = 3;
-        if(dimensions.size() == 10) {
+        if(dimensions.size() == 30) {
             speed = 30;
         }
         for(MoverDimension dimension:dimensions) {
@@ -49,7 +48,9 @@ public class LineMover {
                     break;
                 }
             }
+            index++;
         }
+        canvas.drawPath(path,paint);
     }
     public void addDimensions() {
         dimensions.add(new MoverDimension());
@@ -59,6 +60,9 @@ public class LineMover {
         public float deg = -90,speed = 3;
         public boolean shouldMove = true;
         public MoverDimension() {
+            point.x = (float)(pivotX+r*Math.cos(deg*Math.PI/180));
+            point.y = (float)(pivotY+r*Math.sin(deg*Math.PI/180));
+
         }
         public void move() {
             if(deg<270 && shouldMove) {
