@@ -1,6 +1,7 @@
 package com.anwesome.app.modakbutton;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
@@ -26,6 +27,7 @@ public class LineMover {
         return dimensions.size() == 10;
     }
     public void draw(Canvas canvas, Paint paint) {
+        paint.setColor(Color.GREEN);
         int index = 0;
         Path path = new Path();
         int speed = 3;
