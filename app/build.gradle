@@ -41,4 +41,5 @@ dependencies {
     compile project(':beanbutton')
     compile project(':customfloatingactionbutton')
     compile project(':pathtext')
+    compile project(':modakbutton')
 }
