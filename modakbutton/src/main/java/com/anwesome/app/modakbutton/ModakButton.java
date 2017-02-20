@@ -76,7 +76,10 @@ public class ModakButton {
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
-
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+                isAnimated = true;
+                postInvalidate();
+            }
             return true;
         }
     }
