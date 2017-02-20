@@ -244,7 +244,9 @@ public class MainActivity extends AppCompatActivity {
         customFloatingActionButton.show();
     }
     public void showPathText() {
-        PathText pathText = new PathText(this,"Hello");
+        PathText pathText = new PathText(this,'H');
         pathText.show(200,200);
+        PathText pathText1 = new PathText(this,'E');
+        pathText1.show(500,500);
     }
 }
