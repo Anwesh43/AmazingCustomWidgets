@@ -17,9 +17,13 @@ public class ModakButton {
     private LineMover lineMover;
     private MotionStore motionStore;
     private ModakButtonView view;
+    private View.OnClickListener onClickListener;
     public ModakButton(Activity activity) {
         this.activity = activity;
         motionStore = new MotionStore();
+    }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     public void show(float x,float y) {
         if(view == null) {
@@ -69,6 +73,9 @@ public class ModakButton {
                     if(lineMover.shouldStop()) {
                         motionStore.setMode(0);
                         isAnimated = false;
+                        if(onClickListener!=null) {
+                            onClickListener.onClick(this);
+                        }
                     }
                     break;
                 default:
