@@ -19,6 +19,7 @@ import com.anwesome.app.groupimagebuttons.GroupImageButtons;
 import com.anwesome.app.menuexpander.Menu;
 import com.anwesome.app.menuexpander.MenuContainer;
 import com.anwesome.app.menuexpander.MenuExpander;
+import com.anwesome.app.modakbutton.ModakButton;
 import com.anwesome.app.pathtext.PathText;
 import com.anwesome.app.prokbutton.ProkButton;
 import com.anwesome.app.tablikeviews.TabElement;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPathText();
+                showModakButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -248,5 +249,9 @@ public class MainActivity extends AppCompatActivity {
         pathText.show(200,200);
         PathText pathText1 = new PathText(this,'E');
         pathText1.show(500,500);
+    }
+    public void showModakButton() {
+        ModakButton modakButton = new ModakButton(this);
+        modakButton.show(100,100);
     }
 }
