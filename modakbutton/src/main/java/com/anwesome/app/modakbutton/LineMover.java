@@ -51,12 +51,14 @@ public class LineMover {
             }
         }
     }
+    public void addDimensions() {
+        dimensions.add(new MoverDimension());
+    }
     private class MoverDimension {
         public PointF point = new PointF();
         public float deg = -90,speed = 3;
         public boolean shouldMove = true;
-        public MoverDimension(PointF point) {
-            this.point = point;
+        public MoverDimension() {
         }
         public void move() {
             if(deg<270 && shouldMove) {
