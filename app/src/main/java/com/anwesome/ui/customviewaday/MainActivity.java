@@ -252,6 +252,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showModakButton() {
         ModakButton modakButton = new ModakButton(this);
+        modakButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this,"loaded completely",Toast.LENGTH_LONG).show();
+            }
+        });
         modakButton.show(100,100);
     }
 }
