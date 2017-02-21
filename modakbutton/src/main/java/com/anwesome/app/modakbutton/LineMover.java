@@ -22,15 +22,16 @@ public class LineMover {
         return dimensions.size() == 0;
     }
     public boolean shouldStart() {
-        return dimensions.size() == 30;
+        return dimensions.size() == 20;
     }
     public void draw(Canvas canvas, Paint paint) {
+        paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(paint.getStrokeWidth()+10);
         paint.setColor(Color.GREEN);
         int index = 0;
         Path path = new Path();
         int speed = 3;
-        if(dimensions.size() == 30) {
+        if(dimensions.size() == 20) {
             speed = 30;
         }
         for(MoverDimension dimension:dimensions) {

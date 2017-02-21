@@ -17,10 +17,12 @@ public class ModakButton {
     private LineMover lineMover;
     private MotionStore motionStore;
     private ModakButtonView view;
+    private Ripple ripple;
     private View.OnClickListener onClickListener;
     public ModakButton(Activity activity) {
         this.activity = activity;
         motionStore = new MotionStore();
+        ripple = Ripple.newInstance();
     }
     public void setOnClickListener(View.OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
@@ -50,6 +52,7 @@ public class ModakButton {
             paint.setStrokeWidth(canvas.getWidth()/40);
             canvas.drawCircle(w/2,h/2,w/3,paint);
             lineMover.draw(canvas,paint);
+            ripple.draw(canvas,paint,w/2,h/2,w/3);
             time++;
             if(isAnimated) {
                 update();
@@ -71,6 +74,15 @@ public class ModakButton {
                     break;
                 case 1:
                     if(lineMover.shouldStop()) {
+                        motionStore.setMode(2);
+                        if(ripple!=null) {
+                            ripple.startScalingUp();
+                        }
+                    }
+                    break;
+                case 2:
+                    ripple.update();
+                    if(ripple.stoppedScaling()) {
                         motionStore.setMode(0);
                         isAnimated = false;
                         if(onClickListener!=null) {
