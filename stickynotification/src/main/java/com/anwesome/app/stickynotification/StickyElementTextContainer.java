@@ -53,9 +53,11 @@ public class StickyElementTextContainer {
         scale+=scaleDir;
         if(scale>=1) {
             stop = true;
+            scaleDir = 0;
         }
         if(scale<=0) {
             stop = true;
+            scaleDir = 0;
         }
     }
 }
