@@ -43,7 +43,7 @@ public class ImageClipperElement {
         render++;
     }
     public void startUpdaing() {
-        scaleDir = 1;
+        scaleDir = -0.1f;
         rotDir = 36;
     }
     public boolean isStopped() {
@@ -53,7 +53,7 @@ public class ImageClipperElement {
         rot+=rotDir;
         scale+=scaleDir;
         if(scale<0.5f) {
-            scaleDir = -1;
+            scaleDir = 0.1f;
             rotDir*=-1;
         }
         if(scale>=1) {
