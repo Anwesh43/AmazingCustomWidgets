@@ -16,6 +16,8 @@ import com.anwesome.app.customfloatingactionbutton.ActionIcon;
 import com.anwesome.app.customfloatingactionbutton.CustomFloatingActionButton;
 import com.anwesome.app.groupimagebuttons.GroupImageButton;
 import com.anwesome.app.groupimagebuttons.GroupImageButtons;
+import com.anwesome.app.imageclippe.ImageClipper;
+import com.anwesome.app.imageclippe.ImageClipperShape;
 import com.anwesome.app.menuexpander.Menu;
 import com.anwesome.app.menuexpander.MenuContainer;
 import com.anwesome.app.menuexpander.MenuExpander;
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showModakButton();
+                showImageClipper();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -259,5 +261,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         modakButton.show(100,100);
+    }
+    public void showImageClipper() {
+        ImageClipper imageClipper = new ImageClipper(this,BitmapFactory.decodeResource(getResources(),tImages[0]), ImageClipperShape.CIRCLE_SHAPE);
+        imageClipper.show(100,100);
     }
 }

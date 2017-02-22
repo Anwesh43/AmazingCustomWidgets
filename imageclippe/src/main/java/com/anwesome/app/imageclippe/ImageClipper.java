@@ -48,6 +48,9 @@ public class ImageClipper {
             time++;
             if(isAnimated) {
                 imageClipperElement.update();
+                if(imageClipperElement.isStopped()) {
+                    isAnimated = false;
+                }
                 try {
                     Thread.sleep(50);
                     invalidate();
@@ -59,6 +62,9 @@ public class ImageClipper {
         }
         public boolean onTouchEvent(MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+                if(imageClipperElement!=null) {
+                    imageClipperElement.startUpdaing();
+                }
                 isAnimated = true;
                 postInvalidate();
             }

@@ -42,4 +42,5 @@ dependencies {
     compile project(':customfloatingactionbutton')
     compile project(':pathtext')
     compile project(':modakbutton')
+    compile project(':imageclippe')
 }

@@ -42,6 +42,13 @@ public class ImageClipperElement {
         canvas.restore();
         render++;
     }
+    public void startUpdaing() {
+        scaleDir = 1;
+        rotDir = 36;
+    }
+    public boolean isStopped() {
+        return scaleDir == 0 && rotDir == 0;
+    }
     public void update() {
         rot+=rotDir;
         scale+=scaleDir;
@@ -49,7 +56,7 @@ public class ImageClipperElement {
             scaleDir = -1;
             rotDir*=-1;
         }
-        if(scale>-1) {
+        if(scale>=1) {
             scaleDir = 0;
             rotDir = 0;
             rot = 0;
