@@ -10,20 +10,24 @@ import android.graphics.Path;
  */
 public class ImageClipperElement {
     private Bitmap bitmap;
+    private Path path;
     private float scale = 1,scaleDir = 0,rot = 0,rotDir = 0;
     private int render = 0;
-    private ImageClipperElement(Bitmap bitmap) {
+    private ImageClipperElement(Bitmap bitmap,Path path) {
         this.bitmap = bitmap;
+        this.path = pathl
     }
     private ImageClipperElement() {
 
     }
-    public static ImageClipperElement getInstance(Bitmap bitmap) {
-        return new ImageClipperElement(bitmap);
+    public static ImageClipperElement getInstance(Bitmap bitmap,Path path) {
+        return new ImageClipperElement(bitmap,path);
+    }
+    public void setPath(Path path) {
+        this.path = path;
     }
     public void draw(Canvas canvas, Paint paint) {
         int w = canvas.getWidth(),h = canvas.getHeight();
-        Path path = definePath(w,h);
         if(render == 0) {
             bitmap = Bitmap.createScaledBitmap(bitmap,w,h,true);
         }
@@ -51,8 +55,5 @@ public class ImageClipperElement {
             rot = 0;
             scale = 1;
         }
-    }
-    protected Path definePath(int w,int h) {
-        return null;
     }
 }
