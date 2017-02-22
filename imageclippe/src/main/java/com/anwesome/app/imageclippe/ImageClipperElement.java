@@ -15,7 +15,7 @@ public class ImageClipperElement {
     private int render = 0;
     private ImageClipperElement(Bitmap bitmap,Path path) {
         this.bitmap = bitmap;
-        this.path = pathl
+        this.path = path;
     }
     private ImageClipperElement() {
 
