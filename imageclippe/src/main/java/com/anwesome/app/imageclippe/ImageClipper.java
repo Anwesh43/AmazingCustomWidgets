@@ -5,9 +5,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 22/02/17.
@@ -24,8 +27,10 @@ public class ImageClipper {
     }
     public void show(int x,int y) {
         if(imageClipperView == null) {
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            int w = size.x,h = size.y;
             imageClipperView = new ImageClipperView(activity);
-            activity.addContentView(imageClipperView,new ViewGroup.LayoutParams(200,200));
+            activity.addContentView(imageClipperView,new ViewGroup.LayoutParams(w/2,w/2));
         }
         imageClipperView.setX(x);
         imageClipperView.setY(y);
