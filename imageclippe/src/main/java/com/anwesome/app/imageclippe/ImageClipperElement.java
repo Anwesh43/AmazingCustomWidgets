@@ -31,14 +31,17 @@ public class ImageClipperElement {
         if(render == 0) {
             bitmap = Bitmap.createScaledBitmap(bitmap,w,h,true);
         }
+
+        canvas.save();
+        canvas.translate(w/2,h/2);
+        canvas.scale(scale,scale);
         if(path!=null) {
             canvas.clipPath(path);
         }
         canvas.save();
-        canvas.translate(w/2,h/2);
         canvas.rotate(rot);
-        canvas.scale(scale,scale);
         canvas.drawBitmap(bitmap,-w/2,-h/2,paint);
+        canvas.restore();
         canvas.restore();
         render++;
     }
