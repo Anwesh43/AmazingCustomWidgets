@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
@@ -27,6 +28,7 @@ public class StickyNotification {
     private StickyElementTextContainer stickyElementTextContainer;
     private List<StickyNotificationTextElement> textElements = new ArrayList<>();
     private Bitmap bitmap;
+    private float notifH=100,notifW=100,notifY,notifX = 100;
     public StickyNotification(Activity activity,String text,Bitmap bitmap) {
         mActivity = activity;
         this.bitmap = bitmap;
@@ -65,12 +67,23 @@ public class StickyNotification {
             }
             stickyElementTextContainer = new StickyElementTextContainer(w/20,totalH/2+textSize/2,textElements,9*w/10,(int)notifH);
             closeButton = new CloseButton(w-w/20,notifH/2-w/20,w/20);
-            
+            bitmap = Bitmap.createScaledBitmap(bitmap,(int)(notifH/2*((bitmap.getWidth()*1.0f)/bitmap.getHeight())),(int)notifH/2,true);
+            stickyIcon =  StickyIcon.newInstance(bitmap,w/20,notifH/2,0);
+            stickyElementTextContainer.startMoving();
+            this.notifH = notifH;
+            this.notifW = notifW;
+            this.notifY = h-notifH;
+            this.notifX  = w/20;
         }
         paint.setTextSize(textSize);
     }
     public void show() {
-
+        if(stickyNotificationView == null) {
+            stickyNotificationView = new StickyNotificationView(mActivity);
+            mActivity.addContentView(stickyNotificationView,new ViewGroup.LayoutParams((int)notifW,(int)notifH));
+            stickyNotificationView.setX(notifX);
+            stickyNotificationView.setY(notifY);
+        }
     }
     private class StickyNotificationView extends View {
         private boolean isAnimated = true;
@@ -78,7 +91,11 @@ public class StickyNotification {
             super(context);
         }
         public void onDraw(Canvas canvas) {
+            closeButton.draw(canvas,paint);
+            stickyElementTextContainer.draw(canvas,paint);
+            stickyIcon.draw(canvas,paint);
             if(isAnimated) {
+                update();
                 try {
                     Thread.sleep(100);
                     invalidate();
@@ -140,6 +157,13 @@ public class StickyNotification {
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && animationStore.getMode() == 2) {
+                if(closeButton.handleTap(event.getX(),event.getY())) {
+                    closeButton.startMoving();
+                    isAnimated = true;
+                    postInvalidate();
+                }
+            }
             return true;
         }
     }

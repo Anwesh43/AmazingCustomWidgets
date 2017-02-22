@@ -25,6 +25,9 @@ public class StickyIcon {
         this.initialY = y;
         this.speed = Math.abs(this.finalY-this.initialY)/5;
     }
+    public static  StickyIcon newInstance(Bitmap bitmap,float x,float y,float finalY) {
+        return new StickyIcon(bitmap,x,y,finalY);
+    }
     public void draw(Canvas canvas, Paint paint) {
         canvas.drawBitmap(bitmap,x,y,paint);
     }
