@@ -34,6 +34,10 @@ public class CloseButton {
             rotDir = 0;
         }
     }
+    public void startMoving() {
+        scaleDir = -0.2f;
+        rotDir = -36;
+    }
     public boolean handleTap(float x,float y) {
         return (x>=this.x-r && x<=this.x+r && y>=this.y-r && y<=this.y+r);
     }
