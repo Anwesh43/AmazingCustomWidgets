@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * Created by anweshmishra on 22/02/17.
@@ -15,13 +16,19 @@ public class ImageClipper {
     private Bitmap bitmap;
     private Activity activity;
     private ImageClipperShape imageClipperShape;
+    private ImageClipperView imageClipperView;
     public ImageClipper(Activity activity,Bitmap bitmap,ImageClipperShape imageClipperShape) {
         this.activity = activity;
         this.bitmap = bitmap;
         this.imageClipperShape = imageClipperShape;
     }
-    public void show() {
-
+    public void show(int x,int y) {
+        if(imageClipperView == null) {
+            imageClipperView = new ImageClipperView(activity);
+            activity.addContentView(imageClipperView,new ViewGroup.LayoutParams(200,200));
+        }
+        imageClipperView.setX(x);
+        imageClipperView.setY(y);
     }
     private class ImageClipperView  extends View {
         private int time = 0;
