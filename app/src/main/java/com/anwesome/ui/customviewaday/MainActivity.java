@@ -265,5 +265,7 @@ public class MainActivity extends AppCompatActivity {
     public void showImageClipper() {
         ImageClipper imageClipper = new ImageClipper(this,BitmapFactory.decodeResource(getResources(),tImages[0]), ImageClipperShape.CIRCLE_SHAPE);
         imageClipper.show(100,100);
+        ImageClipper imageClipper1 = new ImageClipper(this,BitmapFactory.decodeResource(getResources(),tImages[1]),ImageClipperShape.RECT_SHAPE);
+        imageClipper1.show(400,400);
     }
 }
