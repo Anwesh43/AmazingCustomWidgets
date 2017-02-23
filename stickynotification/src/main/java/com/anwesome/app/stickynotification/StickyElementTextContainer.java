@@ -3,6 +3,7 @@ package com.anwesome.app.stickynotification;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 
 import java.util.*;
 
@@ -36,14 +37,16 @@ public class StickyElementTextContainer {
     }
     private void setPivotOfText() {
         for(StickyNotificationTextElement textElement:textElements) {
-            textElement.setPivots(x+w/2,y+h/2);
+            textElement.setPivots(x+w/2,y);
         }
     }
     public void draw(Canvas canvas, Paint paint) {
+        float r = Math.max(w,h)/10;
         paint.setColor(Color.parseColor("#4FC3F7"));
         canvas.save();
-        canvas.translate(x+w/2,y+h/2);
+        canvas.translate(x+w/2,y);
         canvas.scale(1,scale);
+        canvas.drawRoundRect(new RectF(-w/2,0,w/2,h),r,r,paint);
         for(StickyNotificationTextElement textElement:textElements) {
             textElement.draw(canvas,paint);
         }
