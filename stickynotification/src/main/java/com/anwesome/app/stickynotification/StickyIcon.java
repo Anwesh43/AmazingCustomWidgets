@@ -8,7 +8,7 @@ import android.graphics.Paint;
  * Created by anweshmishra on 23/02/17.
  */
 public class StickyIcon {
-    private float x,y,finalY,initialY,dir = -1,speed = 0;
+    private float x,y,finalY,initialY,dir = -1,speed = 0,scale=0;
     private Bitmap bitmap;
     private boolean stop = false;
     public boolean isStop() {
@@ -29,17 +29,27 @@ public class StickyIcon {
         return new StickyIcon(bitmap,x,y,finalY);
     }
     public void draw(Canvas canvas, Paint paint) {
-        canvas.drawBitmap(bitmap,x,y,paint);
+        int w = bitmap.getWidth(),h = bitmap.getHeight();
+        canvas.save();
+        canvas.translate(x+w/2,y+h/2);
+        canvas.scale(scale,scale);
+        canvas.drawBitmap(bitmap,-w/2,-h/2,paint);
+        canvas.restore();
     }
     public void update() {
         y+=speed*dir;
+        scale-=0.2f*dir;
         if(y<=finalY) {
             dir = 1;
             stop = true;
+            y = finalY;
+            scale = 1;
         }
         if(y>=initialY) {
             dir = -1;
             stop = true;
+            scale = 0;
+            y = initialY;
         }
     }
 }
