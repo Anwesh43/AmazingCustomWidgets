@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.RectF;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,14 +38,17 @@ public class StickyNotification {
         initNotification(text);
     }
     private void initNotification(String text) {
+
         Point size = DimensionsUtil.getDeviceDimension(mActivity);
         int w = size.x,h = size.y;
-        float textSize = h/30,notifW= 9*w/10,textW = w/20,notifH = h/60,notifX = textW;
+        h = 8*h/10;
+        float textSize = h/40,notifW= 9*w/10,textW = w/20,notifH = textSize,notifX = textW;
+        paint.setTextSize(textSize);
         String tokens[] = text.split(" ");
         String msg = "";
         for(String token:tokens) {
-            float tw = paint.measureText(msg);
-            if(textW+tw>notifW) {
+            float tw = paint.measureText(msg+" "+token);
+            if(textW+tw>=notifW) {
                 textW = w/10;
                 notifH+=textSize;
                 msg = token;
@@ -53,9 +59,11 @@ public class StickyNotification {
         }
         msg = "";
         notifH+=textSize*1.5f;
-        float totalH = notifH*2,notifY = totalH/2+textSize/2;
+        float totalH = notifH*2,notifY = totalH/2+textSize;
         for(String token:tokens) {
+
             float tw = paint.measureText(msg);
+
             if(textW+tw>notifW) {
                 textElements.add(new StickyNotificationTextElement(msg,notifX,notifY));
                 notifX = w/20;
@@ -65,17 +73,17 @@ public class StickyNotification {
             else {
                 msg = msg+" "+token;
             }
-            stickyElementTextContainer = new StickyElementTextContainer(w/20,totalH/2+textSize/2,textElements,9*w/10,(int)notifH);
-            closeButton = new CloseButton(w-w/20,notifH/2-w/20,w/20);
-            bitmap = Bitmap.createScaledBitmap(bitmap,(int)(notifH/2*((bitmap.getWidth()*1.0f)/bitmap.getHeight())),(int)notifH/2,true);
-            stickyIcon =  StickyIcon.newInstance(bitmap,w/20,notifH/2,0);
-            stickyElementTextContainer.startMoving();
-            this.notifH = notifH;
-            this.notifW = notifW;
-            this.notifY = h-notifH;
-            this.notifX  = w/20;
         }
-        paint.setTextSize(textSize);
+        textElements.add(new StickyNotificationTextElement(msg,notifX,notifY));
+        stickyElementTextContainer = new StickyElementTextContainer(0,totalH/2,textElements,9*w/10,(int)notifH);
+        closeButton = new CloseButton(5*w/6,notifH-w/20,w/20);
+        bitmap = Bitmap.createScaledBitmap(bitmap,(int)(totalH/2*((bitmap.getWidth()*1.0f)/bitmap.getHeight())),(int)totalH/2,true);
+        stickyIcon =  StickyIcon.newInstance(bitmap,0,totalH/2,0);
+        this.notifH = totalH;
+        this.notifW = notifW;
+        this.notifY = h-totalH;
+        this.notifX  = w/20;
+
     }
     public void show() {
         if(stickyNotificationView == null) {
@@ -86,32 +94,42 @@ public class StickyNotification {
         }
     }
     private class StickyNotificationView extends View {
-        private boolean isAnimated = true;
+        private boolean isAnimated = false;
         public StickyNotificationView(Context context) {
             super(context);
         }
         public void onDraw(Canvas canvas) {
             closeButton.draw(canvas,paint);
-            stickyElementTextContainer.draw(canvas,paint);
             stickyIcon.draw(canvas,paint);
+            stickyElementTextContainer.draw(canvas,paint);
             if(isAnimated) {
                 update();
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(50);
                     invalidate();
                 }
                 catch (Exception ex) {
-
+                    Log.d("ex",ex.toString());
                 }
             }
         }
         public void update() {
             switch(animationStore.getMode()) {
+                case -1:
+                    closeButton.update();
+                    if(closeButton.isStop()) {
+                        animationStore.setMode(0);
+                        stickyElementTextContainer.startMoving();
+                    }
+                    break;
                 case 0:
                     if(stickyElementTextContainer!=null) {
                         stickyElementTextContainer.update();
                         if(stickyElementTextContainer.isStop()) {
                             animationStore.setMode(1);
+                            if(stickyIcon!=null) {
+                                stickyIcon.startMoving();
+                            }
                         }
                     }
                     break;
@@ -149,6 +167,7 @@ public class StickyNotification {
                         closeButton.update();
                         if(closeButton.isStop()) {
                             isAnimated = false;
+                            animationStore.setMode(-1);
                         }
                     }
                     break;
@@ -157,9 +176,12 @@ public class StickyNotification {
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
-            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && animationStore.getMode() == 2) {
-                if(closeButton.handleTap(event.getX(),event.getY())) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+                if((animationStore.getMode() == 2 || animationStore.getMode() == -1) && closeButton.handleTap(event.getX(),event.getY())) {
                     closeButton.startMoving();
+                    if(animationStore.getMode() == 2) {
+                        stickyIcon.startMoving();
+                    }
                     isAnimated = true;
                     postInvalidate();
                 }
