@@ -1,5 +1,6 @@
 package com.anwesome.ui.customviewaday;
 
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ import com.anwesome.app.menuexpander.MenuExpander;
 import com.anwesome.app.modakbutton.ModakButton;
 import com.anwesome.app.pathtext.PathText;
 import com.anwesome.app.prokbutton.ProkButton;
+import com.anwesome.app.stickynotification.StickyNotification;
 import com.anwesome.app.tablikeviews.TabElement;
 import com.anwesome.app.tablikeviews.TabLikeLayout;
 import com.anwesome.ui.bulletedlist.BulletedList;
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showImageClipper();
+                showStickyNotification();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -269,5 +271,10 @@ public class MainActivity extends AppCompatActivity {
         imageClipper1.show(500,500);
         ImageClipper imageClipper2 = new ImageClipper(this,BitmapFactory.decodeResource(getResources(),tImages[2]),ImageClipperShape.TRIANGLE_SHAPE);
         imageClipper2.show(900,900);
+    }
+    public void showStickyNotification() {
+        String notifText = "hello there lets see how it wraps up. Here are some insights on jobs done.But Lucas is enjoying his time here since his move from Deportivo la Coruna";
+        StickyNotification stickyNotification = new StickyNotification(this,notifText, BitmapFactory.decodeResource(getResources(),R.drawable.penguin));
+        stickyNotification.show();
     }
 }
