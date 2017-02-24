@@ -24,12 +24,12 @@ public class AlphaImageSwitchButton {
         scale+=scaleDir;
         if(scale>=1){
             scaleDir = 0;
-            if(selectedListener!=null) {
-                selectedListener.onSelected();
-            }
         }
         if(scale<=0) {
             scaleDir = 0;
+            if(selectedListener!=null) {
+                selectedListener.onSelected();
+            }
         }
     }
     public void unselect() {
