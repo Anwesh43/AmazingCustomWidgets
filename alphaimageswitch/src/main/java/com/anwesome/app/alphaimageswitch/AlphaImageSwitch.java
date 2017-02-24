@@ -86,6 +86,7 @@ public class AlphaImageSwitch {
                     if(prevButton!=null) {
                         prevButton.startDeactivating();
                     }
+                    isAnimated = true;
                     postInvalidate();
                 }
             }
