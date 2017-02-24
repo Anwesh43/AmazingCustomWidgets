@@ -59,7 +59,9 @@ public class AlphaImageSwitch {
                 }
                 boolean currButtonStopped = (currButton!=null && currButton.isStopped());
                 if((prevButton == null && currButtonStopped) || (prevButton!=null && prevButton.isStopped() && currButtonStopped)) {
-                    prevButton.unselect();
+                    if(prevButton!=null) {
+                        prevButton.unselect();
+                    }
                     prevButton = currButton;
                     currButton = null;
                 }
