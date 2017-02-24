@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.anwesome.app.alphaimageswitch.AlphaImageSwitch;
 import com.anwesome.app.alphaimageswitch.AlphaImageSwitchButton;
+import com.anwesome.app.alphaimageswitch.SelectedListner;
 import com.anwesome.app.beanbutton.BeanButton;
 import com.anwesome.app.buttonintriangle.ButtonsTriangle;
 import com.anwesome.app.circularwindow.CircularWindow;
@@ -281,9 +282,18 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showAlphaImageSwitch() {
         AlphaImageSwitch alphaImageSwitch = new AlphaImageSwitch(this);
+        int index = 0;
         for(int tImage:tImages) {
+            final String text = actions[index];
             AlphaImageSwitchButton alphaImageSwitchButton = new AlphaImageSwitchButton(BitmapFactory.decodeResource(getResources(),tImage));
+            alphaImageSwitchButton.setSelectedLisenter(new SelectedListner() {
+                @Override
+                public void onSelected() {
+                    Toast.makeText(MainActivity.this,text,Toast.LENGTH_SHORT).show();
+                }
+            });
             alphaImageSwitch.addImageSwitchButton(alphaImageSwitchButton);
+            index++;
         }
         alphaImageSwitch.show(300);
     }
