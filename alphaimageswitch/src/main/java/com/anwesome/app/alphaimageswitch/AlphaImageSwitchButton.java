@@ -31,7 +31,7 @@ public class AlphaImageSwitchButton {
     public void unselect() {
         scale = 1;
     }
-    public void setDimensiosn(float x,float y,float size) {
+    public void setDimension(float x,float y,float size) {
         bitmap = Bitmap.createScaledBitmap(bitmap,(int)size/2,(int)size/2,true);
         this.x = x;
         this.y = y;
