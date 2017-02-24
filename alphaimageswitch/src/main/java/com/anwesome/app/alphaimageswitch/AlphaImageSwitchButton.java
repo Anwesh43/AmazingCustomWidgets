@@ -55,4 +55,7 @@ public class AlphaImageSwitchButton {
     public int hashCode() {
         return bitmap.hashCode()+(int)x;
     }
+    public boolean handleTap(float x,float y) {
+        return x>=this.x-size/2 && x<=this.x+size/2 && y>=this.y-size/2 && y<=this.y+size/2;
+    }
 }
