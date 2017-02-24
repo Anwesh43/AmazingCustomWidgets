@@ -32,7 +32,7 @@ public class AlphaImageSwitch {
             float size = w/((3*buttons.size()+1)/2),x = size,y = size;
             for(AlphaImageSwitchButton button:buttons) {
                 button.setDimension(x,y,size);
-                x+=size;
+                x+=size*3/2;
             }
             activity.addContentView(imageSwitchView,new ViewGroup.LayoutParams(w,2*(int)size));
         }
@@ -86,6 +86,7 @@ public class AlphaImageSwitch {
                     if(prevButton!=null) {
                         prevButton.startDeactivating();
                     }
+                    postInvalidate();
                 }
             }
             return true;
