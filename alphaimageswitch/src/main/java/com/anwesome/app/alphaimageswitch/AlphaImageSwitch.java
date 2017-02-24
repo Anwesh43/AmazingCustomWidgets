@@ -5,6 +5,9 @@ import android.content.Context;
 import android.graphics.*;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.*;
 
@@ -21,10 +24,20 @@ public class AlphaImageSwitch {
     public void addImageSwitchButton(AlphaImageSwitchButton imageSwitchButton) {
         this.buttons.add(imageSwitchButton);
     }
-    public void show(int y) {
+    public void show(int viewY) {
         if(imageSwitchView == null) {
             imageSwitchView = new AlphaImageSwitchView(activity);
+            Point dimensions = DimensionsUtil.getDeviceDimension(activity);
+            int w = dimensions.x;
+            float size = w/((3*buttons.size()+1)/2),x = size,y = size;
+            for(AlphaImageSwitchButton button:buttons) {
+                button.setDimension(x,y,size);
+                x+=size;
+            }
+            activity.addContentView(imageSwitchView,new ViewGroup.LayoutParams(w,2*(int)size));
         }
+        imageSwitchView.setX(0);
+        imageSwitchView.setY(viewY);
     }
     private class AlphaImageSwitchView extends View {
         private boolean isAnimated = false;
