@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.anwesome.app.alphaimageswitch.AlphaImageSwitch;
+import com.anwesome.app.alphaimageswitch.AlphaImageSwitchButton;
 import com.anwesome.app.beanbutton.BeanButton;
 import com.anwesome.app.buttonintriangle.ButtonsTriangle;
 import com.anwesome.app.circularwindow.CircularWindow;
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showStickyNotification();
+                showAlphaImageSwitch();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -276,5 +278,13 @@ public class MainActivity extends AppCompatActivity {
         String notifText = "hello there lets see how it wraps up. Here are some insights on jobs done.But Lucas is enjoying his time here since his move from Deportivo la Coruna";
         StickyNotification stickyNotification = new StickyNotification(this,notifText, BitmapFactory.decodeResource(getResources(),R.drawable.penguin));
         stickyNotification.show();
+    }
+    public void showAlphaImageSwitch() {
+        AlphaImageSwitch alphaImageSwitch = new AlphaImageSwitch(this);
+        for(int tImage:tImages) {
+            AlphaImageSwitchButton alphaImageSwitchButton = new AlphaImageSwitchButton(BitmapFactory.decodeResource(getResources(),tImage));
+            alphaImageSwitch.addImageSwitchButton(alphaImageSwitchButton);
+        }
+        alphaImageSwitch.show(300);
     }
 }

@@ -44,4 +44,5 @@ dependencies {
     compile project(':modakbutton')
     compile project(':imageclippe')
     compile project(':stickynotification')
+    compile project(':alphaimageswitch')
 }
