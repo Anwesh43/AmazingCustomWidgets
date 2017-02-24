@@ -11,10 +11,10 @@ public class AlphaImageSwitchButton {
         this.bitmap = bitmap;
     }
     public void startDeactivating() {
-        scaleDir = -0.1f;
+        scaleDir = 0.1f;
     }
     public void startActivating() {
-        scaleDir = 0.1f;
+        scaleDir = -0.1f;
     }
     public boolean isStopped() {
         return scaleDir == 0;
@@ -32,7 +32,7 @@ public class AlphaImageSwitchButton {
         scale = 1;
     }
     public void setDimension(float x,float y,float size) {
-        bitmap = Bitmap.createScaledBitmap(bitmap,(int)size/2,(int)size/2,true);
+        bitmap = Bitmap.createScaledBitmap(bitmap,(int)size,(int)size,true);
         this.x = x;
         this.y = y;
         this.size = size;
@@ -44,7 +44,7 @@ public class AlphaImageSwitchButton {
         path.addCircle(0,0,size/2, Path.Direction.CCW);
         canvas.clipPath(path);
         paint.setColor(Color.WHITE);
-        canvas.drawBitmap(bitmap,-size/4,-size/4,paint);
+        canvas.drawBitmap(bitmap,-size/2,-size/2,paint);
         canvas.save();
         canvas.scale(scale,scale);
         paint.setColor(Color.parseColor("#AA9E9E9E"));

@@ -29,10 +29,10 @@ public class AlphaImageSwitch {
             imageSwitchView = new AlphaImageSwitchView(activity);
             Point dimensions = DimensionsUtil.getDeviceDimension(activity);
             int w = dimensions.x;
-            float size = w/((3*buttons.size()+1)/2),x = size,y = size;
+            float size = (8*w*1.0f)/((9*buttons.size()+1)),x = (5*size)/8,y = size;
             for(AlphaImageSwitchButton button:buttons) {
                 button.setDimension(x,y,size);
-                x+=size*3/2;
+                x+=(size*9)/8;
             }
             activity.addContentView(imageSwitchView,new ViewGroup.LayoutParams(w,2*(int)size));
         }
@@ -64,6 +64,7 @@ public class AlphaImageSwitch {
                     }
                     prevButton = currButton;
                     currButton = null;
+                    isAnimated = false;
                 }
                 try {
                     Thread.sleep(50);
