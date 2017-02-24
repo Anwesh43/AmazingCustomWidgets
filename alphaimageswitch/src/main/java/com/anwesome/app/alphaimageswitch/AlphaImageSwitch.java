@@ -14,14 +14,17 @@ import java.util.*;
 public class AlphaImageSwitch {
     private Activity activity;
     private List<AlphaImageSwitchButton> buttons = new ArrayList<>();
+    private AlphaImageSwitchView imageSwitchView;
     public AlphaImageSwitch(Activity activity) {
         this.activity = activity;
     }
     public void addImageSwitchButton(AlphaImageSwitchButton imageSwitchButton) {
         this.buttons.add(imageSwitchButton);
     }
-    public void show() {
-
+    public void show(int y) {
+        if(imageSwitchView != null) {
+            imageSwitchView = new AlphaImageSwitchView(activity);
+        }
     }
     private class AlphaImageSwitchView extends View {
         private boolean isAnimated = false;
