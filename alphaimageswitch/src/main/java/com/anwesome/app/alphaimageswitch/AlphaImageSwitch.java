@@ -24,6 +24,7 @@ public class AlphaImageSwitch {
 
     }
     private class AlphaImageSwitchView extends View {
+        private boolean isAnimated = false;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         public AlphaImageSwitchView(Context context) {
             super(context);
@@ -31,6 +32,18 @@ public class AlphaImageSwitch {
         public void onDraw(Canvas canvas) {
             for(AlphaImageSwitchButton imageSwitchButton:buttons) {
                 imageSwitchButton.draw(canvas,paint);
+            }
+            if(isAnimated) {
+                for(AlphaImageSwitchButton button:buttons) {
+                    button.update();
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch(Exception ex) {
+
+                }
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
