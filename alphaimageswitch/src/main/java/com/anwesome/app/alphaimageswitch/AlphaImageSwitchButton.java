@@ -6,6 +6,7 @@ import android.graphics.*;
  */
 public class AlphaImageSwitchButton {
     private Bitmap bitmap;
+    private SelectedListner selectedListener;
     private float x,y,size,scaleDir=0,scale =1;
     public AlphaImageSwitchButton(Bitmap bitmap) {
         this.bitmap = bitmap;
@@ -23,6 +24,9 @@ public class AlphaImageSwitchButton {
         scale+=scaleDir;
         if(scale>=1){
             scaleDir = 0;
+            if(selectedListener!=null) {
+                selectedListener.onSelected();
+            }
         }
         if(scale<=0) {
             scaleDir = 0;
@@ -51,6 +55,9 @@ public class AlphaImageSwitchButton {
         canvas.drawPath(path,paint);
         canvas.restore();
         canvas.restore();
+    }
+    public void setSelectedLisenter(SelectedListner selectedListener) {
+        this.selectedListener = selectedListener;
     }
     public int hashCode() {
         return bitmap.hashCode()+(int)x;
