@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/actionsheettutorial" />
+            <option value="$PROJECT_DIR$/alphaimageswitch" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/beanbutton" />
             <option value="$PROJECT_DIR$/bulletedlist" />
@@ -39,6 +40,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/actionsheettutorial" />
+            <option value="$PROJECT_DIR$/alphaimageswitch" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/beanbutton" />
             <option value="$PROJECT_DIR$/bulletedlist" />
