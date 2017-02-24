@@ -22,7 +22,7 @@ public class AlphaImageSwitch {
         this.buttons.add(imageSwitchButton);
     }
     public void show(int y) {
-        if(imageSwitchView != null) {
+        if(imageSwitchView == null) {
             imageSwitchView = new AlphaImageSwitchView(activity);
         }
     }
