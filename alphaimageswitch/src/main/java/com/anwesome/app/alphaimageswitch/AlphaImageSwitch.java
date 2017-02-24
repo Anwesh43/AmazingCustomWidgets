@@ -57,6 +57,21 @@ public class AlphaImageSwitch {
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
+            float x = event.getX(),y = event.getY();
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && currButton == null) {
+                for(AlphaImageSwitchButton imageSwitchButton:buttons) {
+                    if(imageSwitchButton.handleTap(x,y)) {
+                        currButton = imageSwitchButton;
+                        break;
+                    }
+                }
+                if(currButton!=null) {
+                    currButton.startActivating();
+                    if(prevButton!=null) {
+                        prevButton.startDeactivating();
+                    }
+                }
+            }
             return true;
         }
 
