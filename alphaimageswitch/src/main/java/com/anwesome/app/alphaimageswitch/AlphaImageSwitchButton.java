@@ -10,7 +10,7 @@ public class AlphaImageSwitchButton {
     public AlphaImageSwitchButton(Bitmap bitmap) {
         this.bitmap = bitmap;
     }
-    public void startScalingUp() {
+    public void startDeactivating() {
         scaleDir = -0.1f;
     }
     public void startActivating() {
