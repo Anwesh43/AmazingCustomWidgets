@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.*;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * Created by anweshmishra on 25/02/17.
@@ -12,12 +13,18 @@ import android.view.View;
 public class LockButton {
     private Activity activity;
     private LockButtonType lockButtonType;
+    private LockButtonView lockButtonView;
     public LockButton(Activity activity,LockButtonType lockButtonType){
         this.activity = activity;
         this.lockButtonType = lockButtonType;
     }
-    public void show() {
-
+    public void show(int x,int y) {
+        if(lockButtonView == null) {
+            lockButtonView = new LockButtonView(activity);
+            activity.addContentView(lockButtonView,new ViewGroup.LayoutParams(300,300));
+        }
+        lockButtonView.setX(x);
+        lockButtonView.setY(y);
     }
     private class LockButtonView extends View {
         private int time = 0;
