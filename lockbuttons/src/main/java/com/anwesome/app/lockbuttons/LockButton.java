@@ -12,8 +12,12 @@ import android.view.ViewGroup;
  */
 public class LockButton {
     private Activity activity;
+    private View.OnClickListener onClickListener;
     private LockButtonType lockButtonType;
     private LockButtonView lockButtonView;
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
     public LockButton(Activity activity,LockButtonType lockButtonType){
         this.activity = activity;
         this.lockButtonType = lockButtonType;
@@ -40,7 +44,7 @@ public class LockButton {
         public void onDraw(Canvas canvas) {
             if(time == 0) {
                 initLockAndKey(canvas.getWidth(),canvas.getHeight());
-                animationController = new AnimationController(lock,lockKey,this);
+                animationController = new AnimationController(lock,lockKey,this,onClickListener);
             }
             drawObjects(canvas,paint);
             time++;
@@ -52,11 +56,8 @@ public class LockButton {
         private void initLockAndKey(int w,int h) {
             this.w = w;
             this.h = h;
-            lockKey = new LockKey(3*w/4,h/2);
-            float x = w/2,y = h/2-w/4,lockR = w/4;
-            x = 3*w/4+(w/4)*(float)Math.cos(240*Math.PI/180);
-            y = h/2+(w/4)*(float)Math.sin(240*Math.PI/180);
-            lockR = Math.abs(x-3*w/4);
+            lockKey = new LockKey(w/2,h/2+w/4);
+            float x = w/2-w/4,y = h/2,lockR = w/4;
             lock = new Lock(x,y,lockR);
         }
         public boolean onTouchEvent(MotionEvent event) {

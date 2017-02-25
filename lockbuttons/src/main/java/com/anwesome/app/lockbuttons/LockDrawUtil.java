@@ -15,13 +15,10 @@ public class LockDrawUtil {
         paint.setColor(Color.parseColor("#64B5F6"));
         switch(lockButtonType) {
             case RECTANGLE:
-                canvas.drawRect(new RectF(w/2,h/2-w/4,w,h/2+w/4),paint);
+                canvas.drawRect(new RectF(w/-w/3,h/2,w/2+w/3,h/2+w/2),paint);
                 break;
             case ROUNDRECTANGLE:
-                canvas.drawRoundRect(new RectF(w/2,h/2-w/4,w,h/2+w/4),w/16,w/16,paint);
-                break;
-            case CIRCLE:
-                canvas.drawCircle(3*w/4,h/2,w/4,paint);
+                canvas.drawRoundRect(new RectF(w/2-w/3,h/2,w/2+w/3,h/2+w/2),w/16,w/16,paint);
                 break;
             default:
                 break;

@@ -28,7 +28,7 @@ public class Lock {
         }
     }
     public boolean isStop() {
-        return deg == 0;
+        return degSpeed == 0;
     }
     public void draw(Canvas canvas,Paint paint) {
         paint.setStyle(Paint.Style.STROKE);
