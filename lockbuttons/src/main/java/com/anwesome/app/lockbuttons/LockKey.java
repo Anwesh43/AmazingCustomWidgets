@@ -16,6 +16,12 @@ public class LockKey {
     public boolean isStopped() {
         return degSpeed == 0;
     }
+    public void open() {
+        degSpeed = 9;
+    }
+    public void close() {
+        degSpeed = -9;
+    }
     public void update() {
         deg+=degSpeed;
         if(deg>=45) {
