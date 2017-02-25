@@ -32,11 +32,12 @@ public class Lock {
     }
     public void draw(Canvas canvas,Paint paint) {
         paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(Color.parseColor("#4DD0E1"));
         paint.setStrokeWidth(canvas.getWidth()/25);
         canvas.save();
         canvas.translate(x,y);
         canvas.rotate(deg);
-        canvas.drawArc(new RectF(0,-r,0,r),180,180,false,paint);
+        canvas.drawArc(new RectF(0,-r,2*r,r),180,180,false,paint);
         canvas.restore();
     }
 }

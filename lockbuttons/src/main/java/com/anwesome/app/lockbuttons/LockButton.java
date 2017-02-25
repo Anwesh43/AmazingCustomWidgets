@@ -53,12 +53,17 @@ public class LockButton {
             this.w = w;
             this.h = h;
             lockKey = new LockKey(3*w/4,h/2);
-            float x = 3*w/4+(w/4)*(float)Math.cos(240*Math.PI/180),y = h/2+(w/4)*(float)Math.sin(240*Math.PI/180),lockR = Math.abs(x-3*w/4);
+            float x = w/2,y = h/2-w/4,lockR = w/4;
+            x = 3*w/4+(w/4)*(float)Math.cos(240*Math.PI/180);
+            y = h/2+(w/4)*(float)Math.sin(240*Math.PI/180);
+            lockR = Math.abs(x-3*w/4);
             lock = new Lock(x,y,lockR);
         }
         public boolean onTouchEvent(MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN &&  (animationController!=null && !animationController.isAnimated())) {
                 animationController.startAnimating();
+                animationController.setAnimated(true);
+                postInvalidate();
             }
             return true;
         }
