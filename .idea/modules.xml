@@ -20,6 +20,7 @@
       <module fileurl="file://$PROJECT_DIR$/fourbutton/fourbutton.iml" filepath="$PROJECT_DIR$/fourbutton/fourbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/groupimagebuttons/groupimagebuttons.iml" filepath="$PROJECT_DIR$/groupimagebuttons/groupimagebuttons.iml" />
       <module fileurl="file://$PROJECT_DIR$/imageclippe/imageclippe.iml" filepath="$PROJECT_DIR$/imageclippe/imageclippe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lockbuttons/lockbuttons.iml" filepath="$PROJECT_DIR$/lockbuttons/lockbuttons.iml" />
       <module fileurl="file://$PROJECT_DIR$/menuexpander/menuexpander.iml" filepath="$PROJECT_DIR$/menuexpander/menuexpander.iml" />
       <module fileurl="file://$PROJECT_DIR$/modakbutton/modakbutton.iml" filepath="$PROJECT_DIR$/modakbutton/modakbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/pathtext/pathtext.iml" filepath="$PROJECT_DIR$/pathtext/pathtext.iml" />
