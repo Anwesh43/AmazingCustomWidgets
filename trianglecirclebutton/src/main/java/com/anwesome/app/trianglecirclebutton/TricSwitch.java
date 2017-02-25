@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +20,27 @@ import java.util.List;
 public class TricSwitch {
     private Activity activity;
     private List<TriCircButton> buttons = new ArrayList<>();
+    private TricSwitchView tricSwitchView = null;
     public TricSwitch(Activity activity) {
         this.activity = activity;
     }
     public void addTricButton(TriCircButton button) {
         buttons.add(button);
     }
-    public void show() {
+    public void show(int vertY) {
+        if(tricSwitchView == null) {
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            int w = size.x,h = size.y;
+            float gap = (w*1.0f)/((9*buttons.size()+1)/8);
+            float x = 5*gap/8,y = 3*gap/2;
+            for(TriCircButton button:buttons) {
+                button.setDimensions(x,y,gap);
+                x+=(gap*9)/8;
+            }
+            tricSwitchView = new TricSwitchView(activity);
+            activity.addContentView(tricSwitchView,new ViewGroup.LayoutParams(w,3*(int)gap));
+        }
+        tricSwitchView.setY(vertY);
     }
     private class TricSwitchView extends View {
         private boolean isAnimated = false;
