@@ -34,6 +34,8 @@ import com.anwesome.app.prokbutton.ProkButton;
 import com.anwesome.app.stickynotification.StickyNotification;
 import com.anwesome.app.tablikeviews.TabElement;
 import com.anwesome.app.tablikeviews.TabLikeLayout;
+import com.anwesome.app.trianglecirclebutton.TriCircButton;
+import com.anwesome.app.trianglecirclebutton.TricSwitch;
 import com.anwesome.ui.bulletedlist.BulletedList;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
 import com.anwesome.ui.compassbutton.CompassButton;
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showLockButtons();
+                showTricSwitch();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -314,5 +316,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "CLOSE", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showTricSwitch() {
+        TricSwitch tricSwitch = new TricSwitch(this);
+        for(int i=0;i<4;i++) {
+            tricSwitch.addTricButton(TriCircButton.newInstance());
+        }
+        tricSwitch.show(200);
     }
 }

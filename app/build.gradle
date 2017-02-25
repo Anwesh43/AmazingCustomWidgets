@@ -46,4 +46,5 @@ dependencies {
     compile project(':stickynotification')
     compile project(':alphaimageswitch')
     compile project(':lockbuttons')
+    compile project(':trianglecirclebutton')
 }
