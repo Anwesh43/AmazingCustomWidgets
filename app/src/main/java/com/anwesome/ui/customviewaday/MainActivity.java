@@ -319,7 +319,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showTricSwitch() {
         TricSwitch tricSwitch = new TricSwitch(this);
-        for(int i=0;i<4;i++) {
+        for(int i=0;i<3;i++) {
             tricSwitch.addTricButton(TriCircButton.newInstance());
         }
         tricSwitch.show(200);
