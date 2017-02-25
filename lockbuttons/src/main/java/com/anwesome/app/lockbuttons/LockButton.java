@@ -8,10 +8,12 @@ import android.content.Context;
  */
 public class LockButton {
     private Activity activity;
-    public LockButton(Activity activity){
+    private LockButtonType lockButtonType;
+    public LockButton(Activity activity,LockButtonType lockButtonType){
         this.activity = activity;
+        this.lockButtonType = lockButtonType;
     }
     public void show() {
-        
+
     }
 }
