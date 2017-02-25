@@ -14,9 +14,17 @@ public class LockButton {
     private Activity activity;
     private LockButtonType lockButtonType;
     private LockButtonView lockButtonView;
+    private LockListener lockListener;
+    private AnimationController animationController;
     public LockButton(Activity activity,LockButtonType lockButtonType){
         this.activity = activity;
         this.lockButtonType = lockButtonType;
+    }
+    public void setLockListener(LockListener lockListener) {
+        this.lockListener = lockListener;
+        if(animationController!=null) {
+            animationController.setLockListener(lockListener);
+        }
     }
     public void show(int x,int y) {
         if(lockButtonView == null) {
@@ -33,7 +41,6 @@ public class LockButton {
         private Lock lock = null;
         private LockKey lockKey = null;
         private int w,h;
-        private AnimationController animationController;
         public LockButtonView(Context context) {
             super(context);
         }
@@ -41,6 +48,9 @@ public class LockButton {
             if(time == 0) {
                 initLockAndKey(canvas.getWidth(),canvas.getHeight());
                 animationController = new AnimationController(lock,lockKey,this);
+                if(lockListener!=null) {
+                    animationController.setLockListener(lockListener);
+                }
             }
             drawObjects(canvas,paint);
             time++;

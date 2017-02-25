@@ -11,7 +11,11 @@ public class AnimationController {
     private boolean lockOpened = false;
     private LockKey lockKey;
     private View view;
+    private LockListener lockListener;
     private AnimationStore animationStore = new AnimationStore();
+    public void setLockListener(LockListener lockListener) {
+        this.lockListener = lockListener;
+    }
     public AnimationController(Lock lock, LockKey lockKey, View view) {
         this.lock = lock;
         this.lockKey = lockKey;
@@ -64,6 +68,9 @@ public class AnimationController {
                     animationStore.setMode(2);
                     animated = false;
                     lockOpened = true;
+                    if(lockListener!=null) {
+                        lockListener.onOpen();
+                    }
                 }
                 break;
             case 2:
@@ -79,6 +86,9 @@ public class AnimationController {
                     animationStore.setMode(0);
                     animated = false;
                     lockOpened = false;
+                    if(lockListener!=null) {
+                        lockListener.onClose();
+                    }
                 }
                 break;
         }
