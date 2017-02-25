@@ -11,13 +11,11 @@ public class AnimationController {
     private boolean lockOpened = false;
     private LockKey lockKey;
     private View view;
-    private View.OnClickListener onClickListener;
     private AnimationStore animationStore = new AnimationStore();
-    public AnimationController(Lock lock, LockKey lockKey, View view, View.OnClickListener onClickListener) {
+    public AnimationController(Lock lock, LockKey lockKey, View view) {
         this.lock = lock;
         this.lockKey = lockKey;
         this.view = view;
-        this.onClickListener = onClickListener;
     }
     public boolean isAnimated(){
         return animated;
@@ -66,9 +64,6 @@ public class AnimationController {
                     animationStore.setMode(2);
                     animated = false;
                     lockOpened = true;
-                    if(onClickListener != null){
-                        onClickListener.onClick(view);
-                    }
                 }
                 break;
             case 2:
