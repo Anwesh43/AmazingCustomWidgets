@@ -45,4 +45,5 @@ dependencies {
     compile project(':imageclippe')
     compile project(':stickynotification')
     compile project(':alphaimageswitch')
+    compile project(':lockbuttons')
 }

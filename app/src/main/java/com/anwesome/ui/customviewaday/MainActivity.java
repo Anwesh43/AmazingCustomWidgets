@@ -22,6 +22,8 @@ import com.anwesome.app.groupimagebuttons.GroupImageButton;
 import com.anwesome.app.groupimagebuttons.GroupImageButtons;
 import com.anwesome.app.imageclippe.ImageClipper;
 import com.anwesome.app.imageclippe.ImageClipperShape;
+import com.anwesome.app.lockbuttons.LockButton;
+import com.anwesome.app.lockbuttons.LockButtonType;
 import com.anwesome.app.menuexpander.Menu;
 import com.anwesome.app.menuexpander.MenuContainer;
 import com.anwesome.app.menuexpander.MenuExpander;
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showAlphaImageSwitch();
+                showLockButtons();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -296,5 +298,9 @@ public class MainActivity extends AppCompatActivity {
             index++;
         }
         alphaImageSwitch.show(300);
+    }
+    public void showLockButtons() {
+        LockButton lockButton = new LockButton(this, LockButtonType.ROUNDRECTANGLE);
+        lockButton.show(200,200);
     }
 }
