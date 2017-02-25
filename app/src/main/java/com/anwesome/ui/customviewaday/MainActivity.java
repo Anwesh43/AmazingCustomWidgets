@@ -24,6 +24,7 @@ import com.anwesome.app.imageclippe.ImageClipper;
 import com.anwesome.app.imageclippe.ImageClipperShape;
 import com.anwesome.app.lockbuttons.LockButton;
 import com.anwesome.app.lockbuttons.LockButtonType;
+import com.anwesome.app.lockbuttons.LockListener;
 import com.anwesome.app.menuexpander.Menu;
 import com.anwesome.app.menuexpander.MenuContainer;
 import com.anwesome.app.menuexpander.MenuExpander;
@@ -302,5 +303,16 @@ public class MainActivity extends AppCompatActivity {
     public void showLockButtons() {
         LockButton lockButton = new LockButton(this, LockButtonType.ROUNDRECTANGLE);
         lockButton.show(200,200);
+        lockButton.setLockListener(new LockListener() {
+            @Override
+            public void onOpen() {
+                Toast.makeText(MainActivity.this, "OPENED", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onClose() {
+                Toast.makeText(MainActivity.this, "CLOSE", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
