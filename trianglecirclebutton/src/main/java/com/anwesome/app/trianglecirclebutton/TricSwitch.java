@@ -31,11 +31,11 @@ public class TricSwitch {
         if(tricSwitchView == null) {
             Point size = DimensionsUtil.getDeviceDimension(activity);
             int w = size.x,h = size.y;
-            float gap = (w*1.0f)/((9*buttons.size()+1)/8);
-            float x = 5*gap/8,y = 3*gap/2;
+            float gap = (w*1.0f)/((2*buttons.size()));
+            float x = gap,y = 2*gap;
             for(TriCircButton button:buttons) {
                 button.setDimensions(x,y,gap);
-                x+=(gap*9)/8;
+                x+=(gap*2);
             }
             tricSwitchView = new TricSwitchView(activity);
             activity.addContentView(tricSwitchView,new ViewGroup.LayoutParams(w,3*(int)gap));
@@ -44,7 +44,7 @@ public class TricSwitch {
     }
     private class TricSwitchView extends View {
         private boolean isAnimated = false;
-        private TriCircButton currButton = null;
+        private TriCircButton currButton = null,prevButton = null;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         public TricSwitchView(Context context) {
             super(context);
@@ -58,7 +58,9 @@ public class TricSwitch {
                     currButton.update();
                     if (currButton.stopped()) {
                         isAnimated = false;
+                        prevButton = currButton;
                         currButton = null;
+
                     }
                 }
                 try {
@@ -77,10 +79,13 @@ public class TricSwitch {
                         currButton = triCircButton;
                         break;
                     }
-                    if(currButton!=null) {
-                        isAnimated = true;
-                        postInvalidate();
+                }
+                if(currButton!=null) {
+                    if(prevButton!=null) {
+                        prevButton.unselect();
                     }
+                    isAnimated = true;
+                    postInvalidate();
                 }
             }
             return true;
