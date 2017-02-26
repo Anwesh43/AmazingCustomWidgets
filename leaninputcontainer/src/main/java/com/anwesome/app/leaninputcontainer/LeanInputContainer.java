@@ -53,7 +53,13 @@ public class LeanInputContainer {
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
-            
+            float x = event.getX(),y = event.getY();
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && leanKeyboard!=null) {
+                if(leanKeyboard.handleTap(x,y)) {
+                    isAnimated = true;
+                    postInvalidate();
+                }
+            }
             return true;
         }
     }
