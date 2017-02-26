@@ -2,9 +2,8 @@ package com.anwesome.app.leaninputcontainer;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
+import android.graphics.*;
+import android.view.*;
 import android.view.ViewGroup;
 
 /**
@@ -24,11 +23,38 @@ public class LeanInputContainer {
     }
     private class LeanInputContainerView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        private LeanKeyboard leanKeyboard;
+        private int time = 0;
+        private boolean isAnimated = false;
         public LeanInputContainerView(Context context) {
             super(context);
         }
         public void onDraw(Canvas canvas) {
+            int w = canvas.getWidth(),h = canvas.getHeight();
+            if(time == 0) {
+                leanKeyboard =  LeanKeyboard.newInstance(w/8,h/4,3*w/4);
+            }
+            if(leanKeyboard!=null) {
+                leanKeyboard.draw(canvas,paint);
+            }
+            time++;
+            if(isAnimated) {
+                leanKeyboard.updatePressedKey();
+                if(leanKeyboard.isStop()) {
+                    isAnimated = false;
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
 
+                }
+            }
+        }
+        public boolean onTouchEvent(MotionEvent event) {
+            
+            return true;
         }
     }
 }
