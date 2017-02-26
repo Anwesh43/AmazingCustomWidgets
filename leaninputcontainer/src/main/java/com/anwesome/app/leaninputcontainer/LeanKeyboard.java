@@ -7,7 +7,7 @@ import java.util.*;
  * Created by anweshmishra on 27/02/17.
  */
 public class LeanKeyboard {
-
+    private LeanKey pressedKey = null;
     private char currChar='1';
     private float x,y,size;
     private List<LeanKey> leanKeys = new ArrayList<>();
@@ -42,8 +42,19 @@ public class LeanKeyboard {
             leanKey.draw(canvas,paint);
         }
     }
+    public boolean isStop() {
+        if(pressedKey!=null) {
+            return pressedKey.isStop();
+        }
+        return true;
+    }
+    public void updatePressedKey() {
+        if(pressedKey!=null) {
+            pressedKey.update();
+        }
+    }
     public boolean handleTap(float x,float y) {
-        LeanKey pressedKey = null;
+        pressedKey = null;
         for(LeanKey leanKey:leanKeys) {
             if(leanKey.handleTap(x,y)) {
                 pressedKey = leanKey;
