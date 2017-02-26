@@ -1,9 +1,7 @@
 package com.anwesome.app.leaninputcontainer;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
+import android.graphics.*;
+import java.util.*;
 
 /**
  * Created by anweshmishra on 27/02/17.
@@ -11,23 +9,41 @@ import android.graphics.RectF;
 public class LeanKeyboard {
 
     private char currChar;
-    private float x,y,w,h;
-    private LeanKeyboard(float x,float y,float w,float h) {
+    private float x,y,size;
+    private List<LeanKey> leanKeys = new ArrayList<>();
+    private LeanKeyboard(float x,float y,float size) {
         this.x = x;
         this.y = y;
-        this.w = w;
-        this.h = h;
+        this.size = size;
         initDimensions();
     }
-    public static LeanKeyboard newInstance(float x,float y,float w,float h) {
-        return new LeanKeyboard(x,y,w,h);
+    public static LeanKeyboard newInstance(float x,float y,float size) {
+        return new LeanKeyboard(x,y,size);
     }
     public void initDimensions() {
-
+        char letters[] = {'1','2','3','4','5','6','7','8','9','*','0','#'};
+        float keySize = size/3,keyX = x-size/2+keySize/2,keyY = y-size/2+keySize/2;
+        for(char letter:letters) {
+            LeanKey leanKey = new LeanKey(letter,keyX,keyY,keySize);
+            leanKeys.add(leanKey);
+            if(leanKeys.size()%3 == 0){
+                keyX = x-size/2+keySize/2;
+                keyY += keySize;
+            }
+            else {
+                keyX+=keySize;
+            }
+        }
     }
     private class LeanKey {
         private char letter;
         private float x,y,size,scale = 0,scaleDir = 0;
+        public LeanKey(char letter,float x,float y,float size) {
+            this.letter = letter;
+            this.x = x;
+            this.y = y;
+            this.size = size;
+        }
         public void startScalingUp() {
             scaleDir = 0.1f;
         }
@@ -62,6 +78,9 @@ public class LeanKeyboard {
         }
         public int hashCode() {
             return (int)x+(int)y+(int)scaleDir+(int)scale+letter;
+        }
+        public char getLetter() {
+            return letter;
         }
     }
 }
