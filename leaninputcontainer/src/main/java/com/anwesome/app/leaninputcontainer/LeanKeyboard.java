@@ -8,7 +8,7 @@ import java.util.*;
  */
 public class LeanKeyboard {
 
-    private char currChar;
+    private char currChar='1';
     private float x,y,size;
     private List<LeanKey> leanKeys = new ArrayList<>();
     private LeanKeyboard(float x,float y,float size) {
@@ -41,6 +41,23 @@ public class LeanKeyboard {
         for(LeanKey leanKey:leanKeys) {
             leanKey.draw(canvas,paint);
         }
+    }
+    public boolean handleTap(float x,float y) {
+        LeanKey pressedKey = null;
+        for(LeanKey leanKey:leanKeys) {
+            if(leanKey.handleTap(x,y)) {
+                pressedKey = leanKey;
+                break;
+            }
+        }
+        boolean tapped = pressedKey!=null;
+        if(tapped) {
+            currChar = pressedKey.getLetter();
+        }
+        return tapped;
+    }
+    public char getCurrLetter() {
+        return currChar;
     }
     private class LeanKey {
         private char letter;
