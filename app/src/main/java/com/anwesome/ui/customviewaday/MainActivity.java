@@ -22,6 +22,7 @@ import com.anwesome.app.groupimagebuttons.GroupImageButton;
 import com.anwesome.app.groupimagebuttons.GroupImageButtons;
 import com.anwesome.app.imageclippe.ImageClipper;
 import com.anwesome.app.imageclippe.ImageClipperShape;
+import com.anwesome.app.leaninputcontainer.LeanInputContainer;
 import com.anwesome.app.lockbuttons.LockButton;
 import com.anwesome.app.lockbuttons.LockButtonType;
 import com.anwesome.app.lockbuttons.LockListener;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTricSwitch();
+                showLeanInputContainer();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -332,5 +333,9 @@ public class MainActivity extends AppCompatActivity {
             tricSwitch.addTricButton(triCircButton);
         }
         tricSwitch.show(200);
+    }
+    public void showLeanInputContainer() {
+        LeanInputContainer leanInputContainer = new LeanInputContainer(this);
+        leanInputContainer.show();
     }
 }

@@ -47,4 +47,5 @@ dependencies {
     compile project(':alphaimageswitch')
     compile project(':lockbuttons')
     compile project(':trianglecirclebutton')
+    compile project(':leaninputcontainer')
 }
