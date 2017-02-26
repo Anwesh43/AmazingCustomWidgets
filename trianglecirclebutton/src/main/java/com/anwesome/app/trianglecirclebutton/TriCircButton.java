@@ -36,7 +36,7 @@ public class TriCircButton {
         canvas.restore();
         if(selected) {
             paint.setStrokeWidth(size/15);
-            float lineY = y[0]+this.y+2*size/3;
+            float lineY = y[0]+this.y+size/2;
             canvas.drawLine(this.x-size/2,lineY,this.x+size/2,lineY,paint);
         }
     }
