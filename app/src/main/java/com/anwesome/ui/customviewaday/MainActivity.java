@@ -34,6 +34,7 @@ import com.anwesome.app.prokbutton.ProkButton;
 import com.anwesome.app.stickynotification.StickyNotification;
 import com.anwesome.app.tablikeviews.TabElement;
 import com.anwesome.app.tablikeviews.TabLikeLayout;
+import com.anwesome.app.trianglecirclebutton.OnSelectedListener;
 import com.anwesome.app.trianglecirclebutton.TriCircButton;
 import com.anwesome.app.trianglecirclebutton.TricSwitch;
 import com.anwesome.ui.bulletedlist.BulletedList;
@@ -320,7 +321,15 @@ public class MainActivity extends AppCompatActivity {
     public void showTricSwitch() {
         TricSwitch tricSwitch = new TricSwitch(this);
         for(int i=0;i<3;i++) {
-            tricSwitch.addTricButton(TriCircButton.newInstance());
+            final String text = actions[i];
+            TriCircButton triCircButton = TriCircButton.newInstance();
+            triCircButton.setOnSelectedListener(new OnSelectedListener() {
+                @Override
+                public void onSelected() {
+                    Toast.makeText(MainActivity.this,text,Toast.LENGTH_SHORT).show();
+                }
+            });
+            tricSwitch.addTricButton(triCircButton);
         }
         tricSwitch.show(200);
     }
