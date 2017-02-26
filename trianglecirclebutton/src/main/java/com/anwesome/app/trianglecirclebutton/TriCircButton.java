@@ -8,6 +8,7 @@ import android.graphics.*;
  */
 public class TriCircButton {
     private float x,y,size,deg = 0;
+    private OnSelectedListener onSelectedListener;
     private boolean selected = false;
     private TriCircButton() {
 
@@ -35,7 +36,7 @@ public class TriCircButton {
         canvas.restore();
         if(selected) {
             paint.setStrokeWidth(size/15);
-            float lineY = y[0]+this.y+size/2;
+            float lineY = y[0]+this.y+2*size/3;
             canvas.drawLine(this.x-size/2,lineY,this.x+size/2,lineY,paint);
         }
     }
@@ -43,6 +44,9 @@ public class TriCircButton {
         boolean condition = deg%360 == 0;
         if(condition) {
             deg -= deg%360;
+            if(onSelectedListener!=null) {
+                onSelectedListener.onSelected();
+            }
         }
         return condition;
     }
@@ -59,5 +63,8 @@ public class TriCircButton {
     }
     public int hashCode() {
         return (int)x+(int)deg;
+    }
+    public void setOnSelectedListener(OnSelectedListener onSelectedListener) {
+        this.onSelectedListener = onSelectedListener;
     }
 }
