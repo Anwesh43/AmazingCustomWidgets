@@ -33,8 +33,8 @@ public class LeanInputContainer {
         public void onDraw(Canvas canvas) {
             int w = canvas.getWidth(),h = canvas.getHeight();
             if(time == 0) {
-                leanKeyboard =  LeanKeyboard.newInstance(w/8,h/4,3*w/4);
-                leanEditTextView = new LeanEditTextView(w/4,h/8,w/8);
+                leanKeyboard =  LeanKeyboard.newInstance(w/2,h/8+4*w/9,2*w/3);
+                leanEditTextView = new LeanEditTextView(w/2,h/15,w/2);
             }
             if(leanKeyboard!=null) {
                 leanKeyboard.draw(canvas,paint);

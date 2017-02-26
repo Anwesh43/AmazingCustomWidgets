@@ -79,16 +79,13 @@ public class LeanKeyboard {
             this.y = y;
             this.size = size;
         }
-        public void startScalingUp() {
-            scaleDir = 0.1f;
-        }
-        public void startScalingDown() {
-            scaleDir = -0.1f;
+        private void startScalingUp() {
+            scaleDir = 0.2f;
         }
         public void draw(Canvas canvas, Paint paint) {
             paint.setColor(Color.BLACK);
-            paint.setTextSize(size/2);
-            canvas.drawText(""+letter,x,y,paint);
+            paint.setTextSize(size/3);
+            canvas.drawText(""+letter,x-paint.measureText(""+letter)/2,y+paint.getTextSize()/3,paint);
             paint.setColor(Color.parseColor("#AABDBDBD"));
             canvas.save();
             canvas.translate(x,y);
@@ -99,14 +96,20 @@ public class LeanKeyboard {
         public void update() {
             scale+=scaleDir;
             if(scale>=1) {
-                scaleDir*=1;
+                scaleDir= -1*Math.abs(scaleDir);
+                scale = 1;
             }
-            if(scale<=0) {
+            if(scale<0) {
+                scale = 0;
                 scaleDir  = 0;
             }
         }
         public boolean handleTap(float x,float y) {
-            return x>=this.x-size/2 && x<=this.x+size/2 && y>=this.y-size/2 && y<=this.y+size/2;
+            boolean condition =  x>=this.x-size/2 && x<=this.x+size/2 && y>=this.y-size/2 && y<=this.y+size/2;
+            if(condition) {
+                startScalingUp();
+            }
+            return condition;
         }
         public boolean isStop() {
             return scaleDir == 0;
