@@ -32,7 +32,7 @@ public class LeanInputContainer {
         public void onDraw(Canvas canvas) {
             int w = canvas.getWidth(),h = canvas.getHeight();
             if(time == 0) {
-                leanKeyboard =  LeanKeyboard.newInstance(w/8,h/4,3*w/4);
+                leanKeyboard =  LeanKeyboard.newInstance(w/4,h/4,w/2);
             }
             if(leanKeyboard!=null) {
                 leanKeyboard.draw(canvas,paint);
