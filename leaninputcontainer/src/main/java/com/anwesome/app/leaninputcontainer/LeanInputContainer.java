@@ -24,6 +24,7 @@ public class LeanInputContainer {
     private class LeanInputContainerView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         private LeanKeyboard leanKeyboard;
+        private LeanEditTextView leanEditTextView;
         private int time = 0;
         private boolean isAnimated = false;
         public LeanInputContainerView(Context context) {
@@ -32,16 +33,21 @@ public class LeanInputContainer {
         public void onDraw(Canvas canvas) {
             int w = canvas.getWidth(),h = canvas.getHeight();
             if(time == 0) {
-                leanKeyboard =  LeanKeyboard.newInstance(w/4,h/4,w/2);
+                leanKeyboard =  LeanKeyboard.newInstance(w/8,h/4,3*w/4);
+                leanEditTextView = new LeanEditTextView(w/4,h/8,w/8);
             }
             if(leanKeyboard!=null) {
                 leanKeyboard.draw(canvas,paint);
+            }
+            if(leanEditTextView!=null) {
+                leanEditTextView.draw(canvas,paint);
             }
             time++;
             if(isAnimated) {
                 leanKeyboard.updatePressedKey();
                 if(leanKeyboard.isStop()) {
                     isAnimated = false;
+                    leanEditTextView.addText(leanKeyboard.getCurrLetter());
                 }
                 try {
                     Thread.sleep(50);
