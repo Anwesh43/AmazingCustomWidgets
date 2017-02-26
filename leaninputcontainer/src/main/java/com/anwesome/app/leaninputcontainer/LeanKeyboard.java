@@ -35,6 +35,13 @@ public class LeanKeyboard {
             }
         }
     }
+    public void draw(Canvas canvas,Paint paint) {
+        paint.setColor(Color.parseColor("#EEEEEE"));
+        canvas.drawRect(new RectF(x-size/2,y-2*size/3,x+size/2,y+2*size/3),paint);
+        for(LeanKey leanKey:leanKeys) {
+            leanKey.draw(canvas,paint);
+        }
+    }
     private class LeanKey {
         private char letter;
         private float x,y,size,scale = 0,scaleDir = 0;
