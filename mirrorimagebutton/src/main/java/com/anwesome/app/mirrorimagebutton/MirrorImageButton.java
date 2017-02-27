@@ -5,9 +5,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 28/02/17.
@@ -22,8 +25,10 @@ public class MirrorImageButton {
     }
     public void show(int x,int y) {
         if(mirrorImageButtonView == null) {
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            int w = size.x,h= size.y;
             mirrorImageButtonView = new MirrorImageButtonView(activity);
-            activity.addContentView(mirrorImageButtonView,new ViewGroup.LayoutParams(400,400));
+            activity.addContentView(mirrorImageButtonView,new ViewGroup.LayoutParams(h/2,h/2));
         }
         mirrorImageButtonView.setX(x);
         mirrorImageButtonView.setY(y);
