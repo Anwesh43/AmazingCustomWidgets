@@ -29,39 +29,56 @@ public class MirroImageRenderer {
         canvas.translate(w/2,h/2);
         canvas.rotate(deg);
         for(int i=0;i<2;i++) {
+            canvas.save();
             canvas.scale(1,l[i]);
             canvas.save();
-            canvas.translate(0,-sy);
-            CircularImageUtil.drawImage(canvas,paint,bitmap,0,0,w/8);
+            CircularImageUtil.drawImage(canvas,paint,bitmap,0,-sy,w/8);
+            canvas.restore();
             canvas.restore();
         }
         canvas.restore();
         time++;
     }
     public void startMoving() {
-        if(deg == 0 && sy == 0) {
+        if(mode == 0)  {
             dir = 1;
         }
-        else if(deg == 180) {
+        else if(mode == 2) {
             degSpeed = 20;
         }
     }
     public void update() {
-        sy-=speed*dir;
+        sy+=speed*dir;
         deg+=degSpeed;
-        if(sy>=finalY && deg == 0) {
-            dir = 0;
-            sy = finalY;
-            degSpeed = 20;
-        }
-        else if(deg % 180 == 0) {
-            degSpeed  = 0;
-            if(deg%360 == 0) {
-                dir = -1;
-            }
-        }
-        else if(deg == 0 && sy<=0) {
-            dir = 0;
+        switch (mode) {
+            case 0:
+                if(sy>=finalY) {
+                    mode = 1;
+                    degSpeed = 20;
+                    dir = 0;
+                }
+                break;
+            case 1:
+                if(deg == 180) {
+                    mode = 2;
+                    degSpeed = 0;
+                }
+                break;
+            case 2:
+                if(deg == 360) {
+                    mode = 3;
+                    degSpeed = 0;
+                    dir = -1;
+                }
+                break;
+            case 3:
+                if(sy<=0) {
+                    dir = 0;
+                    sy = 0;
+                }
+                break;
+            default:
+                break;
         }
     }
 }
