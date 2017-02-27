@@ -19,9 +19,13 @@ public class MirrorImageButton {
     private Activity activity;
     private MirrorImageButtonView mirrorImageButtonView;
     private Bitmap bitmap;
+    private View.OnClickListener onClickListener;
     public MirrorImageButton(Activity activity,Bitmap bitmap) {
         this.activity = activity;
         this.bitmap = bitmap;
+    }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     public void show(int x,int y) {
         if(mirrorImageButtonView == null) {
@@ -47,6 +51,9 @@ public class MirrorImageButton {
                 mirroImageRenderer.update();
                 if(mirroImageRenderer.isStop()) {
                     isAnimated = false;
+                    if(onClickListener != null) {
+                        onClickListener.onClick(this);
+                    }
                 }
                 try {
                     Thread.sleep(50);
