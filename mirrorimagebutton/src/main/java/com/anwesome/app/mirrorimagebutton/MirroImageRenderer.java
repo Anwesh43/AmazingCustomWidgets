@@ -75,6 +75,8 @@ public class MirroImageRenderer {
                 if(sy<=0) {
                     dir = 0;
                     sy = 0;
+                    mode = 0;
+                    deg = 0;
                 }
                 break;
             default:
