@@ -14,7 +14,7 @@ public class CircularImageUtil {
         Path path = new Path();
         path.addCircle(x,y,r, Path.Direction.CCW);
         canvas.clipPath(path);
-        canvas.drawBitmap(bitmap,x-r/2,y-r/2,paint);
+        canvas.drawBitmap(bitmap,x-r,y-r,paint);
         canvas.restore();
     }
 }
