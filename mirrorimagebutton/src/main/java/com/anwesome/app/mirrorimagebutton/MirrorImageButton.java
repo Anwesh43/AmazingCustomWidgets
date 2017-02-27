@@ -54,6 +54,7 @@ public class MirrorImageButton {
         }
         public boolean onTouchEvent(MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+                mirroImageRenderer.startMoving();
                 isAnimated = true;
                 postInvalidate();
             }
