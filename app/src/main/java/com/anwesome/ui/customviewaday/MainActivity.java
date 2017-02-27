@@ -29,6 +29,7 @@ import com.anwesome.app.lockbuttons.LockListener;
 import com.anwesome.app.menuexpander.Menu;
 import com.anwesome.app.menuexpander.MenuContainer;
 import com.anwesome.app.menuexpander.MenuExpander;
+import com.anwesome.app.mirrorimagebutton.MirrorImageButton;
 import com.anwesome.app.modakbutton.ModakButton;
 import com.anwesome.app.pathtext.PathText;
 import com.anwesome.app.prokbutton.ProkButton;
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showLeanInputContainer();
+                showMirrorImageButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -337,5 +338,9 @@ public class MainActivity extends AppCompatActivity {
     public void showLeanInputContainer() {
         LeanInputContainer leanInputContainer = new LeanInputContainer(this);
         leanInputContainer.show();
+    }
+    public void showMirrorImageButton() {
+        MirrorImageButton mirrorImageButton = new MirrorImageButton(this,BitmapFactory.decodeResource(getResources(),tImages[2]));
+        mirrorImageButton.show(200,200);
     }
 }

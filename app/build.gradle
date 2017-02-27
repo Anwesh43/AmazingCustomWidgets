@@ -48,4 +48,5 @@ dependencies {
     compile project(':lockbuttons')
     compile project(':trianglecirclebutton')
     compile project(':leaninputcontainer')
+    compile project(':mirrorimagebutton')
 }
