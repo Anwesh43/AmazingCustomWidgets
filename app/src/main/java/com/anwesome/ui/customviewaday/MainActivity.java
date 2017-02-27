@@ -340,7 +340,13 @@ public class MainActivity extends AppCompatActivity {
         leanInputContainer.show();
     }
     public void showMirrorImageButton() {
-        MirrorImageButton mirrorImageButton = new MirrorImageButton(this,BitmapFactory.decodeResource(getResources(),tImages[2]));
+        final MirrorImageButton mirrorImageButton = new MirrorImageButton(this,BitmapFactory.decodeResource(getResources(),tImages[2]));
+        mirrorImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this,"Mirror!",Toast.LENGTH_SHORT).show();
+            }
+        });
         mirrorImageButton.show(200,200);
     }
 }
