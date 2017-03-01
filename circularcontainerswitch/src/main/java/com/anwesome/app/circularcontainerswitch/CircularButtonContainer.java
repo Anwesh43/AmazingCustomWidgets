@@ -12,6 +12,7 @@ import java.util.*;
 public class CircularButtonContainer {
     private Activity activity;
     private float gap;
+    private int currentIndex = 0;
     private boolean isAnimated = false;
     private List<CircularButton> circularButtons = new ArrayList<>();
     private CircularButtonContainerView circularButtonContainerView = null;
@@ -45,6 +46,9 @@ public class CircularButtonContainer {
         }
         public void onDraw(Canvas canvas) {
             circularContainer.draw(canvas,paint);
+            if(currentIndex<circularButtons.size()) {
+                circularButtons.get(currentIndex).setSelected(false);
+            }
             if(isAnimated) {
                 circularContainer.update();
                 try {
@@ -74,7 +78,7 @@ public class CircularButtonContainer {
             float r = canvas.getWidth()/3;
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(canvas.getWidth()/80);
-            paint.setColor(Color.parseColor("#263238"));
+            paint.setColor(Color.parseColor("#9E9E9E"));
             canvas.save();
             canvas.translate(x,y);
             canvas.rotate(deg);
@@ -86,7 +90,6 @@ public class CircularButtonContainer {
                 circularButton.draw(canvas,paint);
                 canvas.restore();
             }
-
             canvas.restore();
         }
         public void update() {
@@ -96,6 +99,13 @@ public class CircularButtonContainer {
                 deg%=360;
                 initDeg = deg;
                 isAnimated = false;
+                currentIndex--;
+                if(currentIndex<0) {
+                    currentIndex = circularButtons.size()-1;
+                }
+                if(currentIndex<circularButtons.size()) {
+                    circularButtons.get(currentIndex).setSelected(true);
+                }
             }
         }
     }
