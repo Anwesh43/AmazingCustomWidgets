@@ -15,9 +15,16 @@ public class CircularButton {
     private boolean selected = false;
     private int render = 0;
     private float deg = 0;
+    private SelectedListener selectedListener;
     private CircularButton(Bitmap bitmap,char tag) {
         this.bitmap = bitmap;
         this.tag = tag;
+    }
+    public void setSelectedListener(SelectedListener selectedListener) {
+        this.selectedListener = selectedListener;
+    }
+    public SelectedListener getSelectedListener() {
+        return selectedListener;
     }
     public void setSelected(boolean selected) {
         this.selected = selected;
