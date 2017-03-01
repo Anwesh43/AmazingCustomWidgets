@@ -14,6 +14,7 @@ import com.anwesome.app.alphaimageswitch.AlphaImageSwitchButton;
 import com.anwesome.app.alphaimageswitch.SelectedListner;
 import com.anwesome.app.beanbutton.BeanButton;
 import com.anwesome.app.buttonintriangle.ButtonsTriangle;
+import com.anwesome.app.circularcontainerswitch.CircularButtonContainer;
 import com.anwesome.app.circularwindow.CircularWindow;
 import com.anwesome.app.customactionsheet.ActionSheet;
 import com.anwesome.app.customfloatingactionbutton.ActionIcon;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMirrorImageButton();
+                showCircularContainerSwitch();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -348,5 +349,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mirrorImageButton.show(200,200);
+    }
+    public void showCircularContainerSwitch() {
+        CircularButtonContainer container = new CircularButtonContainer(this);
+        char chars[] = {'A','B','C','D'};
+        for(int i=0;i<tImages.length;i++) {
+            container.addCircularButton(BitmapFactory.decodeResource(getResources(),tImages[i]),chars[i]);
+        }
+        container.show();
     }
 }

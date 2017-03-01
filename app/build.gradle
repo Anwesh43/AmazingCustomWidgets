@@ -49,4 +49,5 @@ dependencies {
     compile project(':trianglecirclebutton')
     compile project(':leaninputcontainer')
     compile project(':mirrorimagebutton')
+    compile project(':circularcontainerswitch')
 }
