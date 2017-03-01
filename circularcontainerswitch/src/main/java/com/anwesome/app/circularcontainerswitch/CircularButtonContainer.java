@@ -12,6 +12,7 @@ import java.util.*;
 public class CircularButtonContainer {
     private Activity activity;
     private float gap;
+    private boolean isAnimated = false;
     private List<CircularButton> circularButtons = new ArrayList<>();
     private CircularButtonContainerView circularButtonContainerView = null;
     private CircularContainer circularContainer = new CircularContainer();
@@ -38,7 +39,6 @@ public class CircularButtonContainer {
         }
     }
     private class CircularButtonContainerView extends View {
-        private boolean isAnimated = false;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         public CircularButtonContainerView(Context context) {
             super(context);
@@ -71,7 +71,7 @@ public class CircularButtonContainer {
         }
         public void draw(Canvas canvas,Paint paint) {
             float x = canvas.getWidth()/2,y = canvas.getWidth()/2;
-            float r = canvas.getWidth()/4;
+            float r = canvas.getWidth()/3;
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(canvas.getWidth()/80);
             paint.setColor(Color.parseColor("#263238"));
@@ -81,11 +81,12 @@ public class CircularButtonContainer {
             canvas.drawCircle(0,0,r,paint);
             paint.setStyle(Paint.Style.FILL);
             for(CircularButton circularButton:circularButtons) {
+                canvas.save();
+                canvas.rotate(circularButton.getDeg());
                 circularButton.draw(canvas,paint);
-                if((circularButton.getDeg()+deg)%360 == 0) {
-                    circularButton.setSelected(true);
-                }
+                canvas.restore();
             }
+
             canvas.restore();
         }
         public void update() {
@@ -94,6 +95,7 @@ public class CircularButtonContainer {
                 deg = initDeg+gap;
                 deg%=360;
                 initDeg = deg;
+                isAnimated = false;
             }
         }
     }
