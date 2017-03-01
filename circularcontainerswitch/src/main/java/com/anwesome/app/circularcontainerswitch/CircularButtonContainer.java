@@ -14,6 +14,7 @@ public class CircularButtonContainer {
     private float gap;
     private List<CircularButton> circularButtons = new ArrayList<>();
     private CircularButtonContainerView circularButtonContainerView = null;
+    private CircularContainer circularContainer = new CircularContainer();
     public CircularButtonContainer(Activity activity) {
         this.activity = activity;
     }
@@ -37,13 +38,29 @@ public class CircularButtonContainer {
         }
     }
     private class CircularButtonContainerView extends View {
+        private boolean isAnimated = false;
+        private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         public CircularButtonContainerView(Context context) {
             super(context);
         }
         public void onDraw(Canvas canvas) {
+            circularContainer.draw(canvas,paint);
+            if(isAnimated) {
+                circularContainer.update();
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
 
+                }
+            }
         }
         public boolean onTouchEvent(MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+                postInvalidate();
+                isAnimated = true;
+            }
             return true;
         }
     }
