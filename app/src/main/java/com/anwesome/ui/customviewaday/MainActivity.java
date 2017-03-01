@@ -15,6 +15,7 @@ import com.anwesome.app.alphaimageswitch.SelectedListner;
 import com.anwesome.app.beanbutton.BeanButton;
 import com.anwesome.app.buttonintriangle.ButtonsTriangle;
 import com.anwesome.app.circularcontainerswitch.CircularButtonContainer;
+import com.anwesome.app.circularcontainerswitch.SelectedListener;
 import com.anwesome.app.circularwindow.CircularWindow;
 import com.anwesome.app.customactionsheet.ActionSheet;
 import com.anwesome.app.customfloatingactionbutton.ActionIcon;
@@ -354,7 +355,13 @@ public class MainActivity extends AppCompatActivity {
         CircularButtonContainer container = new CircularButtonContainer(this);
         char chars[] = {'A','B','C','D'};
         for(int i=0;i<tImages.length;i++) {
-            container.addCircularButton(BitmapFactory.decodeResource(getResources(),tImages[i]),chars[i]);
+            final String text = actions[i];
+            container.addCircularButton(BitmapFactory.decodeResource(getResources(), tImages[i]), chars[i], new SelectedListener() {
+                @Override
+                public void onSelected() {
+                    Toast.makeText(MainActivity.this,text,Toast.LENGTH_SHORT).show();
+                }
+            });
         }
         container.show();
     }
