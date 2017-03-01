@@ -47,4 +47,37 @@ public class CircularButtonContainer {
             return true;
         }
     }
+    private class CircularContainer {
+        private float deg = 0,initDeg = 0;
+        public CircularContainer() {
+
+        }
+        public void draw(Canvas canvas,Paint paint) {
+            float x = canvas.getWidth()/2,y = canvas.getWidth()/2;
+            float r = canvas.getWidth()/4;
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(canvas.getWidth()/80);
+            paint.setColor(Color.parseColor("#263238"));
+            canvas.save();
+            canvas.translate(x,y);
+            canvas.rotate(deg);
+            canvas.drawCircle(0,0,r,paint);
+            paint.setStyle(Paint.Style.FILL);
+            for(CircularButton circularButton:circularButtons) {
+                circularButton.draw(canvas,paint);
+                if((circularButton.getDeg()+deg)%360 == 0) {
+                    circularButton.setSelected(true);
+                }
+            }
+            canvas.restore();
+        }
+        public void update() {
+            deg+=gap/5;
+            if(deg-initDeg>=gap) {
+                deg = initDeg+gap;
+                deg%=360;
+                initDeg = deg;
+            }
+        }
+    }
 }
