@@ -33,6 +33,9 @@ public class CircularButton {
     public float getDeg() {
         return deg;
     }
+    public static CircularButton newInstance(Bitmap bitmap,char tag) {
+        return new CircularButton(bitmap,tag);
+    }
     public int hashCode() {
         return (int)deg+tag+bitmap.hashCode();
     }
