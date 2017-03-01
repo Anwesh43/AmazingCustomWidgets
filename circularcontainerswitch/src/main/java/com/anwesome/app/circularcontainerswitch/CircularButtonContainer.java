@@ -20,8 +20,9 @@ public class CircularButtonContainer {
     public CircularButtonContainer(Activity activity) {
         this.activity = activity;
     }
-    public void addCircularButton(Bitmap bitmap,char tag) {
+    public void addCircularButton(Bitmap bitmap,char tag,SelectedListener selectedListener) {
         CircularButton circularButton = CircularButton.newInstance(bitmap,tag);
+        circularButton.setSelectedListener(selectedListener);
         circularButtons.add(circularButton);
     }
     public void show() {
@@ -105,6 +106,9 @@ public class CircularButtonContainer {
                 }
                 if(currentIndex<circularButtons.size()) {
                     circularButtons.get(currentIndex).setSelected(true);
+                    if(circularButtons.get(currentIndex).getSelectedListener()!=null) {
+                        circularButtons.get(currentIndex).getSelectedListener().onSelected();
+                    }
                 }
             }
         }
