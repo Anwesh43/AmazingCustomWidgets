@@ -9,7 +9,7 @@ import android.graphics.RectF;
  * Created by anweshmishra on 02/03/17.
  */
 public class BarGraph {
-    private float x,y,w,h,scale = 0.2f,dir = 0;
+    private float x,y,w,h,scale = 0.1f,dir = 0;
     private int color = Color.parseColor("#009688");
     private BarGraph() {
 
@@ -27,7 +27,7 @@ public class BarGraph {
         paint.setColor(color);
         canvas.save();
         canvas.translate(x+w/2,y);
-        canvas.scale(scale,scale);
+        canvas.scale(1,scale);
         canvas.drawRect(new RectF(-w/2,-h,w/2,0),paint);
         canvas.restore();
     }
@@ -55,7 +55,7 @@ public class BarGraph {
     public boolean handleTap(float x,float y) {
         boolean condition = false;
         if(!((scale >= 1)|| dir != 0)) {
-            condition = x>=this.x && x<=this.x+w && y>=this.y-h*0.2f && y<=this.y;
+            condition = x>=this.x && x<=this.x+w && y>=this.y-h*0.1f && y<=this.y;
         }
         return condition;
     }
