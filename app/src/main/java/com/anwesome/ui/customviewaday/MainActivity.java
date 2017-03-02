@@ -380,7 +380,13 @@ public class MainActivity extends AppCompatActivity {
     public void showConcentricCircleSwitch() {
         ConcentricCircleSwitch concentricCircleSwitch = new ConcentricCircleSwitch(this);
         for(int i=0;i<actions.length;i++) {
-            concentricCircleSwitch.addButton();
+            final String text = actions[i];
+            concentricCircleSwitch.addButton(new com.anwesome.app.concentriccircleswitch.OnSelectedListener() {
+                @Override
+                public void onSelected() {
+                    Toast.makeText(MainActivity.this,text,Toast.LENGTH_SHORT).show();
+                }
+            });
         }
         concentricCircleSwitch.show();
     }
