@@ -19,8 +19,8 @@ public class BarGraphButton {
     public BarGraphButton(Activity activity) {
         this.activity = activity;
     }
-    public void addBarGraph() {
-        barGraphs.add(BarGraph.newInstance());
+    public void addBarGraph(OnSelectedListener onSelectedListener) {
+        barGraphs.add(BarGraph.newInstance(onSelectedListener));
     }
     public void show() {
         if(barGraphView == null) {
