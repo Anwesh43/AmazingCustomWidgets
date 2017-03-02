@@ -1,18 +1,14 @@
 package com.anwesome.ui.customviewaday;
 
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
 import com.anwesome.app.alphaimageswitch.AlphaImageSwitch;
 import com.anwesome.app.alphaimageswitch.AlphaImageSwitchButton;
 import com.anwesome.app.alphaimageswitch.SelectedListner;
-import com.anwesome.app.bargraphbutton.BarGraph;
 import com.anwesome.app.bargraphbutton.BarGraphButton;
 import com.anwesome.app.beanbutton.BeanButton;
 import com.anwesome.app.buttonintriangle.ButtonsTriangle;
@@ -369,8 +365,14 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showBarGraphButtons() {
         BarGraphButton barGraphButton = new BarGraphButton(this);
-        for(int i=0;i<5;i++) {
-            barGraphButton.addBarGraph();
+        for(int i=0;i<actions.length;i++) {
+            final String text = actions[i];
+            barGraphButton.addBarGraph(new com.anwesome.app.bargraphbutton.OnSelectedListener() {
+                @Override
+                public void onSelected() {
+                    Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
         barGraphButton.show();
     }
