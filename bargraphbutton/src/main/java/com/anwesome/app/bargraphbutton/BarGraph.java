@@ -9,13 +9,14 @@ import android.graphics.RectF;
  * Created by anweshmishra on 02/03/17.
  */
 public class BarGraph {
+    private OnSelectedListener onSelectedListener;
     private float x,y,w,h,scale = 0.1f,dir = 0;
     private int color = Color.parseColor("#009688");
-    private BarGraph() {
-
+    private BarGraph(OnSelectedListener onSelectedListener) {
+        this.onSelectedListener = onSelectedListener;
     }
-    public static BarGraph newInstance() {
-        return new BarGraph();
+    public static BarGraph newInstance(OnSelectedListener onSelectedListener) {
+        return new BarGraph(onSelectedListener);
     }
     public void setDimensions(float x,float y,float w,float h) {
         this.x = x;
@@ -33,13 +34,16 @@ public class BarGraph {
     }
     public void update() {
         scale+=0.1f*dir;
-        if(scale>=1 || scale<=0.2f) {
+        if(scale>=1 || scale<=0.1f) {
             dir = 0;
             if(scale>=1) {
                 scale = 1;
+                if(onSelectedListener!=null) {
+                    onSelectedListener.onSelected();
+                }
             }
-            if(scale<=0.2f) {
-                scale = 0.2f;
+            if(scale<=0.1f) {
+                scale = 0.1f;
             }
         }
     }
