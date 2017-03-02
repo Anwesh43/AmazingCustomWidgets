@@ -43,6 +43,12 @@ public class BarGraph {
             }
         }
     }
+    public boolean stopped() {
+        return dir == 0;
+    }
+    public void setDir(float dir) {
+        this.dir = dir;
+    }
     public int hashCode() {
         return (int)x+(int)y;
     }
