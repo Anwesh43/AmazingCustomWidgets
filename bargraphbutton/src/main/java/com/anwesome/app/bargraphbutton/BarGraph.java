@@ -11,14 +11,17 @@ import android.graphics.RectF;
 public class BarGraph {
     private float x,y,w,h,scale = 0.2f,dir = 0;
     private int color = Color.parseColor("#009688");
-    private BarGraph(float x,float y,float w,float h) {
+    private BarGraph() {
+
+    }
+    public static BarGraph newInstance() {
+        return new BarGraph();
+    }
+    public void setDimensions(float x,float y,float w,float h) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-    }
-    public static BarGraph newInstance(float x,float y,float w,float h) {
-        return new BarGraph(x,y,w,h);
     }
     public void draw(Canvas canvas, Paint paint) {
         paint.setColor(color);
