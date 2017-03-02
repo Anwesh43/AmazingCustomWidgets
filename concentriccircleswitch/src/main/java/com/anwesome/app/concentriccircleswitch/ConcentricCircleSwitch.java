@@ -21,8 +21,8 @@ public class ConcentricCircleSwitch {
     public ConcentricCircleSwitch(Activity activity) {
         this.activity = activity;
     }
-    public void addButton() {
-        concentricCircles.add(ConcentricCircle.newInstance());
+    public void addButton(OnSelectedListener onSelectedListener) {
+        concentricCircles.add(ConcentricCircle.newInstance(onSelectedListener));
     }
     public void show() {
         if(concentricCircleView == null) {
