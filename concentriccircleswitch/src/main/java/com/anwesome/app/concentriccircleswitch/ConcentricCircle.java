@@ -10,7 +10,7 @@ public class ConcentricCircle {
     private int backgroundColor = Color.WHITE;
     private OnSelectedListener onSelectedListener;
     private ConcentricCircle(OnSelectedListener onSelectedListener) {
-
+        this.onSelectedListener = onSelectedListener;
     }
     public static ConcentricCircle newInstance(OnSelectedListener onSelectedListener) {
         return new ConcentricCircle(onSelectedListener);
@@ -51,6 +51,9 @@ public class ConcentricCircle {
         if(deg>=360) {
             deg = 360;
             dir = 0;
+            if(onSelectedListener!=null) {
+                onSelectedListener.onSelected();
+            }
         }
         else if(deg<=0) {
             deg = 0;
