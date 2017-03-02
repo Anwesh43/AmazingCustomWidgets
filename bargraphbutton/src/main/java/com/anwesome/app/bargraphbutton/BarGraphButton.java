@@ -28,6 +28,7 @@ public class BarGraphButton {
             activity.addContentView(barGraphView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         }
     }
+
     private class BarGraphView extends View {
         private boolean isAnimated = false;
         private int time = 0;
@@ -52,11 +53,11 @@ public class BarGraphButton {
                     if(prevGraph!=null) {
                         prevGraph.update();
                         if(currGraph.stopped() && prevGraph.stopped()) {
-                            isAnimated = false;
+                            stopAnimation();
                         }
                     }
                     if(isAnimated && currGraph.stopped()) {
-                        isAnimated = false;
+                        stopAnimation();
                     }
                 }
                 try {
@@ -67,6 +68,11 @@ public class BarGraphButton {
 
                 }
             }
+        }
+        private void stopAnimation() {
+            isAnimated = false;
+            prevGraph = currGraph;
+            currGraph = null;
         }
         public void initBarGraphs(int w,int h) {
             float gap = (2*w)/(3*barGraphs.size()+2),x = gap/2,y = 2*h/3,h1 = h/2;
