@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.anwesome.app.alphaimageswitch.AlphaImageSwitch;
 import com.anwesome.app.alphaimageswitch.AlphaImageSwitchButton;
 import com.anwesome.app.alphaimageswitch.SelectedListner;
+import com.anwesome.app.bargraphbutton.BarGraph;
+import com.anwesome.app.bargraphbutton.BarGraphButton;
 import com.anwesome.app.beanbutton.BeanButton;
 import com.anwesome.app.buttonintriangle.ButtonsTriangle;
 import com.anwesome.app.circularcontainerswitch.CircularButtonContainer;
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCircularContainerSwitch();
+                showBarGraphButtons();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -364,5 +366,12 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         container.show();
+    }
+    public void showBarGraphButtons() {
+        BarGraphButton barGraphButton = new BarGraphButton(this);
+        for(int i=0;i<5;i++) {
+            barGraphButton.addBarGraph();
+        }
+        barGraphButton.show();
     }
 }
