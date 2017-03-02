@@ -51,4 +51,5 @@ dependencies {
     compile project(':mirrorimagebutton')
     compile project(':circularcontainerswitch')
     compile project(':bargraphbutton')
+    compile project(':concentriccircleswitch')
 }

@@ -15,6 +15,7 @@ import com.anwesome.app.buttonintriangle.ButtonsTriangle;
 import com.anwesome.app.circularcontainerswitch.CircularButtonContainer;
 import com.anwesome.app.circularcontainerswitch.SelectedListener;
 import com.anwesome.app.circularwindow.CircularWindow;
+import com.anwesome.app.concentriccircleswitch.ConcentricCircleSwitch;
 import com.anwesome.app.customactionsheet.ActionSheet;
 import com.anwesome.app.customfloatingactionbutton.ActionIcon;
 import com.anwesome.app.customfloatingactionbutton.CustomFloatingActionButton;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showBarGraphButtons();
+                showConcentricCircleSwitch();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -375,5 +376,12 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         barGraphButton.show();
+    }
+    public void showConcentricCircleSwitch() {
+        ConcentricCircleSwitch concentricCircleSwitch = new ConcentricCircleSwitch(this);
+        for(int i=0;i<actions.length;i++) {
+            concentricCircleSwitch.addButton();
+        }
+        concentricCircleSwitch.show();
     }
 }
