@@ -52,4 +52,7 @@ public class ConcentricCircle {
             dir = 0;
         }
     }
+    public boolean handleTap(float x,float y) {
+        return x>=this.x-r && x<=this.x+r && y>=this.y-r && y<=this.y+r;
+    }
 }
