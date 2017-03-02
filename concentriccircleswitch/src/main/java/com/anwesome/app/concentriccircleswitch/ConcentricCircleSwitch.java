@@ -2,7 +2,9 @@ package com.anwesome.app.concentriccircleswitch;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ProviderInfo;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -30,9 +32,16 @@ public class ConcentricCircleSwitch {
     }
     private class ConcentricCircleView extends View {
         private int time = 0;
+        private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         private boolean isAnimated = false;
+        private ConcentricCircle prevCircle = null,currCircle=null;
         public ConcentricCircleView(Context context) {
             super(context);
+        }
+        private void stopAnimation() {
+            prevCircle = currCircle;
+            currCircle = null;
+            isAnimated = false;
         }
         public void onDraw(Canvas canvas) {
             if(time == 0) {
@@ -43,8 +52,25 @@ public class ConcentricCircleSwitch {
                     x+=(3*gap)/2;
                 }
             }
+            for(ConcentricCircle concentricCircle:concentricCircles) {
+                concentricCircle.draw(canvas,paint);
+            }
             time++;
             if(isAnimated) {
+                if(currCircle!=null) {
+                    currCircle.update();
+                    if(prevCircle!=null) {
+                        prevCircle.update();
+                        if(prevCircle.stopped() && currCircle.stopped()) {
+                            stopAnimation();
+                        }
+                    }
+                    else {
+                        if (currCircle.stopped()) {
+                            stopAnimation();
+                        }
+                    }
+                }
                 try {
                     Thread.sleep(50);
                     invalidate();
@@ -55,6 +81,22 @@ public class ConcentricCircleSwitch {
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
+            float x = event.getX(),y = event.getY();
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && currCircle!=null) {
+                for(ConcentricCircle concentricCircle:concentricCircles) {
+                    if(concentricCircle.handleTap(x,y)) {
+                        currCircle = concentricCircle;
+                    }
+                }
+                if(currCircle!=null) {
+                    currCircle.startFilling();
+                    if(prevCircle!=null) {
+                        prevCircle.startRemovingFill();
+                    }
+                    isAnimated = true;
+                    postInvalidate();
+                }
+            }
             return true;
         }
     }
