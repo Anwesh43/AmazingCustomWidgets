@@ -3,6 +3,7 @@ package com.anwesome.app.concentriccircleswitch;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
@@ -47,7 +48,7 @@ public class ConcentricCircleSwitch {
                 int  w = canvas.getWidth(),h = canvas.getHeight();
                 float gap = (2*w)/(3*concentricCircles.size()+2),x = gap,y = h/2;
                 for(ConcentricCircle concentricCircle:concentricCircles) {
-                    concentricCircle.setDimensions(x,y,gap/2);
+                    concentricCircle.setDimensions(x,y,gap/2, Color.WHITE);
                     x+=(3*gap)/2;
                 }
             }
@@ -81,7 +82,7 @@ public class ConcentricCircleSwitch {
         }
         public boolean onTouchEvent(MotionEvent event) {
             float x = event.getX(),y = event.getY();
-            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && currCircle!=null) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && currCircle==null) {
                 for(ConcentricCircle concentricCircle:concentricCircles) {
                     if(concentricCircle.handleTap(x,y)) {
                         currCircle = concentricCircle;

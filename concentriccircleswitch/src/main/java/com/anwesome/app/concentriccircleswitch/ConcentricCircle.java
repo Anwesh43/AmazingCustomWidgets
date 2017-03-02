@@ -7,16 +7,18 @@ import android.graphics.*;
  */
 public class ConcentricCircle {
     private float deg = 0,dir = 0,x=0,y=0,r=100;
+    private int backgroundColor = Color.WHITE;
     private ConcentricCircle() {
 
     }
     public static ConcentricCircle newInstance() {
         return new ConcentricCircle();
     }
-    public void setDimensions(float x,float y,float r) {
+    public void setDimensions(float x,float y,float r,int backgroundColor) {
         this.x = x;
         this.y = y;
         this.r = r;
+        this.backgroundColor = backgroundColor;
     }
     public void startFilling() {
         dir = 1;
@@ -33,8 +35,10 @@ public class ConcentricCircle {
     public void draw(Canvas canvas,Paint paint) {
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.parseColor("#673AB7"));
-        canvas.drawArc(new RectF(-r,-r,r,r),0,deg,true,paint);
+        canvas.drawArc(new RectF(x-r,y-r,x+r,y+r),0,deg,true,paint);
         paint.setStrokeWidth(r/30);
+        paint.setColor(backgroundColor);
+        canvas.drawCircle(x,y,(2*r)/3,paint);
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.GRAY);
         canvas.drawCircle(x,y,r,paint);
