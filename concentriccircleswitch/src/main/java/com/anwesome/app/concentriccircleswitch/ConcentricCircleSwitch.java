@@ -45,7 +45,7 @@ public class ConcentricCircleSwitch {
         public void onDraw(Canvas canvas) {
             if(time == 0) {
                 int  w = canvas.getWidth(),h = canvas.getHeight();
-                float gap = w/(3*concentricCircles.size()+2),x = gap,y = h/2;
+                float gap = (2*w)/(3*concentricCircles.size()+2),x = gap,y = h/2;
                 for(ConcentricCircle concentricCircle:concentricCircles) {
                     concentricCircle.setDimensions(x,y,gap/2);
                     x+=(3*gap)/2;
