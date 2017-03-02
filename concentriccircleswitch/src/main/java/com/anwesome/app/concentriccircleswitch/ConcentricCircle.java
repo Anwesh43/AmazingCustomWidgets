@@ -8,11 +8,12 @@ import android.graphics.*;
 public class ConcentricCircle {
     private float deg = 0,dir = 0,x=0,y=0,r=100;
     private int backgroundColor = Color.WHITE;
-    private ConcentricCircle() {
+    private OnSelectedListener onSelectedListener;
+    private ConcentricCircle(OnSelectedListener onSelectedListener) {
 
     }
-    public static ConcentricCircle newInstance() {
-        return new ConcentricCircle();
+    public static ConcentricCircle newInstance(OnSelectedListener onSelectedListener) {
+        return new ConcentricCircle(onSelectedListener);
     }
     public void setDimensions(float x,float y,float r,int backgroundColor) {
         this.x = x;
