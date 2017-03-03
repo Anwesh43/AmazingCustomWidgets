@@ -24,7 +24,7 @@ public class WidHolder {
             super(context);
         }
         public void onDraw(Canvas canvas) {
-            
+
         }
         public boolean onTouchEvent(MotionEvent event) {
 
