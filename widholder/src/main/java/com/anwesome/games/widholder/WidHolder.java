@@ -67,8 +67,8 @@ public class WidHolder {
                     widButton.update();
                     if(widButton.isStop()) {
                         widButtons.remove(widButton);
-                        if(currentIndex<= widButtons.size()-1){
-                            currentIndex++;
+                        if(widButtons.size() == 0) {
+                            isAnimated = false;
                         }
                     }
                 }
