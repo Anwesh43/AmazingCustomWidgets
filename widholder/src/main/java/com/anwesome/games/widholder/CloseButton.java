@@ -41,6 +41,7 @@ public class CloseButton {
                 path.lineTo(x,y);
             }
         }
+        canvas.drawPath(path,paint);
         canvas.restore();
     }
     public void update() {
