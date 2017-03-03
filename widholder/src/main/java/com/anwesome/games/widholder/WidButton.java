@@ -9,7 +9,7 @@ import android.graphics.Paint;
  */
 public class WidButton {
     private Bitmap bitmap;
-    private float x,y,size;
+    private float x,y,size,initY;
     private WidButton(Bitmap bitmap) {
         this.bitmap = bitmap;
     }
@@ -19,6 +19,7 @@ public class WidButton {
     public void setDimension(float x,float y,float size) {
         this.x = x;
         this.y = y;
+        this.initY = y;
         this.size = size;
         bitmap = Bitmap.createScaledBitmap(bitmap,(int)size,(int)size,true);
     }
@@ -29,7 +30,7 @@ public class WidButton {
         canvas.restore();
     }
     public void update() {
-        y-=30;
+        y-=(initY)/5;
     }
     public boolean isStop() {
         return y<0;

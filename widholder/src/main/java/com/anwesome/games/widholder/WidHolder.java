@@ -65,8 +65,11 @@ public class WidHolder {
                 if(currentIndex>=0 && currentIndex<widButtons.size()) {
                     WidButton widButton = getWidButtonAt(currentIndex);
                     widButton.update();
-                    if(widButton.isStop() && currentIndex<= widButtons.size()-1) {
-                        currentIndex++;
+                    if(widButton.isStop()) {
+                        widButtons.remove(widButton);
+                        if(currentIndex<= widButtons.size()-1){
+                            currentIndex++;
+                        }
                     }
                 }
                 try {
