@@ -41,6 +41,7 @@
             <option value="$PROJECT_DIR$/trianglecirclebutton" />
             <option value="$PROJECT_DIR$/tricircledbutton" />
             <option value="$PROJECT_DIR$/valueanimatoradapter" />
+            <option value="$PROJECT_DIR$/widholder" />
           </set>
         </option>
         <option name="myModules">
@@ -79,6 +80,7 @@
             <option value="$PROJECT_DIR$/trianglecirclebutton" />
             <option value="$PROJECT_DIR$/tricircledbutton" />
             <option value="$PROJECT_DIR$/valueanimatoradapter" />
+            <option value="$PROJECT_DIR$/widholder" />
           </set>
         </option>
       </GradleProjectSettings>
