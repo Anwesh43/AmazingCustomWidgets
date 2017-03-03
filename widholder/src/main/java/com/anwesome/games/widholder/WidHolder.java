@@ -56,6 +56,7 @@ public class WidHolder {
             if(time == 0) {
                 initDimensions(canvas.getWidth(),canvas.getHeight());
             }
+            canvas.drawColor(Color.parseColor("#AA000000"));
             for(WidButton widButton:widButtons) {
                 widButton.draw(canvas,paint);
             }
