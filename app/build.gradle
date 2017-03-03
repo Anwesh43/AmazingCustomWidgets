@@ -52,4 +52,5 @@ dependencies {
     compile project(':circularcontainerswitch')
     compile project(':bargraphbutton')
     compile project(':concentriccircleswitch')
+    compile project(':widholder')
 }

@@ -1,5 +1,6 @@
 package com.anwesome.ui.customviewaday;
 
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -40,6 +41,8 @@ import com.anwesome.app.tablikeviews.TabLikeLayout;
 import com.anwesome.app.trianglecirclebutton.OnSelectedListener;
 import com.anwesome.app.trianglecirclebutton.TriCircButton;
 import com.anwesome.app.trianglecirclebutton.TricSwitch;
+import com.anwesome.games.widholder.WidButton;
+import com.anwesome.games.widholder.WidHolder;
 import com.anwesome.ui.bulletedlist.BulletedList;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
 import com.anwesome.ui.compassbutton.CompassButton;
@@ -68,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showConcentricCircleSwitch();
+                showWidHolder();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -389,5 +392,13 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         concentricCircleSwitch.show();
+    }
+    public void showWidHolder() {
+        WidHolder widHolder = new WidHolder(this);
+        for(int tImage:tImages) {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),tImage);
+            widHolder.addWidButton(WidButton.newInstance(bitmap));
+            widHolder.show();
+        }
     }
 }
