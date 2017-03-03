@@ -12,6 +12,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class WidHolder {
     private Activity activity;
+    private CloseButton closeButton = CloseButton.newInstance();
     private WidHolderView view;
     private ConcurrentLinkedQueue<WidButton> widButtons = new ConcurrentLinkedQueue<>();
     public WidHolder(Activity activity) {
@@ -50,6 +51,7 @@ public class WidHolder {
             for(WidButton widButton:widButtons) {
                 widButton.setDimension(x,y,gap);
                 x+=(3*gap)/2;
+                closeButton.setDimensions(w/2,(9*h)/10,w/20);
             }
         }
         public void onDraw(Canvas canvas) {
@@ -60,6 +62,7 @@ public class WidHolder {
             for(WidButton widButton:widButtons) {
                 widButton.draw(canvas,paint);
             }
+            closeButton.draw(canvas,paint);
             time++;
             if(isAnimated) {
                 if(currentIndex>=0 && currentIndex<widButtons.size()) {
@@ -72,6 +75,7 @@ public class WidHolder {
                         }
                     }
                 }
+                closeButton.update();
                 try {
                     Thread.sleep(50);
                     invalidate();
