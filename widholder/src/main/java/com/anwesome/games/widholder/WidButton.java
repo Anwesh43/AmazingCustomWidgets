@@ -37,4 +37,7 @@ public class WidButton {
     public boolean handleTap(float x,float y) {
         return x>=this.x-size && x<=this.x+size && y>=this.y-size && y<=this.y+size;
     }
+    public int hashCode() {
+        return bitmap.hashCode()+(int)x+(int)y;
+    }
 }
