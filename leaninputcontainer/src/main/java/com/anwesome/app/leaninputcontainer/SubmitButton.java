@@ -24,12 +24,15 @@ public class SubmitButton {
         this.h = h;
     }
     public void draw(Canvas canvas,Paint paint) {
+        paint.setTextSize(h/2);
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.parseColor("#e53935"));
         float r = Math.max(w,h)/6;
         canvas.save();
         canvas.translate(x,y);
         canvas.drawRoundRect(new RectF(-w/2,-h/2,w/2,h/2),r,r,paint);
+        paint.setColor(Color.WHITE);
+        canvas.drawText(text,-paint.measureText(text)/2,paint.getTextSize()/2,paint);
         canvas.save();
         canvas.scale(scale,scale);
         paint.setColor(Color.parseColor("#AA9E9E9E"));
