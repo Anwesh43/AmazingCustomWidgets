@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 public class LeanInputContainer {
     private Activity activity;
     private final String submitText="SUBMIT";
+    private OnSubmitListener onSubmitListener;
     private SubmitButton submitButton = SubmitButton.newInstance(submitText);
     private LeanInputContainerView leanInputContainerView;
     public LeanInputContainer(Activity activity) {
@@ -22,6 +23,9 @@ public class LeanInputContainer {
             leanInputContainerView = new LeanInputContainerView(activity);
             this.activity.addContentView(leanInputContainerView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         }
+    }
+    public void setOnSubmitListener(OnSubmitListener onSubmitListener) {
+        this.onSubmitListener = onSubmitListener;
     }
     private class LeanInputContainerView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -62,6 +66,9 @@ public class LeanInputContainer {
                     if(submitButton.stopped()) {
                         isAnimated = false;
                         submitted = true;
+                        if(onSubmitListener!=null) {
+                            onSubmitListener.onSubmit(leanEditTextView.getText());
+                        }
                     }
                 }
                 try {
@@ -80,7 +87,7 @@ public class LeanInputContainer {
                     isAnimated = true;
                     postInvalidate();
                 }
-                if(submitButton.handleTap(x,y)) {
+                if(submitButton.handleTap(x,y) && (leanEditTextView.getText()!=null && !leanEditTextView.getText().equals(""))) {
                     isAnimated  = true;
                     submitting = true;
                     postInvalidate();
