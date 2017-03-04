@@ -11,6 +11,7 @@ import android.graphics.RectF;
  */
 public class ClockSwitchButton {
     private float x,y,r,startDeg = 120,deg = 0,sweepDeg = 300,dir = 0;
+    private OnButtonSelected onButtonSelected;
     private ClockSwitchButton() {
 
     }
@@ -67,5 +68,11 @@ public class ClockSwitchButton {
     }
     public boolean handleTap(float x,float y) {
         return x>=this.x-r && x<=this.x+r && y>=this.y-r && y<=this.y+r;
+    }
+    public OnButtonSelected getOnButtonSelected() {
+        return onButtonSelected;
+    }
+    public void setOnButtonSelected(OnButtonSelected onButtonSelected) {
+        this.onButtonSelected = onButtonSelected;
     }
 }

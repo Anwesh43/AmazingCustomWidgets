@@ -46,6 +46,10 @@ public class ClockSwitch {
             isAnimated = false;
             prevBtn = currBtn;
             currBtn = null;
+            OnButtonSelected onButtonSelected = currBtn.getOnButtonSelected();
+            if(onButtonSelected!=null) {
+                onButtonSelected.onSelected();
+            }
         }
         public void onDraw(Canvas canvas) {
             if(time == 0) {
