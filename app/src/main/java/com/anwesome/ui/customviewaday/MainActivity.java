@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private String actions[] = {"action1","action2","action3","action4"};
     private MenuExpander menuExpander;
     private ActionSheet actionSheet;
+    private WidHolder widHolder;
     private int tImages[] = {R.drawable.t1,R.drawable.t2,R.drawable.t3,R.drawable.t4};
     private int images[] = {R.drawable.delivered,R.drawable.restart,R.drawable.onway,R.drawable.order};
     @Override
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showWidHolder();
-                ppView.setVisibility(View.INVISIBLE);
+                //ppView.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -394,11 +395,13 @@ public class MainActivity extends AppCompatActivity {
         concentricCircleSwitch.show();
     }
     public void showWidHolder() {
-        WidHolder widHolder = new WidHolder(this);
-        for(int tImage:tImages) {
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),tImage);
-            widHolder.addWidButton(WidButton.newInstance(bitmap));
-            widHolder.show();
+        if(widHolder == null) {
+            widHolder = new WidHolder(this);
+            for (int tImage : tImages) {
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), tImage);
+                widHolder.addWidButton(WidButton.newInstance(bitmap));
+            }
         }
+        widHolder.show();
     }
 }
