@@ -11,7 +11,7 @@ public class SubmitButton {
     private SubmitButton(String text) {
         this.text = text;
     }
-    private boolean stopped() {
+    public boolean stopped() {
         return scale>=1;
     }
     public static SubmitButton newInstance(String text) {
