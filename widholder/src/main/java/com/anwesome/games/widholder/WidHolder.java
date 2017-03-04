@@ -26,6 +26,10 @@ public class WidHolder {
             view = new WidHolderView(activity);
             activity.addContentView(view,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         }
+        else {
+            view.setVisibility(View.VISIBLE);
+            view.reset();
+        }
     }
     public WidButton getWidButtonAt(int index) {
         WidButton widButton = null;
@@ -54,6 +58,10 @@ public class WidHolder {
                 closeButton.setDimensions(w/2,(9*h)/10,w/20);
             }
         }
+        public void reset() {
+            time = 0;
+            isAnimated = false;
+        }
         public void onDraw(Canvas canvas) {
             if(time == 0) {
                 initDimensions(canvas.getWidth(),canvas.getHeight());
@@ -71,6 +79,7 @@ public class WidHolder {
                     if(widButton.isStop()) {
                         widButtons.remove(widButton);
                         if(widButtons.size() == 0) {
+                            this.setVisibility(INVISIBLE);
                             isAnimated = false;
                         }
                     }

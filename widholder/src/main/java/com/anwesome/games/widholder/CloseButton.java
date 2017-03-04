@@ -20,6 +20,7 @@ public class CloseButton {
         this.x = x;
         this.y = y;
         this.r = r;
+        this.deg = -90;
     }
     public void draw(Canvas canvas, Paint paint) {
         paint.setColor(Color.GRAY);
