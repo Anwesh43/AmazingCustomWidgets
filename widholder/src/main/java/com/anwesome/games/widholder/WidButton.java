@@ -3,6 +3,8 @@ package com.anwesome.games.widholder;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 
 /**
  * Created by anweshmishra on 04/03/17.
@@ -33,6 +35,8 @@ public class WidButton {
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
         canvas.translate(x,y);
+        Path path = new Path();
+        path.addRoundRect(new RectF(-size/2,-size/2,size/2,size/2),size/8,size/8, Path.Direction.CCW);
         canvas.drawBitmap(bitmap,-size/2,-size/2,paint);
         canvas.restore();
     }
