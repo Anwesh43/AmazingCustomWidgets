@@ -39,7 +39,7 @@ public class LeanInputContainer {
                 leanKeyboard =  LeanKeyboard.newInstance(w/2,h/8+4*w/9,2*w/3);
                 leanEditTextView = new LeanEditTextView(w/2,h/15,w/2);
                 paint.setTextSize(h/40);
-                submitButton.setDimensions(w,17*h/20,paint.measureText(submitText)*2,h/20);
+                submitButton.setDimensions(w/2,17*h/20,paint.measureText(submitText)*2,h/20);
             }
             if(leanKeyboard!=null) {
                 leanKeyboard.draw(canvas,paint);
