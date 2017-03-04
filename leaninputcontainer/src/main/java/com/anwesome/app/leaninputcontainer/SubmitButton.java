@@ -45,7 +45,7 @@ public class SubmitButton {
     }
     public void update() {
         if(scale<1) {
-            scale += 0.2f;
+            scale += 0.1f;
         }
     }
 }
