@@ -10,7 +10,7 @@ import android.graphics.RectF;
  * Created by anweshmishra on 05/03/17.
  */
 public class ClockSwitchButton {
-    private float x,y,r,startDeg = 120,deg = 0,sweepDeg = 270,dir = 0;
+    private float x,y,r,startDeg = 120,deg = 0,sweepDeg = 300,dir = 0;
     private ClockSwitchButton() {
 
     }
@@ -33,10 +33,12 @@ public class ClockSwitchButton {
         canvas.translate(x,y);
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.GRAY);
-        paint.setStrokeWidth(r/12);
-        canvas.drawArc(new RectF(-r,-r,r,r),startDeg,sweepDeg,true,paint);
-        paint.setColor(Color.parseColor("#2196F3"));
-        canvas.drawArc(new RectF(-r,-r,r,r),startDeg,deg,true,paint);
+        paint.setStrokeWidth(r/4);
+        canvas.drawArc(new RectF(-r,-r,r,r),startDeg,sweepDeg,false,paint);
+        if(deg != 0) {
+            paint.setColor(Color.parseColor("#2196F3"));
+            canvas.drawArc(new RectF(-r, -r, r, r), startDeg, deg, false, paint);
+        }
         canvas.save();
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.BLACK);

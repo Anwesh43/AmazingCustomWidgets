@@ -36,7 +36,7 @@ public class ClockSwitch {
             super(context);
         }
         private void initDimensions(int w,int h) {
-            float gap = (2*w)/(3*buttons.size()+2),x = gap,y = h/2,r = gap;
+            float gap = (2*w)/(3*buttons.size()+2),x = gap,y = h/2,r = gap/2;
             for(ClockSwitchButton button:buttons) {
                 button.setDimensions(x,y,r);
                 x+=(3*gap)/2;
@@ -86,7 +86,7 @@ public class ClockSwitch {
                         tappedBtn = btn;
                     }
                 }
-                if(tappedBtn!=null) {
+                if(tappedBtn!=null && tappedBtn!=prevBtn) {
                     currBtn = tappedBtn;
                     currBtn.select();
                     if(prevBtn!=null) {
