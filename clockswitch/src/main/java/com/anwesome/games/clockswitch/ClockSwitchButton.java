@@ -10,9 +10,15 @@ import android.graphics.RectF;
  * Created by anweshmishra on 05/03/17.
  */
 public class ClockSwitchButton {
-    private float x,y,r,startDeg = 120,deg = 0,sweepDeg = 270;
+    private float x,y,r,startDeg = 120,deg = 0,sweepDeg = 270,dir = 0;
     private ClockSwitchButton() {
 
+    }
+    public void select() {
+        dir = 1;
+    }
+    public void unselect() {
+        dir = -1;
     }
     public void setDimensions(float x,float y,float r) {
         this.x = x;
@@ -46,14 +52,15 @@ public class ClockSwitchButton {
         canvas.restore();
     }
     public boolean stopped() {
-        return deg>=270;
+        return dir == 0;
     }
     public int hashCode() {
         return (int)deg+(int)x;
     }
     public void update() {
-        if(deg<sweepDeg) {
-            deg += sweepDeg/10;
+        deg+=dir*(sweepDeg/10);
+        if(deg>=sweepDeg ||  deg<=0) {
+            dir = 0;
         }
     }
     public boolean handleTap(float x,float y) {
