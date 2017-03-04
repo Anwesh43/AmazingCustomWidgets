@@ -86,9 +86,22 @@ public class WidHolder {
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
+            float x = event.getX(),y = event.getY();
             if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
-                isAnimated = true;
-                postInvalidate();
+                WidButton selectedButton = null;
+                for(WidButton widButton:widButtons) {
+                    if(widButton.handleTap(x,y)) {
+                        selectedButton = widButton;
+                        break;
+                    }
+                }
+                if(selectedButton == null && closeButton.handleTap(x,y)) {
+                    isAnimated = true;
+                    postInvalidate();
+                }
+                else {
+
+                }
             }
             return true;
         }
