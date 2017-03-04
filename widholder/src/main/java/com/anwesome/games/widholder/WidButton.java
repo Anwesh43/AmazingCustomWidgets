@@ -29,6 +29,9 @@ public class WidButton {
         canvas.drawBitmap(bitmap,-size/2,-size/2,paint);
         canvas.restore();
     }
+    public void reset() {
+        this.y = initY;
+    }
     public void update() {
         y-=(initY)/5;
     }

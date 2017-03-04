@@ -59,8 +59,12 @@ public class WidHolder {
             }
         }
         public void reset() {
-            time = 0;
-            isAnimated = false;
+            currentIndex = 0;
+            for(WidButton widButton:widButtons) {
+                widButton.reset();
+            }
+            closeButton.reset();
+            invalidate();
         }
         public void onDraw(Canvas canvas) {
             if(time == 0) {
@@ -77,8 +81,8 @@ public class WidHolder {
                     WidButton widButton = getWidButtonAt(currentIndex);
                     widButton.update();
                     if(widButton.isStop()) {
-                        widButtons.remove(widButton);
-                        if(widButtons.size() == 0) {
+                        currentIndex++;
+                        if(currentIndex == widButtons.size()) {
                             this.setVisibility(INVISIBLE);
                             isAnimated = false;
                         }

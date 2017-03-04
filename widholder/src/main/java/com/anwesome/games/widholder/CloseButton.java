@@ -22,6 +22,9 @@ public class CloseButton {
         this.r = r;
         this.deg = -90;
     }
+    public void reset() {
+        this.deg = -90;
+    }
     public void draw(Canvas canvas, Paint paint) {
         paint.setColor(Color.GRAY);
         paint.setStyle(Paint.Style.STROKE);
