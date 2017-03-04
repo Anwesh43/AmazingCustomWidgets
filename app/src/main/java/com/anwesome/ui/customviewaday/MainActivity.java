@@ -1,5 +1,6 @@
 package com.anwesome.ui.customviewaday;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -25,6 +26,7 @@ import com.anwesome.app.groupimagebuttons.GroupImageButtons;
 import com.anwesome.app.imageclippe.ImageClipper;
 import com.anwesome.app.imageclippe.ImageClipperShape;
 import com.anwesome.app.leaninputcontainer.LeanInputContainer;
+import com.anwesome.app.leaninputcontainer.OnSubmitListener;
 import com.anwesome.app.lockbuttons.LockButton;
 import com.anwesome.app.lockbuttons.LockButtonType;
 import com.anwesome.app.lockbuttons.LockListener;
@@ -73,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showWidHolder();
-                //ppView.setVisibility(View.INVISIBLE);
+                showLeanInputContainer();
+                ppView.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -343,6 +345,14 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showLeanInputContainer() {
         LeanInputContainer leanInputContainer = new LeanInputContainer(this);
+        leanInputContainer.setOnSubmitListener(new OnSubmitListener() {
+            @Override
+            public void onSubmit(String text) {
+                Intent intent = new Intent(MainActivity.this,TextResultActivity.class);
+                intent.putExtra("text_result",text);
+                startActivity(intent);
+            }
+        });
         leanInputContainer.show();
     }
     public void showMirrorImageButton() {
