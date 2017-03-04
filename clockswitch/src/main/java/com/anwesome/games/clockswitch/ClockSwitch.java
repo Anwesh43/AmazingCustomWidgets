@@ -18,8 +18,10 @@ public class ClockSwitch {
     public ClockSwitch(Activity activity) {
         this.activity = activity;
     }
-    public void addButton() {
-        buttons.add(ClockSwitchButton.newInstance());
+    public void addButton(OnButtonSelected onButtonSelected) {
+        ClockSwitchButton clockSwitchButton = ClockSwitchButton.newInstance();
+        clockSwitchButton.setOnButtonSelected(onButtonSelected);
+        buttons.add(clockSwitchButton);
     }
     public void show() {
         if(view == null) {
@@ -44,12 +46,13 @@ public class ClockSwitch {
         }
         public void stopAnimating() {
             isAnimated = false;
-            prevBtn = currBtn;
-            currBtn = null;
             OnButtonSelected onButtonSelected = currBtn.getOnButtonSelected();
             if(onButtonSelected!=null) {
                 onButtonSelected.onSelected();
             }
+            prevBtn = currBtn;
+            currBtn = null;
+
         }
         public void onDraw(Canvas canvas) {
             if(time == 0) {
