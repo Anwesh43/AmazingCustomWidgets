@@ -113,7 +113,10 @@ public class WidHolder {
                     postInvalidate();
                 }
                 else {
-
+                   WidOnClickListener widOnClickListener =  selectedButton.getWidOnClickListener();
+                    if(widOnClickListener!=null) {
+                        widOnClickListener.onClick();
+                    }
                 }
             }
             return true;

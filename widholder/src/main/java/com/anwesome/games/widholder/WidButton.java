@@ -9,6 +9,7 @@ import android.graphics.Paint;
  */
 public class WidButton {
     private Bitmap bitmap;
+    private WidOnClickListener widOnClickListener;
     private float x,y,size,initY;
     private WidButton(Bitmap bitmap) {
         this.bitmap = bitmap;
@@ -22,6 +23,12 @@ public class WidButton {
         this.initY = y;
         this.size = size;
         bitmap = Bitmap.createScaledBitmap(bitmap,(int)size,(int)size,true);
+    }
+    public void setWidOnClickListener(WidOnClickListener widOnClickListener) {
+        this.widOnClickListener = widOnClickListener;
+    }
+    public WidOnClickListener getWidOnClickListener() {
+        return widOnClickListener;
     }
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
