@@ -44,6 +44,7 @@ import com.anwesome.app.trianglecirclebutton.OnSelectedListener;
 import com.anwesome.app.trianglecirclebutton.TriCircButton;
 import com.anwesome.app.trianglecirclebutton.TricSwitch;
 import com.anwesome.games.clockswitch.ClockSwitch;
+import com.anwesome.games.clockswitch.OnButtonSelected;
 import com.anwesome.games.widholder.WidButton;
 import com.anwesome.games.widholder.WidHolder;
 import com.anwesome.games.widholder.WidOnClickListener;
@@ -429,7 +430,13 @@ public class MainActivity extends AppCompatActivity {
     public void showClockSwitch() {
         ClockSwitch clockSwitch = new ClockSwitch(this);
         for(String action:actions) {
-            clockSwitch.addButton();
+            final String text = action;
+            clockSwitch.addButton(new OnButtonSelected() {
+                @Override
+                public void onSelected() {
+                    Toast.makeText(MainActivity.this,text,Toast.LENGTH_SHORT).show();
+                }
+            });
         }
         clockSwitch.show();
     }
