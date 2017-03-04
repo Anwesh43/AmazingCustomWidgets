@@ -24,11 +24,17 @@ public class SubmitButton {
         this.h = h;
     }
     public void draw(Canvas canvas,Paint paint) {
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.parseColor("#e53935"));
         float r = Math.max(w,h)/6;
         canvas.save();
         canvas.translate(x,y);
-        canvas.scale(scale,scale);
         canvas.drawRoundRect(new RectF(-w/2,-h/2,w/2,h/2),r,r,paint);
+        canvas.save();
+        canvas.scale(scale,scale);
+        paint.setColor(Color.parseColor("#AA9E9E9E"));
+        canvas.drawRoundRect(new RectF(-w/2,-h/2,w/2,h/2),r,r,paint);
+        canvas.restore();
         canvas.restore();
     }
     public boolean handleTap(float x,float y) {
