@@ -18,7 +18,7 @@ public class ClockSwitch {
     public ClockSwitch(Activity activity) {
         this.activity = activity;
     }
-    public void addButton(ClockSwitchButton button) {
+    public void addButton() {
         buttons.add(ClockSwitchButton.newInstance());
     }
     public void show() {
