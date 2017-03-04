@@ -53,4 +53,5 @@ dependencies {
     compile project(':bargraphbutton')
     compile project(':concentriccircleswitch')
     compile project(':widholder')
+    compile project(':clockswitch')
 }

@@ -43,6 +43,7 @@ import com.anwesome.app.tablikeviews.TabLikeLayout;
 import com.anwesome.app.trianglecirclebutton.OnSelectedListener;
 import com.anwesome.app.trianglecirclebutton.TriCircButton;
 import com.anwesome.app.trianglecirclebutton.TricSwitch;
+import com.anwesome.games.clockswitch.ClockSwitch;
 import com.anwesome.games.widholder.WidButton;
 import com.anwesome.games.widholder.WidHolder;
 import com.anwesome.games.widholder.WidOnClickListener;
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showLeanInputContainer();
+                showClockSwitch();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -424,5 +425,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         widHolder.show();
+    }
+    public void showClockSwitch() {
+        ClockSwitch clockSwitch = new ClockSwitch(this);
+        for(String action:actions) {
+            clockSwitch.addButton();
+        }
+        clockSwitch.show();
     }
 }
