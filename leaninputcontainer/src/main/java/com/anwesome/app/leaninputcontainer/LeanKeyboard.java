@@ -94,7 +94,7 @@ public class LeanKeyboard {
             canvas.restore();
         }
         public void update() {
-            scale+=scaleDir;
+            scale+=scaleDir*2;
             if(scale>=1) {
                 scaleDir= -1*Math.abs(scaleDir);
                 scale = 1;
