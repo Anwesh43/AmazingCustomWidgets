@@ -43,6 +43,7 @@ import com.anwesome.app.trianglecirclebutton.TriCircButton;
 import com.anwesome.app.trianglecirclebutton.TricSwitch;
 import com.anwesome.games.widholder.WidButton;
 import com.anwesome.games.widholder.WidHolder;
+import com.anwesome.games.widholder.WidOnClickListener;
 import com.anwesome.ui.bulletedlist.BulletedList;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
 import com.anwesome.ui.compassbutton.CompassButton;
@@ -397,9 +398,19 @@ public class MainActivity extends AppCompatActivity {
     public void showWidHolder() {
         if(widHolder == null) {
             widHolder = new WidHolder(this);
+            int i=0;
             for (int tImage : tImages) {
+                final String text = actions[i];
                 Bitmap bitmap = BitmapFactory.decodeResource(getResources(), tImage);
-                widHolder.addWidButton(WidButton.newInstance(bitmap));
+                WidButton widButton = WidButton.newInstance(bitmap);
+                widButton.setWidOnClickListener(new WidOnClickListener() {
+                    @Override
+                    public void onClick() {
+                        Toast.makeText(MainActivity.this,text,Toast.LENGTH_LONG).show();
+                    }
+                });
+                widHolder.addWidButton(widButton);
+                i++;
             }
         }
         widHolder.show();
