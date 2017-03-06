@@ -21,6 +21,7 @@
       <module fileurl="file://$PROJECT_DIR$/customactionsheet/customactionsheet.iml" filepath="$PROJECT_DIR$/customactionsheet/customactionsheet.iml" />
       <module fileurl="file://$PROJECT_DIR$/customfloatingactionbutton/customfloatingactionbutton.iml" filepath="$PROJECT_DIR$/customfloatingactionbutton/customfloatingactionbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/dimensionsutil/dimensionsutil.iml" filepath="$PROJECT_DIR$/dimensionsutil/dimensionsutil.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ellipticalswitch/ellipticalswitch.iml" filepath="$PROJECT_DIR$/ellipticalswitch/ellipticalswitch.iml" />
       <module fileurl="file://$PROJECT_DIR$/fourbutton/fourbutton.iml" filepath="$PROJECT_DIR$/fourbutton/fourbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/groupimagebuttons/groupimagebuttons.iml" filepath="$PROJECT_DIR$/groupimagebuttons/groupimagebuttons.iml" />
       <module fileurl="file://$PROJECT_DIR$/imageclippe/imageclippe.iml" filepath="$PROJECT_DIR$/imageclippe/imageclippe.iml" />
