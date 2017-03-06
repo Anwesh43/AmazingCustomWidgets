@@ -55,4 +55,5 @@ dependencies {
     compile project(':widholder')
     compile project(':clockswitch')
     compile project(':ellipticalswitch')
+    compile project(':multiplecheckbox')
 }

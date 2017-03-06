@@ -46,6 +46,7 @@ import com.anwesome.app.trianglecirclebutton.TricSwitch;
 import com.anwesome.games.clockswitch.ClockSwitch;
 import com.anwesome.games.clockswitch.OnButtonSelected;
 import com.anwesome.games.ellipticalswitch.EllipticalSwitch;
+import com.anwesome.games.multiplecheckbox.MultipleCheckBox;
 import com.anwesome.games.widholder.WidButton;
 import com.anwesome.games.widholder.WidHolder;
 import com.anwesome.games.widholder.WidOnClickListener;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showEllipticalSwitch();
+                showMultipleCheckBoxes();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -453,5 +454,12 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         ellipticalSwitch.show();
+    }
+    public void showMultipleCheckBoxes() {
+        MultipleCheckBox multipleCheckBox = new MultipleCheckBox(this);
+        for(String action:actions) {
+            multipleCheckBox.addCheckBox(action);
+        }
+        multipleCheckBox.show();
     }
 }
