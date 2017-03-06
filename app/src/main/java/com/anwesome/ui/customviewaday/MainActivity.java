@@ -45,6 +45,7 @@ import com.anwesome.app.trianglecirclebutton.TriCircButton;
 import com.anwesome.app.trianglecirclebutton.TricSwitch;
 import com.anwesome.games.clockswitch.ClockSwitch;
 import com.anwesome.games.clockswitch.OnButtonSelected;
+import com.anwesome.games.ellipticalswitch.EllipticalSwitch;
 import com.anwesome.games.widholder.WidButton;
 import com.anwesome.games.widholder.WidHolder;
 import com.anwesome.games.widholder.WidOnClickListener;
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showClockSwitch();
+                showEllipticalSwitch();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -439,5 +440,18 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         clockSwitch.show();
+    }
+    public void showEllipticalSwitch() {
+        EllipticalSwitch ellipticalSwitch = new EllipticalSwitch(this);
+        for(String action:actions) {
+            final String text = action;
+            ellipticalSwitch.addSwitchObject(new com.anwesome.games.basicswitch.OnSelectedListener() {
+                @Override
+                public void onSelected() {
+                    Toast.makeText(MainActivity.this,text,Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        ellipticalSwitch.show();
     }
 }

@@ -54,4 +54,5 @@ dependencies {
     compile project(':concentriccircleswitch')
     compile project(':widholder')
     compile project(':clockswitch')
+    compile project(':ellipticalswitch')
 }
