@@ -70,8 +70,10 @@ public class BasicSwitch {
                             stopAnimating();
                         }
                     }
-                    if(currObject.stoppedAnimating()) {
-                        stopAnimating();
+                    else {
+                        if(currObject.stoppedAnimating()) {
+                            stopAnimating();
+                        }
                     }
                 }
                 try {
