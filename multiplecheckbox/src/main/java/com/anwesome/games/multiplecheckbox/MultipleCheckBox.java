@@ -17,7 +17,7 @@ public class MultipleCheckBox {
         this.activity = activity;
     }
     public void show() {
-        if(multipleCheckBoxView != null) {
+        if(multipleCheckBoxView == null) {
             multipleCheckBoxView = new MultipleCheckBoxView(activity);
             activity.setContentView(multipleCheckBoxView);
         }
