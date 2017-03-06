@@ -18,7 +18,13 @@ public class CheckBox {
     private CheckBox(String text) {
         this.text = text;
     }
+    public void setDimensions(float x,float y,float size) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+    }
     public void draw(Canvas canvas, Paint paint) {
+        paint.setStrokeWidth(15);
         paint.setColor(Color.GRAY);
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawRoundRect(new RectF(x-size/2,y-size/2,x+size/2,y+size/2),size/10,size/10,paint);
@@ -30,7 +36,6 @@ public class CheckBox {
         canvas.rotate(deg);
         canvas.drawCircle(0,0,size/4,paint);
         paint.setColor(Color.WHITE);
-        paint.setStrokeWidth(15);
         canvas.drawLine(-size/4,0,0,size/8,paint);
         canvas.drawLine(0,size/8,size/8,-(float)Math.sqrt(3)*size/8,paint);
         canvas.restore();
