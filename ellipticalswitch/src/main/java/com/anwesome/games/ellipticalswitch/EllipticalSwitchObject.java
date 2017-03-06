@@ -1,6 +1,7 @@
 package com.anwesome.games.ellipticalswitch;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
@@ -16,6 +17,7 @@ public class EllipticalSwitchObject extends SwitchObject {
         super(onSelectedListener);
     }
     public void drawObject(Canvas canvas, Paint paint) {
+        paint.setColor(Color.parseColor("#00B8D4"));
         canvas.scale(scale,scale);
         canvas.rotate(rot);
         canvas.drawArc(new RectF(-size/2,-size/4,size/2,size/4),0,360,true,paint);
