@@ -10,6 +10,7 @@ import android.graphics.RectF;
  */
 public class CheckBox {
     private String text = "";
+    private boolean selected = false;
     private float x,y,size,deg=0,scale = 0,dir = 0;
     public static CheckBox newInstance(String text) {
         return new CheckBox(text);
@@ -33,6 +34,14 @@ public class CheckBox {
         canvas.drawLine(-size/4,0,0,size/8,paint);
         canvas.drawLine(0,size/8,size/8,-(float)Math.sqrt(3)*size/8,paint);
         canvas.restore();
+    }
+    public void select() {
+        dir = 1;
+        selected = true;
+    }
+    public void unselect() {
+        dir = -1;
+        selected = false;
     }
     public void update() {
         deg+=36*dir;
