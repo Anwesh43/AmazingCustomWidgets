@@ -17,6 +17,9 @@ public class SwitchObject {
     public SwitchObject(OnSelectedListener onSelectedListener) {
         this.onSelectedListener = onSelectedListener;
     }
+    public OnSelectedListener getOnSelectedListener() {
+        return this.onSelectedListener;
+    }
     public void draw(Canvas canvas,Paint paint) {
         canvas.save();
         canvas.translate(x,y);
@@ -36,13 +39,7 @@ public class SwitchObject {
         dir = -1;
     }
     public boolean stoppedAnimating() {
-        boolean condition = dir == 0;
-        if(condition) {
-            if(onSelectedListener!=null) {
-                onSelectedListener.onSelected();
-            }
-        }
-        return condition;
+        return dir == 0;
     }
     public int hashCode() {
         return (int)x;

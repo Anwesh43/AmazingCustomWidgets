@@ -42,6 +42,9 @@ public class BasicSwitch {
             super(context);
         }
         private void stopAnimating() {
+            if(currObject.getOnSelectedListener()!=null) {
+                currObject.getOnSelectedListener().onSelected();
+            }
             prevObject = currObject;
             currObject = null;
             isAnimated = false;
