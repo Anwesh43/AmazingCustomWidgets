@@ -34,6 +34,7 @@ public class BasicSwitch {
     }
     private class BasicSwitchView extends View{
         private boolean isAnimated = false;
+        private int time = 0;
         private SwitchObject currObject=null,prevObject=null;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         public BasicSwitchView(Context context) {
@@ -44,7 +45,17 @@ public class BasicSwitch {
             currObject = null;
             isAnimated = false;
         }
+        public void initSwitchObjects(int w,int h) {
+            float gap =(2*w)/(3*switchObjects.size()+2) ,y = h/2,x = gap;
+            for(SwitchObject switchObject:switchObjects) {
+                switchObject.setDimensions(x,y,gap);
+                x+=(3*gap)/2;
+            }
+        }
         public void onDraw(Canvas canvas) {
+            if(time == 0){
+
+            }
             for(SwitchObject switchObject:switchObjects) {
                 switchObject.draw(canvas,paint);
             }
