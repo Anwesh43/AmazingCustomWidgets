@@ -53,9 +53,9 @@ public class CheckBox {
         selected = false;
     }
     public void update() {
-        deg+=36*dir;
+        deg+=30*dir;
         scale+=0.1f*dir;
-        if((scale>=1) || (scale<=0)) {
+        if((scale>=1.2f) || (scale<=0)) {
             dir = 0;
         }
     }
