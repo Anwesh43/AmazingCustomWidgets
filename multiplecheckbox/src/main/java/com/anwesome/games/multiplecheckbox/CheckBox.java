@@ -38,10 +38,10 @@ public class CheckBox {
         paint.setStrokeWidth(8);
         paint.setColor(Color.WHITE);
         canvas.drawLine(-size/8,0,0,size/16,paint);
-        canvas.drawLine(0,size/8,size/8,-(float)Math.sqrt(3)*size/8,paint);
+        canvas.drawLine(0,size/16,size/8,-(float)Math.sqrt(3)*size/8,paint);
         canvas.restore();
         paint.setColor(Color.BLACK);
-        paint.setTextSize(size/10);
+        paint.setTextSize(40);
         canvas.drawText(text.substring(0,2),x,y+(11*size)/10,paint);
     }
     public void select() {
