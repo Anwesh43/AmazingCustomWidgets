@@ -28,7 +28,7 @@ public class CheckBox {
         paint.setColor(Color.GRAY);
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawRoundRect(new RectF(x-size/2,y-size/2,x+size/2,y+size/2),size/10,size/10,paint);
-        paint.setColor(Color.GREEN);
+        paint.setColor(Color.parseColor("#00897B"));
         paint.setStyle(Paint.Style.FILL);
         canvas.save();
         canvas.translate(x,y);
@@ -42,7 +42,7 @@ public class CheckBox {
         canvas.restore();
         paint.setColor(Color.BLACK);
         paint.setTextSize(40);
-        canvas.drawText(text.substring(0,2),x,y+(11*size)/10,paint);
+        canvas.drawText(text,x-paint.measureText(text)/2,y+(11*size)/10,paint);
     }
     public void select() {
         dir = 1;
