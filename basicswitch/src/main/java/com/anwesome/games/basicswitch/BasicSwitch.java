@@ -54,11 +54,12 @@ public class BasicSwitch {
         }
         public void onDraw(Canvas canvas) {
             if(time == 0){
-
+                initSwitchObjects(canvas.getWidth(),canvas.getHeight());
             }
             for(SwitchObject switchObject:switchObjects) {
                 switchObject.draw(canvas,paint);
             }
+            time++;
             if(isAnimated) {
                 if(currObject!=null) {
                     currObject.update();
