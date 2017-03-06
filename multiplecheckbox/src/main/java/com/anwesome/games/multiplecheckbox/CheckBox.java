@@ -39,6 +39,8 @@ public class CheckBox {
         canvas.drawLine(-size/4,0,0,size/8,paint);
         canvas.drawLine(0,size/8,size/8,-(float)Math.sqrt(3)*size/8,paint);
         canvas.restore();
+        paint.setColor(Color.BLACK);
+        canvas.drawText(text.substring(0,2),x,y+(11*size)/10,paint);
     }
     public void select() {
         dir = 1;
