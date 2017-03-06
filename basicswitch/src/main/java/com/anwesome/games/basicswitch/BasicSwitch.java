@@ -9,13 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by anweshmishra on 06/03/17.
  */
 public class BasicSwitch {
     private Activity activity;
-    private List<SwitchObject> switchObjects = new ArrayList<>();
+    private ConcurrentLinkedQueue<SwitchObject> switchObjects = new ConcurrentLinkedQueue<>();
     private BasicSwitchView basicSwitchView;
     public BasicSwitch(Activity activity) {
         this.activity = activity;
