@@ -61,4 +61,7 @@ public class CheckBox {
     public int hashCode() {
         return text.hashCode()+(int)(x+y+deg+dir+scale);
     }
+    public boolean isSelected() {
+        return selected;
+    }
 }
