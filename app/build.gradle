@@ -56,4 +56,5 @@ dependencies {
     compile project(':clockswitch')
     compile project(':ellipticalswitch')
     compile project(':multiplecheckbox')
+    compile project(':circledarrowbutton')
 }

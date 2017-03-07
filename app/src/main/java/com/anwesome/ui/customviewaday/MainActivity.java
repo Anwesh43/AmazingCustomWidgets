@@ -43,6 +43,7 @@ import com.anwesome.app.tablikeviews.TabLikeLayout;
 import com.anwesome.app.trianglecirclebutton.OnSelectedListener;
 import com.anwesome.app.trianglecirclebutton.TriCircButton;
 import com.anwesome.app.trianglecirclebutton.TricSwitch;
+import com.anwesome.games.circledarrowbutton.CircledArrowButton;
 import com.anwesome.games.clockswitch.ClockSwitch;
 import com.anwesome.games.clockswitch.OnButtonSelected;
 import com.anwesome.games.ellipticalswitch.EllipticalSwitch;
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMultipleCheckBoxes();
+                showCircledArrowButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -461,5 +462,9 @@ public class MainActivity extends AppCompatActivity {
             multipleCheckBox.addCheckBox(action);
         }
         multipleCheckBox.show();
+    }
+    public void showCircledArrowButton() {
+        CircledArrowButton circledArrowButton = new CircledArrowButton(this);
+        circledArrowButton.show(100,100);
     }
 }
