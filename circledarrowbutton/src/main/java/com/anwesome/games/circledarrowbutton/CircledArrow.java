@@ -8,7 +8,7 @@ import android.graphics.*;
 public class CircledArrow {
     private float x,y,radius,lineLength,triSize,deg=0,dir=0,circScale = 0,triScale=0;
     public CircledArrow(float w) {
-        this.x = w/8;
+        this.x = 3*w/16;
         this.y = 7*w/8;
         this.radius = w/8;
         this.lineLength = w/2;
@@ -22,7 +22,7 @@ public class CircledArrow {
         paint.setStrokeWidth(15);
         paint.setColor(Color.GRAY);
         canvas.drawCircle(0,0,radius,paint);
-        canvas.drawLine(0,0,lineLength,0,paint);
+        canvas.drawLine(radius,0,lineLength,0,paint);
         drawTriangle(canvas,paint,lineLength);
         paint.setColor(Color.GREEN);
         paint.setStyle(Paint.Style.FILL);
@@ -47,6 +47,7 @@ public class CircledArrow {
         path.moveTo(l,triSize/2);
         path.lineTo(l,-triSize/2);
         path.lineTo(l+triSize,0);
+        path.lineTo(l,triSize/2);
         canvas.drawPath(path,paint);
     }
     public void update() {

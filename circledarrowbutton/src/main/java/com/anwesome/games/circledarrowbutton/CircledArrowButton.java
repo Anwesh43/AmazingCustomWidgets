@@ -26,8 +26,8 @@ public class CircledArrowButton {
             Point size = DimensionsUtil.getDeviceDimension(activity);
             int w = size.x;
             circledArrowView = new CircledArrowView(activity);
-            circledArrow = new CircledArrow(w/4);
-            activity.addContentView(circledArrowView,new ViewGroup.LayoutParams(w/3,w/3));
+            circledArrow = new CircledArrow(w/3);
+            activity.addContentView(circledArrowView,new ViewGroup.LayoutParams(w/2,w/2));
         }
         circledArrowView.setX(x);
         circledArrowView.setY(y);
