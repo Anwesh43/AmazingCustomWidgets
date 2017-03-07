@@ -43,6 +43,10 @@ public class CircledArrowButton {
                 circledArrow.draw(canvas,paint);
             }
             if(isAnimated) {
+                circledArrow.update();
+                if(circledArrow.stopped()) {
+                    isAnimated = false;
+                }
                 try {
                     Thread.sleep(50);
                     invalidate();
@@ -55,6 +59,8 @@ public class CircledArrowButton {
         public boolean onTouchEvent(MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
                 circledArrow.startAnimating();
+                isAnimated = true;
+                postInvalidate();
             }
             return true;
         }

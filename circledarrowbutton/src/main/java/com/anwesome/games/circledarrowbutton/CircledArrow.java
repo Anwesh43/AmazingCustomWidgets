@@ -65,6 +65,9 @@ public class CircledArrow {
             triScale = 0;
         }
     }
+    public boolean stopped() {
+        return dir == 0;
+    }
     public boolean handleTap(float x,float y) {
         return (x>=this.x-radius && x<=this.x+radius && y>=this.y-radius && y<=this.y+radius);
     }
