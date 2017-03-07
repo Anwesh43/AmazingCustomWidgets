@@ -18,8 +18,15 @@ public class CircledArrowButton {
     private Activity activity;
     private CircledArrowView circledArrowView;
     private CircledArrow circledArrow;
+    private ToggleSelectionListener toggleSelectionListener;
     public CircledArrowButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setToggleSelectionListener(ToggleSelectionListener toggleSelectionListener) {
+        this.toggleSelectionListener = toggleSelectionListener;
+        if(circledArrow!=null) {
+            circledArrow.setToggleSelectionListener(toggleSelectionListener);
+        }
     }
     public void show(int x,int y) {
         if(circledArrowView == null) {
@@ -27,6 +34,9 @@ public class CircledArrowButton {
             int w = size.x;
             circledArrowView = new CircledArrowView(activity);
             circledArrow = new CircledArrow(w/3);
+            if(toggleSelectionListener!=null) {
+                circledArrow.setToggleSelectionListener(toggleSelectionListener);
+            }
             activity.addContentView(circledArrowView,new ViewGroup.LayoutParams(w/2,w/2));
         }
         circledArrowView.setX(x);
