@@ -6,6 +6,7 @@ import android.graphics.*;
  * Created by anweshmishra on 08/03/17.
  */
 public class CircledArrow {
+    private ToggleSelectionListener toggleSelectionListener;
     private float x,y,radius,lineLength,triSize,deg=0,dir=0,circScale = 0,triScale=0;
     public CircledArrow(float w) {
         this.x = 3*w/16;
@@ -13,6 +14,9 @@ public class CircledArrow {
         this.radius = w/8;
         this.lineLength = w/2;
         this.triSize = w/4;
+    }
+    public void setToggleSelectionListener(ToggleSelectionListener toggleSelectionListener) {
+        this.toggleSelectionListener = toggleSelectionListener;
     }
     public void draw(Canvas canvas,Paint paint) {
         canvas.save();
@@ -59,12 +63,18 @@ public class CircledArrow {
             circScale = 1;
             triScale = 1;
             deg = -90;
+            if(toggleSelectionListener!=null) {
+                toggleSelectionListener.onSelected();
+            }
         }
         if(circScale<=0 && triScale<=0 && deg>=0) {
             deg = 0;
             circScale = 0;
             dir = 0;
             triScale = 0;
+            if(toggleSelectionListener!=null) {
+                toggleSelectionListener.onUnselected();
+            }
         }
     }
     public boolean stopped() {
