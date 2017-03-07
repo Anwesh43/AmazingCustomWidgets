@@ -27,7 +27,7 @@ public class CircledArrowButton {
             int w = size.x;
             circledArrowView = new CircledArrowView(activity);
             circledArrow = new CircledArrow(w/4);
-            activity.addContentView(circledArrowView,new ViewGroup.LayoutParams(w/4,w/4));
+            activity.addContentView(circledArrowView,new ViewGroup.LayoutParams(w/3,w/3));
         }
         circledArrowView.setX(x);
         circledArrowView.setY(y);
