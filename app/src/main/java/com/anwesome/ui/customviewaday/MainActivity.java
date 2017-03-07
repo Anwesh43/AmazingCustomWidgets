@@ -44,6 +44,7 @@ import com.anwesome.app.trianglecirclebutton.OnSelectedListener;
 import com.anwesome.app.trianglecirclebutton.TriCircButton;
 import com.anwesome.app.trianglecirclebutton.TricSwitch;
 import com.anwesome.games.circledarrowbutton.CircledArrowButton;
+import com.anwesome.games.circledarrowbutton.ToggleSelectionListener;
 import com.anwesome.games.clockswitch.ClockSwitch;
 import com.anwesome.games.clockswitch.OnButtonSelected;
 import com.anwesome.games.ellipticalswitch.EllipticalSwitch;
@@ -465,6 +466,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showCircledArrowButton() {
         CircledArrowButton circledArrowButton = new CircledArrowButton(this);
+        circledArrowButton.setToggleSelectionListener(new ToggleSelectionListener() {
+            @Override
+            public void onSelected() {
+                Toast.makeText(MainActivity.this,"Selected",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnselected() {
+                Toast.makeText(MainActivity.this,"Unselected",Toast.LENGTH_SHORT).show();
+            }
+        });
         circledArrowButton.show(100,100);
     }
 }
