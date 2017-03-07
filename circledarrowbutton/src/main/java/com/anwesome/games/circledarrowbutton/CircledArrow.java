@@ -18,7 +18,21 @@ public class CircledArrow {
         canvas.save();
         canvas.translate(x,y);
         canvas.rotate(deg);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(Color.GRAY);
+        canvas.drawCircle(0,0,radius,paint);
+        canvas.drawLine(0,0,lineLength,0,paint);
+        drawTriangle(canvas,paint,lineLength);
+        paint.setColor(Color.GREEN);
+        paint.setStyle(Paint.Style.FILL);
         canvas.save();
+        canvas.scale(circScale,circScale);
+        canvas.drawCircle(0,0,radius,paint);
+        canvas.restore();
+        canvas.save();
+        canvas.translate(lineLength+triSize/2,0);
+        canvas.scale(triScale,triScale);
+        drawTriangle(canvas,paint,-triSize/2);
         canvas.restore();
         canvas.restore();
     }
@@ -26,6 +40,13 @@ public class CircledArrow {
         if(dir == 0) {
             dir = dir == 0?1:-1;
         }
+    }
+    private void drawTriangle(Canvas canvas,Paint paint,float l) {
+        Path path = new Path();
+        path.moveTo(l,triSize/2);
+        path.lineTo(l,-triSize/2);
+        path.lineTo(triSize,0);
+        canvas.drawPath(path,paint);
     }
     public void update() {
         deg-=dir*9;
