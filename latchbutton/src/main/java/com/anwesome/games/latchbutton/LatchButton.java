@@ -18,17 +18,27 @@ public class LatchButton {
     private Activity activity;
     private LatchButtonView latchButtonView;
     private Latch latch;
+    private LatchSelectedListener latchSelectedListener;
     private LatchButton(Activity activity) {
         this.activity = activity;
     }
     public static LatchButton newInstance(Activity activity) {
         return new LatchButton(activity);
     }
+    public void setLatchSelectedListener(LatchSelectedListener latchSelectedListener) {
+        this.latchSelectedListener = latchSelectedListener;
+        if(latch!=null) {
+            latch.setLatchSeleectedListener(latchSelectedListener);
+        }
+    }
     public void show(int x,int y) {
         if(latchButtonView == null) {
             latchButtonView = new LatchButtonView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
             latch = new Latch(2*size.x/3,2*size.x/3);
+            if(latchSelectedListener!=null) {
+                latch.setLatchSeleectedListener(latchSelectedListener);
+            }
             activity.addContentView(latchButtonView,new ViewGroup.LayoutParams(2*size.x/3,2*size.x/3));
         }
         latchButtonView.setX(x);

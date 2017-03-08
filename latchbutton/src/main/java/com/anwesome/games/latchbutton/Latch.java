@@ -6,6 +6,7 @@ import android.graphics.*;
  * Created by anweshmishra on 09/03/17.
  */
 public class Latch {
+    private LatchSelectedListener latchSelectedListener;
     private float x,y,rSize,cSize,rh1,rh2,deg = -90,dir = 0,initDeg=-90;
     public Latch(float w,float h) {
         this.x = w/2;
@@ -14,6 +15,9 @@ public class Latch {
         this.rSize = (3*w/8);
         this.rh1 = 15;
         this.rh2 = this.rh1+5;
+    }
+    public void setLatchSeleectedListener(LatchSelectedListener latchSeleectedListener) {
+        this.latchSelectedListener = latchSeleectedListener;
     }
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
@@ -35,6 +39,13 @@ public class Latch {
         if(Math.abs(deg)>=90) {
             deg = dir*90;
             dir = 0;
+            if(latchSelectedListener!=null) {
+                if (deg == -90) {
+                    latchSelectedListener.onUnSelected();
+                } else {
+                    latchSelectedListener.onSelected();
+                }
+            }
         }
     }
     public boolean stopped() {
