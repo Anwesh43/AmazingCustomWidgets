@@ -10,20 +10,20 @@ public class Latch {
     public Latch(float w,float h) {
         this.x = w/2;
         this.y = h/2;
-        this.cSize = w/4;
-        this.rSize = w/4;
+        this.cSize = w/8;
+        this.rSize = (3*w/8);
         this.rh1 = 15;
-        this.rh2 = 2*this.rh1;
+        this.rh2 = this.rh1+5;
     }
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
         canvas.translate(x,y);
-        paint.setColor(Color.GRAY);
-        paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.parseColor("#FFD54F"));
-        canvas.drawArc(new RectF(-cSize/2,-cSize/2,cSize/2,cSize/2),initDeg,initDeg+180,true,paint);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(30);
+        canvas.drawArc(new RectF(-cSize,-cSize,cSize,cSize),initDeg,180,true,paint);
         paint.setStyle(Paint.Style.FILL);
-        canvas.drawArc(new RectF(-cSize/2,-cSize/2,cSize/2,cSize/2),initDeg,(deg-initDeg),true,paint);
+        canvas.drawArc(new RectF(-cSize,-cSize,cSize,cSize),initDeg,(deg-initDeg),true,paint);
         canvas.save();
         canvas.rotate(deg);
         drawHandle(canvas,paint);

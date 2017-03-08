@@ -24,13 +24,15 @@ public class LatchButton {
     public static LatchButton newInstance(Activity activity) {
         return new LatchButton(activity);
     }
-    public void show() {
+    public void show(int x,int y) {
         if(latchButtonView == null) {
             latchButtonView = new LatchButtonView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
-            latch = new Latch(size.x/3,size.x/3);
-            activity.addContentView(latchButtonView,new ViewGroup.LayoutParams(size.x/3,size.x/3));
+            latch = new Latch(2*size.x/3,2*size.x/3);
+            activity.addContentView(latchButtonView,new ViewGroup.LayoutParams(2*size.x/3,2*size.x/3));
         }
+        latchButtonView.setX(x);
+        latchButtonView.setY(y);
     }
     private class LatchButtonView extends View {
         private boolean isAnimated = false;
