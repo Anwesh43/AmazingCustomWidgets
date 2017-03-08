@@ -49,6 +49,7 @@ import com.anwesome.games.clockswitch.ClockSwitch;
 import com.anwesome.games.clockswitch.OnButtonSelected;
 import com.anwesome.games.ellipticalswitch.EllipticalSwitch;
 import com.anwesome.games.latchbutton.LatchButton;
+import com.anwesome.games.latchbutton.LatchSelectedListener;
 import com.anwesome.games.multiplecheckbox.MultipleCheckBox;
 import com.anwesome.games.widholder.WidButton;
 import com.anwesome.games.widholder.WidHolder;
@@ -482,6 +483,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showLatchButton() {
         LatchButton latchButton = LatchButton.newInstance(this);
+        latchButton.setLatchSelectedListener(new LatchSelectedListener() {
+            @Override
+            public void onSelected() {
+                Toast.makeText(MainActivity.this,"Selected",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnSelected() {
+                Toast.makeText(MainActivity.this,"Unselected",Toast.LENGTH_SHORT).show();
+            }
+        });
         latchButton.show(200,200);
     }
 }
