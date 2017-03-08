@@ -48,6 +48,7 @@ import com.anwesome.games.circledarrowbutton.ToggleSelectionListener;
 import com.anwesome.games.clockswitch.ClockSwitch;
 import com.anwesome.games.clockswitch.OnButtonSelected;
 import com.anwesome.games.ellipticalswitch.EllipticalSwitch;
+import com.anwesome.games.latchbutton.LatchButton;
 import com.anwesome.games.multiplecheckbox.MultipleCheckBox;
 import com.anwesome.games.widholder.WidButton;
 import com.anwesome.games.widholder.WidHolder;
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCircledArrowButton();
+                showLatchButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -478,5 +479,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         circledArrowButton.show(100,100);
+    }
+    public void showLatchButton() {
+        LatchButton latchButton = LatchButton.newInstance(this);
+        latchButton.show(200,200);
     }
 }
