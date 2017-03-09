@@ -48,6 +48,7 @@ import com.anwesome.games.circledarrowbutton.ToggleSelectionListener;
 import com.anwesome.games.clockswitch.ClockSwitch;
 import com.anwesome.games.clockswitch.OnButtonSelected;
 import com.anwesome.games.ellipticalswitch.EllipticalSwitch;
+import com.anwesome.games.fultonbutton.FultonButton;
 import com.anwesome.games.latchbutton.LatchButton;
 import com.anwesome.games.latchbutton.LatchSelectedListener;
 import com.anwesome.games.multiplecheckbox.MultipleCheckBox;
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showLatchButton();
+                showFultonButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -495,5 +496,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         latchButton.show(200,200);
+    }
+    public void showFultonButton() {
+        FultonButton fultonButton = FultonButton.getInstance(this);
+        fultonButton.show(200,200);
     }
 }

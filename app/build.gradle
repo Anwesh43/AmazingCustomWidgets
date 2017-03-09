@@ -58,4 +58,5 @@ dependencies {
     compile project(':multiplecheckbox')
     compile project(':circledarrowbutton')
     compile project(':latchbutton')
+    compile project(':fultonbutton')
 }
