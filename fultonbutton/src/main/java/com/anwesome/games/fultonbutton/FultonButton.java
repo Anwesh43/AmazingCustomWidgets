@@ -15,6 +15,7 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
  * Created by anweshmishra on 10/03/17.
  */
 public class FultonButton {
+    private OnOffListener onOffListener;
     private Activity activity;
     private FultonShape fultonShape;
     private FultonButtonView fultonButtonView;
@@ -24,11 +25,20 @@ public class FultonButton {
     public static FultonButton getInstance(Activity activity) {
         return new FultonButton(activity);
     }
+    public void setOnOffListener(OnOffListener onOffListener) {
+        this.onOffListener = onOffListener;
+        if(fultonShape!=null) {
+            fultonShape.setOnOffListener(onOffListener);
+        }
+    }
     public void show(int x,int y) {
         if(fultonButtonView == null) {
             Point size = DimensionsUtil.getDeviceDimension(activity);
             int w = size.x/3;
             fultonShape = FultonShape.getInstance(w,w);
+            if(onOffListener!=null) {
+                fultonShape.setOnOffListener(onOffListener);
+            }
             fultonButtonView = new FultonButtonView(activity);
             activity.addContentView(fultonButtonView,new ViewGroup.LayoutParams(w,w));
         }
