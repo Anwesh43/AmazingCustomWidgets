@@ -51,7 +51,7 @@ public class FultonShape {
     }
     public void update() {
         rot-=9*dir;
-        cy-=(r)/5*dir;
+        cy-=((r)/15)*dir;
         if(rot <= -45 || rot>=0) {
             dir = 0;
             if(rot<=-45) {
