@@ -27,8 +27,7 @@ public class FultonShape {
         paint.setColor(Color.GRAY);
         for(int i=0;i<2;i++) {
             canvas.save();
-            canvas.rotate(rot);
-            canvas.scale(l[i],1);
+            canvas.rotate(rot*l[i]);
             canvas.drawPath(defineProtractor(),paint);
             canvas.restore();
         }
@@ -52,7 +51,7 @@ public class FultonShape {
     }
     public void update() {
         rot-=9*dir;
-        cy-=(r)/5;
+        cy-=(r)/5*dir;
         if(rot <= -45 || rot>=0) {
             dir = 0;
             if(rot<=-45) {
