@@ -6,11 +6,15 @@ import android.graphics.*;
  * Created by anweshmishra on 10/03/17.
  */
 public class FultonShape {
+    private OnOffListener onOffListener;
     private float rot = 0,x=0,y=0,r=100,dir = 0,cy=0;
     private FultonShape(float w,float h) {
         this.x = w/2;
         this.y = h/2;
         this.r = w/4;
+    }
+    public void setOnOffListener(OnOffListener onOffListener) {
+        this.onOffListener = onOffListener;
     }
     public static FultonShape getInstance(float w,float h) {
         return new FultonShape(w,h);
@@ -56,9 +60,15 @@ public class FultonShape {
             dir = 0;
             if(rot<=-45) {
                 rot = -45;
+                if(onOffListener!=null) {
+                    onOffListener.on();
+                }
             }
             if(rot>=0) {
                 rot = 0;
+                if(onOffListener!=null) {
+                    onOffListener.off();
+                }
             }
         }
     }
