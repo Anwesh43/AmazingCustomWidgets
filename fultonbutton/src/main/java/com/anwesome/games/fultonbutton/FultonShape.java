@@ -6,7 +6,7 @@ import android.graphics.*;
  * Created by anweshmishra on 10/03/17.
  */
 public class FultonShape {
-    private float rot = 90,x=0,y=0,r=100,dir = 0,cy=0;
+    private float rot = 0,x=0,y=0,r=100,dir = 0,cy=0;
     private FultonShape(float w,float h) {
         this.x = w/2;
         this.y = h/2;
@@ -47,19 +47,19 @@ public class FultonShape {
     }
     public void handleTap() {
         if(dir == 0) {
-            dir = rot == 90?1:-1;
+            dir = rot == 0?1:-1;
         }
     }
     public void update() {
         rot-=9*dir;
         cy-=(r)/5;
-        if(rot <= 45 || rot>=90) {
+        if(rot <= -45 || rot>=0) {
             dir = 0;
-            if(rot<=45) {
-                rot = 45;
+            if(rot<=-45) {
+                rot = -45;
             }
-            if(rot>=90) {
-                rot = 90;
+            if(rot>=0) {
+                rot = 0;
             }
         }
     }
