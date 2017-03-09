@@ -21,6 +21,9 @@ public class FultonButton {
     private FultonButton(Activity activity) {
         this.activity = activity;
     }
+    public static FultonButton getInstance(Activity activity) {
+        return new FultonButton(activity);
+    }
     public void show(int x,int y) {
         if(fultonButtonView == null) {
             Point size = DimensionsUtil.getDeviceDimension(activity);
@@ -59,6 +62,8 @@ public class FultonButton {
         public boolean onTouchEvent(MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && fultonShape!=null) {
                 fultonShape.handleTap();
+                isAnimated = true;
+                postInvalidate();
             }
             return true;
         }
