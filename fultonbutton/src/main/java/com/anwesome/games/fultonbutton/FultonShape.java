@@ -12,6 +12,9 @@ public class FultonShape {
         this.y = h/2;
         this.r = w/4;
     }
+    public boolean stopped() {
+        return dir == 0;
+    }
     public void draw(Canvas canvas,Paint paint) {
         int l[] = {1,-1};
         paint.setColor(Color.parseColor("#4CAF50"));
