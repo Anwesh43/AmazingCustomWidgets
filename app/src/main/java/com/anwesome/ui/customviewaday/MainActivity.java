@@ -49,6 +49,7 @@ import com.anwesome.games.clockswitch.ClockSwitch;
 import com.anwesome.games.clockswitch.OnButtonSelected;
 import com.anwesome.games.ellipticalswitch.EllipticalSwitch;
 import com.anwesome.games.fultonbutton.FultonButton;
+import com.anwesome.games.fultonbutton.OnOffListener;
 import com.anwesome.games.latchbutton.LatchButton;
 import com.anwesome.games.latchbutton.LatchSelectedListener;
 import com.anwesome.games.multiplecheckbox.MultipleCheckBox;
@@ -499,6 +500,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showFultonButton() {
         FultonButton fultonButton = FultonButton.getInstance(this);
+        fultonButton.setOnOffListener(new OnOffListener() {
+            @Override
+            public void on() {
+                Toast.makeText(MainActivity.this, "On", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void off() {
+                Toast.makeText(MainActivity.this,"Off",Toast.LENGTH_SHORT).show();
+            }
+        });
         fultonButton.show(200,200);
     }
 }
