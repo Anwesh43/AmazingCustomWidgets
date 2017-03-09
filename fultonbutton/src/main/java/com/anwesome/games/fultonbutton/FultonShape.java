@@ -7,10 +7,13 @@ import android.graphics.*;
  */
 public class FultonShape {
     private float rot = 90,x=0,y=0,r=100,dir = 0,cy=0;
-    public FultonShape(float w,float h) {
+    private FultonShape(float w,float h) {
         this.x = w/2;
         this.y = h/2;
         this.r = w/4;
+    }
+    public static FultonShape getInstance(float w,float h) {
+        return new FultonShape(w,h);
     }
     public boolean stopped() {
         return dir == 0;
