@@ -59,4 +59,5 @@ dependencies {
     compile project(':circledarrowbutton')
     compile project(':latchbutton')
     compile project(':fultonbutton')
+    compile project(':spinnybutton')
 }

@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.Toast;
 import com.anwesome.app.alphaimageswitch.AlphaImageSwitch;
 import com.anwesome.app.alphaimageswitch.AlphaImageSwitchButton;
@@ -53,6 +54,7 @@ import com.anwesome.games.fultonbutton.OnOffListener;
 import com.anwesome.games.latchbutton.LatchButton;
 import com.anwesome.games.latchbutton.LatchSelectedListener;
 import com.anwesome.games.multiplecheckbox.MultipleCheckBox;
+import com.anwesome.games.spinnybutton.SpinnyButton;
 import com.anwesome.games.widholder.WidButton;
 import com.anwesome.games.widholder.WidHolder;
 import com.anwesome.games.widholder.WidOnClickListener;
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showFultonButton();
+                showSpinnyButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -512,5 +514,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         fultonButton.show(200,200);
+    }
+    public void showSpinnyButton() {
+        SpinnyButton spinnyButton = SpinnyButton.getInstance(this);
+        spinnyButton.show(100,100);
     }
 }
