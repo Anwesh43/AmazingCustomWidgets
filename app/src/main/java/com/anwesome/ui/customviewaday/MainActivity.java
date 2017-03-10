@@ -55,6 +55,7 @@ import com.anwesome.games.latchbutton.LatchButton;
 import com.anwesome.games.latchbutton.LatchSelectedListener;
 import com.anwesome.games.multiplecheckbox.MultipleCheckBox;
 import com.anwesome.games.spinnybutton.SpinnyButton;
+import com.anwesome.games.spinnybutton.ToggleSpinnyListener;
 import com.anwesome.games.widholder.WidButton;
 import com.anwesome.games.widholder.WidHolder;
 import com.anwesome.games.widholder.WidOnClickListener;
@@ -518,5 +519,16 @@ public class MainActivity extends AppCompatActivity {
     public void showSpinnyButton() {
         SpinnyButton spinnyButton = SpinnyButton.getInstance(this);
         spinnyButton.show(100,100);
+        spinnyButton.setToggleSpinnyListener(new ToggleSpinnyListener() {
+            @Override
+            public void onOpened() {
+                Toast.makeText(MainActivity.this,"Opened",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onClosed() {
+                Toast.makeText(MainActivity.this,"Closed",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
