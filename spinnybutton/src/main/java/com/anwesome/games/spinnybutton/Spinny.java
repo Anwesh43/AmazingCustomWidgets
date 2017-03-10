@@ -24,10 +24,10 @@ public class Spinny {
         canvas.save();
         canvas.translate(x,y);
         canvas.save();
-        canvas.translate(0,distY);
         canvas.rotate(deg);
         for(int i=0;i<2;i++) {
             canvas.save();
+            canvas.translate(distY*dir[i],0);
             canvas.scale(dir[i],1);
             paint.setColor(Color.BLACK);
             paint.setStyle(Paint.Style.FILL);
@@ -42,17 +42,21 @@ public class Spinny {
         canvas.restore();
     }
     public void update() {
-        if ((dir == 1 && deg < 90) || (dir == -1 && deg > 0)) {
+        if (distY == 0 && ((dir == 1 && deg < 90) || (dir == -1 && deg > 0))) {
             deg+=dir*15;
+            if(deg<=0) {
+                deg = 0;
+                dir = 0;
+            }
         }
         else if((dir == 1 && distY<minR) || (dir == -1 && distY>0)){
+            distY+=dir*(minR/6);
             if((dir == 1) && distY>=minR) {
                 distY  = minR;
                 dir = 0;
             }
             else if((dir == -1 && distY<=0)) {
                 distY = 0;
-                dir = 0;
             }
         }
     }
