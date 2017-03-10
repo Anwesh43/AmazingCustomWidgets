@@ -10,6 +10,7 @@ import android.graphics.RectF;
  */
 public class Spinny {
     private float x,y,radius,deg = 0,distY=0,minR,dir =0;
+    private ToggleSpinnyListener toggleSpinnyListener;
     private Spinny(float w,float h) {
         this.x = w/2;
         this.y = h/2;
@@ -18,6 +19,9 @@ public class Spinny {
     }
     public static Spinny getInstance(float w,float h) {
         return new Spinny(w,h);
+    }
+    public void setToggleSpinnyListener(ToggleSpinnyListener toggleSpinnyListener) {
+        this.toggleSpinnyListener = toggleSpinnyListener;
     }
     public void draw(Canvas canvas, Paint paint) {
         int dir[] = {1,-1};
@@ -47,6 +51,9 @@ public class Spinny {
             if(deg<=0) {
                 deg = 0;
                 dir = 0;
+                if(toggleSpinnyListener!=null) {
+                    toggleSpinnyListener.onClosed();
+                }
             }
         }
         else if((dir == 1 && distY<minR) || (dir == -1 && distY>0)){
@@ -54,6 +61,9 @@ public class Spinny {
             if((dir == 1) && distY>=minR) {
                 distY  = minR;
                 dir = 0;
+                if(toggleSpinnyListener!=null) {
+                    toggleSpinnyListener.onOpened();
+                }
             }
             else if((dir == -1 && distY<=0)) {
                 distY = 0;
