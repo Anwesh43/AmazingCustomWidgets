@@ -4,23 +4,33 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 11/03/17.
  */
 public class SpinnyButton {
     private Activity activity;
-
+    private SpinnyButtonView spinnyButtonView;
     private SpinnyButton(Activity activity) {
         this.activity = activity;
     }
     public static SpinnyButton getInstance(Activity activity) {
         return new SpinnyButton(activity);
     }
-    public void show() {
-
+    public void show(int x,int y) {
+        if(spinnyButtonView == null) {
+            spinnyButtonView = new SpinnyButtonView(activity);
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            activity.addContentView(spinnyButtonView,new ViewGroup.LayoutParams(size.x/4,size.x/4));
+        }
+        spinnyButtonView.setX(x);
+        spinnyButtonView.setY(y);
     }
     private class SpinnyButtonView extends View {
         private boolean isAnimated = false;
