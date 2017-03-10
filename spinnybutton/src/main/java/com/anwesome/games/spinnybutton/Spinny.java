@@ -10,11 +10,14 @@ import android.graphics.RectF;
  */
 public class Spinny {
     private float x,y,radius,deg = 0,distY=0,minR,dir =0;
-    public Spinny(float w,float h) {
+    private Spinny(float w,float h) {
         this.x = w/2;
         this.y = h/2;
         this.radius = w/3;
         this.minR = w/6;
+    }
+    public static Spinny getInstance(float w,float h) {
+        return new Spinny(w,h);
     }
     public void draw(Canvas canvas, Paint paint) {
         int dir[] = {1,-1};
