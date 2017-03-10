@@ -17,8 +17,15 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 public class SpinnyButton {
     private Activity activity;
     private SpinnyButtonView spinnyButtonView;
+    private ToggleSpinnyListener toggleSpinnyListener;
     private SpinnyButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setToggleSpinnyListener(ToggleSpinnyListener toggleSpinnyListener) {
+        this.toggleSpinnyListener = toggleSpinnyListener;
+        if(toggleSpinnyListener!=null) {
+            spinnyButtonView.setSpinnyListener(toggleSpinnyListener);
+        }
     }
     public static SpinnyButton getInstance(Activity activity) {
         return new SpinnyButton(activity);
@@ -40,9 +47,17 @@ public class SpinnyButton {
         public SpinnyButtonView(Context context) {
             super(context);
         }
+        public void setSpinnyListener(ToggleSpinnyListener toggleSpinnyListener) {
+            if(spinny!=null) {
+                spinny.setToggleSpinnyListener(toggleSpinnyListener);
+            }
+        }
         public void onDraw(Canvas canvas) {
             if(time == 0) {
                 spinny = Spinny.getInstance(canvas.getWidth(),canvas.getHeight());
+                if(toggleSpinnyListener!=null) {
+                    spinny.setToggleSpinnyListener(toggleSpinnyListener);
+                }
             }
             spinny.draw(canvas,paint);
             time++;
