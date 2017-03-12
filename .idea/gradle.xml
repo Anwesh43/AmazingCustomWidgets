@@ -50,6 +50,7 @@
             <option value="$PROJECT_DIR$/tricircledbutton" />
             <option value="$PROJECT_DIR$/valueanimatoradapter" />
             <option value="$PROJECT_DIR$/widholder" />
+            <option value="$PROJECT_DIR$/zoomshapebutton" />
           </set>
         </option>
         <option name="myModules">
@@ -97,6 +98,7 @@
             <option value="$PROJECT_DIR$/tricircledbutton" />
             <option value="$PROJECT_DIR$/valueanimatoradapter" />
             <option value="$PROJECT_DIR$/widholder" />
+            <option value="$PROJECT_DIR$/zoomshapebutton" />
           </set>
         </option>
       </GradleProjectSettings>

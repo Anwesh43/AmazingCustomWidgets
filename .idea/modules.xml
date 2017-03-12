@@ -45,6 +45,7 @@
       <module fileurl="file://$PROJECT_DIR$/tricircledbutton/tricircledbutton.iml" filepath="$PROJECT_DIR$/tricircledbutton/tricircledbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/valueanimatoradapter/valueanimatoradapter.iml" filepath="$PROJECT_DIR$/valueanimatoradapter/valueanimatoradapter.iml" />
       <module fileurl="file://$PROJECT_DIR$/widholder/widholder.iml" filepath="$PROJECT_DIR$/widholder/widholder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zoomshapebutton/zoomshapebutton.iml" filepath="$PROJECT_DIR$/zoomshapebutton/zoomshapebutton.iml" />
     </modules>
   </component>
 </project>
