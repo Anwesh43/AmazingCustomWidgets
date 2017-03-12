@@ -24,17 +24,18 @@ public class ZoomShape {
         canvas.restore();
     }
     public void update() {
-        if((dir == 1 && l < size/2) || (dir == -1 && l>0)) {
-            l+=(size/10)*dir;
-            if(l>size/2) {
-                l = size/2;
+        if(dir == 0) {
+            if ((dir == 1 && l < size / 2) || (dir == -1 && l > 0)) {
+                l += (size / 10) * dir;
+                if (l > size / 2) {
+                    l = size / 2;
+                }
+                if (l < 0) {
+                    l = 0;
+                }
+            } else {
+                deg += 9 * dir;
             }
-            if(l<0) {
-                l = 0;
-            }
-        }
-        else {
-            deg+=9*dir;
         }
     }
     public int hashCode() {
