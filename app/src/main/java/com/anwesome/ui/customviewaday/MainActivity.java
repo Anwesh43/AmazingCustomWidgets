@@ -58,6 +58,7 @@ import com.anwesome.games.spinnybutton.ToggleSpinnyListener;
 import com.anwesome.games.widholder.WidButton;
 import com.anwesome.games.widholder.WidHolder;
 import com.anwesome.games.widholder.WidOnClickListener;
+import com.anwesome.games.zoomshapebutton.ZoomShapeButton;
 import com.anwesome.ui.bulletedlist.BulletedList;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
 import com.anwesome.ui.compassbutton.CompassButton;
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showSpinnyButton();
+                showZoomShapedButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -529,5 +530,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"Closed",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showZoomShapedButton() {
+        ZoomShapeButton zoomShapeButton = new ZoomShapeButton(this);
+        zoomShapeButton.show();
     }
 }
