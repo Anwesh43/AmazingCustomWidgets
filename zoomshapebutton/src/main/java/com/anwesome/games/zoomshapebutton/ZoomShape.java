@@ -24,24 +24,32 @@ public class ZoomShape {
         canvas.restore();
     }
     public void update() {
-        if(dir == 0) {
-            if ((dir == 1 && l < size / 2) || (dir == -1 && l > 0)) {
-                l += (size / 10) * dir;
-                if (l > size / 2) {
-                    l = size / 2;
-                }
-                if (l < 0) {
-                    l = 0;
-                }
-            } else {
-                deg += 9 * dir;
+        if ((dir == 1 && l < size / 2) || (dir == -1 && l > 0)) {
+            l += (size / 10) * dir;
+            if (l > size / 2) {
+                l = size / 2;
+            }
+            if (l < 0) {
+                l = 0;
+            }
+        } else {
+            deg += 9 * dir;
+            if(deg>=45 || deg<=0) {
+                dir = 0;
             }
         }
+
+    }
+
+    public boolean stopped() {
+        return dir == 0;
     }
     public int hashCode() {
         return (int)(x+y+deg+l);
     }
     public void handleTap() {
-        dir = (deg == 0)?1:-1;
+        if(dir == 0) {
+            dir = (deg == 0) ? 1 : -1;
+        }
     }
 }

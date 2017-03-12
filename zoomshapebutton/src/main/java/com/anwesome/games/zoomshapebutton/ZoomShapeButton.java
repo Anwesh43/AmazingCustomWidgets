@@ -39,7 +39,10 @@ public class ZoomShapeButton {
             zoomShape.draw(canvas,paint);
             time++;
             if(isAnimated) {
-                zoomShape.draw(canvas,paint);
+                zoomShape.update();
+                if(zoomShape.stopped()) {
+                    isAnimated = false;
+                }
                 try {
                     Thread.sleep(100);
                     invalidate();
@@ -50,7 +53,7 @@ public class ZoomShapeButton {
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
-            if(event.getAction() == MotionEvent.ACTION_DOWN && isAnimated) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
                 zoomShape.handleTap();
                 isAnimated = true;
                 postInvalidate();
