@@ -13,6 +13,7 @@ import android.view.ViewGroup;
  */
 public class ZoomShapeButton {
     private Activity activity;
+    private OnOpenListener onOpenListener;
     private ZoomShapeButtonView zoomShapeButtonView;
     public ZoomShapeButton(Activity activity) {
        this.activity = activity;
@@ -20,10 +21,19 @@ public class ZoomShapeButton {
     public void show(int x,int y) {
         if(zoomShapeButtonView == null){
             zoomShapeButtonView = new ZoomShapeButtonView(activity);
+            if(onOpenListener!=null) {
+                zoomShapeButtonView.setOnOpenListener(onOpenListener);
+            }
             activity.addContentView(zoomShapeButtonView,new ViewGroup.LayoutParams(300,300));
         }
         zoomShapeButtonView.setX(x);
         zoomShapeButtonView.setY(y);
+    }
+    public void setOnOpenListener(OnOpenListener onOpenListener) {
+        this.onOpenListener = onOpenListener;
+        if(zoomShapeButtonView!=null) {
+            zoomShapeButtonView.setOnOpenListener(onOpenListener);
+        }
     }
     private class ZoomShapeButtonView extends View {
         private ZoomShape zoomShape = null;
@@ -32,6 +42,11 @@ public class ZoomShapeButton {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         public ZoomShapeButtonView(Context context) {
             super(context);
+        }
+        public void setOnOpenListener(OnOpenListener onOpenListener) {
+            if(zoomShape!=null) {
+                zoomShape.setOnOpenListener(onOpenListener);
+            }
         }
         public void onDraw(Canvas canvas) {
             if(time == 0) {
