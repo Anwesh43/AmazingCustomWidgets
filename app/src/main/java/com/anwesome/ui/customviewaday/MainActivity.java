@@ -58,6 +58,7 @@ import com.anwesome.games.spinnybutton.ToggleSpinnyListener;
 import com.anwesome.games.widholder.WidButton;
 import com.anwesome.games.widholder.WidHolder;
 import com.anwesome.games.widholder.WidOnClickListener;
+import com.anwesome.games.zoomshapebutton.OnOpenListener;
 import com.anwesome.games.zoomshapebutton.ZoomShapeButton;
 import com.anwesome.ui.bulletedlist.BulletedList;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
@@ -534,5 +535,16 @@ public class MainActivity extends AppCompatActivity {
     public void showZoomShapedButton() {
         ZoomShapeButton zoomShapeButton = new ZoomShapeButton(this);
         zoomShapeButton.show(200,200);
+        zoomShapeButton.setOnOpenListener(new OnOpenListener() {
+            @Override
+            public void open() {
+                Toast.makeText(MainActivity.this,"Opened",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void close() {
+                Toast.makeText(MainActivity.this, "Closed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
