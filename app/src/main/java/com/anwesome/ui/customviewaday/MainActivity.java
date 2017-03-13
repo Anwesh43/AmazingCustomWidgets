@@ -533,6 +533,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showZoomShapedButton() {
         ZoomShapeButton zoomShapeButton = new ZoomShapeButton(this);
-        zoomShapeButton.show();
+        zoomShapeButton.show(200,200);
     }
 }
