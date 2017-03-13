@@ -11,6 +11,9 @@ public class ScrollableImageView  {
     private ScrollableImageView(Bitmap bitmap) {
         this.bitmap = bitmap;
     }
+    public static ScrollableImageView newInstance(Bitmap bitmap) {
+        return new ScrollableImageView(bitmap);
+    }
     public void setHeight(float w,float h) {
         this.maxH = 4*h/15;
         this.y = h/5;
