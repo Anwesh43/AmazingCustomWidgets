@@ -17,11 +17,13 @@ public class ZoomShapeButton {
     public ZoomShapeButton(Activity activity) {
        this.activity = activity;
     }
-    public void show() {
+    public void show(int x,int y) {
         if(zoomShapeButtonView == null){
             zoomShapeButtonView = new ZoomShapeButtonView(activity);
             activity.addContentView(zoomShapeButtonView,new ViewGroup.LayoutParams(300,300));
         }
+        zoomShapeButtonView.setX(x);
+        zoomShapeButtonView.setY(y);
     }
     private class ZoomShapeButtonView extends View {
         private ZoomShape zoomShape = null;
@@ -44,7 +46,7 @@ public class ZoomShapeButton {
                     isAnimated = false;
                 }
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(50);
                     invalidate();
                 }
                 catch (Exception ex) {
