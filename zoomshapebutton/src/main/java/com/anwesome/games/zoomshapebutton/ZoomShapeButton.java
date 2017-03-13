@@ -22,7 +22,7 @@ public class ZoomShapeButton {
         if(zoomShapeButtonView == null){
             zoomShapeButtonView = new ZoomShapeButtonView(activity);
             if(onOpenListener!=null) {
-                zoomShapeButtonView.setOnOpenListener(onOpenListener);
+                zoomShapeButtonView.setOnOpenListener();
             }
             activity.addContentView(zoomShapeButtonView,new ViewGroup.LayoutParams(300,300));
         }
@@ -32,7 +32,7 @@ public class ZoomShapeButton {
     public void setOnOpenListener(OnOpenListener onOpenListener) {
         this.onOpenListener = onOpenListener;
         if(zoomShapeButtonView!=null) {
-            zoomShapeButtonView.setOnOpenListener(onOpenListener);
+            zoomShapeButtonView.setOnOpenListener();
         }
     }
     private class ZoomShapeButtonView extends View {
@@ -43,7 +43,7 @@ public class ZoomShapeButton {
         public ZoomShapeButtonView(Context context) {
             super(context);
         }
-        public void setOnOpenListener(OnOpenListener onOpenListener) {
+        public void setOnOpenListener() {
             if(zoomShape!=null) {
                 zoomShape.setOnOpenListener(onOpenListener);
             }
@@ -52,6 +52,9 @@ public class ZoomShapeButton {
             if(time == 0) {
                 float w = canvas.getWidth(),h = canvas.getHeight();
                 zoomShape = new ZoomShape(w,h);
+                if(onOpenListener!=null) {
+                    zoomShape.setOnOpenListener(onOpenListener);
+                }
             }
             zoomShape.draw(canvas,paint);
             time++;
