@@ -50,6 +50,8 @@ import com.anwesome.games.clockswitch.OnButtonSelected;
 import com.anwesome.games.ellipticalswitch.EllipticalSwitch;
 import com.anwesome.games.fultonbutton.FultonButton;
 import com.anwesome.games.fultonbutton.OnOffListener;
+import com.anwesome.games.imagebar.ImageBar;
+import com.anwesome.games.imagebar.OnToggleListener;
 import com.anwesome.games.latchbutton.LatchButton;
 import com.anwesome.games.latchbutton.LatchSelectedListener;
 import com.anwesome.games.multiplecheckbox.MultipleCheckBox;
@@ -89,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showZoomShapedButton();
+                showImageBar();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -544,6 +546,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void close() {
                 Toast.makeText(MainActivity.this, "Closed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void showImageBar() {
+        ImageBar imageBar = new ImageBar(this,BitmapFactory.decodeResource(getResources(),tImages[1]));
+        imageBar.show(100,100);
+        imageBar.setOnToggleListener(new OnToggleListener() {
+            @Override
+            public void show() {
+                Toast.makeText(MainActivity.this,"Hi!!",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void hide() {
+                Toast.makeText(MainActivity.this,"Bye!!",Toast.LENGTH_SHORT).show();
             }
         });
     }
