@@ -6,11 +6,15 @@ import android.graphics.*;
  * Created by anweshmishra on 13/03/17.
  */
 public class ZoomShape {
+    private OnOpenListener onOpenListener;
     private float size,x,y,deg=0,l=0,dir = 0;
     public ZoomShape(float w,float h) {
         this.x = w/2;
         this.y = h/2;
         this.size = w/3;
+    }
+    public void setOnOpenListener(OnOpenListener onOpenListener) {
+        this.onOpenListener = onOpenListener;
     }
     public void draw(Canvas canvas, Paint paint) {
         paint.setStrokeWidth(20);
@@ -29,14 +33,20 @@ public class ZoomShape {
             if (l > size / 2) {
                 l = size / 2;
             }
-            if (l < 0) {
+            if (l <= 0) {
                 l = 0;
                 dir  = 0;
+                if(onOpenListener!=null) {
+                    onOpenListener.close();
+                }
             }
         } else {
             deg += 9 * dir;
             if(deg>=45) {
                 dir = 0;
+                if(onOpenListener!=null) {
+                    onOpenListener.open();
+                }
             }
         }
 
