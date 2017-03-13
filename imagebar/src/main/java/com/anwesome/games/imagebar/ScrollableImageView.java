@@ -38,6 +38,9 @@ public class ScrollableImageView  {
         }
 
     }
+    public boolean stopped() {
+        return dir == 0;
+    }
     public void startMoving() {
         dir = h == 0?1:-1;
     }
