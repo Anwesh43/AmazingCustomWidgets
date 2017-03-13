@@ -13,7 +13,7 @@ public class ButtonHolderBar {
     private ButtonHolderBar(float w,float h) {
         this.w = w;
         this.h = h;
-        imageBarButton = ImageBarButton.getInstance(w-w/8,h/2,w/20);
+        imageBarButton = ImageBarButton.getInstance(w-w/8,h/2,w/16);
     }
     public static ButtonHolderBar getInstance(float w,float h) {
         return new ButtonHolderBar(w,h);

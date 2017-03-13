@@ -15,9 +15,10 @@ public class ScrollableImageView  {
         return new ScrollableImageView(bitmap);
     }
     public void setHeight(float w,float h) {
-        this.maxH = 4*h/15;
+        this.maxH = 4*h/5;
         this.y = h/5;
         this.w = w;
+        bitmap = Bitmap.createScaledBitmap(bitmap,(int)w,(int)(maxH),true);
     }
     public void draw(Canvas canvas, Paint paint) {
         Path path = new Path();

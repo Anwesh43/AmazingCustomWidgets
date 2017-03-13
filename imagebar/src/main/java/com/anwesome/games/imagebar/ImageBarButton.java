@@ -23,7 +23,7 @@ public class ImageBarButton {
         return dir == 0;
     }
     public boolean handleTap(float x,float y) {
-        boolean condition = x>=this.x-this.size/2 && x<=this.x+this.size/2 && y>=this.y-size/2 && y<=this.y+size/2;
+        boolean condition = x>=this.x-this.size && x<=this.x+this.size && y>=this.y-size && y<=this.y+size;
         dir = deg == 0?-1:1;
         return condition;
     }
