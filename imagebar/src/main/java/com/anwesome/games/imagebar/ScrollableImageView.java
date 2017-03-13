@@ -8,11 +8,15 @@ import android.graphics.*;
 public class ScrollableImageView  {
     private Bitmap bitmap;
     private float h = 0,dir = 0,w,maxH,y=0;
+    private OnToggleListener onToggleListener;
     private ScrollableImageView(Bitmap bitmap) {
         this.bitmap = bitmap;
     }
     public static ScrollableImageView newInstance(Bitmap bitmap) {
         return new ScrollableImageView(bitmap);
+    }
+    public void setOnToggleListener(OnToggleListener onToggleListener) {
+        this.onToggleListener = onToggleListener;
     }
     public void setHeight(float w,float h) {
         this.maxH = 4*h/5;
@@ -32,9 +36,15 @@ public class ScrollableImageView  {
             dir = 0;
             if(h>maxH) {
                 h = maxH;
+                if(onToggleListener!=null) {
+                    onToggleListener.show();
+                }
             }
             if(h<0) {
                 h = 0;
+                if(onToggleListener!=null){
+                    onToggleListener.hide();
+                }
             }
         }
 

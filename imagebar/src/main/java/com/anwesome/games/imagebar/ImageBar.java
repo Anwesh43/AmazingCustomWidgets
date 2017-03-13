@@ -21,6 +21,13 @@ public class ImageBar {
     private ButtonHolderBar bar;
     private ScrollableImageView scrollableImageView;
     private ImageBarView imageBarView;
+    public OnToggleListener onToggleListener;
+    public void setOnToggleListener(OnToggleListener onToggleListener) {
+        this.onToggleListener = onToggleListener;
+        if(scrollableImageView!=null) {
+            scrollableImageView.setOnToggleListener(onToggleListener);
+        }
+    }
     public ImageBar(Activity activity, Bitmap bitmap) {
         this.activity = activity;
         this.bitmap = bitmap;
@@ -31,6 +38,9 @@ public class ImageBar {
             int w = size.x/2;
             scrollableImageView = ScrollableImageView.newInstance(bitmap);
             scrollableImageView.setHeight(w,w);
+            if(onToggleListener!=null) {
+                scrollableImageView.setOnToggleListener(onToggleListener);
+            }
             bar = ButtonHolderBar.getInstance(w,w/5);
             imageBarView = new ImageBarView(activity);
             activity.addContentView(imageBarView,new ViewGroup.LayoutParams(w,w));
