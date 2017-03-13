@@ -15,6 +15,9 @@ public class ButtonHolderBar {
         this.h = h;
         imageBarButton = ImageBarButton.getInstance(w-w/8,h/2,w/20);
     }
+    public static ButtonHolderBar getInstance(float w,float h) {
+        return new ButtonHolderBar(w,h);
+    }
     public void draw(Canvas canvas, Paint paint) {
         paint.setColor(Color.parseColor("#3F51B5"));
         canvas.drawRect(0,0,w,h,paint);
@@ -35,5 +38,8 @@ public class ButtonHolderBar {
     }
     public int hashCode() {
         return (int)(w+h)+(imageBarButton!=null?imageBarButton.hashCode():0);
+    }
+    public boolean stopped() {
+        return imageBarButton.stopped();
     }
 }
