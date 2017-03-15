@@ -50,7 +50,7 @@ public class PlayPause {
                     if(playPauseController.isStopped()) {
                         isAnimated = false;
                     }
-                    Thread.sleep(50);
+                    Thread.sleep(90);
                     invalidate();
                 }
                 catch (Exception ex) {

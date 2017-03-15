@@ -13,6 +13,10 @@ public class ButtonUi {
         this.w = w;
         this.h = h;
         this.scale = getInitialScale();
+        this.deg = getInitialDeg();
+    }
+    protected float getInitialDeg() {
+        return 0;
     }
     public void startMoving(int dir) {
         this.dir = dir;
@@ -35,17 +39,17 @@ public class ButtonUi {
         return dir == 0;
     }
     public void update() {
-        deg+=72*dir;
+        deg+=36*dir;
         scale+=0.2f*dir;
-        if((scale>=1 && deg>=360) || (scale <=0 && deg<=0)) {
+        if((scale>=1 && deg>=0) || (scale <=0 && deg<=-180)) {
             dir = 0;
             if(scale>=1) {
-                deg = 360;
+                deg = 0;
                 scale = 1;
             }
             if(scale<=0) {
                 scale = 0;
-                deg = 0;
+                deg = -180;
             }
         }
     }
