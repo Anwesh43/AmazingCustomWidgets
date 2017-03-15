@@ -2,10 +2,9 @@ package com.anwesome.games.playpause;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.MotionEvent;
-import android.view.View;
+import android.graphics.*;
+import android.view.*;
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 15/03/17.
@@ -17,10 +16,15 @@ public class PlayPause {
     public PlayPause(Activity activity) {
         this.activity = activity;
     }
-    public void show() {
+    public void show(int x,int y) {
         if(playPauseView == null) {
             playPauseView = new PlayPauseView(activity);
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            playPauseController.setDimensions(size.x/4,size.x/4,size.x/4,size.x/4);
+            activity.addContentView(playPauseView,new ViewGroup.LayoutParams(size.x/2,size.x/2));
         }
+        playPauseView.setX(x);
+        playPauseView.setY(y);
     }
     private class PlayPauseView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
