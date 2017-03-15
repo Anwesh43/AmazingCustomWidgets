@@ -62,4 +62,5 @@ dependencies {
     compile project(':spinnybutton')
     compile project(':zoomshapebutton')
     compile project(':imagebar')
+    compile project(':playpause')
 }

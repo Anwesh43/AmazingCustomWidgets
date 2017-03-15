@@ -55,6 +55,8 @@ import com.anwesome.games.imagebar.OnToggleListener;
 import com.anwesome.games.latchbutton.LatchButton;
 import com.anwesome.games.latchbutton.LatchSelectedListener;
 import com.anwesome.games.multiplecheckbox.MultipleCheckBox;
+import com.anwesome.games.playpause.PlayPause;
+import com.anwesome.games.playpause.PlayPauseStateListener;
 import com.anwesome.games.spinnybutton.SpinnyButton;
 import com.anwesome.games.spinnybutton.ToggleSpinnyListener;
 import com.anwesome.games.widholder.WidButton;
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showImageBar();
+                showPlayPause();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -563,5 +565,20 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"Bye!!",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showPlayPause() {
+        PlayPause playPause = new PlayPause(this);
+        playPause.setPlayPauseStateListener(new PlayPauseStateListener() {
+            @Override
+            public void play() {
+                Toast.makeText(MainActivity.this,"Play",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void pause() {
+                Toast.makeText(MainActivity.this,"Pause",Toast.LENGTH_SHORT).show();
+            }
+        });
+        playPause.show(200,200);
     }
 }
