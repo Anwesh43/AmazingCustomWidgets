@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 16/03/17.
@@ -13,11 +17,20 @@ import android.view.View;
 public class DotSpin {
     private Activity activity;
     private DotSpinButton dotSpinButton = DotSpinButton.getInstance();
+    private DotSpinView dotSpinView;
     public DotSpin(Activity activity) {
         this.activity = activity;
     }
     public void show(int x,int y) {
-
+        if(dotSpinButton == null) {
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            int w = size.x/3;
+            dotSpinButton.setDimensions(w/2,w/2,w/3);
+            dotSpinView = new DotSpinView(activity);
+            activity.addContentView(dotSpinView,new ViewGroup.LayoutParams(w,w));
+        }
+        dotSpinView.setX(x);
+        dotSpinView.setY(y);
     }
     private class DotSpinView extends View {
         private boolean isAnimated = false;
