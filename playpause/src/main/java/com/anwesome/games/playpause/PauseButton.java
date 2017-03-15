@@ -12,7 +12,7 @@ public class PauseButton extends ButtonUi{
     }
     protected  void drawButton(Canvas canvas, Paint paint,float w,float h) {
         paint.setStrokeWidth(7);
-        canvas.drawLine(-w/2,-h/2,-w/2,h/2,paint);
-        canvas.drawLine(w/2,-h/2,w/2,h/2,paint);
+        canvas.drawLine(-w/4,-h/2,-w/4,h/2,paint);
+        canvas.drawLine(w/4,-h/2,w/4,h/2,paint);
     }
 }
