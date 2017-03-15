@@ -31,7 +31,7 @@ public class DotSpinButton{
         paint.setStyle(Paint.Style.FILL);
         for(int i=0;i<2;i++) {
             canvas.save();
-            canvas.translate(x,y+l*dir[i]);
+            canvas.translate(0,l*dir[i]);
             canvas.drawCircle(0,0,radius/10,paint);
             canvas.restore();
         }

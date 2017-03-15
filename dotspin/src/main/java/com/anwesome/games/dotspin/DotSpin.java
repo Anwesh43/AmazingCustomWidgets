@@ -22,7 +22,7 @@ public class DotSpin {
         this.activity = activity;
     }
     public void show(int x,int y) {
-        if(dotSpinButton == null) {
+        if(dotSpinView == null) {
             Point size = DimensionsUtil.getDeviceDimension(activity);
             int w = size.x/3;
             dotSpinButton.setDimensions(w/2,w/2,w/3);
