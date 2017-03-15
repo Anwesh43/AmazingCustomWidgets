@@ -37,6 +37,7 @@
       <module fileurl="file://$PROJECT_DIR$/modakbutton/modakbutton.iml" filepath="$PROJECT_DIR$/modakbutton/modakbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/multiplecheckbox/multiplecheckbox.iml" filepath="$PROJECT_DIR$/multiplecheckbox/multiplecheckbox.iml" />
       <module fileurl="file://$PROJECT_DIR$/pathtext/pathtext.iml" filepath="$PROJECT_DIR$/pathtext/pathtext.iml" />
+      <module fileurl="file://$PROJECT_DIR$/playpause/playpause.iml" filepath="$PROJECT_DIR$/playpause/playpause.iml" />
       <module fileurl="file://$PROJECT_DIR$/polygonaltraverseview/polygonaltraverseview.iml" filepath="$PROJECT_DIR$/polygonaltraverseview/polygonaltraverseview.iml" />
       <module fileurl="file://$PROJECT_DIR$/prokbutton/prokbutton.iml" filepath="$PROJECT_DIR$/prokbutton/prokbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/spinnybutton/spinnybutton.iml" filepath="$PROJECT_DIR$/spinnybutton/spinnybutton.iml" />
