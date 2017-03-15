@@ -16,10 +16,14 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
  */
 public class DotSpin {
     private Activity activity;
+    private View.OnClickListener onClickListener;
     private DotSpinButton dotSpinButton = DotSpinButton.getInstance();
     private DotSpinView dotSpinView;
     public DotSpin(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     public void show(int x,int y) {
         if(dotSpinView == null) {
@@ -44,6 +48,9 @@ public class DotSpin {
                 dotSpinButton.update();
                 if(dotSpinButton.stopped()) {
                     isAnimated = false;
+                    if(onClickListener!=null) {
+                        onClickListener.onClick(this);
+                    }
                 }
                 try {
                     Thread.sleep(50);
