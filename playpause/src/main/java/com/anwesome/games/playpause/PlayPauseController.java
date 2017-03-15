@@ -8,12 +8,16 @@ import android.graphics.*;
 public class PlayPauseController {
     private float dir = -1;
     private int mode = 0;
+    private PlayPauseStateListener playPauseStateListener;
     private PlayButton playButton = new PlayButton();
     private PauseButton pauseButton = new PauseButton();
     private boolean stopped = false;
     public void setDimensions(float x,float y,float w,float h) {
         playButton.setDimensions(x,y,w,h);
         pauseButton.setDimensions(x,y,w,h);
+    }
+    public void setPlayPauseStateListener(PlayPauseStateListener playPauseStateListener) {
+        this.playPauseStateListener = playPauseStateListener;
     }
     public void draw(Canvas canvas, Paint paint) {
         paint.setColor(Color.parseColor("#424242"));
@@ -31,6 +35,9 @@ public class PlayPauseController {
                    }
                    else {
                        stopped = true;
+                       if(playPauseStateListener!=null) {
+                           playPauseStateListener.play();
+                       }
                    }
                }
                break;
@@ -39,6 +46,9 @@ public class PlayPauseController {
                if(pauseButton.stopped()) {
                    if(dir == 1) {
                        stopped = true;
+                       if(playPauseStateListener!=null) {
+                           playPauseStateListener.pause();
+                       }
                    }
                    else {
                        mode = 0;

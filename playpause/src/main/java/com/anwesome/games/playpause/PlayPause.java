@@ -12,15 +12,25 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 public class PlayPause {
     private Activity activity;
     private PlayPauseView playPauseView;
+    private PlayPauseStateListener playPauseStateListener;
     private PlayPauseController playPauseController = new PlayPauseController();
     public PlayPause(Activity activity) {
         this.activity = activity;
+    }
+    public void setPlayPauseStateListener(PlayPauseStateListener playPauseStateListener) {
+        this.playPauseStateListener = playPauseStateListener;
+        if(playPauseController!=null) {
+            playPauseController.setPlayPauseStateListener(playPauseStateListener);
+        }
     }
     public void show(int x,int y) {
         if(playPauseView == null) {
             playPauseView = new PlayPauseView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
             playPauseController.setDimensions(size.x/4,size.x/4,size.x/4,size.x/4);
+            if(playPauseStateListener!=null) {
+                playPauseController.setPlayPauseStateListener(playPauseStateListener);
+            }
             activity.addContentView(playPauseView,new ViewGroup.LayoutParams(size.x/2,size.x/2));
         }
         playPauseView.setX(x);
