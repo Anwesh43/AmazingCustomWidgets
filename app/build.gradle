@@ -63,4 +63,5 @@ dependencies {
     compile project(':zoomshapebutton')
     compile project(':imagebar')
     compile project(':playpause')
+    compile project(':dotspin')
 }

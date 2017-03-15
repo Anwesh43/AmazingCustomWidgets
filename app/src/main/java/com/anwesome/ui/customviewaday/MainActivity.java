@@ -47,6 +47,7 @@ import com.anwesome.games.circledarrowbutton.CircledArrowButton;
 import com.anwesome.games.circledarrowbutton.ToggleSelectionListener;
 import com.anwesome.games.clockswitch.ClockSwitch;
 import com.anwesome.games.clockswitch.OnButtonSelected;
+import com.anwesome.games.dotspin.DotSpin;
 import com.anwesome.games.ellipticalswitch.EllipticalSwitch;
 import com.anwesome.games.fultonbutton.FultonButton;
 import com.anwesome.games.fultonbutton.OnOffListener;
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPlayPause();
+                showDotSpin();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -580,5 +581,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         playPause.show(200,200);
+    }
+    public void showDotSpin() {
+        DotSpin dotSpin = new DotSpin(this);
+        dotSpin.show(100,100);
+        dotSpin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this,"Loaded",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
