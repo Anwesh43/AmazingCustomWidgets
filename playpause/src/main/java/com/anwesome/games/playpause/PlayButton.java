@@ -13,9 +13,9 @@ public class PlayButton extends ButtonUi{
     }
     protected void drawButton(Canvas canvas, Paint paint,float w,float h) {
         Path path = new Path();
-        path.moveTo(-w/2,h/2);
-        path.lineTo(w/2,h/2);
-        path.lineTo(0,-h/2);
+        path.moveTo(w/2,0);
+        path.lineTo(-w/2,h/2);
+        path.lineTo(-w/2,-h/2);
         canvas.drawPath(path,paint);
     }
 }

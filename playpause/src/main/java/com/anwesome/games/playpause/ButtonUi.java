@@ -37,8 +37,16 @@ public class ButtonUi {
     public void update() {
         deg+=36*dir;
         scale+=0.1f*dir;
-        if((scale>=1 && deg>=360) || (scale <=0 || deg<=0)) {
+        if((scale>=1 && deg>=360) || (scale <=0 && deg<=0)) {
             dir = 0;
+            if(scale>=1) {
+                deg = 360;
+                scale = 1;
+            }
+            if(scale<=0) {
+                scale = 0;
+                deg = 0;
+            }
         }
     }
     public int hashCode() {

@@ -52,6 +52,7 @@ public class PlayPauseController {
        }
     }
     public void startMoving() {
+        stopped = false;
         dir*=-1;
         if(dir == 1) {
             playButton.startMoving(-1);
