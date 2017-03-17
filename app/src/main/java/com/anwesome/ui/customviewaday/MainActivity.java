@@ -51,6 +51,7 @@ import com.anwesome.games.dotspin.DotSpin;
 import com.anwesome.games.ellipticalswitch.EllipticalSwitch;
 import com.anwesome.games.fultonbutton.FultonButton;
 import com.anwesome.games.fultonbutton.OnOffListener;
+import com.anwesome.games.hamburgbutton.HamburgerButton;
 import com.anwesome.games.imagebar.ImageBar;
 import com.anwesome.games.imagebar.OnToggleListener;
 import com.anwesome.games.latchbutton.LatchButton;
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTriPathButton();
+                showHamburgButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -602,5 +603,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showHamburgButton() {
+        HamburgerButton hamburgerButton = new HamburgerButton(this);
+        hamburgerButton.show(300,300);
     }
 }
