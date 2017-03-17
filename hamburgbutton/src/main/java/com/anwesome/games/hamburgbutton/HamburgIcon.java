@@ -67,11 +67,12 @@ public class HamburgIcon {
     }
     public void draw(Canvas canvas, Paint paint) {
         paint.setColor(Color.BLACK);
+        paint.setStrokeWidth(12);
         canvas.save();
         canvas.translate(x,y);
-        for(int i = 0;i<=n;i++) {
+        for(int i = 0;i<n;i++) {
             canvas.save();
-            canvas.translate(0,(i-1)*30);
+            canvas.translate(0,(i-1)*l);
             canvas.rotate(deg*(2*i-1));
             canvas.drawLine(-w/2,0,w/2,0,paint);
             canvas.restore();

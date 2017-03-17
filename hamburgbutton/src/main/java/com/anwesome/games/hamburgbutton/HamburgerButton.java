@@ -25,7 +25,7 @@ public class HamburgerButton {
         if(view == null) {
             view = new HamburgerButtonView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
-            hamburgIcon = HamburgIcon.getInstance(size.x/4,size.x/4,size.x/4);
+            hamburgIcon = HamburgIcon.getInstance(size.x/4,size.x/4,size.x/8);
             activity.addContentView(view,new ViewGroup.LayoutParams(size.x/2,size.x/2));
         }
         view.setX(x);

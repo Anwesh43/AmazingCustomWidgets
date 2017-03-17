@@ -18,7 +18,7 @@ public class IconAnimationQueue {
             IconAnimation iconAnimation = iconAnimations.get(index);
             iconAnimation.execute(dir);
             if (iconAnimation.isDone()) {
-                if ((index < iconAnimations.size() - 1 && dir == 1) || (index > 0 || dir == -1)) {
+                if ((index < iconAnimations.size() - 1 && dir == 1) || (index > 0 && dir == -1)) {
                     index += dir;
                 } else {
                     stopped = true;
