@@ -21,7 +21,7 @@ public class PathFollowingBall {
     }
     public void draw(Canvas canvas, Paint paint) {
         float x = pivot.x+(float)(r*Math.cos(deg*Math.PI/180)),y = pivot.y+(float)(r*Math.sin(deg*Math.PI/180));
-        paint.setColor(Color.RED);
+        paint.setColor(Color.parseColor("#e53935"));
         paint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(x,y,maxR/12,paint);
     }

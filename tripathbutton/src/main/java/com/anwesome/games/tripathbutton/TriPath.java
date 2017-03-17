@@ -32,7 +32,8 @@ public class TriPath {
         int i=0;
         Path path = new Path();
         paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(Color.GREEN);
+        paint.setColor(Color.parseColor("#512DA8"));
+        paint.setStrokeWidth(12);
         for(PointF pointF:vertices) {
             if(i == 0) {
                 path.moveTo(pointF.x,pointF.y);
