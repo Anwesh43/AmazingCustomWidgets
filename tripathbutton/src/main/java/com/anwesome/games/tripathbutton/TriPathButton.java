@@ -24,7 +24,7 @@ public class TriPathButton {
         if(triPathButtonView==null) {
             triPathButtonView = new TriPathButtonView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
-            triPath = new TriPath(size.x/4,size.x/4,size.x/4);
+            triPath = new TriPath(size.x/4,size.x/4,size.x/5);
             pathFollowingBall = new PathFollowingBall(triPath);
             activity.addContentView(triPathButtonView,new ViewGroup.LayoutParams(size.x/2,size.x/2));
         }

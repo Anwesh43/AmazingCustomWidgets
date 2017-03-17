@@ -30,7 +30,7 @@ public class PathFollowingBall {
     }
     public void update() {
         r+=(maxR/STEPS)*dir;
-        if(r>=maxR) {
+        if(r>=(8*maxR)/10) {
             deg+=(360/SIDES);
             r = 0;
             dir = 0;
