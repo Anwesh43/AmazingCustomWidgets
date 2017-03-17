@@ -84,6 +84,9 @@ public class HamburgIcon {
             stopped = true;
         }
     }
+    public boolean isStopped() {
+        return stopped;
+    }
     public void handleTap() {
         stopped = false;
         iconAnimationQueue.startAnimating();
