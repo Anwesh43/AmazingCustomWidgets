@@ -21,13 +21,15 @@ public class HamburgerButton {
     public HamburgerButton(Activity activity) {
         this.activity = activity;
     }
-    public void show() {
+    public void show(int x,int y) {
         if(view == null) {
             view = new HamburgerButtonView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
             hamburgIcon = HamburgIcon.getInstance(size.x/4,size.x/4,size.x/4);
             activity.addContentView(view,new ViewGroup.LayoutParams(size.x/2,size.x/2));
         }
+        view.setX(x);
+        view.setY(y);
     }
     private class HamburgerButtonView extends View {
         private boolean isAnimated = false;
