@@ -5,6 +5,9 @@ import android.content.Context;
 import android.graphics.*;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 17/03/17.
@@ -17,11 +20,16 @@ public class TriPathButton {
     public TriPathButton(Activity activity) {
         this.activity = activity;
     }
-    public void show() {
+    public void show(int x,int y) {
         if(triPathButtonView==null) {
             triPathButtonView = new TriPathButtonView(activity);
-
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            triPath = new TriPath(size.x/4,size.x/4,size.x/4);
+            pathFollowingBall = new PathFollowingBall(triPath);
+            activity.addContentView(triPathButtonView,new ViewGroup.LayoutParams(size.x/2,size.x/2));
         }
+        triPathButtonView.setX(x);
+        triPathButtonView.setY(y);
     }
     private class TriPathButtonView extends View {
         private boolean isAnimated = false;
@@ -30,7 +38,12 @@ public class TriPathButton {
             super(context);
         }
         public void onDraw(Canvas canvas) {
+            triPath.draw(canvas,paint);
+            pathFollowingBall.draw(canvas,paint);
             if(isAnimated) {
+                if(pathFollowingBall!=null) {
+                    pathFollowingBall.update();
+                }
                 try {
                     Thread.sleep(50);
                     invalidate();
@@ -42,6 +55,7 @@ public class TriPathButton {
         }
         public boolean onTouchEvent(MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+                pathFollowingBall.startMoving();
                 isAnimated = true;
                 postInvalidate();
             }
