@@ -17,8 +17,12 @@ public class TriPathButton {
     private TriPath triPath;
     private PathFollowingBall pathFollowingBall;
     private TriPathButtonView triPathButtonView;
+    private View.OnClickListener onClickListener;
     public TriPathButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     public void show(int x,int y) {
         if(triPathButtonView==null) {
@@ -45,6 +49,9 @@ public class TriPathButton {
                     pathFollowingBall.update();
                     if(pathFollowingBall.stopped()) {
                         isAnimated = false;
+                        if(onClickListener!=null) {
+                            onClickListener.onClick(this);
+                        }
                     }
                 }
                 try {
