@@ -60,6 +60,7 @@ import com.anwesome.games.playpause.PlayPause;
 import com.anwesome.games.playpause.PlayPauseStateListener;
 import com.anwesome.games.spinnybutton.SpinnyButton;
 import com.anwesome.games.spinnybutton.ToggleSpinnyListener;
+import com.anwesome.games.tripathbutton.TriPathButton;
 import com.anwesome.games.widholder.WidButton;
 import com.anwesome.games.widholder.WidHolder;
 import com.anwesome.games.widholder.WidOnClickListener;
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDotSpin();
+                showTriPathButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -589,6 +590,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this,"Loaded",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void showTriPathButton() {
+        TriPathButton triPathButton = new TriPathButton(this);
+        triPathButton.show(200,200);
+        triPathButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }
