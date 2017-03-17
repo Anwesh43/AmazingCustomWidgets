@@ -10,10 +10,17 @@ import android.graphics.Paint;
 public class HamburgIcon {
     private IconAnimationQueue iconAnimationQueue = new IconAnimationQueue();
     private float x,y,w,n = 3,l,deg = 0;
+    private HamburgerListener listener;
     private boolean stopped = true;
-    private HamburgIcon(float x,float y,float w) {
+
+    public void setListener(HamburgerListener listener) {
+        this.listener = listener;
+    }
+
+    private HamburgIcon(float x, float y, float w) {
         this.x = x;
         this.y = y;
+
         this.w = w;
         this.l = w/2;
         initAnimations();
@@ -22,7 +29,7 @@ public class HamburgIcon {
         iconAnimationQueue.addIconAnimation(new IconAnimation() {
             @Override
             public void execute(int dir) {
-                l-=dir*(w/16);
+                l-=dir*(w/10);
             }
 
             @Override
@@ -36,6 +43,9 @@ public class HamburgIcon {
                 }
                 if(l>=w/2) {
                     l = w/2;
+                    if(listener!=null) {
+                        listener.onClose();
+                    }
                 }
             }
         });
@@ -54,6 +64,9 @@ public class HamburgIcon {
             public void setEdgeConditionOnComplete() {
                 if(deg>=45) {
                     deg = 45;
+                    if(listener!=null) {
+                        listener.onOpen();
+                    }
                 }
                 if(deg<=0) {
                     deg = 0;

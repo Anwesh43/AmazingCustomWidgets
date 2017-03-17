@@ -17,6 +17,15 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 public class HamburgerButton {
     private Activity activity;
     private HamburgIcon hamburgIcon;
+    private HamburgerListener hamburgerListener;
+
+    public void setHamburgerListener(HamburgerListener hamburgerListener) {
+        this.hamburgerListener = hamburgerListener;
+        if(hamburgIcon!=null) {
+            hamburgIcon.setListener(hamburgerListener);
+        }
+    }
+
     private HamburgerButtonView view;
     public HamburgerButton(Activity activity) {
         this.activity = activity;
@@ -27,6 +36,9 @@ public class HamburgerButton {
             Point size = DimensionsUtil.getDeviceDimension(activity);
             hamburgIcon = HamburgIcon.getInstance(size.x/4,size.x/4,size.x/8);
             activity.addContentView(view,new ViewGroup.LayoutParams(size.x/2,size.x/2));
+            if(hamburgerListener!=null) {
+                hamburgIcon.setListener(hamburgerListener);
+            }
         }
         view.setX(x);
         view.setY(y);
