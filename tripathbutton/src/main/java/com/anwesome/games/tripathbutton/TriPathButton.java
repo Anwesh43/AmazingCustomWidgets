@@ -43,6 +43,9 @@ public class TriPathButton {
             if(isAnimated) {
                 if(pathFollowingBall!=null) {
                     pathFollowingBall.update();
+                    if(pathFollowingBall.stopped()) {
+                        isAnimated = false;
+                    }
                 }
                 try {
                     Thread.sleep(50);

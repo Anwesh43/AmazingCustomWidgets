@@ -21,9 +21,9 @@ public class TriPath {
         initVertices(x,y,r);
     }
     private void initVertices(float x,float y,float r) {
-        int n = 3,deg = -60;
+        int n = 3,deg = -90;
         for(int i=0;i<3;i++) {
-            float vertX = x+(float)(r*Math.cos(deg*Math.PI/180)),vertY = (float)(r*Math.sin(deg*Math.PI/180));
+            float vertX = x+(float)(r*Math.cos(deg*Math.PI/180)),vertY = y+(float)(r*Math.sin(deg*Math.PI/180));
             deg+=(360/n);
             vertices.add(new PointF(vertX,vertY));
         }
@@ -41,6 +41,10 @@ public class TriPath {
                 path.lineTo(pointF.x,pointF.y);
             }
             i++;
+        }
+        if(vertices.size()>0) {
+            PointF firstVertex = vertices.get(0);
+            path.lineTo(firstVertex.x,firstVertex.y);
         }
         canvas.drawPath(path,paint);
     }

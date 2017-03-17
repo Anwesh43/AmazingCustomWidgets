@@ -7,8 +7,8 @@ import android.graphics.*;
  */
 public class PathFollowingBall {
     private TriPath triPath;
-    private final int SIDES = 3;
-    private float deg = -60,r=0,maxR = 0,dir = 0;
+    private final int SIDES = 3,STEPS=10;
+    private float deg = 60,r=0,maxR = 0,dir = 0;
     private int i = 0;
     private PointF pivot = new PointF();
     public PathFollowingBall(TriPath triPath) {
@@ -20,7 +20,7 @@ public class PathFollowingBall {
         pivot = triPath.getVertexAt(i);
     }
     public void draw(Canvas canvas, Paint paint) {
-        float x = pivot.x+(float)(r*Math.cos(deg*Math.PI/180)),y = pivot.x+(float)(r*Math.cos(deg*Math.PI/180));
+        float x = pivot.x+(float)(r*Math.cos(deg*Math.PI/180)),y = pivot.y+(float)(r*Math.sin(deg*Math.PI/180));
         paint.setColor(Color.RED);
         paint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(x,y,maxR/12,paint);
@@ -29,12 +29,11 @@ public class PathFollowingBall {
         dir = dir == 0?1:dir;
     }
     public void update() {
-        r+=maxR/5*dir;
+        r+=(maxR/STEPS)*dir;
         if(r>=maxR) {
             deg+=(360/SIDES);
             r = 0;
             dir = 0;
-            r = maxR;
             i++;
             i%=SIDES;
             pivot = triPath.getVertexAt(i);
