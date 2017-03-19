@@ -14,6 +14,9 @@ public class DeleteButtonController {
         this.size = size;
         this.bounds = bounds;
     }
+    public boolean isStopped() {
+        return stopped;
+    }
     public void draw(Canvas canvas,Paint paint) {
         canvas.save();
         canvas.translate(x,y);
@@ -43,7 +46,7 @@ public class DeleteButtonController {
                 break;
             case 2:
                 x+=size/15;
-                if(x>=bounds && !stopped) {
+                if(x>=bounds+size/2 && !stopped) {
                     stopped = true;
                 }
                 break;
