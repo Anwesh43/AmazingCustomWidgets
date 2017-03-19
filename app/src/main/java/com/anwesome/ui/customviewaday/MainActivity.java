@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showDeleteButton();
-                //ppView.setVisibility(View.INVISIBLE);
+                ppView.setVisibility(View.INVISIBLE);
             }
         });
     }
