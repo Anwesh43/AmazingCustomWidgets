@@ -47,6 +47,8 @@ import com.anwesome.games.circledarrowbutton.CircledArrowButton;
 import com.anwesome.games.circledarrowbutton.ToggleSelectionListener;
 import com.anwesome.games.clockswitch.ClockSwitch;
 import com.anwesome.games.clockswitch.OnButtonSelected;
+import com.anwesome.games.deletebutton.DeleteButton;
+import com.anwesome.games.deletebutton.DeleteButtonListener;
 import com.anwesome.games.dotspin.DotSpin;
 import com.anwesome.games.ellipticalswitch.EllipticalSwitch;
 import com.anwesome.games.fultonbutton.FultonButton;
@@ -97,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showHamburgButton();
+                //showDeleteButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -617,6 +619,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClose() {
                 Toast.makeText(MainActivity.this,"Closed",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void showDeleteButton() {
+        DeleteButton deleteButton = DeleteButton.getInstance(this);
+        deleteButton.show(300);
+        deleteButton.setDeleteButtonListener(new DeleteButtonListener() {
+            @Override
+            public void onDelete() {
+                Toast.makeText(MainActivity.this,"Deleted",Toast.LENGTH_SHORT).show();
             }
         });
     }

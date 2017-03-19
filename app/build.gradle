@@ -66,4 +66,5 @@ dependencies {
     compile project(':dotspin')
     compile project(':tripathbutton')
     compile project(':hamburgbutton')
+    compile project(':deletebutton')
 }
