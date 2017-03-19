@@ -52,6 +52,7 @@ import com.anwesome.games.ellipticalswitch.EllipticalSwitch;
 import com.anwesome.games.fultonbutton.FultonButton;
 import com.anwesome.games.fultonbutton.OnOffListener;
 import com.anwesome.games.hamburgbutton.HamburgerButton;
+import com.anwesome.games.hamburgbutton.HamburgerListener;
 import com.anwesome.games.imagebar.ImageBar;
 import com.anwesome.games.imagebar.OnToggleListener;
 import com.anwesome.games.latchbutton.LatchButton;
@@ -607,5 +608,16 @@ public class MainActivity extends AppCompatActivity {
     public void showHamburgButton() {
         HamburgerButton hamburgerButton = new HamburgerButton(this);
         hamburgerButton.show(300,300);
+        hamburgerButton.setHamburgerListener(new HamburgerListener() {
+            @Override
+            public void onOpen() {
+                Toast.makeText(MainActivity.this,"Opened",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onClose() {
+                Toast.makeText(MainActivity.this,"Closed",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
