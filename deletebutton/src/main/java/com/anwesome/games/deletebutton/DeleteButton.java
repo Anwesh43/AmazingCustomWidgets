@@ -24,13 +24,14 @@ public class DeleteButton  {
     public static DeleteButton getInstance(Activity activity) {
         return new DeleteButton(activity);
     }
-    public void show() {
+    public void show(int y) {
         if(deleteButtonView == null) {
             deleteButtonView = new DeleteButtonView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
-            deleteButtonController = new DeleteButtonController(size.x/8,size.x/8,size.x/4,size.x);
-            activity.addContentView(deleteButtonView,new ViewGroup.LayoutParams(size.x/4,size.x/4));
+            deleteButtonController = new DeleteButtonController(size.x/2,size.x/8,size.x/4,size.x);
+            activity.addContentView(deleteButtonView,new ViewGroup.LayoutParams(size.x,size.x/4));
         }
+        deleteButtonView.setY(y);
     }
     private class DeleteButtonView extends View {
         private boolean isAnimated = false;

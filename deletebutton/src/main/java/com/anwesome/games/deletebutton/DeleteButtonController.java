@@ -20,12 +20,14 @@ public class DeleteButtonController {
     public void draw(Canvas canvas,Paint paint) {
         canvas.save();
         canvas.translate(x,y);
+        canvas.rotate(deg);
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.parseColor("#FF9800"));
         canvas.drawCircle(0,0,size/2,paint);
         paint.setColor(Color.parseColor("#BDBDBD"));
         paint.setStrokeWidth(size/40);
         canvas.drawLine(-size/10,0,0,-l,paint);
+        canvas.drawLine(0,-l,size/10,0,paint);
         canvas.restore();
     }
     public void update() {
@@ -45,7 +47,7 @@ public class DeleteButtonController {
                 }
                 break;
             case 2:
-                x+=size/15;
+                x+=size/5;
                 if(x>=bounds+size/2 && !stopped) {
                     stopped = true;
                 }
