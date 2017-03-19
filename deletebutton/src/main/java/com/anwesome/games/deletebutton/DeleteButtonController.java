@@ -7,12 +7,16 @@ import android.graphics.*;
  */
 public class DeleteButtonController {
     private boolean stopped = false;
+    private DeleteButtonListener deleteButtonListener;
     private float x,y,size,l= 0,deg = 0,bounds;private int mode=0;
     public DeleteButtonController(float x,float y,float size,float bounds) {
         this.x = x;
         this.y = y;
         this.size = size;
         this.bounds = bounds;
+    }
+    public void setDeleteButtonListener(DeleteButtonListener deleteButtonListener) {
+        this.deleteButtonListener = deleteButtonListener;
     }
     public boolean isStopped() {
         return stopped;
@@ -50,6 +54,9 @@ public class DeleteButtonController {
                 x+=size/5;
                 if(x>=bounds+size/2 && !stopped) {
                     stopped = true;
+                    if(deleteButtonListener!=null) {
+                        deleteButtonListener.onDelete();
+                    }
                 }
                 break;
             default:

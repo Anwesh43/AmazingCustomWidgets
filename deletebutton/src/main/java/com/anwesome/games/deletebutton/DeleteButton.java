@@ -18,6 +18,7 @@ public class DeleteButton  {
     private Activity activity;
     private DeleteButtonController deleteButtonController;
     private DeleteButtonView deleteButtonView;
+    private DeleteButtonListener deleteButtonListener;
     private DeleteButton(Activity activity) {
         this.activity = activity;
     }
@@ -29,9 +30,18 @@ public class DeleteButton  {
             deleteButtonView = new DeleteButtonView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
             deleteButtonController = new DeleteButtonController(size.x/2,size.x/8,size.x/4,size.x);
+            if(deleteButtonListener!=null) {
+                deleteButtonController.setDeleteButtonListener(deleteButtonListener);
+            }
             activity.addContentView(deleteButtonView,new ViewGroup.LayoutParams(size.x,size.x/4));
         }
         deleteButtonView.setY(y);
+    }
+    public void setDeleteButtonListener(DeleteButtonListener deleteButtonListener) {
+        this.deleteButtonListener = deleteButtonListener;
+        if(deleteButtonController!=null) {
+            deleteButtonController.setDeleteButtonListener(deleteButtonListener);
+        }
     }
     private class DeleteButtonView extends View {
         private boolean isAnimated = false;
