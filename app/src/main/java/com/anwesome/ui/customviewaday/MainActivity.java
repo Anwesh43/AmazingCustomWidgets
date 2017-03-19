@@ -99,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //showDeleteButton();
-                ppView.setVisibility(View.INVISIBLE);
+                showDeleteButton();
+                //ppView.setVisibility(View.INVISIBLE);
             }
         });
     }
