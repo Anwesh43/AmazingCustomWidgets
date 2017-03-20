@@ -3,6 +3,7 @@ package com.anwesome.games.dataindicationbutton;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,11 +33,17 @@ public class DataIndicatorButton {
     }
     private class DataIndicatorView extends View {
         private boolean isAnimated = false;
+        private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         public DataIndicatorView(Context context) {
             super(context);
         }
         public void onDraw(Canvas canvas) {
+            dataIndicator.draw(canvas,paint);
             if(isAnimated) {
+                dataIndicator.update();
+                if(dataIndicator.stopped()) {
+                    isAnimated = false;
+                }
                 try {
                     Thread.sleep(50);
                     invalidate();
@@ -47,6 +54,7 @@ public class DataIndicatorButton {
         }
         public boolean onTouchEvent(MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+                dataIndicator.startMoving();
                 isAnimated = true;
                 postInvalidate();
             }
