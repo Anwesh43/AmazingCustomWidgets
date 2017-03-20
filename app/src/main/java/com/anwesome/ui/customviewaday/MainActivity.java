@@ -47,6 +47,9 @@ import com.anwesome.games.circledarrowbutton.CircledArrowButton;
 import com.anwesome.games.circledarrowbutton.ToggleSelectionListener;
 import com.anwesome.games.clockswitch.ClockSwitch;
 import com.anwesome.games.clockswitch.OnButtonSelected;
+import com.anwesome.games.dataindicationbutton.DataIndicationType;
+import com.anwesome.games.dataindicationbutton.DataIndicator;
+import com.anwesome.games.dataindicationbutton.DataIndicatorButton;
 import com.anwesome.games.deletebutton.DeleteButton;
 import com.anwesome.games.deletebutton.DeleteButtonListener;
 import com.anwesome.games.dotspin.DotSpin;
@@ -99,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDeleteButton();
+                showDataIndicator();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -631,5 +634,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"Deleted",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showDataIndicator() {
+        DataIndicatorButton dataIndicatorButton = new DataIndicatorButton(this);
+        dataIndicatorButton.show(DataIndicationType.NETWORK_DATA,200,200);
+        DataIndicatorButton dataIndicatorButton1 = new DataIndicatorButton(this);
+        dataIndicatorButton1.show(DataIndicationType.WIFI,500,500);
     }
 }

@@ -67,4 +67,5 @@ dependencies {
     compile project(':tripathbutton')
     compile project(':hamburgbutton')
     compile project(':deletebutton')
+    compile project(':dataindicationbutton')
 }
