@@ -26,7 +26,7 @@ public class DataIndicatorButton {
             dataIndicatorView = new DataIndicatorView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
             activity.addContentView(dataIndicatorView,new ViewGroup.LayoutParams(size.x/3,size.x/3));
-            dataIndicator = new DataIndicator(dataIndicationType,size.x/6,size.x/6,size.x/6);
+            dataIndicator = new DataIndicator(dataIndicationType,size.x/6,size.x/6,size.x/8);
         }
         dataIndicatorView.setX(x);
         dataIndicatorView.setY(y);

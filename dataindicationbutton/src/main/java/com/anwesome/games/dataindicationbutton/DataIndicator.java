@@ -7,7 +7,7 @@ import android.graphics.*;
  */
 public class DataIndicator {
     private DataIndicationType dataIndicationType;
-    private float x,y,radius,deg = 0,dir = 0;
+    private float x,y,radius,deg = 90,dir = 0;
     public DataIndicator(DataIndicationType dataIndicationType,float x,float y,float radius) {
         this.x = x;
         this.y = y;
@@ -18,15 +18,16 @@ public class DataIndicator {
         canvas.save();
         canvas.translate(x,y);
         canvas.rotate(deg);
-        if(deg == 90) {
-            paint.setColor(Color.WHITE);
+        if(deg == 0) {
+            paint.setColor(Color.parseColor("#9E9E9E"));
             paint.setStyle(Paint.Style.FILL);
             canvas.drawCircle(0,0,radius,paint);
-            paint.setColor(Color.BLACK);
+            paint.setColor(Color.parseColor("#424242"));
         }
         else {
             paint.setStyle(Paint.Style.STROKE);
-            paint.setColor(Color.WHITE);
+            paint.setColor(Color.parseColor("#9E9E9E"));
+            paint.setStrokeWidth(10);
             canvas.drawCircle(0,0,radius,paint);
         }
         paint.setStyle(Paint.Style.STROKE);
@@ -49,7 +50,7 @@ public class DataIndicator {
     }
     public void update() {
         deg+=10*dir;
-        if(deg>=90 || dir<=0) {
+        if(deg>=90 || deg<=0) {
             dir = 0;
         }
     }
@@ -71,7 +72,7 @@ public class DataIndicator {
         canvas.drawCircle(0,0,r,paint);
         for(int i=1;i<=3;i++) {
             float newR = r*(i*10);
-            canvas.drawArc(new RectF(-r,-r,r,r),240,60,false,paint);
+            canvas.drawArc(new RectF(-newR,-newR,newR,newR),240,60,false,paint);
         }
     }
     public int hashCode() {
