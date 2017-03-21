@@ -41,6 +41,11 @@ public class DataIndicator {
                 break;
             case WIFI:
                 drawWifi(canvas,paint);
+                break;
+            case WIFI_PC:
+                drawWifiPC(canvas,paint);
+            default:
+                break;
         }
         canvas.restore();
     }
@@ -85,6 +90,13 @@ public class DataIndicator {
         for(int i=1;i<=3;i++) {
             float newR = r*(i*10);
             canvas.drawArc(new RectF(-newR,-newR,newR,newR),240,60,false,paint);
+        }
+    }
+    private void drawWifiPC(Canvas canvas,Paint paint) {
+        float gap = radius/60,x=0;
+        for(int i=0;i<=4;i++) {
+            canvas.drawLine(x,0,x,7.5f*i*gap,paint);
+            x+=radius/8;
         }
     }
     public int hashCode() {
