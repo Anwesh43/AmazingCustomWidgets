@@ -663,5 +663,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         dataIndicatorButton1.show(DataIndicationType.WIFI,500,500);
+        DataIndicatorButton dataIndicatorButton3 = new DataIndicatorButton(this);
+        dataIndicatorButton3.setOnDataIndicatorSelectedListener(new OnDataIndicatorSelectedListener() {
+            @Override
+            public void onSelected() {
+                Toast.makeText(MainActivity.this,"Selected Wifi PC Network",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnSelected() {
+                Toast.makeText(MainActivity.this,"Unselected Wifi PC Network",Toast.LENGTH_SHORT).show();
+            }
+        });
+        dataIndicatorButton3.show(DataIndicationType.WIFI_PC,0,700);
     }
 }
