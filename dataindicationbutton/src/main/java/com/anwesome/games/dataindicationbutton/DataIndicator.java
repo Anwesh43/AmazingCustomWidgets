@@ -8,11 +8,15 @@ import android.graphics.*;
 public class DataIndicator {
     private DataIndicationType dataIndicationType;
     private float x,y,radius,deg = 90,dir = 0;
+    private OnDataIndicatorSelectedListener onDataIndicatorSelectedListener;
     public DataIndicator(DataIndicationType dataIndicationType,float x,float y,float radius) {
         this.x = x;
         this.y = y;
         this.radius = radius;
         this.dataIndicationType = dataIndicationType;
+    }
+    public void onDataIndicatorSelectedListener(OnDataIndicatorSelectedListener onDataIndicatorSelectedListener) {
+        this.onDataIndicatorSelectedListener = onDataIndicatorSelectedListener;
     }
     public void draw(Canvas canvas,Paint paint) {
         canvas.save();
@@ -52,6 +56,14 @@ public class DataIndicator {
         deg+=10*dir;
         if(deg>=90 || deg<=0) {
             dir = 0;
+            if(onDataIndicatorSelectedListener!=null) {
+                if (deg == 0) {
+                    onDataIndicatorSelectedListener.onSelected();
+                }
+                if(deg == 90) {
+                    onDataIndicatorSelectedListener.onUnSelected();
+                }
+            }
         }
     }
     public boolean stopped() {
