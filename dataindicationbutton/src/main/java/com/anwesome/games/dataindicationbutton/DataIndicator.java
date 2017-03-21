@@ -75,12 +75,13 @@ public class DataIndicator {
         return dir == 0;
     }
     private void drawNetworkData(Canvas canvas,Paint paint) {
+        paint.setStrokeCap(Paint.Cap.ROUND);
         for(int i=0;i<2;i++) {
             float lineDir = i*2-1;
             canvas.save();
             canvas.scale(lineDir,lineDir);
-            canvas.drawLine(radius/2,-(2*radius)/3,radius/2,(2*radius)/3,paint);
-            canvas.drawLine(radius/2,(2*radius)/3,radius/2+radius/8,(2*radius)/3-radius/8,paint);
+            canvas.drawLine(radius/3,-(2*radius)/3,radius/3,(2*radius)/3,paint);
+            canvas.drawLine(radius/3,(2*radius)/3,radius/3+radius/8,(2*radius)/3-radius/8,paint);
             canvas.restore();
         }
     }
@@ -93,9 +94,10 @@ public class DataIndicator {
         }
     }
     private void drawWifiPC(Canvas canvas,Paint paint) {
-        float gap = radius/60,x=0;
-        for(int i=0;i<=4;i++) {
-            canvas.drawLine(x,0,x,7.5f*i*gap,paint);
+        float gap = radius/60,x=radius/8;
+        canvas.drawLine(0,0,0,-radius/16,paint);
+        for(int i=1;i<=4;i++) {
+            canvas.drawLine(x,0,x,-7.5f*i*gap,paint);
             x+=radius/8;
         }
     }
