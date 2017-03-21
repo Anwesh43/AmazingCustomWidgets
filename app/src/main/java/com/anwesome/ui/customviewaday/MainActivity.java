@@ -50,6 +50,7 @@ import com.anwesome.games.clockswitch.OnButtonSelected;
 import com.anwesome.games.dataindicationbutton.DataIndicationType;
 import com.anwesome.games.dataindicationbutton.DataIndicator;
 import com.anwesome.games.dataindicationbutton.DataIndicatorButton;
+import com.anwesome.games.dataindicationbutton.OnDataIndicatorSelectedListener;
 import com.anwesome.games.deletebutton.DeleteButton;
 import com.anwesome.games.deletebutton.DeleteButtonListener;
 import com.anwesome.games.dotspin.DotSpin;
@@ -638,7 +639,29 @@ public class MainActivity extends AppCompatActivity {
     public void showDataIndicator() {
         DataIndicatorButton dataIndicatorButton = new DataIndicatorButton(this);
         dataIndicatorButton.show(DataIndicationType.NETWORK_DATA,200,200);
+        dataIndicatorButton.setOnDataIndicatorSelectedListener(new OnDataIndicatorSelectedListener() {
+            @Override
+            public void onSelected() {
+                Toast.makeText(MainActivity.this,"Selected Mobile Network",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnSelected() {
+                Toast.makeText(MainActivity.this,"Unselected Mobile Network",Toast.LENGTH_SHORT).show();
+            }
+        });
         DataIndicatorButton dataIndicatorButton1 = new DataIndicatorButton(this);
+        dataIndicatorButton1.setOnDataIndicatorSelectedListener(new OnDataIndicatorSelectedListener() {
+            @Override
+            public void onSelected() {
+                Toast.makeText(MainActivity.this,"Selected Wifi Network",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnSelected() {
+                Toast.makeText(MainActivity.this,"Unselected Wifi Network",Toast.LENGTH_SHORT).show();
+            }
+        });
         dataIndicatorButton1.show(DataIndicationType.WIFI,500,500);
     }
 }
