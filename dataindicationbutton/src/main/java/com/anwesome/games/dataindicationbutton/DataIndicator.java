@@ -15,7 +15,7 @@ public class DataIndicator {
         this.radius = radius;
         this.dataIndicationType = dataIndicationType;
     }
-    public void onDataIndicatorSelectedListener(OnDataIndicatorSelectedListener onDataIndicatorSelectedListener) {
+    public void setOnDataIndicatorSelectedListener(OnDataIndicatorSelectedListener onDataIndicatorSelectedListener) {
         this.onDataIndicatorSelectedListener = onDataIndicatorSelectedListener;
     }
     public void draw(Canvas canvas,Paint paint) {

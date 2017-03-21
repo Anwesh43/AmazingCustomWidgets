@@ -18,8 +18,15 @@ public class DataIndicatorButton {
     private Activity activity;
     private DataIndicatorView dataIndicatorView;
     private DataIndicator dataIndicator;
+    private OnDataIndicatorSelectedListener onDataIndicatorSelectedListener;
     public DataIndicatorButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnDataIndicatorSelectedListener(OnDataIndicatorSelectedListener onDataIndicatorSelectedListener) {
+        this.onDataIndicatorSelectedListener = onDataIndicatorSelectedListener;
+        if(dataIndicator!=null) {
+            dataIndicator.setOnDataIndicatorSelectedListener(onDataIndicatorSelectedListener);
+        }
     }
     public void show(DataIndicationType dataIndicationType,int x,int y) {
         if(dataIndicatorView == null) {
@@ -27,6 +34,9 @@ public class DataIndicatorButton {
             Point size = DimensionsUtil.getDeviceDimension(activity);
             activity.addContentView(dataIndicatorView,new ViewGroup.LayoutParams(size.x/3,size.x/3));
             dataIndicator = new DataIndicator(dataIndicationType,size.x/6,size.x/6,size.x/8);
+            if(onDataIndicatorSelectedListener!=null) {
+                dataIndicator.setOnDataIndicatorSelectedListener(onDataIndicatorSelectedListener);
+            }
         }
         dataIndicatorView.setX(x);
         dataIndicatorView.setY(y);
