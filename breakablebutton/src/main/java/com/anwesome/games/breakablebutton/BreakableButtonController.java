@@ -45,7 +45,7 @@ public class BreakableButtonController {
             paint.setColor(color);
             canvas.save();
             canvas.rotate((1-2*i)*deg);
-            canvas.drawRoundRect(new RectF((-w/2)*i,-h/2,(-w/2)*i+w/2,h/2),w/8,w/16,paint);
+            canvas.drawRect(new RectF((-w/2)*i,-h/2,(-w/2)*i+w/2,h/2),paint);
             textParts[1-i].draw(canvas,paint);
             canvas.restore();
         }
