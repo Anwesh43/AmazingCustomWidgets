@@ -18,6 +18,10 @@ public class BreakableButton  {
     private String text;
     private BreakableButtonView breakableButtonView;
     private BreakableButtonController breakableButtonController;
+    private View.OnClickListener onClickListener;
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
     public BreakableButton(Activity activity,String text) {
         this.activity = activity;
         this.text = text;
@@ -44,6 +48,9 @@ public class BreakableButton  {
                 breakableButtonController.update();
                 if(breakableButtonController.stopped()) {
                     isAnimated = false;
+                    if(onClickListener!=null) {
+                        onClickListener.onClick(this);
+                    }
                 }
                 try {
                     Thread.sleep(50);
