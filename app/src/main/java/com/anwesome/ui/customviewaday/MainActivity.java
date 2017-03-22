@@ -680,6 +680,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showBreakableButton() {
         BreakableButton breakableButton = new BreakableButton(this,"Need Button");
+        breakableButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this,"Breaking it",Toast.LENGTH_SHORT).show();
+            }
+        });
         breakableButton.show(300,300);
     }
 }
