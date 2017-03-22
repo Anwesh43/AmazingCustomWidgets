@@ -43,6 +43,7 @@ import com.anwesome.app.tablikeviews.TabLikeLayout;
 import com.anwesome.app.trianglecirclebutton.OnSelectedListener;
 import com.anwesome.app.trianglecirclebutton.TriCircButton;
 import com.anwesome.app.trianglecirclebutton.TricSwitch;
+import com.anwesome.games.breakablebutton.BreakableButton;
 import com.anwesome.games.circledarrowbutton.CircledArrowButton;
 import com.anwesome.games.circledarrowbutton.ToggleSelectionListener;
 import com.anwesome.games.clockswitch.ClockSwitch;
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDataIndicator();
+                showBreakableButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -676,5 +677,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         dataIndicatorButton3.show(DataIndicationType.WIFI_PC,0,700);
+    }
+    public void showBreakableButton() {
+        BreakableButton breakableButton = new BreakableButton(this,"Need Button");
+        breakableButton.show(300,300);
     }
 }

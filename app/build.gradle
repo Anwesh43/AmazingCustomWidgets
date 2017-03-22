@@ -68,4 +68,5 @@ dependencies {
     compile project(':hamburgbutton')
     compile project(':deletebutton')
     compile project(':dataindicationbutton')
+    compile project(':breakablebutton')
 }
