@@ -26,16 +26,26 @@ public class BreakableButtonController {
         return dir == 0;
     }
     public void initTextParts() {
-        paint.setTextSize(h/6);
+        paint.setTextSize(h/3);
         String msg = "";
+        int i = 0;
         for(char letter:text.toCharArray()) {
-            msg = msg+letter;
-            if(paint.measureText(msg) > paint.measureText(text)/2) {
-                textParts[0] = new TextPart(msg,w/2-paint.measureText(msg));
+
+            if(paint.measureText(msg+letter) > paint.measureText(text)/2) {
+                if(i == 1) {
+                    msg = msg+letter;
+                }
+                textParts[i] = new TextPart(msg,(i-1)*paint.measureText(msg));
+                i++;
+                if(i == 2 ){
+                    break;
+                }
                 msg = ""+letter;
             }
+            else {
+                msg = msg+letter;
+            }
         }
-        textParts[1] = new TextPart(msg,w/2);
     }
     public void draw(Canvas canvas) {
 
@@ -45,7 +55,7 @@ public class BreakableButtonController {
             paint.setColor(color);
             canvas.save();
             canvas.rotate((1-2*i)*deg);
-            canvas.drawRect(new RectF((-w/2)*i,-h/2,(-w/2)*i+w/2,h/2),paint);
+            canvas.drawRect(new RectF((-w/2)*i,-h,(-w/2)*i+w/2,0),paint);
             textParts[1-i].draw(canvas,paint);
             canvas.restore();
         }
@@ -74,6 +84,7 @@ public class BreakableButtonController {
     public void startMoving() {
         if(dir == 0) {
             dir = 1;
+            time = 0;
         }
     }
     public static BreakableButtonController getInstance(String text,float w) {
@@ -91,7 +102,7 @@ public class BreakableButtonController {
         }
         public void draw(Canvas canvas,Paint paint) {
             paint.setColor(Color.WHITE);
-            canvas.drawText(text,x,0,paint);
+            canvas.drawText(text,x,-h/2,paint);
         }
     }
 }
