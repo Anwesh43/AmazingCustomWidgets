@@ -42,6 +42,9 @@ public class BreakableButton  {
             breakableButtonController.draw(canvas);
             if(isAnimated) {
                 breakableButtonController.update();
+                if(breakableButtonController.stopped()) {
+                    isAnimated = false;
+                }
                 try {
                     Thread.sleep(50);
                     invalidate();

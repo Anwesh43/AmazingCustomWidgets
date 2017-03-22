@@ -17,6 +17,9 @@ public class BreakableButtonController {
         this.y = w/2;
         initTextParts();
     }
+    public boolean stopped() {
+        return dir == 0;
+    }
     public void initTextParts() {
         paint.setTextSize(h/6);
         String msg = "";
