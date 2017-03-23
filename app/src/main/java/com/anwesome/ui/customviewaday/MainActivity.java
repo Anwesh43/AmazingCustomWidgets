@@ -692,6 +692,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showLiveStreamButton() {
         LiveStreamButton liveStreamButton = new LiveStreamButton(this);
+        liveStreamButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
         liveStreamButton.show(200,200);
     }
 }
