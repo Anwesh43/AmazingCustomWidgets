@@ -15,9 +15,13 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 public class LiveStreamButton {
     private Activity activity;
     private LiveStreamButtonView liveStreamButtonView;
+    private View.OnClickListener onClickListener;
     private LiveStreamingButtonController liveStreamingButtonController;
     public LiveStreamButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     public void show(int x,int y) {
         if(liveStreamButtonView == null) {
@@ -42,6 +46,9 @@ public class LiveStreamButton {
                 liveStreamingButtonController.update();
                 if(liveStreamingButtonController.stopped()) {
                     isAnimated = false;
+                    if(onClickListener!=null) {
+                        onClickListener.onClick(this);
+                    }
                 }
                 try {
                     Thread.sleep(50);
