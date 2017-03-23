@@ -17,7 +17,7 @@ public class LiveStreamingButtonController {
     public LiveStreamingButtonController(float w) {
         this.x = w/2;
         this.y = w/2;
-        this.r = w/10;
+        this.r = w/30;
         this.r1 = w/4;
         this.r2 = w/3;
 
@@ -81,10 +81,12 @@ public class LiveStreamingButtonController {
     public void drawSignals(Canvas canvas,Paint paint) {
         paint.setColor(Color.GRAY);
         paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(9);
         for(int i = 0;i<2;i++) {
             canvas.save();
             canvas.scale(1,(2*i-1));
             canvas.drawArc(new RectF(-r1,-r1,r1,r1),90-a,2*a,false,paint);
+            canvas.drawArc(new RectF(-r2,-r2,r2,r2),90-a,2*a,false,paint);
             canvas.restore();
         }
     }
