@@ -13,13 +13,60 @@ import com.anwesome.games.animationqueue.ObjectAnimation;
  */
 public class LiveStreamingButtonController {
     private float x,y,r,r1,r2,a = 0,deg = 0,dir = 0;
-    private AnimationQueue animationQueue;
+    private AnimationQueue animationQueue = new AnimationQueue();
     public LiveStreamingButtonController(float w) {
         this.x = w/2;
         this.y = w/2;
         this.r = w/10;
         this.r1 = w/4;
         this.r2 = w/3;
+
+        animationQueue.addObjectAnimation(new ObjectAnimation() {
+            @Override
+            public void animate() {
+                a+=dir*6;
+            }
+
+            @Override
+            public boolean isDone() {
+                boolean condition = (dir == 1 && a>= 30) || (dir == -1 && a<=0);
+                if(condition){
+                    if(dir == 1) {
+                        a = 30;
+                    }
+                    else {
+                        a = 0;
+                    }
+                }
+                return condition;
+            }
+            public int hashCode() {
+                return  0;
+            }
+        });
+        animationQueue.addObjectAnimation(new ObjectAnimation() {
+            @Override
+            public void animate() {
+                deg+=dir*15;
+            }
+
+            @Override
+            public boolean isDone() {
+                boolean condition = (dir == 1 && deg>=90) || (dir == -1 && deg<=0);
+                if(condition) {
+                    if(dir==1) {
+                        deg = 90;
+                    }
+                    else {
+                        deg = 0;
+                    }
+                }
+                return  condition;
+            }
+            public int hashCode() {
+                return 1;
+            }
+        });
     }
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
@@ -42,13 +89,17 @@ public class LiveStreamingButtonController {
         }
     }
     public void update() {
-
+        animationQueue.execute();
+        if(animationQueue.stopped()) {
+            dir = 0;
+        }
     }
     public boolean stopped() {
         return  dir == 0;
     }
     public void startMoving() {
         dir = deg == 0?1:-1;
+        animationQueue.setDir(dir);
     }
     public int hashCode() {
         return (int)(x+y+r+r1+r2+deg+dir);
