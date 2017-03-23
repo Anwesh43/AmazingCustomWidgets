@@ -64,6 +64,8 @@ import com.anwesome.games.imagebar.ImageBar;
 import com.anwesome.games.imagebar.OnToggleListener;
 import com.anwesome.games.latchbutton.LatchButton;
 import com.anwesome.games.latchbutton.LatchSelectedListener;
+import com.anwesome.games.livestreamingbutton.LiveStreamButton;
+import com.anwesome.games.livestreamingbutton.LiveStreamingButtonController;
 import com.anwesome.games.multiplecheckbox.MultipleCheckBox;
 import com.anwesome.games.playpause.PlayPause;
 import com.anwesome.games.playpause.PlayPauseStateListener;
@@ -104,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showBreakableButton();
+                showLiveStreamButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -687,5 +689,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         breakableButton.show(300,300);
+    }
+    public void showLiveStreamButton() {
+        LiveStreamButton liveStreamButton = new LiveStreamButton(this);
+        liveStreamButton.show(200,200);
     }
 }
