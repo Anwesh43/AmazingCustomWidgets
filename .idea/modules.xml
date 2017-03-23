@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/CustomViewADay.iml" filepath="$PROJECT_DIR$/CustomViewADay.iml" />
       <module fileurl="file://$PROJECT_DIR$/actionsheettutorial/actionsheettutorial.iml" filepath="$PROJECT_DIR$/actionsheettutorial/actionsheettutorial.iml" />
       <module fileurl="file://$PROJECT_DIR$/alphaimageswitch/alphaimageswitch.iml" filepath="$PROJECT_DIR$/alphaimageswitch/alphaimageswitch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/animationqueue/animationqueue.iml" filepath="$PROJECT_DIR$/animationqueue/animationqueue.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/bargraphbutton/bargraphbutton.iml" filepath="$PROJECT_DIR$/bargraphbutton/bargraphbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/basicswitch/basicswitch.iml" filepath="$PROJECT_DIR$/basicswitch/basicswitch.iml" />
@@ -36,6 +37,7 @@
       <module fileurl="file://$PROJECT_DIR$/imageclippe/imageclippe.iml" filepath="$PROJECT_DIR$/imageclippe/imageclippe.iml" />
       <module fileurl="file://$PROJECT_DIR$/latchbutton/latchbutton.iml" filepath="$PROJECT_DIR$/latchbutton/latchbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/leaninputcontainer/leaninputcontainer.iml" filepath="$PROJECT_DIR$/leaninputcontainer/leaninputcontainer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/livestreamingbutton/livestreamingbutton.iml" filepath="$PROJECT_DIR$/livestreamingbutton/livestreamingbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/lockbuttons/lockbuttons.iml" filepath="$PROJECT_DIR$/lockbuttons/lockbuttons.iml" />
       <module fileurl="file://$PROJECT_DIR$/menuexpander/menuexpander.iml" filepath="$PROJECT_DIR$/menuexpander/menuexpander.iml" />
       <module fileurl="file://$PROJECT_DIR$/mirrorimagebutton/mirrorimagebutton.iml" filepath="$PROJECT_DIR$/mirrorimagebutton/mirrorimagebutton.iml" />
