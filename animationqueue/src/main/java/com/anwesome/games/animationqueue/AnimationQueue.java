@@ -18,7 +18,7 @@ public class AnimationQueue {
         index+=dir;
     }
     public void execute() {
-        if(index>0 && index<objectAnimations.size()) {
+        if(index>=0 && index<objectAnimations.size()) {
             ObjectAnimation objectAnimation = objectAnimations.get(index);
             objectAnimation.animate();
             if(objectAnimation.isDone()) {
