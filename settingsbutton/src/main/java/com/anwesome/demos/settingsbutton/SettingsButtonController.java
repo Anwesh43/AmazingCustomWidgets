@@ -24,17 +24,17 @@ public class SettingsButtonController {
         canvas.rotate(deg);
         drawSpikes(canvas,paint);
         paint.setColor(Color.WHITE);
-        canvas.drawCircle(0,0,r/3,paint);
+        canvas.drawCircle(0,0,r/2,paint);
         canvas.restore();
     }
     public void drawSpikes(Canvas canvas,Paint paint) {
-        float newR = r/2,dir = 1;
+        float newR = r/2+r/5,dir = 1;
         float xc = newR,yc = 0;
         Path path = new Path();
         path.moveTo(xc,yc);
         for(int i=0;i<360;i+=5) {
-            if(i%15 == 0) {
-                newR +=r/2*dir;
+            if(i%20 == 0) {
+                newR +=r/6*dir;
                 dir *=-1;
             }
             else {
