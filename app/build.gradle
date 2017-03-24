@@ -70,4 +70,5 @@ dependencies {
     compile project(':dataindicationbutton')
     compile project(':breakablebutton')
     compile project(':livestreamingbutton')
+    compile project(':settingsbutton')
 }
