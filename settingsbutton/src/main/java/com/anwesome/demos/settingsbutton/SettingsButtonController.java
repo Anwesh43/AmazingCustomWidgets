@@ -32,8 +32,8 @@ public class SettingsButtonController {
         float xc = newR,yc = 0;
         Path path = new Path();
         path.moveTo(xc,yc);
-        for(int i=0;i<360;i+=10) {
-            if(i%30 == 0) {
+        for(int i=0;i<360;i+=5) {
+            if(i%15 == 0) {
                 newR +=r/2*dir;
                 dir *=-1;
             }
