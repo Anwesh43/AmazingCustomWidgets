@@ -40,6 +40,9 @@ public class SettingsButton {
             settingsButtonController.draw(canvas,paint);
             if(isAnimated) {
                 settingsButtonController.update();
+                if(settingsButtonController.stopped()) {
+                    isAnimated = false;
+                }
                 try{
                     Thread.sleep(50);
                     invalidate();
