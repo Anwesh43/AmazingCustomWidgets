@@ -21,7 +21,7 @@ public class SettingsButton {
     public SettingsButton(Activity activity) {
         this.activity = activity;
     }
-    public void show() {
+    public void show(int x,int y) {
         if(settingsButtonView == null) {
             settingsButtonView = new SettingsButtonView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
@@ -29,6 +29,8 @@ public class SettingsButton {
             settingsButtonController = SettingsButtonController.getInstance(w/4,w/4,w/2);
             activity.addContentView(settingsButtonView,new ViewGroup.LayoutParams(w/2,w/2));
         }
+        settingsButtonView.setX(x);
+        settingsButtonView.setY(y);
     }
     private class SettingsButtonView extends View {
         private boolean isAnimated = false;
@@ -44,7 +46,7 @@ public class SettingsButton {
                     isAnimated = false;
                 }
                 try{
-                    Thread.sleep(50);
+                    Thread.sleep(100);
                     invalidate();
                 }
                 catch (Exception ex) {
