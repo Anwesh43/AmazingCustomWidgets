@@ -22,10 +22,10 @@ public class PlaybackButtonShape {
         canvas.save();
         canvas.translate(x,y);
         canvas.rotate(deg);
-        paint.setColor(Color.WHITE);
+        paint.setColor(Color.parseColor("#757575"));
         Path path = new Path();
         path.moveTo(0,r);
-        path.lineTo(0,0);
+        path.lineTo(r,0);
         path.lineTo(0,-r);
         path.lineTo(0,r);
         canvas.drawPath(path,paint);
@@ -34,11 +34,11 @@ public class PlaybackButtonShape {
         canvas.restore();
     }
     public void start() {
-        this.dir = deg == 0?1:-1;
+        this.dir = 1;
     }
     public void update() {
         this.deg+=dir*20;
-        if(this.deg == 0 || this.deg == 180) {
+        if(this.deg%180 == 0) {
             dir = 0;
         }
     }
