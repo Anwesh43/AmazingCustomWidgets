@@ -10,27 +10,22 @@ import android.graphics.Path;
  */
 public class PlaybackButtonShape {
     private float x,y,deg=0,dir=0,r;
-    private PlaybackButtonShape(float x,float y,float r) {
+    private PlaybackButtonType type;
+    private PlaybackButtonShape(float x,float y,float r,PlaybackButtonType type) {
         this.x = x;
         this.y = y;
         this.r = r;
+        this.type = type;
     }
-    public static PlaybackButtonShape getInstance(float x,float y,float r) {
-        return new PlaybackButtonShape(x,y,r);
+    public static PlaybackButtonShape getInstance(float x,float y,float r,PlaybackButtonType type) {
+        return new PlaybackButtonShape(x,y,r,type);
     }
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
         canvas.translate(x,y);
         canvas.rotate(deg);
         paint.setColor(Color.parseColor("#757575"));
-        Path path = new Path();
-        path.moveTo(0,r);
-        path.lineTo(r,0);
-        path.lineTo(0,-r);
-        path.lineTo(0,r);
-        canvas.drawPath(path,paint);
-        paint.setStrokeWidth(r/10);
-        canvas.drawLine(r,-r,r,r,paint);
+        PlaybackButtonUtil.drawShape(canvas,paint,r,type);
         canvas.restore();
     }
     public void start() {

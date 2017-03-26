@@ -12,8 +12,8 @@ public class PlaybackStateController {
     private boolean isAnimated = false;
     private View view;
     private PlaybackButtonShape playbackButtonShape;
-    public void init(View view,int w, int h) {
-        this.playbackButtonShape = PlaybackButtonShape.getInstance(w/2,h/2,w/3);
+    public void init(View view,int w, int h,PlaybackButtonType type) {
+        this.playbackButtonShape = PlaybackButtonShape.getInstance(w/2,h/2,w/3,type);
         this.view = view;
     }
     public void render(Canvas canvas, Paint paint) {

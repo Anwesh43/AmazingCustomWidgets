@@ -18,14 +18,16 @@ public class PlaybackButton {
     private PlaybackStateController playbackStateController = new PlaybackStateController();
     private Activity activity;
     private PlaybackButtonView playbackButtonView;
-    public PlaybackButton(Activity activity) {
+    private PlaybackButtonType type;
+    public PlaybackButton(Activity activity,PlaybackButtonType type) {
         this.activity = activity;
+        this.type = type;
     }
     public void show(int x,int y) {
         if(playbackButtonView==null) {
             playbackButtonView = new PlaybackButtonView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
-            playbackStateController.init(playbackButtonView,size.x/3,size.x/3);
+            playbackStateController.init(playbackButtonView,size.x/3,size.x/3,type);
             activity.addContentView(playbackButtonView,new ViewGroup.LayoutParams(size.x/3,size.x/3));
         }
         playbackButtonView.setX(x);
