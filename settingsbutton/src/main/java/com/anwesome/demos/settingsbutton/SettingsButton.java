@@ -17,9 +17,13 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 public class SettingsButton {
     private Activity activity;
     private SettingsButtonView settingsButtonView;
+    private View.OnClickListener onClickListener;
     private SettingsButtonController settingsButtonController;
     public SettingsButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     public void show(int x,int y) {
         if(settingsButtonView == null) {
@@ -44,6 +48,9 @@ public class SettingsButton {
                 settingsButtonController.update();
                 if(settingsButtonController.stopped()) {
                     isAnimated = false;
+                    if(onClickListener!=null) {
+                        onClickListener.onClick(this);
+                    }
                 }
                 try{
                     Thread.sleep(100);
