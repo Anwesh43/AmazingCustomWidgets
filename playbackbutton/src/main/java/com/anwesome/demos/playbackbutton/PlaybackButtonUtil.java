@@ -34,12 +34,13 @@ public class PlaybackButtonUtil {
     }
     private static void drawReplay(Canvas canvas,Paint paint,float r) {
         paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(r/10);
         canvas.drawArc(new RectF(-r,-r,r,r),-90,270,false,paint);
         paint.setStyle(Paint.Style.FILL);
         Path path = new Path();
-        path.moveTo(-r-r/10,0);
-        path.lineTo(-r,-r/10);
-        path.lineTo(-r+r/10,0);
+        path.moveTo(-r-r/3,0);
+        path.lineTo(-r,-r/3);
+        path.lineTo(-r+r/3,0);
         canvas.drawPath(path,paint);
     }
 }
