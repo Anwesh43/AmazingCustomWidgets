@@ -43,6 +43,8 @@ import com.anwesome.app.tablikeviews.TabLikeLayout;
 import com.anwesome.app.trianglecirclebutton.OnSelectedListener;
 import com.anwesome.app.trianglecirclebutton.TriCircButton;
 import com.anwesome.app.trianglecirclebutton.TricSwitch;
+import com.anwesome.demos.playbackbutton.PlaybackButton;
+import com.anwesome.demos.playbackbutton.PlaybackButtonType;
 import com.anwesome.demos.settingsbutton.SettingsButton;
 import com.anwesome.games.breakablebutton.BreakableButton;
 import com.anwesome.games.circledarrowbutton.CircledArrowButton;
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showSettingsButton();
+                showPlaybackButon();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -710,5 +712,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showPlaybackButon() {
+        PlaybackButton replaybutton = new PlaybackButton(this, PlaybackButtonType.REPLAY);
+        replaybutton.show(200,200);
+        PlaybackButton playbackcontrolbutton = new PlaybackButton(this, PlaybackButtonType.PLAYBACK_CONTROL);
+        playbackcontrolbutton.show(500,500);
     }
 }
