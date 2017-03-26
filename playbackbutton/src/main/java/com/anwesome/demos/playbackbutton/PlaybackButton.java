@@ -10,7 +10,6 @@ import android.view.View;
  * Created by anweshmishra on 27/03/17.
  */
 public class PlaybackButton {
-    private PlaybackButtonShape shape;
     private Activity activity;
     public PlaybackButton(Activity activity) {
         this.activity = activity;

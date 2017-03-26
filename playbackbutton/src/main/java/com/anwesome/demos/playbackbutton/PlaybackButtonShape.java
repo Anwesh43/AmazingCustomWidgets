@@ -45,4 +45,7 @@ public class PlaybackButtonShape {
     public int hashCode() {
         return (int)(x+y+r+deg);
     }
+    public boolean stopped() {
+        return dir == 0;
+    }
 }
