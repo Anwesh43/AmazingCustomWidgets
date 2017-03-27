@@ -39,8 +39,9 @@ public class Notepad {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(h/40);
         paint.setColor(Color.parseColor("#212121"));
+        paint.setStyle(Paint.Style.FILL);
         String tokens[] = text.split(" ");
-        for(int i=0;i<n-1;i++) {
+        for(int i=0;i<n;i++) {
             canvas.drawLine(-0.4f*size,-size/3+(i+1)*h,0.4f*size,-size/3+(i+1)*h,paint);
             if(i<tokens.length) {
                 canvas.drawText(tokens[i], -paint.measureText(tokens[i]) / 2, -size/3+(i+1)*h-paint.getTextSize() / 2, paint);
