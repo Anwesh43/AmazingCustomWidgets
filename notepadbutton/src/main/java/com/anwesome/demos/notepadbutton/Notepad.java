@@ -15,8 +15,9 @@ public class Notepad {
     private Notepad(float x,float y,float size,String text) throws Exception{
         this.x = x;
         this.y = y;
+        this.text = text;
         this.size = size;
-        if(this.text.split(" ").length<10) {
+        if(text.split(" ").length<10) {
             this.text = text;
             n = Math.max(n,this.text.split(" ").length);
         }
@@ -33,15 +34,17 @@ public class Notepad {
         canvas.drawRect(new RectF(-size/2,-size/2,size/2,-size/3),paint);
         paint.setColor(Color.parseColor("#E0E0E0"));
         canvas.drawRect(new RectF(-size/2,-size/3,size/2,size/2),paint);
-        float h = (2*size)/3;
+        float h = ((2*size)/3)/n;
         paint.setTextSize(h/2);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(h/40);
         paint.setColor(Color.parseColor("#212121"));
         String tokens[] = text.split(" ");
         for(int i=0;i<n-1;i++) {
-            canvas.drawLine(-0.4f*size,(i+1)*h,0.4f*size,(i+1)*h,paint);
-            canvas.drawText(tokens[i],-paint.measureText(tokens[i])/2,-paint.getTextSize()/2,paint);
+            canvas.drawLine(-0.4f*size,-size/3+(i+1)*h,0.4f*size,-size/3+(i+1)*h,paint);
+            if(i<tokens.length) {
+                canvas.drawText(tokens[i], -paint.measureText(tokens[i]) / 2, -size/3+(i+1)*h-paint.getTextSize() / 2, paint);
+            }
         }
         canvas.restore();
     }

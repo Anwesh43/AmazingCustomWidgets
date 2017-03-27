@@ -24,7 +24,7 @@ public class NotepadButton {
         this.text = text;
     }
     public void show() throws Exception {
-        if(notepadButtonView!=null) {
+        if(notepadButtonView==null) {
             notepadButtonView = new NotepadButtonView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
             int w = size.x;
@@ -40,16 +40,17 @@ public class NotepadButton {
         }
         public void onDraw(Canvas canvas) {
             notepad.draw(canvas,paint);
-            try {
-                notepad.update();
-                if(notepad.stopped()) {
-                    isAnimated = false;
-                }
-                Thread.sleep(50);
-                invalidate();
-            }
-            catch (Exception ex) {
+            if(isAnimated) {
+                try {
+                    notepad.update();
+                    if (notepad.stopped()) {
+                        isAnimated = false;
+                    }
+                    Thread.sleep(50);
+                    invalidate();
+                } catch (Exception ex) {
 
+                }
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
