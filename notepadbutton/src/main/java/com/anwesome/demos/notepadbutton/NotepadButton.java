@@ -19,7 +19,7 @@ public class NotepadButton {
     private String text;
     private Notepad notepad;
     private NotepadButtonView notepadButtonView;
-    private NotepadButton(Activity activity,String text) {
+    public NotepadButton(Activity activity,String text) {
         this.activity = activity;
         this.text = text;
     }
