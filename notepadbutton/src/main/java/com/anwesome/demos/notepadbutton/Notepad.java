@@ -57,6 +57,9 @@ public class Notepad {
     public int hashCode() {
         return text.hashCode();
     }
+    public boolean stopped() {
+        return dir == 0;
+    }
     public static Notepad getInstance(float x,float y,float size,String text) throws Exception{
         return new Notepad(x,y,size,text);
     }
