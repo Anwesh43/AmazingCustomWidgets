@@ -17,12 +17,26 @@ public class PinBarButton  {
 
     }
     private class PinBarButtonView extends View {
+        private boolean isAnimated = false;
         public PinBarButtonView(Context context) {
             super(context);
         }
         public void onDraw(Canvas canvas) {
+            if(isAnimated) {
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
+                }
+            }
         }
         public boolean onTouchEvent(MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+                isAnimated = true;
+                postInvalidate();
+            }
             return true;
         }
     }
