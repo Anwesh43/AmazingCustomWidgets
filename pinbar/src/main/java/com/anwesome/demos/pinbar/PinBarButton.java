@@ -10,6 +10,7 @@ import android.view.*;
  */
 public class PinBarButton  {
     private Activity activity;
+    private PinBar pinBar;
     public PinBarButton(Activity activity) {
         this.activity = activity;
     }
@@ -18,22 +19,30 @@ public class PinBarButton  {
     }
     private class PinBarButtonView extends View {
         private boolean isAnimated = false;
+        private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         public PinBarButtonView(Context context) {
             super(context);
         }
         public void onDraw(Canvas canvas) {
-            if(isAnimated) {
-                try {
-                    Thread.sleep(50);
-                    invalidate();
-                }
-                catch (Exception ex) {
+            if(pinBar!=null) {
+                pinBar.draw(canvas,paint);
+                if (isAnimated) {
+                    pinBar.update();
+                    if(pinBar.stopped()) {
+                        isAnimated = false;
+                    }
+                    try {
+                        Thread.sleep(50);
+                        invalidate();
+                    } catch (Exception ex) {
 
+                    }
                 }
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
-            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && pinBar!=null) {
+                pinBar.startMoving();
                 isAnimated = true;
                 postInvalidate();
             }
