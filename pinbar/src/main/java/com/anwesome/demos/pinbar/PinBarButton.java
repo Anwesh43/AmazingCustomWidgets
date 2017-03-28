@@ -5,17 +5,28 @@ import android.content.Context;
 import android.graphics.*;
 import android.view.*;
 
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
+
 /**
  * Created by anweshmishra on 29/03/17.
  */
 public class PinBarButton  {
     private Activity activity;
     private PinBar pinBar;
+    private PinBarButtonView pinBarButtonView;
     public PinBarButton(Activity activity) {
         this.activity = activity;
     }
-    public void show() {
-
+    public void show(int x,int y) {
+        if(pinBarButtonView == null) {
+            pinBarButtonView = new PinBarButtonView(activity);
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            int w = size.x;
+            activity.addContentView(pinBarButtonView,new ViewGroup.LayoutParams(w/2,w/2));
+            pinBar = PinBar.getInstance(w/4,w/4,w/4,w/4,5);
+        }
+        pinBarButtonView.setX(x);
+        pinBarButtonView.setY(y);
     }
     private class PinBarButtonView extends View {
         private boolean isAnimated = false;
