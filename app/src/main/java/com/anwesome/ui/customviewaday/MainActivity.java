@@ -44,6 +44,8 @@ import com.anwesome.app.trianglecirclebutton.OnSelectedListener;
 import com.anwesome.app.trianglecirclebutton.TriCircButton;
 import com.anwesome.app.trianglecirclebutton.TricSwitch;
 import com.anwesome.demos.notepadbutton.NotepadButton;
+import com.anwesome.demos.pinbar.PinBar;
+import com.anwesome.demos.pinbar.PinBarButton;
 import com.anwesome.demos.playbackbutton.PlaybackButton;
 import com.anwesome.demos.playbackbutton.PlaybackButtonType;
 import com.anwesome.demos.settingsbutton.SettingsButton;
@@ -110,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showNotepadButton();
+                showPinBar();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -728,5 +730,9 @@ public class MainActivity extends AppCompatActivity {
         catch (Exception ex) {
 
         }
+    }
+    public void showPinBar() {
+        PinBarButton pinBarButton = new PinBarButton(this);
+        pinBarButton.show(200,200);
     }
 }

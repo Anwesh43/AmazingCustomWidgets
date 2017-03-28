@@ -73,4 +73,5 @@ dependencies {
     compile project(':settingsbutton')
     compile project(':playbackbutton')
     compile project(':notepadbutton')
+    compile project(':pinbar')
 }
