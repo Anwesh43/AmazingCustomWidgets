@@ -75,4 +75,5 @@ dependencies {
     compile project(':notepadbutton')
     compile project(':pinbar')
     compile project(':androidbuttonloader')
+    compile project(':powerbutton')
 }

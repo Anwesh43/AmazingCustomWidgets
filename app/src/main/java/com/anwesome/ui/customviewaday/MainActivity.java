@@ -91,6 +91,8 @@ import com.anwesome.ui.completeballbuttons.CompleteBallButton;
 import com.anwesome.ui.crukybutton.CrukyButton;
 import com.anwesome.ui.fourbutton.FourButtons;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
+import com.anwesome.ui.powerbutton.PowerButton;
+import com.anwesome.ui.powerbutton.PowerButtonListener;
 import com.anwesome.ui.tricircledbutton.TriCircledButton;
 
 import java.util.ArrayList;
@@ -113,8 +115,8 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                initAndroidLoaderButton();
-                //ppView.setVisibility(View.INVISIBLE);
+                drawPowerButton();
+                ppView.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -763,5 +765,20 @@ public class MainActivity extends AppCompatActivity {
         };
         androidLoaderButton.show();
         new Thread(runnable).start();
+    }
+    public void drawPowerButton() {
+        PowerButton powerButton = new PowerButton(this);
+        powerButton.show(300,300);
+        powerButton.setPowerButtonListener(new PowerButtonListener() {
+            @Override
+            public void on() {
+                Toast.makeText(MainActivity.this, "On", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void off() {
+                Toast.makeText(MainActivity.this, "Off", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
