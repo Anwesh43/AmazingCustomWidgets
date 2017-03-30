@@ -740,7 +740,6 @@ public class MainActivity extends AppCompatActivity {
         if(androidLoaderButton == null) {
             androidLoaderButton = new AndroidLoaderButton(this);
         }
-        androidLoaderButton.show();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
@@ -762,5 +761,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         };
+        androidLoaderButton.show();
+        new Thread(runnable).start();
     }
 }
