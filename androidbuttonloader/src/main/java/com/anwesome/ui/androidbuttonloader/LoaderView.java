@@ -25,6 +25,7 @@ public class LoaderView extends View {
         }
         canvas.drawColor(Color.parseColor("#FAFAFA"));
         androidButton.draw(canvas,paint);
+        time++;
         if(isAnimated) {
             androidButton.update();
             try {
@@ -37,7 +38,7 @@ public class LoaderView extends View {
         }
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && androidButton!=null && androidButton.handleTap(event.getX(),event.getY())) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN && androidButton!=null && androidButton.handleTap(event.getX(),event.getY())) {
             isAnimated = !isAnimated;
             if(isAnimated) {
                 postInvalidate();

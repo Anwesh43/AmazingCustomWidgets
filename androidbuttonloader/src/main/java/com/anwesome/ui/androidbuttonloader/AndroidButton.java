@@ -14,7 +14,11 @@ public class AndroidButton {
         this.size = size;
     }
     public void draw(Canvas canvas, Paint paint) {
+        canvas.save();
+        canvas.translate(x,y);
+        canvas.rotate(deg);
         AblDrawingUtil.drawAndroidShape(canvas,paint,size);
+        canvas.restore();
     }
     public void update() {
         deg+=20*dir;
