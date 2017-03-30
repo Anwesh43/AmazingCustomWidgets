@@ -33,7 +33,6 @@ public class AndroidLoaderButton {
     }
     public void dismiss() {
         if(loaderView!=null && overlayView!=null) {
-            loaderView.stopAnimating();
             loaderView.setVisibility(View.INVISIBLE);
             overlayView.setVisibility(View.INVISIBLE);
         }
