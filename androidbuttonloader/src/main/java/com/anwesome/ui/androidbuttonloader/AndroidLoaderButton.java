@@ -23,8 +23,8 @@ public class AndroidLoaderButton {
             overlayView = new OverlayView(activity);
             activity.addContentView(overlayView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             Point dimension = DimensionsUtil.getDeviceDimension(activity);
-            activity.addContentView(loaderView,new ViewGroup.LayoutParams(dimension.x,dimension.y/3));
-            loaderView.setY(dimension.y/3);
+            activity.addContentView(loaderView,new ViewGroup.LayoutParams(dimension.x,dimension.y/2));
+            loaderView.setY(dimension.y/6);
         }
         else {
             loaderView.setVisibility(View.VISIBLE);
