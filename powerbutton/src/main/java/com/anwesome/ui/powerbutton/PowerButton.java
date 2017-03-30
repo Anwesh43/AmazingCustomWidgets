@@ -31,13 +31,33 @@ public class PowerButton {
         }
     }
     private class PowerButtonView extends View {
+        private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        private boolean isAnimated = false;
         public PowerButtonView(Context context) {
             super(context);
         }
         public void onDraw(Canvas canvas) {
+            powerButtonShape.draw(canvas,paint);
+            if(isAnimated) {
+                powerButtonShape.update();
+                if(powerButtonShape.stopped()) {
+                    isAnimated = false;
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
 
+                }
+            }
         }
         public boolean onTouchEvent(MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+                powerButtonShape.startMoving();
+                isAnimated = true;
+                postInvalidate();
+            }
             return true;
         }
     }
