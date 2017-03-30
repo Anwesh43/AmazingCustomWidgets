@@ -8,7 +8,7 @@ import android.graphics.Paint;
  */
 public class AndroidButton {
     private float x,y,size,deg = 0,dir = 0;
-    private AndroidButton(float x,float y,float size) {
+    public AndroidButton(float x,float y,float size) {
         this.x = x;
         this.y = y;
         this.size = size;
