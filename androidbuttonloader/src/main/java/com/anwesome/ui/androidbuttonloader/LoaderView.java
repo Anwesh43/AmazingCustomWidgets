@@ -36,8 +36,10 @@ public class LoaderView extends View {
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && androidButton!=null && androidButton.handleTap(event.getX(),event.getY())) {
-            isAnimated = true;
-            postInvalidate();
+            isAnimated = !isAnimated;
+            if(isAnimated) {
+                postInvalidate();
+            }
         }
         return true;
     }

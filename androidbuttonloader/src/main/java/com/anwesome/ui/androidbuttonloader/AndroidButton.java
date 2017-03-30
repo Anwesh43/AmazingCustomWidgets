@@ -7,7 +7,7 @@ import android.graphics.Paint;
  * Created by anweshmishra on 30/03/17.
  */
 public class AndroidButton {
-    private float x,y,size,deg = 0,dir = 0;
+    private float x,y,size,deg = 0,dir = 1;
     public AndroidButton(float x,float y,float size) {
         this.x = x;
         this.y = y;
