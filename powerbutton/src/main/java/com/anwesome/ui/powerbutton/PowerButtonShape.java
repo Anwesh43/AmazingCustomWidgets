@@ -23,13 +23,13 @@ public class PowerButtonShape {
         canvas.save();
         canvas.translate(x,y);
         canvas.rotate(deg);
-        canvas.drawArc(new RectF(-r,-r,r,r),270+a,360-2*a,true,paint);
+        canvas.drawArc(new RectF(-r,-r,r,r),270+a,360-2*a,false,paint);
         canvas.drawLine(0,0,0,-r,paint);
         canvas.restore();
     }
     public void update() {
         deg+=dir*9;
-        if(deg%90 == 0) {
+        if(deg%180 == 0) {
             dir = 0;
         }
     }

@@ -18,7 +18,7 @@ public class PowerButton {
     private Activity activity;
     private PowerButtonView powerButtonView;
     private PowerButtonShape powerButtonShape;
-    private PowerButton(Activity activity) {
+    public PowerButton(Activity activity) {
         this.activity = activity;
     }
     public void show() {
@@ -27,7 +27,7 @@ public class PowerButton {
             Point dimension = DimensionsUtil.getDeviceDimension(activity);
             int w = dimension.x;
             activity.addContentView(powerButtonView,new ViewGroup.LayoutParams(w/2,w/2));
-            powerButtonShape = PowerButtonShape.getInstance(w/4,w/4,w/4);
+            powerButtonShape = PowerButtonShape.getInstance(w/4,w/4,w/8);
         }
     }
     private class PowerButtonView extends View {
