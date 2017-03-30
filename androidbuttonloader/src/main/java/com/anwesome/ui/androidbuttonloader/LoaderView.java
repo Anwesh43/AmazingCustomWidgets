@@ -41,4 +41,9 @@ public class LoaderView extends View {
         }
         return true;
     }
+    public void stopAnimating() {
+        if(isAnimated) {
+            isAnimated = false;
+        }
+    }
 }
