@@ -2,6 +2,7 @@ package com.anwesome.ui.androidbuttonloader;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,6 +23,7 @@ public class LoaderView extends View {
             int w = canvas.getWidth(),h = canvas.getHeight();
             androidButton = new AndroidButton(w/2,h/2,w/6);
         }
+        canvas.drawColor(Color.parseColor("#FAFAFA"));
         androidButton.draw(canvas,paint);
         if(isAnimated) {
             androidButton.update();
