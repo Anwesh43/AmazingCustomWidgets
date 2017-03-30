@@ -7,7 +7,7 @@ import android.graphics.Paint;
  * Created by anweshmishra on 30/03/17.
  */
 public class AndroidButton {
-    private float x,y,size,deg = 0;
+    private float x,y,size,deg = 0,dir = 1;
     private AndroidButton(float x,float y,float size) {
         this.x = x;
         this.y = y;
@@ -17,9 +17,16 @@ public class AndroidButton {
         AblDrawingUtil.drawAndroidShape(canvas,paint,size);
     }
     public void update() {
-        deg+=20;
+        deg+=20*dir;
     }
     public int hashCode() {
         return (int)(x+y+deg);
+    }
+    public boolean handleTap(float x,float y) {
+        boolean condition = x>=this.x-size/2 && x<=this.x+size/2 && y>=this.y-size/2 && y<=this.y+size/2;
+        if(condition) {
+            dir = dir==0?1:0;
+        }
+        return condition;
     }
 }
