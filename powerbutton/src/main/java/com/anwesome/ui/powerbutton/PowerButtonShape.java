@@ -28,7 +28,7 @@ public class PowerButtonShape {
         canvas.restore();
     }
     public void update() {
-        deg+=dir*9;
+        deg+=dir*20;
         if(deg%180 == 0) {
             dir = 0;
         }
