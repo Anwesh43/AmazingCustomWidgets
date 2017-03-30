@@ -13,7 +13,7 @@ import android.view.View;
 public class LoaderView extends View {
     private int time = 0;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private boolean isAnimated = false;
+    private boolean isAnimated = true;
     private AndroidButton androidButton;
     public LoaderView(Context context) {
         super(context);
