@@ -71,7 +71,6 @@ import com.anwesome.games.imagebar.OnToggleListener;
 import com.anwesome.games.latchbutton.LatchButton;
 import com.anwesome.games.latchbutton.LatchSelectedListener;
 import com.anwesome.games.livestreamingbutton.LiveStreamButton;
-import com.anwesome.games.livestreamingbutton.LiveStreamingButtonController;
 import com.anwesome.games.multiplecheckbox.MultipleCheckBox;
 import com.anwesome.games.playpause.PlayPause;
 import com.anwesome.games.playpause.PlayPauseStateListener;
@@ -83,6 +82,7 @@ import com.anwesome.games.widholder.WidHolder;
 import com.anwesome.games.widholder.WidOnClickListener;
 import com.anwesome.games.zoomshapebutton.OnOpenListener;
 import com.anwesome.games.zoomshapebutton.ZoomShapeButton;
+import com.anwesome.ui.androidbuttonloader.AndroidLoaderButton;
 import com.anwesome.ui.bulletedlist.BulletedList;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
 import com.anwesome.ui.compassbutton.CompassButton;
@@ -97,6 +97,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private AndroidLoaderButton androidLoaderButton;
     private String actions[] = {"action1","action2","action3","action4"};
     private MenuExpander menuExpander;
     private ActionSheet actionSheet;
@@ -112,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPinBar();
-                ppView.setVisibility(View.INVISIBLE);
+                initAndroidLoaderButton();
+                //ppView.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -734,5 +735,32 @@ public class MainActivity extends AppCompatActivity {
     public void showPinBar() {
         PinBarButton pinBarButton = new PinBarButton(this);
         pinBarButton.show(200,200);
+    }
+    public void initAndroidLoaderButton() {
+        if(androidLoaderButton == null) {
+            androidLoaderButton = new AndroidLoaderButton(this);
+        }
+        androidLoaderButton.show();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                int time = 0;
+                while(time<6) {
+                    try {
+                        Thread.sleep(1000);
+                    }
+                    catch (Exception ex) {
+
+                    }
+                    time++;
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        androidLoaderButton.dismiss();
+                    }
+                });
+            }
+        };
     }
 }
