@@ -16,19 +16,31 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
  */
 public class PowerButton {
     private Activity activity;
+    private PowerButtonListener powerButtonListener;
     private PowerButtonView powerButtonView;
     private PowerButtonShape powerButtonShape;
     public PowerButton(Activity activity) {
         this.activity = activity;
     }
-    public void show() {
+    public void setPowerButtonListener(PowerButtonListener listener) {
+        this.powerButtonListener = listener;
+        if(powerButtonShape!=null) {
+            powerButtonShape.setPowerButtonListener(listener);
+        }
+    }
+    public void show(int x,int y) {
         if(powerButtonView == null) {
             powerButtonView = new PowerButtonView(activity);
             Point dimension = DimensionsUtil.getDeviceDimension(activity);
             int w = dimension.x;
             activity.addContentView(powerButtonView,new ViewGroup.LayoutParams(w/2,w/2));
             powerButtonShape = PowerButtonShape.getInstance(w/4,w/4,w/8);
+            if(powerButtonListener!=null) {
+                powerButtonShape.setPowerButtonListener(powerButtonListener);
+            }
         }
+        powerButtonView.setX(x);
+        powerButtonView.setY(y);
     }
     private class PowerButtonView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);

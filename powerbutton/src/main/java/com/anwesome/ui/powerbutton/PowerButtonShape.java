@@ -7,10 +7,14 @@ import android.graphics.*;
  */
 public class PowerButtonShape {
     private float x,y,r,deg = 0,dir = 1;
+    private PowerButtonListener listener;
     private PowerButtonShape(float x,float y,float r) {
         this.x = x;
         this.y = y;
         this.r = r;
+    }
+    public void setPowerButtonListener(PowerButtonListener listener) {
+        this.listener = listener;
     }
     public static PowerButtonShape getInstance(float x,float y,float r) {
         return new PowerButtonShape(x,y,r);
@@ -31,6 +35,14 @@ public class PowerButtonShape {
         deg+=dir*20;
         if(deg%180 == 0) {
             dir = 0;
+            if(listener!=null) {
+                if (deg == 0) {
+                    listener.off();
+                }
+                if (deg == -180) {
+                    listener.on();
+                }
+            }
         }
     }
     public void startMoving() {
