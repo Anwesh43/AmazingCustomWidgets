@@ -90,6 +90,7 @@ import com.anwesome.ui.completeballbuttons.BallButton;
 import com.anwesome.ui.completeballbuttons.CompleteBallButton;
 import com.anwesome.ui.crukybutton.CrukyButton;
 import com.anwesome.ui.fourbutton.FourButtons;
+import com.anwesome.ui.messageui.MessageUIButton;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 import com.anwesome.ui.powerbutton.PowerButton;
 import com.anwesome.ui.powerbutton.PowerButtonListener;
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawPowerButton();
+                showMessageUi();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -780,5 +781,15 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Off", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showMessageUi() {
+        MessageUIButton messageUIButton = new MessageUIButton(this);
+        messageUIButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "New Message", Toast.LENGTH_SHORT).show();
+            }
+        });
+        messageUIButton.show(200,200);
     }
 }

@@ -76,4 +76,5 @@ dependencies {
     compile project(':pinbar')
     compile project(':androidbuttonloader')
     compile project(':powerbutton')
+    compile project(':messageui')
 }
