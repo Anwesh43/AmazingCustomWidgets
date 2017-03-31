@@ -17,6 +17,7 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 public class MessageUIButton {
     private Activity activity;
     private MessageUIButtonView mView;
+    private MessageUi messageUi;
     public MessageUIButton(Activity activity) {
         this.activity = activity;
     }
@@ -26,6 +27,7 @@ public class MessageUIButton {
             Point dimension = DimensionsUtil.getDeviceDimension(activity);
             int w = dimension.x;
             activity.addContentView(mView,new ViewGroup.LayoutParams(w/3,w/3));
+            messageUi = new MessageUi(w/6,w/6,w/6);
         }
         mView.setX(x);
         mView.setY(y);
@@ -37,7 +39,12 @@ public class MessageUIButton {
             super(context);
         }
         public void onDraw(Canvas canvas) {
+            messageUi.draw(canvas,paint);
             if(isAnimated) {
+                messageUi.update();
+                if(messageUi.stopped()) {
+                    isAnimated = false;
+                }
                 try {
                     Thread.sleep(100);
                     invalidate();
@@ -49,6 +56,7 @@ public class MessageUIButton {
         }
         public boolean onTouchEvent(MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+                messageUi.startMoving();
                 isAnimated = true;
                 postInvalidate();
             }
