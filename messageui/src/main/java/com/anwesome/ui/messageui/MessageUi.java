@@ -13,6 +13,14 @@ public class MessageUi {
         this.size = size;
     }
     public void draw(Canvas canvas, Paint paint) {
+        canvas.save();
+        canvas.translate(x,y);
+        canvas.rotate(deg);
+        drawMessageShape(canvas,paint);
+        canvas.restore();
+
+    }
+    private void drawMessageShape(Canvas canvas,Paint paint) {
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(size/30);
