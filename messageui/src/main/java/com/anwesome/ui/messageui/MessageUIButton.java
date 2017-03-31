@@ -18,6 +18,7 @@ public class MessageUIButton {
     private Activity activity;
     private MessageUIButtonView mView;
     private MessageUi messageUi;
+    private View.OnClickListener onClickListener;
     public MessageUIButton(Activity activity) {
         this.activity = activity;
     }
@@ -32,6 +33,9 @@ public class MessageUIButton {
         mView.setX(x);
         mView.setY(y);
     }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
     private class MessageUIButtonView extends View {
         private boolean isAnimated = false;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -44,6 +48,9 @@ public class MessageUIButton {
                 messageUi.update();
                 if(messageUi.stopped()) {
                     isAnimated = false;
+                    if(onClickListener!=null) {
+                        onClickListener.onClick(this);
+                    }
                 }
                 try {
                     Thread.sleep(100);
