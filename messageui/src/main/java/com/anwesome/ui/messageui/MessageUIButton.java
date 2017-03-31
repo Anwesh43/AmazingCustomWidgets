@@ -19,14 +19,27 @@ public class MessageUIButton {
 
     }
     private class MessageUIButtonView extends View {
+        private boolean isAnimated = false;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         public MessageUIButtonView(Context context) {
             super(context);
         }
         public void onDraw(Canvas canvas) {
+            if(isAnimated) {
+                try {
+                    Thread.sleep(100);
+                    invalidate();
+                }
+                catch (Exception ex) {
 
+                }
+            }
         }
         public boolean onTouchEvent(MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+                isAnimated = true;
+                postInvalidate();
+            }
             return true;
         }
     }
