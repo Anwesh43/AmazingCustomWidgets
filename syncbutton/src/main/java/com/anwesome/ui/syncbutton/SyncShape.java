@@ -32,19 +32,23 @@ public class SyncShape {
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(r/6);
         Path path = new Path();
-        for(int i=60;i<=120;i++) {
-            float x = (float)(r*Math.cos(i*Math.PI/180)),y = (float)(r*Math.sin(i*Math.PI/180));
-            if(i == 60) {
-                path.moveTo(x,y);
-            }
-            else {
-                path.lineTo(x, y);
+        float x1 = (float)((r-r/20)*Math.cos(60*Math.PI/180)),y1 = (float)((r-r/20)*Math.sin(60*Math.PI/180));
+        path.moveTo(x1,y1);
+        drawArc(path,60,r-r/20,1);
+        drawPathInCircle(path,r-r/8,120);
+        drawPathInCircle(path,r,135);
+        drawPathInCircle(path,r+r/8,120);
+        drawArc(path,120,r+r/20,-1);
+        canvas.drawPath(path,paint);
+    }
+    public void drawArc(Path path,int s,float r,int dir) {
+        for(int i=s;;i+=dir) {
+            float x = (float)((r)*Math.cos(i*Math.PI/180)),y = (float)(r*Math.sin(i*Math.PI/180));
+            path.lineTo(x,y);
+            if(i == s+60*dir) {
+                break;
             }
         }
-        drawPathInCircle(path,r-r/10,120);
-        drawPathInCircle(path,r,135);
-        drawPathInCircle(path,r+r/10,120);
-        canvas.drawPath(path,paint);
     }
     public void update() {
         deg+=dir;
