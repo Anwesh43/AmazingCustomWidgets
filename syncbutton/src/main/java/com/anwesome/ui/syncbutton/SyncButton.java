@@ -44,6 +44,9 @@ public class SyncButton {
                 if(isAnimated) {
                     try {
                         syncShape.update();
+                        if(syncShape.stopped()) {
+                            isAnimated = false;
+                        }
                         Thread.sleep(50);
                         invalidate();
                     }

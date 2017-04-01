@@ -51,13 +51,13 @@ public class SyncShape {
         }
     }
     public void update() {
-        deg+=dir;
+        deg+=20*dir;
         if(deg %180 == 0) {
             dir = 0;
         }
     }
     public void startMoving() {
-        dir = dir == 0?1:0;
+        dir = dir == 0?1:dir;
     }
     public boolean stopped() {
         return dir == 0;
