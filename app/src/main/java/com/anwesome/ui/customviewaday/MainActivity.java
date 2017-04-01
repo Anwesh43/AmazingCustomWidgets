@@ -94,6 +94,7 @@ import com.anwesome.ui.messageui.MessageUIButton;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 import com.anwesome.ui.powerbutton.PowerButton;
 import com.anwesome.ui.powerbutton.PowerButtonListener;
+import com.anwesome.ui.syncbutton.SyncButton;
 import com.anwesome.ui.tricircledbutton.TriCircledButton;
 
 import java.util.ArrayList;
@@ -116,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMessageUi();
+                showSyncButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -791,5 +792,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         messageUIButton.show(200,200);
+    }
+    public void showSyncButton() {
+        SyncButton syncButton = new SyncButton(this);
+        syncButton.show(300,300);
     }
 }
