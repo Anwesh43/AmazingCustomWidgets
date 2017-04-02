@@ -54,9 +54,11 @@
       <module fileurl="file://$PROJECT_DIR$/powerbutton/powerbutton.iml" filepath="$PROJECT_DIR$/powerbutton/powerbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/prokbutton/prokbutton.iml" filepath="$PROJECT_DIR$/prokbutton/prokbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/settingsbutton/settingsbutton.iml" filepath="$PROJECT_DIR$/settingsbutton/settingsbutton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sharebutton/sharebutton.iml" filepath="$PROJECT_DIR$/sharebutton/sharebutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/spinnybutton/spinnybutton.iml" filepath="$PROJECT_DIR$/spinnybutton/spinnybutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/stickynotification/stickynotification.iml" filepath="$PROJECT_DIR$/stickynotification/stickynotification.iml" />
       <module fileurl="file://$PROJECT_DIR$/syncbutton/syncbutton.iml" filepath="$PROJECT_DIR$/syncbutton/syncbutton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/syncbutton2/syncbutton2.iml" filepath="$PROJECT_DIR$/syncbutton2/syncbutton2.iml" />
       <module fileurl="file://$PROJECT_DIR$/tablikeviews/tablikeviews.iml" filepath="$PROJECT_DIR$/tablikeviews/tablikeviews.iml" />
       <module fileurl="file://$PROJECT_DIR$/trianglecirclebutton/trianglecirclebutton.iml" filepath="$PROJECT_DIR$/trianglecirclebutton/trianglecirclebutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/tricircledbutton/tricircledbutton.iml" filepath="$PROJECT_DIR$/tricircledbutton/tricircledbutton.iml" />
