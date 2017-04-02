@@ -16,8 +16,8 @@ public class ShareShape {
     public void draw(Canvas canvas,Paint paint) {
         if(render == 0) {
             for(int i = 0;i<3;i++) {
-                xc[i] = (i%2)*r-r/2;
-                yc[i] = (i-1)*r/2;
+                xc[i] = (2*(i%2)-1)*r/3;
+                yc[i] = (i-1)*r/3;
             }
         }
         canvas.save();
@@ -25,13 +25,13 @@ public class ShareShape {
         canvas.rotate(deg);
         paint.setColor(Color.BLACK);
         canvas.drawCircle(0,0,r,paint);
-        paint.setStrokeWidth(r/9);
+        paint.setStrokeWidth(r/10);
         paint.setColor(Color.WHITE);
         for(int i=0;i<xc.length;i++) {
             if(i<xc.length-1) {
                 canvas.drawLine(xc[i],yc[i],xc[i+1],yc[i+1],paint);
             }
-            canvas.drawCircle(xc[i],yc[i],r/8,paint);
+            canvas.drawCircle(xc[i],yc[i],r/6,paint);
         }
         canvas.restore();
         render++;
