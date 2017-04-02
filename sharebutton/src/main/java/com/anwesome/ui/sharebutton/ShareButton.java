@@ -18,8 +18,12 @@ public class ShareButton {
     private Activity activity;
     private ShareShape shareShape;
     private ShareButtonView shareButtonView;
+    private View.OnClickListener onClickListener;
     public ShareButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     public void show(int x,int y) {
         if(shareButtonView == null) {
@@ -44,6 +48,9 @@ public class ShareButton {
                 shareShape.update();
                 if(shareShape.isStop()) {
                     isAnimated = false;
+                    if(onClickListener!=null) {
+                        onClickListener.onClick(this);
+                    }
                 }
                 try {
                     Thread.sleep(50);
