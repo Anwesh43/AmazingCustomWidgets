@@ -94,6 +94,7 @@ import com.anwesome.ui.messageui.MessageUIButton;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 import com.anwesome.ui.powerbutton.PowerButton;
 import com.anwesome.ui.powerbutton.PowerButtonListener;
+import com.anwesome.ui.sharebutton.ShareButton;
 import com.anwesome.ui.syncbutton.SyncButton;
 import com.anwesome.ui.tricircledbutton.TriCircledButton;
 
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showSyncButton();
+                showShareButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -796,5 +797,15 @@ public class MainActivity extends AppCompatActivity {
     public void showSyncButton() {
         SyncButton syncButton = new SyncButton(this);
         syncButton.show(300,300);
+    }
+    public void showShareButton() {
+        ShareButton shareButton = new ShareButton(this);
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Share", Toast.LENGTH_SHORT).show();
+            }
+        });
+        shareButton.show(200,200);
     }
 }

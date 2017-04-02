@@ -78,4 +78,5 @@ dependencies {
     compile project(':powerbutton')
     compile project(':messageui')
     compile project(':syncbutton')
+    compile project(':sharebutton')
 }
