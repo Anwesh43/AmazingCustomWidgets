@@ -30,6 +30,7 @@
       <module fileurl="file://$PROJECT_DIR$/dimensionsutil/dimensionsutil.iml" filepath="$PROJECT_DIR$/dimensionsutil/dimensionsutil.iml" />
       <module fileurl="file://$PROJECT_DIR$/dotspin/dotspin.iml" filepath="$PROJECT_DIR$/dotspin/dotspin.iml" />
       <module fileurl="file://$PROJECT_DIR$/ellipticalswitch/ellipticalswitch.iml" filepath="$PROJECT_DIR$/ellipticalswitch/ellipticalswitch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/emergencybutton/emergencybutton.iml" filepath="$PROJECT_DIR$/emergencybutton/emergencybutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/fourbutton/fourbutton.iml" filepath="$PROJECT_DIR$/fourbutton/fourbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/fultonbutton/fultonbutton.iml" filepath="$PROJECT_DIR$/fultonbutton/fultonbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/groupimagebuttons/groupimagebuttons.iml" filepath="$PROJECT_DIR$/groupimagebuttons/groupimagebuttons.iml" />
