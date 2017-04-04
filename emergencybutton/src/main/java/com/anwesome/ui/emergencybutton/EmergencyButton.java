@@ -17,6 +17,7 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 public class EmergencyButton {
     private Activity activity;
     private EmergencyButtonShape emergencyButtonShape;
+    private View.OnClickListener onClickListener;
     private EmergencyButtonShapeView emergencyButtonShapeView;
     public EmergencyButton(Activity activity) {
         this.activity = activity;
@@ -29,6 +30,9 @@ public class EmergencyButton {
             activity.addContentView(emergencyButtonShapeView,new ViewGroup.LayoutParams(w/2,w/2));
             emergencyButtonShape = new EmergencyButtonShape(w/4,w/4,w/4);
         }
+    }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     private class EmergencyButtonShapeView extends View {
         private boolean isAnimated = false;
@@ -43,6 +47,9 @@ public class EmergencyButton {
                     emergencyButtonShape.update();
                     if(emergencyButtonShape.stop()) {
                         isAnimated = false;
+                        if(onClickListener!=null) {
+                            onClickListener.onClick(this);
+                        }
                     }
                     Thread.sleep(50);
                     invalidate();
