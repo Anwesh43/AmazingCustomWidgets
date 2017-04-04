@@ -79,4 +79,5 @@ dependencies {
     compile project(':messageui')
     compile project(':syncbutton')
     compile project(':sharebutton')
+    compile project(':emergencybutton')
 }

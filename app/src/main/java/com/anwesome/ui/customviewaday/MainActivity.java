@@ -89,6 +89,7 @@ import com.anwesome.ui.compassbutton.CompassButton;
 import com.anwesome.ui.completeballbuttons.BallButton;
 import com.anwesome.ui.completeballbuttons.CompleteBallButton;
 import com.anwesome.ui.crukybutton.CrukyButton;
+import com.anwesome.ui.emergencybutton.EmergencyButton;
 import com.anwesome.ui.fourbutton.FourButtons;
 import com.anwesome.ui.messageui.MessageUIButton;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showShareButton();
+                showEmergencyButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -807,5 +808,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         shareButton.show(200,200);
+    }
+    public void showEmergencyButton() {
+        EmergencyButton emergencyButton = new EmergencyButton(this);
+        emergencyButton.show();
     }
 }
