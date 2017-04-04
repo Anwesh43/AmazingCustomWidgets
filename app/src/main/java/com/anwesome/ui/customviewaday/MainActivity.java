@@ -811,6 +811,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showEmergencyButton() {
         EmergencyButton emergencyButton = new EmergencyButton(this);
+        emergencyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Emergency", Toast.LENGTH_SHORT).show();
+            }
+        });
         emergencyButton.show();
     }
 }
