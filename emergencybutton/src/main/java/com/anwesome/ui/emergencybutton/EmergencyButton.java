@@ -41,6 +41,9 @@ public class EmergencyButton {
             if(isAnimated) {
                 try {
                     emergencyButtonShape.update();
+                    if(emergencyButtonShape.stop()) {
+                        isAnimated = false;
+                    }
                     Thread.sleep(50);
                     invalidate();
                 }
@@ -52,6 +55,8 @@ public class EmergencyButton {
         public boolean onTouchEvent(MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && emergencyButtonShape!=null) {
                 emergencyButtonShape.startMoving();
+                isAnimated = true;
+                postInvalidate();
             }
             return true;
         }

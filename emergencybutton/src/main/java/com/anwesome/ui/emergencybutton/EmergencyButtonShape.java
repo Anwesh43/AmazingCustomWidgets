@@ -20,6 +20,7 @@ public class EmergencyButtonShape {
         paint.setStyle(Paint.Style.FILL);
         canvas.save();
         canvas.translate(x,y);
+        canvas.rotate(deg);
         drawTriangle(canvas, paint);
         paint.setColor(Color.WHITE);
         drawEmergencyIcon(canvas,paint);
@@ -37,11 +38,12 @@ public class EmergencyButtonShape {
         canvas.drawPath(path,paint);
     }
     private void drawEmergencyIcon(Canvas canvas,Paint paint) {
+        paint.setStrokeWidth(size/16);
         canvas.drawLine(0,-size/4,0,size/4,paint);
         canvas.drawCircle(0,size/4+size/8,size/32,paint);
     }
     public void update() {
-        deg+=24*dir;
+        deg+=15*dir;
         if(deg % 360 == 0){
             dir = 0;
         }
@@ -50,6 +52,6 @@ public class EmergencyButtonShape {
         return dir == 0;
     }
     public void startMoving() {
-        dir = dir == 0?1:dir;
+        dir = 1;
     }
 }
