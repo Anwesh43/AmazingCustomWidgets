@@ -7,7 +7,6 @@ import java.util.*;
  * Created by anweshmishra on 05/04/17.
  */
 public class CalButtonShape {
-    private int mode = -1;
     private String mon,day;
     private float x,y,a;
     private AnimationController controller = new AnimationController();
@@ -36,7 +35,7 @@ public class CalButtonShape {
         canvas.drawRect(new RectF(0,-a,a,-a+a/5),paint);
         paint.setColor(Color.parseColor(CalButtonUtil.DAY_BAR_COLOR));
         paint.setTextSize(a/8);
-        canvas.drawText(mon,a/2-paint.measureText(mon)/2,-a+a/10,paint);
+        canvas.drawText(mon,a/2-paint.measureText(mon)/2,-a+a/10+paint.getTextSize()/4,paint);
         canvas.drawRect(new RectF(0,-a+a/5,a,0),paint);
         paint.setColor(Color.parseColor(CalButtonUtil.DAY_TEXT_COLOR));
         paint.setTextSize(3*a/5);
