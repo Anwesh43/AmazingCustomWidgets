@@ -45,7 +45,7 @@ public class CalButtonShape {
     public void update() {
         animate();
     }
-    public void animate() {
+    private void animate() {
         switch(mode) {
             case 0:
                 deg-=5;
