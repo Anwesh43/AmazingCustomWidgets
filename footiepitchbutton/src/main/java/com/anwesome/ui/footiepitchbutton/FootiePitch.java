@@ -18,14 +18,16 @@ public class FootiePitch {
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
         canvas.translate(x,y);
-        canvas.rotate(deg);
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.parseColor("#43A047"));
-        canvas.drawRect(new RectF(-size/2,-size/2,size/2,size/2),paint);
+        canvas.drawRect(new RectF(-size,-size,size,size),paint);
+        canvas.rotate(deg);
+        paint.setStrokeWidth(size/30);
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.WHITE);
-        canvas.drawRect(new RectF(-size/2,-size/2,size/2,size/2),paint);
-        canvas.drawArc(new RectF(-size/4,-2*size/5,-3*size/4,-3*size/5),180,180,true,paint);
+        canvas.drawRect(new RectF(-size/2,-size/4,size/2,size/4),paint);
+        canvas.drawRect(new RectF(-size/4,size/2-size/4,size/4,size/2),paint);
+        canvas.drawArc(new RectF(-size/4,-size/4-size/8,size/4,-size/4+size/8),180,180,true,paint);
         canvas.restore();
     }
     public void update() {

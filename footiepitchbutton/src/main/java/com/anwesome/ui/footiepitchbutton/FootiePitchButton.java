@@ -26,7 +26,7 @@ public class FootiePitchButton {
             footiePitchView = new FootiePitchView(activity);
             Point dimension = DimensionsUtil.getDeviceDimension(activity);
             int w = dimension.x;
-            activity.addContentView(footiePitchView,new ViewGroup.LayoutParams(w/2,w/2));
+            activity.addContentView(footiePitchView,new ViewGroup.LayoutParams(w,w));
             footiePitch = new FootiePitch(w/4,w/4,w/4);
         }
         footiePitchView.setX(x);
@@ -43,6 +43,9 @@ public class FootiePitchButton {
             if(isAnimated) {
                 try {
                     footiePitch.update();
+                    if(footiePitch.stop()) {
+                        isAnimated = false;
+                    }
                     Thread.sleep(50);
                     invalidate();
                 }
