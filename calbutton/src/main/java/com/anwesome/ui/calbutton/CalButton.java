@@ -18,8 +18,12 @@ public class CalButton {
     private Activity activity;
     private CalButtonView view;
     private CalButtonShape calButtonShape;
+    private View.OnClickListener onClickListener;
     public CalButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     public void show(int x,int y) {
         if(view == null) {
@@ -44,6 +48,9 @@ public class CalButton {
                 calButtonShape.update();
                 if(calButtonShape.stop()) {
                     isAnimated = false;
+                    if(onClickListener != null) {
+                        onClickListener.onClick(this);
+                    }
                 }
                 try {
                     Thread.sleep(50);
