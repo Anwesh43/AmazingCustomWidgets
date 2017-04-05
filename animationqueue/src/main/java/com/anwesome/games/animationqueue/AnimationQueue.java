@@ -27,6 +27,7 @@ public class AnimationQueue {
         }
         else {
             dir = 0;
+            index = -1;
         }
     }
     public boolean stopped() {
