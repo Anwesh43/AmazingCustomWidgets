@@ -26,7 +26,7 @@ public class FootiePitch {
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.WHITE);
         canvas.drawRect(new RectF(-size/2,-size/4,size/2,size/4),paint);
-        canvas.drawRect(new RectF(-size/4,size/2-size/4,size/4,size/2),paint);
+        canvas.drawRect(new RectF(-size/4,size/4-size/8,size/4,size/4),paint);
         canvas.drawArc(new RectF(-size/4,-size/4-size/8,size/4,-size/4+size/8),180,180,true,paint);
         canvas.restore();
     }
