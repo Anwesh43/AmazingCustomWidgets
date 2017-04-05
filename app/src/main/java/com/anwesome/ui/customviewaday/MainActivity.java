@@ -84,6 +84,7 @@ import com.anwesome.games.zoomshapebutton.OnOpenListener;
 import com.anwesome.games.zoomshapebutton.ZoomShapeButton;
 import com.anwesome.ui.androidbuttonloader.AndroidLoaderButton;
 import com.anwesome.ui.bulletedlist.BulletedList;
+import com.anwesome.ui.calbutton.CalButton;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
 import com.anwesome.ui.compassbutton.CompassButton;
 import com.anwesome.ui.completeballbuttons.BallButton;
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showEmergencyButton();
+                showCalButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -818,5 +819,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         emergencyButton.show();
+    }
+    public void showCalButton() {
+        CalButton calButton = new CalButton(this);
+        calButton.show(200,200);
+        calButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
