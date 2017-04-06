@@ -29,12 +29,18 @@ public class LikeButton  {
             int w = size.x;
             activity.addContentView(likeButtonView,new ViewGroup.LayoutParams(w/4,w/4));
             likeShape = new LikeShape(w/8,w/8,w/8);
+            if(onLikeChangeListener != null) {
+                likeShape.setOnLikeChangeListener(onLikeChangeListener);
+            }
         }
         likeButtonView.setX(x);
         likeButtonView.setY(y);
     }
     public void setOnLikeChangeListener(OnLikeChangeListener onLikeChangeListener) {
         this.onLikeChangeListener = onLikeChangeListener;
+        if(likeShape!=null) {
+            likeShape.setOnLikeChangeListener(onLikeChangeListener);
+        }
     }
     private class LikeButtonView extends View {
         private boolean isAnimated = false;
