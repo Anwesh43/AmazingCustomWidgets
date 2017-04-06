@@ -6,11 +6,15 @@ import android.graphics.*;
  * Created by anweshmishra on 07/04/17.
  */
 public class LikeShape {
+    private OnLikeChangeListener onLikeChangeListener;
     private float x,y,deg = 0,size,dir = 0;
     public LikeShape(float x,float y,float size) {
         this.x = x;
         this.y = y;
         this.size = size;
+    }
+    public void setOnLikeChangeListener(OnLikeChangeListener onLikeChangeListener) {
+        this.onLikeChangeListener = onLikeChangeListener;
     }
     public void draw(Canvas canvas,Paint paint) {
         canvas.save();
@@ -36,6 +40,14 @@ public class LikeShape {
         deg-=dir*20;
         if(deg<=-180 || deg>=0) {
             dir = 0;
+            if(onLikeChangeListener!=null) {
+                if(deg<=-180) {
+                    onLikeChangeListener.onUnLike();
+                }
+                else {
+                    onLikeChangeListener.onLike();
+                }
+            }
         }
     }
     public void startMoving() {

@@ -18,6 +18,7 @@ public class LikeButton  {
     private Activity activity;
     private LikeShape likeShape;
     private LikeButtonView likeButtonView;
+    private OnLikeChangeListener onLikeChangeListener;
     public LikeButton(Activity activity) {
         this.activity = activity;
     }
@@ -31,6 +32,9 @@ public class LikeButton  {
         }
         likeButtonView.setX(x);
         likeButtonView.setY(y);
+    }
+    public void setOnLikeChangeListener(OnLikeChangeListener onLikeChangeListener) {
+        this.onLikeChangeListener = onLikeChangeListener;
     }
     private class LikeButtonView extends View {
         private boolean isAnimated = false;
