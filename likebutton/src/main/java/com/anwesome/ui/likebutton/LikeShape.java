@@ -22,10 +22,10 @@ public class LikeShape {
         Path path = new Path();
         path.moveTo(-size/2+size/5,-size/3);
         path.lineTo(0,-2*size/3);
-        path.lineTo(size/20,-2*size/3+size/15);
+        path.lineTo(size/20,-2*size/3+size/10);
         path.lineTo(size/20,-size/3);
-        path.lineTo(size/2-size/20,-size/3);
-        path.lineTo(size/2,-size/3+size/15);
+        path.lineTo(size/2-size/10,-size/3);
+        path.lineTo(size/2,-size/3+size/10);
         path.lineTo(size/2,size/3);
         path.lineTo(size/2-size/10,size/3);
         path.lineTo(-size/2+size/5,size/3);
