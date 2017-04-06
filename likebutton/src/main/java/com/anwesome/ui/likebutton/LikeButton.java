@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 07/04/17.
@@ -17,10 +21,16 @@ public class LikeButton  {
     public LikeButton(Activity activity) {
         this.activity = activity;
     }
-    public void show() {
+    public void show(int x,int y) {
         if(likeButtonView == null) {
             likeButtonView = new LikeButtonView(activity);
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            int w = size.x;
+            activity.addContentView(likeButtonView,new ViewGroup.LayoutParams(w/2,w/2));
+            likeShape = new LikeShape(w/4,w/4,w/4);
         }
+        likeButtonView.setX(x);
+        likeButtonView.setY(y);
     }
     private class LikeButtonView extends View {
         private boolean isAnimated = false;
