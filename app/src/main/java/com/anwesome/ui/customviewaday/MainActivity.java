@@ -93,6 +93,7 @@ import com.anwesome.ui.crukybutton.CrukyButton;
 import com.anwesome.ui.emergencybutton.EmergencyButton;
 import com.anwesome.ui.footiepitchbutton.FootiePitchButton;
 import com.anwesome.ui.fourbutton.FourButtons;
+import com.anwesome.ui.likebutton.LikeButton;
 import com.anwesome.ui.messageui.MessageUIButton;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 import com.anwesome.ui.powerbutton.PowerButton;
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showFootiePitch();
+                showLikeButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -834,5 +835,9 @@ public class MainActivity extends AppCompatActivity {
     public void showFootiePitch() {
         FootiePitchButton footiePitchButton = new FootiePitchButton(this);
         footiePitchButton.show(200,200);
+    }
+    public void showLikeButton() {
+        LikeButton likeButton = new LikeButton(this);
+        likeButton.show(200,200);
     }
 }
