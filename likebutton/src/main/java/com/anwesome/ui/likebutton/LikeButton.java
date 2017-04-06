@@ -26,8 +26,8 @@ public class LikeButton  {
             likeButtonView = new LikeButtonView(activity);
             Point size = DimensionsUtil.getDeviceDimension(activity);
             int w = size.x;
-            activity.addContentView(likeButtonView,new ViewGroup.LayoutParams(w/2,w/2));
-            likeShape = new LikeShape(w/4,w/4,w/4);
+            activity.addContentView(likeButtonView,new ViewGroup.LayoutParams(w/4,w/4));
+            likeShape = new LikeShape(w/8,w/8,w/8);
         }
         likeButtonView.setX(x);
         likeButtonView.setY(y);
