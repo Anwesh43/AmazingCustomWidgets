@@ -94,6 +94,7 @@ import com.anwesome.ui.emergencybutton.EmergencyButton;
 import com.anwesome.ui.footiepitchbutton.FootiePitchButton;
 import com.anwesome.ui.fourbutton.FourButtons;
 import com.anwesome.ui.likebutton.LikeButton;
+import com.anwesome.ui.likebutton.OnLikeChangeListener;
 import com.anwesome.ui.messageui.MessageUIButton;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 import com.anwesome.ui.powerbutton.PowerButton;
@@ -839,5 +840,16 @@ public class MainActivity extends AppCompatActivity {
     public void showLikeButton() {
         LikeButton likeButton = new LikeButton(this);
         likeButton.show(200,200);
+        likeButton.setOnLikeChangeListener(new OnLikeChangeListener() {
+            @Override
+            public void onLike() {
+                Toast.makeText(MainActivity.this, "Liked", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnLike() {
+                Toast.makeText(MainActivity.this, "UnLiked", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
