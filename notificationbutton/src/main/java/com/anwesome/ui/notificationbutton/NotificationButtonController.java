@@ -31,7 +31,7 @@ public class NotificationButtonController {
         canvas.restore();
     }
     public void update() {
-        deg+=dir*30;
+        deg+=dir*36;
         if(deg>=360) {
             dir = 0;
             deg = 0;
