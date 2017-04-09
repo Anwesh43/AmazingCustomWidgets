@@ -36,6 +36,6 @@ public class HiddenNotificationIndicator {
         return  dir == 0;
     }
     public void startMoving() {
-        dir = dir == 0?1:0;
+        dir = dir == 0?1:-1;
     }
 }

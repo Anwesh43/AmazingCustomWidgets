@@ -19,13 +19,15 @@ public class NotificationButtonController {
         canvas.rotate(deg);
         Path path = new Path();
         path.moveTo(-3*size/8,0);
-        path.lineTo(-size/3+size/10,-size/20);
-        float cax = 0,cay = -size/20,ha = (size*17)/20,wa = 3*size/8-size/10;
+        path.lineTo(-3*size/8+size/10,-size/10);
+        path.lineTo(-3*size/8+size/10,-size/2);
+        float cax = 0,cay = -size/2,ha = size/3,wa = 3*size/8-size/10;
         path.arcTo(new RectF(cax-wa,cay-ha,cax+wa,cay+ha),180,180, true);
+        path.lineTo(3*size/8-size/10,-size/10);
         path.lineTo(3*size/8,0);
         path.lineTo(-3*size/8,0);
         canvas.drawPath(path,paint);
-        canvas.drawCircle(0,-9*size/10,size/40,paint);
+        canvas.drawCircle(0,-5*size/6-size/30,size/40,paint);
         float sax = 0,say = size/40,sar = size/40;
         canvas.drawArc(new RectF(sax-sar,say-sar,sax+sar,say+sar),0,180,true,paint);
         canvas.restore();
