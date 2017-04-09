@@ -9,7 +9,7 @@ import android.graphics.RectF;
  * Created by anweshmishra on 09/04/17.
  */
 public class HiddenNotificationIndicator {
-    private float x,y,size,n,scale = 0,dir = 0;
+    private float x,y,size,n,scale = 1,dir = 0;
     public HiddenNotificationIndicator(float x,float y,float size,int n) {
         this.x = x;
         this.y = y;
@@ -20,9 +20,10 @@ public class HiddenNotificationIndicator {
         paint.setColor(Color.RED);
         canvas.save();
         canvas.translate(x,y);
-        canvas.scale(1,scale);
+        canvas.scale(scale,scale);
         canvas.drawRoundRect(new RectF(-size/2,-size/2,size/2,size/2),size/10,size/10,paint);
         paint.setTextSize(size/2);
+        paint.setColor(Color.WHITE);
         canvas.drawText(""+n,-paint.measureText(""+n)/2,paint.getTextSize()/2,paint);
         canvas.restore();
     }
@@ -30,12 +31,18 @@ public class HiddenNotificationIndicator {
         scale+=dir*0.1f;
         if(scale>=1 || scale<=0) {
             dir = 0;
+            if(scale>=1) {
+                scale = 1;
+            }
+            if(scale<=0) {
+                scale = 0;
+            }
         }
     }
     public boolean stop() {
         return  dir == 0;
     }
     public void startMoving() {
-        dir = dir == 0?1:-1;
+        dir = scale == 0?1:-1;
     }
 }

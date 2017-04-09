@@ -17,9 +17,12 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 public class NotificationButton {
     private Activity activity;
     private NotificationButtonView notificationButtonView;
+    private int n;
+    private HiddenNotificationIndicator notificationIndicator;
     private NotificationButtonController notificationButtonController;
-    public NotificationButton(Activity activity) {
+    public NotificationButton(Activity activity,int n) {
         this.activity = activity;
+        this.n = n;
     }
     public void show(int x,int y) {
         if(notificationButtonView == null) {
@@ -28,6 +31,7 @@ public class NotificationButton {
             int w = dimensions.x;
             activity.addContentView(notificationButtonView,new ViewGroup.LayoutParams(w/2,w/2));
             notificationButtonController = new NotificationButtonController(w/4,w/4,w/4);
+            notificationIndicator = new HiddenNotificationIndicator(w/4+w/16,w/16,w/16,n);
         }
         notificationButtonView.setX(x);
         notificationButtonView.setY(y);
@@ -39,11 +43,13 @@ public class NotificationButton {
             super(context);
         }
         public void onDraw(Canvas canvas) {
-            if(notificationButtonController!=null) {
+            if(notificationButtonController!=null && notificationIndicator!=null) {
                 notificationButtonController.draw(canvas,paint);
+                notificationIndicator.draw(canvas,paint);
                 if(isAnimated) {
                     notificationButtonController.update();
-                    if(notificationButtonController.stop()) {
+                    notificationIndicator.update();
+                    if(notificationButtonController.stop() && notificationIndicator.stop()) {
                         isAnimated = false;
                     }
                     try {
@@ -57,8 +63,9 @@ public class NotificationButton {
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
-            if(event.getAction() == MotionEvent.ACTION_DOWN && notificationButtonController!=null && !isAnimated) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && notificationButtonController!=null && notificationIndicator!=null && !isAnimated) {
                 notificationButtonController.startMoving();
+                notificationIndicator.startMoving();
                 isAnimated = true;
                 postInvalidate();
             }
