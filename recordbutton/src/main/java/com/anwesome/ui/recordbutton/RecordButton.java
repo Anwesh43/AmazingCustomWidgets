@@ -17,9 +17,16 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 public class RecordButton {
     private Activity activity;
     private RecordButtonView recordButtonView;
+    private OnRecordButtonClickListener onRecordButtonClickListener;
     private RecordShape recordShape;
     public RecordButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnRecordButtonClickListener(OnRecordButtonClickListener onRecordButtonClickListener) {
+        this.onRecordButtonClickListener = onRecordButtonClickListener;
+        if(recordShape!=null) {
+            recordShape.setOnRecordButtonClickListener(onRecordButtonClickListener);
+        }
     }
     public void show(int x,int y) {
         if(recordButtonView  == null) {
@@ -28,6 +35,9 @@ public class RecordButton {
             int w = dimension.x;
             activity.addContentView(recordButtonView,new ViewGroup.LayoutParams(w/2,w/2));
             recordShape = new RecordShape(w/4,w/4,w/4);
+            if(onRecordButtonClickListener!=null) {
+                recordShape.setOnRecordButtonClickListener(onRecordButtonClickListener);
+            }
         }
         recordButtonView.setX(x);
         recordButtonView.setY(y);

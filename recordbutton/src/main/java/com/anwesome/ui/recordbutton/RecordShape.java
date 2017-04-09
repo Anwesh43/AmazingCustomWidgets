@@ -10,10 +10,14 @@ import android.graphics.RectF;
  */
 public class RecordShape {
     private float x,y,size,scale=0.5f,dir = 0,deg = 0;
+    private OnRecordButtonClickListener onRecordButtonClickListener;
     public RecordShape(float x,float y,float size) {
         this.x = x;
         this.y = y;
         this.size = size;
+    }
+    public void setOnRecordButtonClickListener(OnRecordButtonClickListener onRecordButtonClickListener) {
+        this.onRecordButtonClickListener = onRecordButtonClickListener;
     }
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
@@ -38,6 +42,14 @@ public class RecordShape {
         deg += dir*18;
         if((deg >= 90 && scale>=1) || (deg<=0 && scale<=0.5f)) {
             dir = 0;
+            if(onRecordButtonClickListener != null) {
+                if(deg>=90) {
+                    onRecordButtonClickListener.onSelect();
+                }
+                else {
+                    onRecordButtonClickListener.onUnselect();
+                }
+            }
         }
     }
     public void startMoving() {
