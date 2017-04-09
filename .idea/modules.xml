@@ -58,6 +58,7 @@
       <module fileurl="file://$PROJECT_DIR$/polygonaltraverseview/polygonaltraverseview.iml" filepath="$PROJECT_DIR$/polygonaltraverseview/polygonaltraverseview.iml" />
       <module fileurl="file://$PROJECT_DIR$/powerbutton/powerbutton.iml" filepath="$PROJECT_DIR$/powerbutton/powerbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/prokbutton/prokbutton.iml" filepath="$PROJECT_DIR$/prokbutton/prokbutton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recordbutton/recordbutton.iml" filepath="$PROJECT_DIR$/recordbutton/recordbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/settingsbutton/settingsbutton.iml" filepath="$PROJECT_DIR$/settingsbutton/settingsbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/settingspallete/settingspallete.iml" filepath="$PROJECT_DIR$/settingspallete/settingspallete.iml" />
       <module fileurl="file://$PROJECT_DIR$/sharebutton/sharebutton.iml" filepath="$PROJECT_DIR$/sharebutton/sharebutton.iml" />
