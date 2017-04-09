@@ -13,18 +13,20 @@ public class NotificationButtonController {
         this.size = size;
     }
     public void draw(Canvas canvas, Paint paint) {
+        paint.setColor(Color.parseColor("#37474F"));
         canvas.save();
         canvas.translate(x,y);
         canvas.rotate(deg);
         Path path = new Path();
-        path.moveTo(-size/4,0);
-        path.lineTo(-size/4+size/10,-size/10);
-        float cax = 0,cay = -size/10,ha = (size*9)/10,wa = size/4-size/10;
+        path.moveTo(-3*size/8,0);
+        path.lineTo(-size/3+size/10,-size/20);
+        float cax = 0,cay = -size/20,ha = (size*17)/20,wa = 3*size/8-size/10;
         path.arcTo(new RectF(cax-wa,cay-ha,cax+wa,cay+ha),180,180, true);
-        path.lineTo(size/4,0);
+        path.lineTo(3*size/8,0);
+        path.lineTo(-3*size/8,0);
         canvas.drawPath(path,paint);
-        canvas.drawCircle(0,-size,size/40,paint);
-        float sax = 0,say = size/20,sar = size/40;
+        canvas.drawCircle(0,-9*size/10,size/40,paint);
+        float sax = 0,say = size/40,sar = size/40;
         canvas.drawArc(new RectF(sax-sar,say-sar,sax+sar,say+sar),0,180,true,paint);
         canvas.restore();
     }
