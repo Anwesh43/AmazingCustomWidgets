@@ -22,9 +22,9 @@ public class RecordShape {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(size/4);
         paint.setColor(Color.parseColor("#455A64"));
-        canvas.drawArc(new RectF(-size/2,-size/2,size/2,size/2),0,180,true,paint);
+        canvas.drawArc(new RectF(-size/2,-size/2,size/2,size/2),-20,220,false,paint);
         paint.setColor(Color.parseColor("#424242"));
-        canvas.drawArc(new RectF(-size/2,-size/2,size/2,size/2),180,180,true,paint);
+        canvas.drawArc(new RectF(-size/2,-size/2,size/2,size/2),180,180,false,paint);
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.parseColor("#e53935"));
         canvas.save();
