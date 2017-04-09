@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 09/04/17.
@@ -20,6 +24,10 @@ public class NotificationButton {
     public void show() {
         if(notificationButtonView == null) {
             notificationButtonView = new NotificationButtonView(activity);
+            Point dimensions = DimensionsUtil.getDeviceDimension(activity);
+            int w = dimensions.x;
+            activity.addContentView(notificationButtonView,new ViewGroup.LayoutParams(w/2,w/2));
+            notificationButtonController = new NotificationButtonController(w/4,w/4,w/2);
         }
     }
     private class NotificationButtonView extends View {
