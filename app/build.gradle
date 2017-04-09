@@ -83,4 +83,5 @@ dependencies {
     compile project(':calbutton')
     compile project(':footiepitchbutton')
     compile project(':likebutton')
+    compile project(':notificationbutton')
 }
