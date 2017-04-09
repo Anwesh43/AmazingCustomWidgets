@@ -100,6 +100,8 @@ import com.anwesome.ui.notificationbutton.NotificationButton;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 import com.anwesome.ui.powerbutton.PowerButton;
 import com.anwesome.ui.powerbutton.PowerButtonListener;
+import com.anwesome.ui.recordbutton.OnRecordButtonClickListener;
+import com.anwesome.ui.recordbutton.RecordButton;
 import com.anwesome.ui.sharebutton.ShareButton;
 import com.anwesome.ui.syncbutton.SyncButton;
 import com.anwesome.ui.tricircledbutton.TriCircledButton;
@@ -124,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showNotificationButton();
+                showRecordButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -860,6 +862,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "Creating Toast", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void showRecordButton() {
+        RecordButton recordButton = new RecordButton(this);
+        recordButton.show(200,200);
+        recordButton.setOnRecordButtonClickListener(new OnRecordButtonClickListener() {
+            @Override
+            public void onSelect() {
+                Toast.makeText(MainActivity.this, "Selected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnselect() {
+                Toast.makeText(MainActivity.this, "Unselected", Toast.LENGTH_SHORT).show();
             }
         });
     }
