@@ -18,11 +18,15 @@ public class NotificationButton {
     private Activity activity;
     private NotificationButtonView notificationButtonView;
     private int n;
+    private View.OnClickListener onClickListener;
     private HiddenNotificationIndicator notificationIndicator;
     private NotificationButtonController notificationButtonController;
     public NotificationButton(Activity activity,int n) {
         this.activity = activity;
         this.n = n;
+    }
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     public void show(int x,int y) {
         if(notificationButtonView == null) {
@@ -51,6 +55,9 @@ public class NotificationButton {
                     notificationIndicator.update();
                     if(notificationButtonController.stop() && notificationIndicator.stop()) {
                         isAnimated = false;
+                        if(onClickListener != null) {
+                            onClickListener.onClick(this);
+                        }
                     }
                     try {
                         Thread.sleep(50);
