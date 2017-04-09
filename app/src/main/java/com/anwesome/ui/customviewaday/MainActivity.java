@@ -856,5 +856,11 @@ public class MainActivity extends AppCompatActivity {
     public void showNotificationButton() {
         NotificationButton notificationButton = new NotificationButton(this,4);
         notificationButton.show(500,500);
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Creating Toast", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
