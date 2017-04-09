@@ -21,14 +21,16 @@ public class NotificationButton {
     public NotificationButton(Activity activity) {
         this.activity = activity;
     }
-    public void show() {
+    public void show(int x,int y) {
         if(notificationButtonView == null) {
             notificationButtonView = new NotificationButtonView(activity);
             Point dimensions = DimensionsUtil.getDeviceDimension(activity);
             int w = dimensions.x;
             activity.addContentView(notificationButtonView,new ViewGroup.LayoutParams(w/2,w/2));
-            notificationButtonController = new NotificationButtonController(w/4,w/4,w/2);
+            notificationButtonController = new NotificationButtonController(w/4,w/4,w/4);
         }
+        notificationButtonView.setX(x);
+        notificationButtonView.setY(y);
     }
     private class NotificationButtonView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -40,7 +42,7 @@ public class NotificationButton {
             if(notificationButtonController!=null) {
                 notificationButtonController.draw(canvas,paint);
                 if(isAnimated) {
-                    notificationButtonController.startMoving();
+                    notificationButtonController.update();
                     if(notificationButtonController.stop()) {
                         isAnimated = false;
                     }
