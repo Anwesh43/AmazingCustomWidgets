@@ -41,6 +41,7 @@
       <module fileurl="file://$PROJECT_DIR$/imageclippe/imageclippe.iml" filepath="$PROJECT_DIR$/imageclippe/imageclippe.iml" />
       <module fileurl="file://$PROJECT_DIR$/latchbutton/latchbutton.iml" filepath="$PROJECT_DIR$/latchbutton/latchbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/leaninputcontainer/leaninputcontainer.iml" filepath="$PROJECT_DIR$/leaninputcontainer/leaninputcontainer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/likebutton/likebutton.iml" filepath="$PROJECT_DIR$/likebutton/likebutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/livestreamingbutton/livestreamingbutton.iml" filepath="$PROJECT_DIR$/livestreamingbutton/livestreamingbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/lockbuttons/lockbuttons.iml" filepath="$PROJECT_DIR$/lockbuttons/lockbuttons.iml" />
       <module fileurl="file://$PROJECT_DIR$/menuexpander/menuexpander.iml" filepath="$PROJECT_DIR$/menuexpander/menuexpander.iml" />
@@ -49,6 +50,7 @@
       <module fileurl="file://$PROJECT_DIR$/modakbutton/modakbutton.iml" filepath="$PROJECT_DIR$/modakbutton/modakbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/multiplecheckbox/multiplecheckbox.iml" filepath="$PROJECT_DIR$/multiplecheckbox/multiplecheckbox.iml" />
       <module fileurl="file://$PROJECT_DIR$/notepadbutton/notepadbutton.iml" filepath="$PROJECT_DIR$/notepadbutton/notepadbutton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notificationbutton/notificationbutton.iml" filepath="$PROJECT_DIR$/notificationbutton/notificationbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/pathtext/pathtext.iml" filepath="$PROJECT_DIR$/pathtext/pathtext.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinbar/pinbar.iml" filepath="$PROJECT_DIR$/pinbar/pinbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/playbackbutton/playbackbutton.iml" filepath="$PROJECT_DIR$/playbackbutton/playbackbutton.iml" />
@@ -57,6 +59,7 @@
       <module fileurl="file://$PROJECT_DIR$/powerbutton/powerbutton.iml" filepath="$PROJECT_DIR$/powerbutton/powerbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/prokbutton/prokbutton.iml" filepath="$PROJECT_DIR$/prokbutton/prokbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/settingsbutton/settingsbutton.iml" filepath="$PROJECT_DIR$/settingsbutton/settingsbutton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/settingspallete/settingspallete.iml" filepath="$PROJECT_DIR$/settingspallete/settingspallete.iml" />
       <module fileurl="file://$PROJECT_DIR$/sharebutton/sharebutton.iml" filepath="$PROJECT_DIR$/sharebutton/sharebutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/spinnybutton/spinnybutton.iml" filepath="$PROJECT_DIR$/spinnybutton/spinnybutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/stickynotification/stickynotification.iml" filepath="$PROJECT_DIR$/stickynotification/stickynotification.iml" />

@@ -46,6 +46,7 @@
             <option value="$PROJECT_DIR$/imageclippe" />
             <option value="$PROJECT_DIR$/latchbutton" />
             <option value="$PROJECT_DIR$/leaninputcontainer" />
+            <option value="$PROJECT_DIR$/likebutton" />
             <option value="$PROJECT_DIR$/livestreamingbutton" />
             <option value="$PROJECT_DIR$/lockbuttons" />
             <option value="$PROJECT_DIR$/menuexpander" />
@@ -54,6 +55,7 @@
             <option value="$PROJECT_DIR$/modakbutton" />
             <option value="$PROJECT_DIR$/multiplecheckbox" />
             <option value="$PROJECT_DIR$/notepadbutton" />
+            <option value="$PROJECT_DIR$/notificationbutton" />
             <option value="$PROJECT_DIR$/pathtext" />
             <option value="$PROJECT_DIR$/pinbar" />
             <option value="$PROJECT_DIR$/playbackbutton" />
@@ -62,6 +64,7 @@
             <option value="$PROJECT_DIR$/powerbutton" />
             <option value="$PROJECT_DIR$/prokbutton" />
             <option value="$PROJECT_DIR$/settingsbutton" />
+            <option value="$PROJECT_DIR$/settingspallete" />
             <option value="$PROJECT_DIR$/sharebutton" />
             <option value="$PROJECT_DIR$/spinnybutton" />
             <option value="$PROJECT_DIR$/stickynotification" />
@@ -117,6 +120,7 @@
             <option value="$PROJECT_DIR$/imageclippe" />
             <option value="$PROJECT_DIR$/latchbutton" />
             <option value="$PROJECT_DIR$/leaninputcontainer" />
+            <option value="$PROJECT_DIR$/likebutton" />
             <option value="$PROJECT_DIR$/livestreamingbutton" />
             <option value="$PROJECT_DIR$/lockbuttons" />
             <option value="$PROJECT_DIR$/menuexpander" />
@@ -125,6 +129,7 @@
             <option value="$PROJECT_DIR$/modakbutton" />
             <option value="$PROJECT_DIR$/multiplecheckbox" />
             <option value="$PROJECT_DIR$/notepadbutton" />
+            <option value="$PROJECT_DIR$/notificationbutton" />
             <option value="$PROJECT_DIR$/pathtext" />
             <option value="$PROJECT_DIR$/pinbar" />
             <option value="$PROJECT_DIR$/playbackbutton" />
@@ -133,6 +138,7 @@
             <option value="$PROJECT_DIR$/powerbutton" />
             <option value="$PROJECT_DIR$/prokbutton" />
             <option value="$PROJECT_DIR$/settingsbutton" />
+            <option value="$PROJECT_DIR$/settingspallete" />
             <option value="$PROJECT_DIR$/sharebutton" />
             <option value="$PROJECT_DIR$/spinnybutton" />
             <option value="$PROJECT_DIR$/stickynotification" />
