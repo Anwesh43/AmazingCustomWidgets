@@ -18,6 +18,7 @@ public class MuteButton {
     private Activity activity;
     private MuteButtonView muteButtonView;
     private MuteButtonShape muteButtonShape;
+    private MuteClickListener muteClickListener;
     public MuteButton(Activity activity) {
         this.activity = activity;
     }
@@ -29,6 +30,9 @@ public class MuteButton {
             activity.addContentView(muteButtonView,new ViewGroup.LayoutParams(w/2,w/2));
             muteButtonShape = new MuteButtonShape(w/4,w/4,w/4);
         }
+    }
+    public void setMuteClickListener(MuteClickListener muteClickListener) {
+        this.muteClickListener = muteClickListener;
     }
     private class MuteButtonView extends View {
         private boolean isAnimated = false;
@@ -42,6 +46,14 @@ public class MuteButton {
                 muteButtonShape.update();
                 if(muteButtonShape.stop()) {
                     isAnimated = false;
+                    if(muteClickListener!=null) {
+                        if(muteButtonShape.onMute()) {
+                            muteClickListener.onMute();
+                        }
+                        if(muteButtonShape.onUnmute()) {
+                            muteClickListener.onUnmute();
+                        }
+                    }
                 }
                 try {
                     Thread.sleep(50);

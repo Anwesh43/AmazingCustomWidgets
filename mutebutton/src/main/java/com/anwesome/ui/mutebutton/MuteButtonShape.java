@@ -30,6 +30,12 @@ public class MuteButtonShape {
     public void handleTap() {
         animationController.startMoving();
     }
+    public boolean onMute() {
+        return animationController.getDeg() == 180;
+    }
+    public boolean onUnmute() {
+        return animationController.getDeg() == 0;
+    }
     public boolean stop() {
         return animationController.stop();
     }
