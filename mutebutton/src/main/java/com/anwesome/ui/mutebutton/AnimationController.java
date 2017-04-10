@@ -21,6 +21,6 @@ public class AnimationController {
         }
     }
     public void startMoving() {
-        deg = deg == 0?1:-1;
+        dir = deg == 0?1:-1;
     }
 }

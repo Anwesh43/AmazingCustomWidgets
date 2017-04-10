@@ -18,6 +18,7 @@ public class MuteButtonShape {
         canvas.save();
         canvas.translate(x,y);
         canvas.rotate(animationController.getDeg());
+        paint.setStrokeWidth(size/15);
         DrawingUtil.drawBlackCircle(canvas,paint,size);
         DrawingUtil.drawWhiteArc(canvas,paint,size);
         DrawingUtil.drawEllipse(canvas,paint,size);
