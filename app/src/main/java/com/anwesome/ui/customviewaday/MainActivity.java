@@ -97,6 +97,7 @@ import com.anwesome.ui.likebutton.LikeButton;
 import com.anwesome.ui.likebutton.OnLikeChangeListener;
 import com.anwesome.ui.messageui.MessageUIButton;
 import com.anwesome.ui.mutebutton.MuteButton;
+import com.anwesome.ui.mutebutton.MuteClickListener;
 import com.anwesome.ui.notificationbutton.NotificationButton;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 import com.anwesome.ui.powerbutton.PowerButton;
@@ -883,6 +884,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showMuteButton() {
         MuteButton muteButton = new MuteButton(this);
+        muteButton.setMuteClickListener(new MuteClickListener() {
+            @Override
+            public void onMute() {
+                Toast.makeText(MainActivity.this, "Mute", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnmute() {
+                Toast.makeText(MainActivity.this, "OnUnmute", Toast.LENGTH_SHORT).show();
+            }
+        });
         muteButton.show();
     }
 }
