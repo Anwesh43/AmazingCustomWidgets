@@ -96,6 +96,7 @@ import com.anwesome.ui.fourbutton.FourButtons;
 import com.anwesome.ui.likebutton.LikeButton;
 import com.anwesome.ui.likebutton.OnLikeChangeListener;
 import com.anwesome.ui.messageui.MessageUIButton;
+import com.anwesome.ui.mutebutton.MuteButton;
 import com.anwesome.ui.notificationbutton.NotificationButton;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 import com.anwesome.ui.powerbutton.PowerButton;
@@ -126,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showRecordButton();
+                showMuteButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -879,5 +880,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Unselected", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showMuteButton() {
+        MuteButton muteButton = new MuteButton(this);
+        muteButton.show();
     }
 }
