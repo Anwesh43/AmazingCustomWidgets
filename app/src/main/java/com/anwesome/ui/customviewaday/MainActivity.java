@@ -93,6 +93,7 @@ import com.anwesome.ui.crukybutton.CrukyButton;
 import com.anwesome.ui.emergencybutton.EmergencyButton;
 import com.anwesome.ui.footiepitchbutton.FootiePitchButton;
 import com.anwesome.ui.fourbutton.FourButtons;
+import com.anwesome.ui.fullscreenbutton.FullScreenButton;
 import com.anwesome.ui.likebutton.LikeButton;
 import com.anwesome.ui.likebutton.OnLikeChangeListener;
 import com.anwesome.ui.messageui.MessageUIButton;
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMuteButton();
+                showFullScreenButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -896,5 +897,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         muteButton.show();
+    }
+    public void showFullScreenButton() {
+        FullScreenButton fullScreenButton = new FullScreenButton(this);
+        fullScreenButton.show(300,300);
     }
 }

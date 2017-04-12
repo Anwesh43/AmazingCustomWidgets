@@ -86,4 +86,5 @@ dependencies {
     compile project(':notificationbutton')
     compile project(':recordbutton')
     compile project(':mutebutton')
+    compile project(':fullscreenbutton')
 }
