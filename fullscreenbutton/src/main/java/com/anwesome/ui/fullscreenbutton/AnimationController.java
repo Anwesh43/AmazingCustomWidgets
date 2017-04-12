@@ -18,6 +18,9 @@ public class AnimationController {
         if(isAnimated && shapeAnimationListener!=null) {
             if (this.shapeAnimationListener != null) {
                 shapeAnimationListener.animateShape();
+                if(shapeAnimationListener.stop()) {
+                    isAnimated = false;
+                }
             }
             try {
                 Thread.sleep(50);
@@ -38,5 +41,6 @@ public class AnimationController {
     public interface ShapeAnimationListener {
         void animateShape();
         void startShapeAnimation();
+        boolean stop();
     }
 }
