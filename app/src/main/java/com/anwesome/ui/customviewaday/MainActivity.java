@@ -98,6 +98,7 @@ import com.anwesome.ui.fullscreenbutton.FullScreenButtonShape;
 import com.anwesome.ui.likebutton.LikeButton;
 import com.anwesome.ui.likebutton.OnLikeChangeListener;
 import com.anwesome.ui.messageui.MessageUIButton;
+import com.anwesome.ui.messengerbutton.MessengerButton;
 import com.anwesome.ui.mutebutton.MuteButton;
 import com.anwesome.ui.mutebutton.MuteClickListener;
 import com.anwesome.ui.notificationbutton.NotificationButton;
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showFullScreenButton();
+                showMessengerButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -913,5 +914,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         fullScreenButton.show(300,300);
+    }
+    public void showMessengerButton() {
+        MessengerButton messengerButton = new MessengerButton(this);
+        messengerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Message", Toast.LENGTH_SHORT).show();
+            }
+        });
+        messengerButton.show(300,300);
     }
 }
