@@ -29,7 +29,7 @@ public class DrawingController {
         paint.setColor(Color.parseColor("#00E676"));
         Path path = new Path();
         path.addArc(new RectF(-size/2,-size/2,size/2,size/2),0,120);
-        lineToPath(path,size/2+size/6,135);
+        lineToPath(path,size/2+size/5,135);
         lineToPath(path,size/2,150);
         path.addArc(new RectF(-size/2,-size/2,size/2,size/2),150,210);
         canvas.drawPath(path,paint);

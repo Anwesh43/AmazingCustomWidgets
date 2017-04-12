@@ -18,7 +18,7 @@ public class AnimationController {
         this.controllerListener = animationControllerListener;
     }
     public void update() {
-        if(!isAnimated) {
+        if(isAnimated) {
             if(controllerListener!=null) {
                 controllerListener.animate();
                 if(controllerListener.stop()) {
