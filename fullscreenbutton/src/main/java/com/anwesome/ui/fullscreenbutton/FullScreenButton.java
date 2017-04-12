@@ -20,8 +20,15 @@ public class FullScreenButton {
     private FullScreenButtonShape fullScreenButtonShape;
     private FullScreenButtonView fullScreenButtonView;
     private AnimationController animationController;
+    private FullScreenButtonShape.OnFullButtonClickListener onFullButtonClickListener;
     public FullScreenButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnFullButtonClickListener(FullScreenButtonShape.OnFullButtonClickListener onFullButtonClickListener) {
+        this.onFullButtonClickListener = onFullButtonClickListener;
+        if(fullScreenButtonShape!=null) {
+            fullScreenButtonShape.setOnFullButtonClickListener(onFullButtonClickListener);
+        }
     }
     public void show(int x,int y) {
         if(fullScreenButtonView == null) {
@@ -30,6 +37,9 @@ public class FullScreenButton {
             int w = size.x;
             activity.addContentView(fullScreenButtonView,new ViewGroup.LayoutParams(w/2,w/2));
             fullScreenButtonShape = new FullScreenButtonShape(w/4,w/4,w/4);
+            if(onFullButtonClickListener!=null) {
+                fullScreenButtonShape.setOnFullButtonClickListener(onFullButtonClickListener);
+            }
             animationController = new AnimationController(fullScreenButtonView, new AnimationController.ShapeAnimationListener() {
                 @Override
                 public void animateShape() {

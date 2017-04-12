@@ -9,7 +9,11 @@ import android.graphics.Paint;
 public class FullScreenButtonShape {
     private StateHandler stateHandler = new StateHandler();
     private DrawingController drawingController;
+    private OnFullButtonClickListener onFullButtonClickListener;
     private float x,y,size;
+    public void setOnFullButtonClickListener(OnFullButtonClickListener onFullButtonClickListener) {
+        this.onFullButtonClickListener = onFullButtonClickListener;
+    }
     public FullScreenButtonShape(float x,float y,float size) {
         this.x = x;
         this.y = y;
@@ -26,6 +30,19 @@ public class FullScreenButtonShape {
         stateHandler.move();
     }
     public boolean stop() {
-        return stateHandler.stop();
+        boolean condition =  stateHandler.stop();
+        if(condition && onFullButtonClickListener != null) {
+            if(stateHandler.getDeg() >= 180) {
+                onFullButtonClickListener.onexpand();
+            }
+            else {
+                onFullButtonClickListener.onshrink();
+            }
+        }
+        return condition;
+    }
+    public interface OnFullButtonClickListener {
+        void onexpand();
+        void onshrink();
     }
 }
