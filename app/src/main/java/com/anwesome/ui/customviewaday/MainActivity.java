@@ -94,6 +94,7 @@ import com.anwesome.ui.emergencybutton.EmergencyButton;
 import com.anwesome.ui.footiepitchbutton.FootiePitchButton;
 import com.anwesome.ui.fourbutton.FourButtons;
 import com.anwesome.ui.fullscreenbutton.FullScreenButton;
+import com.anwesome.ui.fullscreenbutton.FullScreenButtonShape;
 import com.anwesome.ui.likebutton.LikeButton;
 import com.anwesome.ui.likebutton.OnLikeChangeListener;
 import com.anwesome.ui.messageui.MessageUIButton;
@@ -900,6 +901,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showFullScreenButton() {
         FullScreenButton fullScreenButton = new FullScreenButton(this);
+        fullScreenButton.setOnFullButtonClickListener(new FullScreenButtonShape.OnFullButtonClickListener() {
+            @Override
+            public void onexpand() {
+                Toast.makeText(MainActivity.this, "Expanded", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onshrink() {
+                Toast.makeText(MainActivity.this, "Shrinked", Toast.LENGTH_SHORT).show();
+            }
+        });
         fullScreenButton.show(300,300);
     }
 }
