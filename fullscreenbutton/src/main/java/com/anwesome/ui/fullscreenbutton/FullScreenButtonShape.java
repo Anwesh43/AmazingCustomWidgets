@@ -8,14 +8,16 @@ import android.graphics.Paint;
  */
 public class FullScreenButtonShape {
     private StateHandler stateHandler = new StateHandler();
+    private DrawingController drawingController;
     private float x,y,size;
     public FullScreenButtonShape(float x,float y,float size) {
         this.x = x;
         this.y = y;
         this.size = size;
+        drawingController = new DrawingController(stateHandler,x,y,size);
     }
     public void draw(Canvas canvas, Paint paint) {
-
+        drawingController.draw(canvas,paint);
     }
     public void handleTap() {
         stateHandler.startMoving();
