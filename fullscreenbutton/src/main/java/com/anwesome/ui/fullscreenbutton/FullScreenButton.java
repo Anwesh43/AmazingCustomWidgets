@@ -3,6 +3,7 @@ package com.anwesome.ui.fullscreenbutton;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
@@ -55,6 +56,7 @@ public class FullScreenButton {
         }
         public void onDraw(Canvas canvas) {
             if(fullScreenButtonShape!=null) {
+                canvas.drawColor(Color.parseColor("#E0E0E0"));
                 fullScreenButtonShape.draw(canvas,paint);
                 animationController.animate();
             }

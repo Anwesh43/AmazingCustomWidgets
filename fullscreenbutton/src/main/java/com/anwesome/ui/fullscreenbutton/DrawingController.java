@@ -18,9 +18,12 @@ public class DrawingController  {
         canvas.save();
         canvas.translate(x,y);
         canvas.scale(stateHandler.getScale(),stateHandler.getScale());
+        int dirs[][] = {{1,1},{-1,1},{-1,-1},{1,-1}};
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeCap(Paint.Cap.ROUND);
         for(int i=0;i<4;i++) {
             canvas.save();
-            canvas.translate(size/2,size/2);
+            canvas.translate(size/2*dirs[i][0],size/2*dirs[i][1]);
             canvas.rotate(stateHandler.getDeg()+90*i);
             drawAEdge(canvas,paint);
             canvas.restore();
@@ -33,7 +36,7 @@ public class DrawingController  {
         for(int j=0;j<2;j++) {
             canvas.save();
             canvas.rotate(90*j);
-            canvas.drawLine(0,0,-size/6,0,paint);
+            canvas.drawLine(0,0,-size/8,0,paint);
             canvas.restore();
         }
     }
