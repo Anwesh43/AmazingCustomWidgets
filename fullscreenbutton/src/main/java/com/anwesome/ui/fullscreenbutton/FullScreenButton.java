@@ -18,6 +18,7 @@ public class FullScreenButton {
     private Activity activity;
     private FullScreenButtonShape fullScreenButtonShape;
     private FullScreenButtonView fullScreenButtonView;
+    private AnimationController animationController;
     public FullScreenButton(Activity activity) {
         this.activity = activity;
     }
@@ -28,6 +29,20 @@ public class FullScreenButton {
             int w = size.x;
             activity.addContentView(fullScreenButtonView,new ViewGroup.LayoutParams(w/2,w/2));
             fullScreenButtonShape = new FullScreenButtonShape(w/4,w/4,w/4);
+            animationController = new AnimationController(fullScreenButtonView, new AnimationController.ShapeAnimationListener() {
+                @Override
+                public void animateShape() {
+                    fullScreenButtonShape.move();
+                }
+
+                @Override
+                public void startShapeAnimation() {
+                    fullScreenButtonShape.handleTap();
+                }
+                public boolean stop() {
+                    return fullScreenButtonShape.stop();
+                }
+            });
         }
         fullScreenButtonView.setX(x);
         fullScreenButtonView.setY(y);
@@ -41,27 +56,11 @@ public class FullScreenButton {
         public void onDraw(Canvas canvas) {
             if(fullScreenButtonShape!=null) {
                 fullScreenButtonShape.draw(canvas,paint);
-                if(isAnimated) {
-                    fullScreenButtonShape.move();
-                    if(fullScreenButtonShape.stop()) {
-                        isAnimated = false;
-                    }
-                    try {
-                        Thread.sleep(50);
-                        invalidate();
-                    }
-                    catch (Exception ex) {
-
-                    }
-                }
+                animationController.animate();
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
-            if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated && fullScreenButtonShape!=null) {
-                fullScreenButtonShape.handleTap();
-                isAnimated = true;
-                postInvalidate();
-            }
+            animationController.startAnimating(event);
             return true;
         }
     }
