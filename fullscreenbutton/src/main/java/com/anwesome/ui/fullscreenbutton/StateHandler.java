@@ -24,4 +24,7 @@ public class StateHandler {
     public boolean stop () {
         return dir == 0;
     }
+    public void startMoving() {
+        dir = deg == 0?1:-1;
+    }
 }
