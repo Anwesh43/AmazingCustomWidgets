@@ -21,6 +21,10 @@ public class MessengerButton {
     private MessengerButtonShape messengerButtonShape;
     private MessengerButtonView messengerButtonView;
     private AnimationController animationController;
+    private View.OnClickListener onClickListener;
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
     public MessengerButton(Activity activity) {
         this.activity = activity;
     }
@@ -39,7 +43,11 @@ public class MessengerButton {
 
                 @Override
                 public boolean stop() {
-                    return messengerButtonShape.stop();
+                    boolean condition =  messengerButtonShape.stop();
+                    if(condition && onClickListener!=null) {
+                        onClickListener.onClick(messengerButtonView);
+                    }
+                    return condition;
                 }
 
                 @Override
