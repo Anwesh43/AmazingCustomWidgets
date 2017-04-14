@@ -7,12 +7,16 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.anwesome.ui.bluetoothbutton.controller.AnimationControlller;
+
 /**
  * Created by anweshmishra on 14/04/17.
  */
 public class BluetoothButton {
     private BluetoothButtonView bluetoothButtonView;
     private Activity activity;
+    private BluetoothButtonShape bluetoothButtonShape;
+    private AnimationControlller animationControlller;
     public BluetoothButton(Activity activity) {
         this.activity = activity;
     }
@@ -27,11 +31,14 @@ public class BluetoothButton {
             super(context);
         }
         public void onDraw(Canvas canvas) {
-
+            if(bluetoothButtonShape!=null && animationControlller!=null) {
+                bluetoothButtonShape.draw(canvas,paint);
+                animationControlller.animate();
+            }
         }
         public boolean onTouchEvent(MotionEvent event) {
-            if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+            if(event.getAction() == MotionEvent.ACTION_DOWN && animationControlller!=null) {
+                animationControlller.handleTap();
             }
             return true;
         }
