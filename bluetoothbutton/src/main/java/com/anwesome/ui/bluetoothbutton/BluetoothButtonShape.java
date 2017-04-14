@@ -10,8 +10,13 @@ import com.anwesome.ui.bluetoothbutton.controller.StateController;
  * Created by anweshmishra on 14/04/17.
  */
 public class BluetoothButtonShape {
+
     private DrawingController drawingController;
+    private OnSelectionChangeListener onSelectionChangeListener;
     private StateController stateController = new StateController();
+    public void setOnSelectionChangeListener(OnSelectionChangeListener onSelectionChangeListener) {
+        this.onSelectionChangeListener = onSelectionChangeListener;
+    }
     public BluetoothButtonShape(float x,float y,float size) {
         drawingController = new DrawingController(x,y,size,stateController);
     }
@@ -22,9 +27,22 @@ public class BluetoothButtonShape {
         stateController.move();
     }
     public boolean stop() {
-        return stateController.stop();
+        boolean condition =  stateController.stop();
+        if(condition && onSelectionChangeListener!=null) {
+            if(stateController.selected()) {
+                onSelectionChangeListener.onSelect();
+            }
+            else {
+                onSelectionChangeListener.onUnselect();
+            }
+        }
+        return condition;
     }
     public void startMoving() {
         stateController.startMoving();
+    }
+    public interface OnSelectionChangeListener {
+        void onSelect();
+        void onUnselect();
     }
 }

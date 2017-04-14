@@ -20,8 +20,15 @@ public class BluetoothButton {
     private Activity activity;
     private BluetoothButtonShape bluetoothButtonShape;
     private AnimationControlller animationControlller;
+    private BluetoothButtonShape.OnSelectionChangeListener onSelectionChangeListener;
     public BluetoothButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnSelectionChangeListener(BluetoothButtonShape.OnSelectionChangeListener onSelectionChangeListener) {
+        this.onSelectionChangeListener = onSelectionChangeListener;
+        if(bluetoothButtonShape!=null) {
+            bluetoothButtonShape.setOnSelectionChangeListener(onSelectionChangeListener);
+        }
     }
     public void show(int x,int y) {
         if(bluetoothButtonView == null) {
@@ -31,6 +38,9 @@ public class BluetoothButton {
             activity.addContentView(bluetoothButtonView,new ViewGroup.LayoutParams(w/2,w/2));
             bluetoothButtonShape = new BluetoothButtonShape(w/4,w/4,w/4);
             animationControlller = new AnimationControlller(bluetoothButtonView,bluetoothButtonShape);
+            if(onSelectionChangeListener!=null) {
+                bluetoothButtonShape.setOnSelectionChangeListener(onSelectionChangeListener);
+            }
         }
         bluetoothButtonView.setX(x);
         bluetoothButtonView.setY(y);

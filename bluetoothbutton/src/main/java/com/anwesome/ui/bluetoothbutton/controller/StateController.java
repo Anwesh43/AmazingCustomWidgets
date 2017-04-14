@@ -20,4 +20,7 @@ public class StateController {
     public boolean stop() {
         return dir == 0;
     }
+    public boolean selected() {
+        return deg>=90;
+    }
 }
