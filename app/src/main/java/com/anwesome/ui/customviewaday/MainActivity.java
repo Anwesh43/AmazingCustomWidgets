@@ -83,6 +83,8 @@ import com.anwesome.games.widholder.WidOnClickListener;
 import com.anwesome.games.zoomshapebutton.OnOpenListener;
 import com.anwesome.games.zoomshapebutton.ZoomShapeButton;
 import com.anwesome.ui.androidbuttonloader.AndroidLoaderButton;
+import com.anwesome.ui.bluetoothbutton.BluetoothButton;
+import com.anwesome.ui.bluetoothbutton.BluetoothButtonShape;
 import com.anwesome.ui.bulletedlist.BulletedList;
 import com.anwesome.ui.calbutton.CalButton;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
@@ -131,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMessengerButton();
+                showBluetoothButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -924,5 +926,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         messengerButton.show(300,300);
+    }
+    public void showBluetoothButton() {
+        BluetoothButton bluetoothButton = new BluetoothButton(this);
+        bluetoothButton.setOnSelectionChangeListener(new BluetoothButtonShape.OnSelectionChangeListener() {
+            @Override
+            public void onSelect() {
+                Toast.makeText(MainActivity.this, "Selected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnselect() {
+                Toast.makeText(MainActivity.this, "UnSelected", Toast.LENGTH_SHORT).show();
+            }
+        });
+        bluetoothButton.show(300,300);
     }
 }

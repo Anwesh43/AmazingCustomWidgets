@@ -88,4 +88,5 @@ dependencies {
     compile project(':mutebutton')
     compile project(':fullscreenbutton')
     compile project(':messengerbutton')
+    compile project(':bluetoothbutton')
 }
