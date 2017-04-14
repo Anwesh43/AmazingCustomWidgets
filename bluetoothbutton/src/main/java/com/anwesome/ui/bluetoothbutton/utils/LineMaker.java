@@ -19,6 +19,7 @@ public class LineMaker {
             else {
                 path.lineTo(point.x,point.y);
             }
+            index++;
         }
         return path;
     }
