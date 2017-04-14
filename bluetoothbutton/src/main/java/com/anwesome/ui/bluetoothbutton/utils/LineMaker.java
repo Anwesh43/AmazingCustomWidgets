@@ -1,7 +1,7 @@
 package com.anwesome.ui.bluetoothbutton.utils;
 
 import android.graphics.Path;
-import android.graphics.Point;
+import android.graphics.PointF;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ import java.util.List;
  * Created by anweshmishra on 14/04/17.
  */
 public class LineMaker {
-    public static Path drawLine(List<Point> points) {
+    public static Path drawLine(List<PointF> points) {
         Path path = new Path();
         int index = 0;
-        for(Point point:points) {
+        for(PointF point:points) {
             if(index == 0) {
                 path.moveTo(point.x,point.y);
             }
