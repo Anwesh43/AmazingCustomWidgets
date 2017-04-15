@@ -17,12 +17,12 @@ public class DrawingUtil {
         paint.setStrokeWidth(w/80);
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
-        canvas.drawRect(new RectF(-w/6,w/2,w/6,w/2),paint);
+        canvas.drawRect(new RectF(-w/3,-w/2,w/3,w/2),paint);
         canvas.drawRect(new RectF(-w/15,-w/2-w/15,w/15,-w/2),paint);
         for(int i=0;i<2;i++) {
             canvas.save();
             canvas.scale(2*i-1,1);
-            canvas.drawLine(-w/8,-w/3,-w/8,w/3,paint);
+            canvas.drawLine(-w/15,-w/3,-w/15,w/3,paint);
             canvas.restore();
         }
     }
