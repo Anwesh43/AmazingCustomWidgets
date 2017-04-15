@@ -8,10 +8,12 @@ import android.graphics.Paint;
  */
 public class DrawingController {
     private float x,y,size;
-    public DrawingController(float x,float y,float size) {
+    private StateController stateController;
+    public DrawingController(float x,float y,float size,StateController stateController) {
         this.x = x;
         this.y = y;
         this.size = size;
+        this.stateController = stateController;
     }
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
@@ -27,8 +29,8 @@ public class DrawingController {
     }
     private void drawArrow(Canvas canvas,Paint paint) {
         canvas.save();
-        canvas.translate(-size/2,size/2);
-        canvas.rotate(45);
+        canvas.translate(-size/4,size/4);
+        canvas.rotate(stateController.getDeg()+45);
         canvas.drawLine(0,0,0,-size/4,paint);
         for(int i=0;i<2;i++) {
             canvas.save();
