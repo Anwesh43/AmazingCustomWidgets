@@ -96,6 +96,7 @@ import com.anwesome.ui.emergencybutton.EmergencyButton;
 import com.anwesome.ui.footiepitchbutton.FootiePitchButton;
 import com.anwesome.ui.fourbutton.FourButtons;
 import com.anwesome.ui.fsarrowbutton.FsArrowButton;
+import com.anwesome.ui.fsarrowbutton.FsArrowButtonShape;
 import com.anwesome.ui.fullscreenbutton.FullScreenButton;
 import com.anwesome.ui.fullscreenbutton.FullScreenButtonShape;
 import com.anwesome.ui.likebutton.LikeButton;
@@ -945,6 +946,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showFsArrowButton() {
         FsArrowButton fsArrowButton = new FsArrowButton(this);
+        fsArrowButton.setOnExpandListener(new FsArrowButtonShape.OnExpandListener() {
+            @Override
+            public void onExpand() {
+                Toast.makeText(MainActivity.this, "Expanded", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onShrink() {
+                Toast.makeText(MainActivity.this, "Shrink", Toast.LENGTH_SHORT).show();
+            }
+        });
         fsArrowButton.show();
     }
 }
