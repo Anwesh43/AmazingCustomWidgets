@@ -27,7 +27,10 @@ public class StateController {
         return dir == 0;
     }
     public boolean expanded() {
-        return deg>=180 || deg<=0;
+        return deg>=180;
+    }
+    public boolean shrinked() {
+        return deg<=0;
     }
 
 }

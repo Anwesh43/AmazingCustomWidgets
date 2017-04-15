@@ -9,6 +9,7 @@ import com.anwesome.ui.fsarrowbutton.controllers.StateController;
  * Created by anweshmishra on 15/04/17.
  */
 public class FsArrowButtonShape {
+    private OnExpandListener onExpandListener;
     private StateController stateController = new StateController();
     private DrawingController drawingController;
     public FsArrowButtonShape(float size) {
@@ -24,6 +25,22 @@ public class FsArrowButtonShape {
         stateController.startMoving();
     }
     public boolean stop() {
-        return stateController.stop();
+        boolean condition =  stateController.stop();
+        if(condition) {
+            if(stateController.expanded()) {
+                onExpandListener.onExpand();
+            }
+            else if(stateController.shrinked()) {
+                onExpandListener.onShrink();
+            }
+        }
+        return condition;
+    }
+    public void setOnExpandListener(OnExpandListener onExpandListener) {
+        this.onExpandListener = onExpandListener;
+    }
+    public interface OnExpandListener {
+        void onExpand();
+        void onShrink();
     }
 }

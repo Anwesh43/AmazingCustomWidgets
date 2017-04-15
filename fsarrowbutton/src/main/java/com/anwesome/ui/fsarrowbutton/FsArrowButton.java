@@ -20,8 +20,15 @@ public class FsArrowButton {
     private FsArrowButtonShape fsArrowButtonShape;
     private FsArrowButtonView view;
     private AnimationController animationController;
+    private FsArrowButtonShape.OnExpandListener onExpandListener;
     public FsArrowButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnExpandListener(FsArrowButtonShape.OnExpandListener onExpandListener) {
+        this.onExpandListener = onExpandListener;
+        if(fsArrowButtonShape != null) {
+            fsArrowButtonShape.setOnExpandListener(onExpandListener);
+        }
     }
     public void show() {
         if(view == null) {
@@ -31,6 +38,9 @@ public class FsArrowButton {
             activity.addContentView(view,new ViewGroup.LayoutParams(w/2,w/2));
             fsArrowButtonShape = new FsArrowButtonShape(w/4);
             animationController = new AnimationController(view,fsArrowButtonShape);
+            if(onExpandListener != null) {
+                fsArrowButtonShape.setOnExpandListener(onExpandListener);
+            }
         }
     }
     private class FsArrowButtonView extends View {
