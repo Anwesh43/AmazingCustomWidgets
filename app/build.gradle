@@ -90,4 +90,5 @@ dependencies {
     compile project(':messengerbutton')
     compile project(':bluetoothbutton')
     compile project(':fsarrowbutton')
+    compile project(':trashbutton')
 }
