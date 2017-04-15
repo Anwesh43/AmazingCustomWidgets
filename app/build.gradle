@@ -89,4 +89,5 @@ dependencies {
     compile project(':fullscreenbutton')
     compile project(':messengerbutton')
     compile project(':bluetoothbutton')
+    compile project(':fsarrowbutton')
 }

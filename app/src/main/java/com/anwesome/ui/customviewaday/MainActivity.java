@@ -95,6 +95,7 @@ import com.anwesome.ui.crukybutton.CrukyButton;
 import com.anwesome.ui.emergencybutton.EmergencyButton;
 import com.anwesome.ui.footiepitchbutton.FootiePitchButton;
 import com.anwesome.ui.fourbutton.FourButtons;
+import com.anwesome.ui.fsarrowbutton.FsArrowButton;
 import com.anwesome.ui.fullscreenbutton.FullScreenButton;
 import com.anwesome.ui.fullscreenbutton.FullScreenButtonShape;
 import com.anwesome.ui.likebutton.LikeButton;
@@ -133,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showBluetoothButton();
+                showFsArrowButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -941,5 +942,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         bluetoothButton.show(300,300);
+    }
+    public void showFsArrowButton() {
+        FsArrowButton fsArrowButton = new FsArrowButton(this);
+        fsArrowButton.show();
     }
 }
