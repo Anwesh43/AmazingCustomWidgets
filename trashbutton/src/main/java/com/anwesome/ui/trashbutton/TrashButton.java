@@ -19,9 +19,16 @@ public class TrashButton {
     private Activity activity;
     private TrashButtonShape trashButtonShape;
     private TrashButtonView trashButtonView;
+    private TrashButtonShape.TrashButtonClickListener trashButtonClickListener;
     private AnimationController animationController;
     public TrashButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setTrashButtonOnClickListener(TrashButtonShape.TrashButtonClickListener trashButtonOnClickListener) {
+        this.trashButtonClickListener = trashButtonOnClickListener;
+        if(trashButtonShape!=null) {
+            trashButtonShape.setTrashButtonOnClickListener(trashButtonOnClickListener);
+        }
     }
     public void show(int x,int y) {
         if(trashButtonView == null) {
@@ -31,6 +38,9 @@ public class TrashButton {
             Point size = DimensionsUtil.getDeviceDimension(activity);
             int w = size.x;
             activity.addContentView(trashButtonView,new ViewGroup.LayoutParams(w/2,w/2));
+            if(trashButtonClickListener!=null) {
+                trashButtonShape.setTrashButtonOnClickListener(trashButtonClickListener);
+            }
         }
         trashButtonView.setX(x);
         trashButtonView.setY(y);
