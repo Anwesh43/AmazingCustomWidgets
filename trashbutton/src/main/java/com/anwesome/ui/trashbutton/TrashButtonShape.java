@@ -11,7 +11,7 @@ import com.anwesome.ui.trashbutton.controller.StateController;
 public class TrashButtonShape {
     private StateController stateController = new StateController();
     public void draw(Canvas canvas, Paint paint,float w) {
-        
+
     }
     public void move() {
         stateController.move();
