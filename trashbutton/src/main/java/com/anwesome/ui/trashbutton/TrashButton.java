@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.anwesome.ui.trashbutton.controller.AnimationController;
+
 /**
  * Created by anweshmishra on 16/04/17.
  */
@@ -14,6 +16,7 @@ public class TrashButton {
     private Activity activity;
     private TrashButtonShape trashButtonShape;
     private TrashButtonView trashButtonView;
+    private AnimationController animationController;
     public TrashButton(Activity activity) {
         this.activity = activity;
     }
@@ -21,6 +24,7 @@ public class TrashButton {
         if(trashButtonView == null) {
             trashButtonView = new TrashButtonView(activity);
             trashButtonShape = new TrashButtonShape();
+            animationController = new AnimationController(trashButtonView,trashButtonShape);
         }
     }
     private class TrashButtonView extends View {
@@ -30,8 +34,12 @@ public class TrashButton {
         }
         public void onDraw(Canvas canvas) {
             trashButtonShape.draw(canvas,paint,canvas.getWidth()/2);
+            animationController.animate();
         }
         public boolean onTouchEvent(MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                animationController.startAnimating();
+            }
             return true;
         }
     }
