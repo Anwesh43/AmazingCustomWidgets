@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 import com.anwesome.ui.trashbutton.controller.AnimationController;
 
 /**
@@ -25,7 +28,12 @@ public class TrashButton {
             trashButtonView = new TrashButtonView(activity);
             trashButtonShape = new TrashButtonShape();
             animationController = new AnimationController(trashButtonView,trashButtonShape);
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            int w = size.x;
+            activity.addContentView(trashButtonView,new ViewGroup.LayoutParams(w/2,w/2));
         }
+        trashButtonView.setX(x);
+        trashButtonView.setY(y);
     }
     private class TrashButtonView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
