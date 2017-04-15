@@ -16,6 +16,9 @@ public class DrawingController {
         this.stateController = stateController;
     }
     public void draw(Canvas canvas, Paint paint) {
+        paint.setStrokeWidth(size/20);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
         canvas.save();
         canvas.translate(x,y);
         for(int i=0;i<2;i++) {
@@ -31,7 +34,7 @@ public class DrawingController {
         canvas.save();
         canvas.translate(-size/4,size/4);
         canvas.rotate(stateController.getDeg()+45);
-        canvas.drawLine(0,0,0,-size/4,paint);
+        canvas.drawLine(0,-size/4,0,size/4,paint);
         for(int i=0;i<2;i++) {
             canvas.save();
             canvas.scale(2*i-1,1);
