@@ -114,6 +114,7 @@ import com.anwesome.ui.recordbutton.RecordButton;
 import com.anwesome.ui.sharebutton.ShareButton;
 import com.anwesome.ui.syncbutton.SyncButton;
 import com.anwesome.ui.trashbutton.TrashButton;
+import com.anwesome.ui.trashbutton.TrashButtonShape;
 import com.anwesome.ui.tricircledbutton.TriCircledButton;
 
 import java.util.ArrayList;
@@ -963,5 +964,11 @@ public class MainActivity extends AppCompatActivity {
     public void showTrashButton() {
         TrashButton trashButton = new TrashButton(this);
         trashButton.show(200,200);
+        trashButton.setTrashButtonOnClickListener(new TrashButtonShape.TrashButtonClickListener() {
+            @Override
+            public void onClick() {
+                Toast.makeText(MainActivity.this, "Collect Trash", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
