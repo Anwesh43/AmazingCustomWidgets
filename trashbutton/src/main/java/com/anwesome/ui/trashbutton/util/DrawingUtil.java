@@ -18,11 +18,11 @@ public class DrawingUtil {
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawRect(new RectF(-w/3,-w/2,w/3,w/2),paint);
-        canvas.drawRect(new RectF(-w/15,-w/2-w/15,w/15,-w/2),paint);
-        for(int i=0;i<2;i++) {
+        canvas.drawRect(new RectF(-w/15,-w/2-w/24,w/15,-w/2),paint);
+        for(int i=0;i<4;i++) {
+            float x = (i*w/6)-w/4;
             canvas.save();
-            canvas.scale(2*i-1,1);
-            canvas.drawLine(-w/15,-w/3,-w/15,w/3,paint);
+            canvas.drawLine(x,-w/3,x,w/3,paint);
             canvas.restore();
         }
     }
