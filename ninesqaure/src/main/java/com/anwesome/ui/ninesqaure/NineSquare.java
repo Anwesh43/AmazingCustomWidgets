@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 17/04/17.
@@ -18,10 +22,17 @@ public class NineSquare {
     public NineSquare(Activity activity) {
         this.activity = activity;
     }
-    public void show() {
+    public void show(float x,float y) {
         if(nineSquareView == null) {
             nineSquareView = new NineSquareView(activity);
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            int w = size.x;
+            nineSquareButton = new NineSquareButton(w/4);
+            activity.addContentView(nineSquareView,new ViewGroup.LayoutParams(w/2,w/2));
+            animationController = new AnimationController(nineSquareView,nineSquareButton);
         }
+        nineSquareView.setX(x);
+        nineSquareView.setY(y);
     }
     private class NineSquareView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -35,7 +46,7 @@ public class NineSquare {
             }
         }
         public boolean onTouchEvent(MotionEvent event) {
-            if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            if(event.getAction() == MotionEvent.ACTION_DOWN && animationController!=null) {
                 animationController.handleTap();
             }
             return true;
