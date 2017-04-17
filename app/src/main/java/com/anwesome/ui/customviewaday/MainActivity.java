@@ -106,6 +106,7 @@ import com.anwesome.ui.messengerbutton.MessengerButton;
 import com.anwesome.ui.mutebutton.MuteButton;
 import com.anwesome.ui.mutebutton.MuteClickListener;
 import com.anwesome.ui.ninesqaure.NineSquare;
+import com.anwesome.ui.ninesqaure.OnOpenCloseListener;
 import com.anwesome.ui.notificationbutton.NotificationButton;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 import com.anwesome.ui.powerbutton.PowerButton;
@@ -974,6 +975,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showNineSquare() {
         NineSquare nineSquare = new NineSquare(this);
+        nineSquare.setOnOpenCloseListener(new OnOpenCloseListener() {
+            @Override
+            public void onOpen() {
+                Toast.makeText(MainActivity.this, "Opened", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onClose() {
+                Toast.makeText(MainActivity.this, "Closed", Toast.LENGTH_SHORT).show();
+            }
+        });
         nineSquare.show(300,300);
     }
 }
