@@ -11,11 +11,11 @@ public class DrawingUtil {
         canvas.translate(x,y);
         canvas.rotate(stateController.getDeg());
         float w = stateController.getGap();
-        float sqX = -size/2-w/6,sqY = -size/2-w/6;
+        float sqX = -w/4,sqY = -w/4;
         for(int i=0;i<9;i++){
             canvas.save();
-            canvas.translate(sqX+(w/6)*(i%3),sqY+(w/6)*(i/3));
-            canvas.drawRect(new RectF(-size/18,-size/24,size/24,size/18),paint);
+            canvas.translate(sqX+(w/4)*(i%3),sqY+(w/4)*(i/3));
+            canvas.drawRect(new RectF(-size/24,-size/24,size/24,size/24),paint);
             canvas.restore();
         }
         canvas.restore();
