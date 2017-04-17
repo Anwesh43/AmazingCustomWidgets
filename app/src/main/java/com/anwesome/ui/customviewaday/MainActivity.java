@@ -105,6 +105,7 @@ import com.anwesome.ui.messageui.MessageUIButton;
 import com.anwesome.ui.messengerbutton.MessengerButton;
 import com.anwesome.ui.mutebutton.MuteButton;
 import com.anwesome.ui.mutebutton.MuteClickListener;
+import com.anwesome.ui.ninesqaure.NineSquare;
 import com.anwesome.ui.notificationbutton.NotificationButton;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 import com.anwesome.ui.powerbutton.PowerButton;
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTrashButton();
+                showNineSquare();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -970,5 +971,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Collect Trash", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showNineSquare() {
+        NineSquare nineSquare = new NineSquare(this);
+        nineSquare.show(300,300);
     }
 }
