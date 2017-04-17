@@ -25,7 +25,7 @@ public class AnimationController {
             }
         }
     }
-    public void handleTap(float x,float y) {
+    public void handleTap() {
         if(!isAnimated) {
             nineSquareButton.startMoving();
             isAnimated = true;
