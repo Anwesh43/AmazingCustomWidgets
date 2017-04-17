@@ -9,14 +9,19 @@ import android.graphics.Paint;
 public class NineSquareButton {
     private float x,y,w;
     private StateController stateController;
+    private OnOpenCloseListener onOpenCloseListener;
     public NineSquareButton(float w) {
         this.x = w;
         this.y = w;
         this.w = w;
         this.stateController = new StateController(w);
     }
+
     public void draw(Canvas canvas, Paint paint) {
         DrawingUtil.drawNineSquare(canvas,paint,stateController,x,y,w);
+    }
+    public void setOnOpenCloseListener(OnOpenCloseListener onOpenCloseListener) {
+        this.onOpenCloseListener = onOpenCloseListener;
     }
     public void move() {
         stateController.move();
@@ -25,6 +30,15 @@ public class NineSquareButton {
         stateController.startMoving();
     }
     public boolean stopped() {
-        return stateController.stopped();
+        boolean condition =  stateController.stopped();
+        if(onOpenCloseListener!=null) {
+            if(stateController.opened()) {
+                onOpenCloseListener.onOpen();
+            }
+            else {
+                onOpenCloseListener.onClose();
+            }
+        }
+        return condition;
     }
 }
