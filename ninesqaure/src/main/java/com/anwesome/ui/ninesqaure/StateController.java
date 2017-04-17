@@ -25,8 +25,8 @@ public class StateController {
         }
         if(gap>=maxGap && deg<=0) {
             dir = 0;
-            deg = 90;
-            gap = 0;
+            deg = 0;
+            gap = maxGap;
         }
     }
     public void startMoving() {

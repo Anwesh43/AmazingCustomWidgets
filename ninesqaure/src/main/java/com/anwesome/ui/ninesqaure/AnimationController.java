@@ -16,6 +16,9 @@ public class AnimationController {
     public void animate() {
         if(isAnimated) {
             nineSquareButton.move();
+            if(nineSquareButton.stopped()) {
+                isAnimated = false;
+            }
             try {
                 Thread.sleep(50);
                 view.invalidate();
