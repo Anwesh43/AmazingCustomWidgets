@@ -9,6 +9,12 @@ public class StateController {
         this.gap = maxGap;
         this.maxGap = maxGap;
     }
+    public float getGap() {
+        return gap;
+    }
+    public float getDeg() {
+        return deg;
+    }
     public void move() {
         deg+=dir*18;
         gap-=dir*maxGap/5;
