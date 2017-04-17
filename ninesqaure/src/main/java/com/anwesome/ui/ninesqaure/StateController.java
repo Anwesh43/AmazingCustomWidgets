@@ -30,7 +30,7 @@ public class StateController {
         }
     }
     public boolean opened() {
-        return dir == 0 && deg>=90;
+        return dir == 0 && deg<=0;
     }
     public void startMoving() {
         dir = deg == 0?1:-1;

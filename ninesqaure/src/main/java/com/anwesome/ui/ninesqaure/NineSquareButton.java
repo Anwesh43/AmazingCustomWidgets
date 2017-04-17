@@ -31,7 +31,7 @@ public class NineSquareButton {
     }
     public boolean stopped() {
         boolean condition =  stateController.stopped();
-        if(onOpenCloseListener!=null) {
+        if(onOpenCloseListener!=null && condition) {
             if(stateController.opened()) {
                 onOpenCloseListener.onOpen();
             }

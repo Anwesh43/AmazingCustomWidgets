@@ -19,8 +19,15 @@ public class NineSquare {
     private AnimationController animationController;
     private NineSquareButton nineSquareButton;
     private NineSquareView nineSquareView;
+    private OnOpenCloseListener onOpenCloseListener;
     public NineSquare(Activity activity) {
         this.activity = activity;
+    }
+    public void setOnOpenCloseListener(OnOpenCloseListener onOpenCloseListener) {
+        this.onOpenCloseListener = onOpenCloseListener;
+        if(nineSquareButton!=null) {
+            nineSquareButton.setOnOpenCloseListener(onOpenCloseListener);
+        }
     }
     public void show(float x,float y) {
         if(nineSquareView == null) {
@@ -30,6 +37,9 @@ public class NineSquare {
             nineSquareButton = new NineSquareButton(w/4);
             activity.addContentView(nineSquareView,new ViewGroup.LayoutParams(w/2,w/2));
             animationController = new AnimationController(nineSquareView,nineSquareButton);
+            if(onOpenCloseListener!=null) {
+                nineSquareButton.setOnOpenCloseListener(onOpenCloseListener);
+            }
         }
         nineSquareView.setX(x);
         nineSquareView.setY(y);
