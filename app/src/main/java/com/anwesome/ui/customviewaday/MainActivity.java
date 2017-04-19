@@ -118,6 +118,7 @@ import com.anwesome.ui.syncbutton.SyncButton;
 import com.anwesome.ui.trashbutton.TrashButton;
 import com.anwesome.ui.trashbutton.TrashButtonShape;
 import com.anwesome.ui.tricircledbutton.TriCircledButton;
+import com.anwesome.ui.watchlikebutton.WatchLikeButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -139,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showNineSquare();
+                showWatchLikeButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -987,5 +988,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         nineSquare.show(300,300);
+    }
+    public void showWatchLikeButton() {
+        WatchLikeButton watchLikeButton = new WatchLikeButton(this);
+        watchLikeButton.show();
     }
 }
