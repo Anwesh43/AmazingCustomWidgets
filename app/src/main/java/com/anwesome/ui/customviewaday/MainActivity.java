@@ -118,6 +118,7 @@ import com.anwesome.ui.syncbutton.SyncButton;
 import com.anwesome.ui.trashbutton.TrashButton;
 import com.anwesome.ui.trashbutton.TrashButtonShape;
 import com.anwesome.ui.tricircledbutton.TriCircledButton;
+import com.anwesome.ui.watchlikebutton.WatchClickListener;
 import com.anwesome.ui.watchlikebutton.WatchLikeButton;
 
 import java.util.ArrayList;
@@ -994,6 +995,12 @@ public class MainActivity extends AppCompatActivity {
         watchLikeButton.show();
         watchLikeButton.setX(300);
         watchLikeButton.setY(300);
+        watchLikeButton.setWatchClickListener(new WatchClickListener() {
+            @Override
+            public void onClick() {
+                Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 }
