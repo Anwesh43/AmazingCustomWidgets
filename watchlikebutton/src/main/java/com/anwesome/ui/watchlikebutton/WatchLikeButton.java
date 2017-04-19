@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 /**
  * Created by anweshmishra on 19/04/17.
@@ -18,6 +19,22 @@ public class WatchLikeButton {
     private WatchLikeShape watchLikeShape = new WatchLikeShape();
     public WatchLikeButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setX(float x) {
+        if(watchLikeView != null) {
+            watchLikeView.setX(x);
+        }
+        else {
+            Toast.makeText(activity, "Please use setX after show method", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void setY(float y) {
+        if(watchLikeView != null) {
+            watchLikeView.setY(y);
+        }
+        else {
+            Toast.makeText(activity, "Please use setY after show method", Toast.LENGTH_SHORT).show();
+        }
     }
     public void show() {
         if(watchLikeView == null) {
