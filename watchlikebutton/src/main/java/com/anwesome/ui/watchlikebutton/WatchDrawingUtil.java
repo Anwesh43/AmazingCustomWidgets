@@ -9,9 +9,10 @@ import android.graphics.RectF;
  * Created by anweshmishra on 19/04/17.
  */
 public class WatchDrawingUtil {
-    public static void drawWatch(Canvas canvas, Paint paint,float w) {
+    public static void drawWatch(Canvas canvas, Paint paint,WatchMovementController watchMovementController,float w) {
         canvas.save();
         canvas.translate(w/2,w/2);
+        canvas.rotate(watchMovementController.getDeg());
         float radius = w/12;
         paint.setStrokeWidth(w/60);
         paint.setColor(Color.parseColor("#26A69A"));
