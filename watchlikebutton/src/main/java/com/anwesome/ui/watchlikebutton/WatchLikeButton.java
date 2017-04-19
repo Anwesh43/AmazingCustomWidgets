@@ -32,7 +32,7 @@ public class WatchLikeButton {
             super(context);
         }
         public void onDraw(Canvas canvas) {
-            watchLikeShape.draw(canvas,paint,canvas.getWidth());
+            watchLikeShape.draw(canvas,paint,canvas.getWidth()/2);
             animationController.animate();
         }
         public boolean onTouchEvent(MotionEvent event) {
