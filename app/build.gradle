@@ -92,4 +92,5 @@ dependencies {
     compile project(':fsarrowbutton')
     compile project(':trashbutton')
     compile project(':ninesqaure')
+    compile project(':watchlikebutton')
 }
