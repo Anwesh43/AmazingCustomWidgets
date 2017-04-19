@@ -16,9 +16,12 @@ public class WatchLikeButton {
     private Activity activity;
     private WatchLikeView watchLikeView;
     private AnimationController animationController;
-    private WatchLikeShape watchLikeShape = new WatchLikeShape();
+    private final WatchLikeShape watchLikeShape = new WatchLikeShape();
     public WatchLikeButton(Activity activity) {
         this.activity = activity;
+    }
+    public void setWatchClickListener(WatchClickListener watchClickListener) {
+        watchLikeShape.setWatchClickListener(watchClickListener);
     }
     public void setX(float x) {
         if(watchLikeView != null) {
