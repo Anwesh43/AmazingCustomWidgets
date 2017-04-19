@@ -992,5 +992,8 @@ public class MainActivity extends AppCompatActivity {
     public void showWatchLikeButton() {
         WatchLikeButton watchLikeButton = new WatchLikeButton(this);
         watchLikeButton.show();
+        watchLikeButton.setX(300);
+        watchLikeButton.setY(300);
+
     }
 }
