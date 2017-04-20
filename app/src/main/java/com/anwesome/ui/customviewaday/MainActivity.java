@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.anwesome.app.alphaimageswitch.AlphaImageSwitch;
 import com.anwesome.app.alphaimageswitch.AlphaImageSwitchButton;
@@ -88,6 +90,8 @@ import com.anwesome.ui.bluetoothbutton.BluetoothButtonShape;
 import com.anwesome.ui.bulletedlist.BulletedList;
 import com.anwesome.ui.calbutton.CalButton;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
+import com.anwesome.ui.clockbutton.ClockButton;
+import com.anwesome.ui.clockbutton.ClockListener;
 import com.anwesome.ui.compassbutton.CompassButton;
 import com.anwesome.ui.completeballbuttons.BallButton;
 import com.anwesome.ui.completeballbuttons.CompleteBallButton;
@@ -141,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showWatchLikeButton();
+                showClockButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1003,4 +1007,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    public void showClockButton() {
+        final TextView textView = new TextView(this);
+        textView.setX(200);
+        textView.setTextSize(30);
+        addContentView(textView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        final ClockButton clockButton = new ClockButton(this);
+        clockButton.show(300,300);
+        clockButton.setClockListener(new ClockListener() {
+            @Override
+            public void onProgress(int h, int m) {
+                textView.setText(clockButton.getTimeString());
+            }
+
+            @Override
+            public void onCompletion(int h, int m) {
+                Toast.makeText(MainActivity.this,clockButton.getTimeString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }
