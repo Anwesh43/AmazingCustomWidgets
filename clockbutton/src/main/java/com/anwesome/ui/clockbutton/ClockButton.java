@@ -5,8 +5,10 @@ import android.content.Context;
 import android.graphics.*;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.anwesome.ui.clockbutton.controllers.AnimationController;
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 20/04/17.
@@ -26,6 +28,9 @@ public class ClockButton {
         if(clockButtonView == null) {
             clockButtonView = new ClockButtonView(activity);
             animationController = new AnimationController(clockButtonView,clockShape);
+            Point dimension = DimensionsUtil.getDeviceDimension(activity);
+            int w = dimension.x;
+            activity.addContentView(clockButtonView,new ViewGroup.LayoutParams(w/2,w/2));
         }
     }
     private class ClockButtonView extends View {
