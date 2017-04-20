@@ -21,6 +21,12 @@ public class ClockButton {
     public void setColor(int color) {
         clockShape.setColor(color);
     }
+    public String getTimeString() {
+        return clockShape.getTimeString();
+    }
+    public void setClockListener(ClockListener clockListener) {
+        clockShape.setClockListener(clockListener);
+    }
     public ClockButton(Activity activity) {
         this.activity = activity;
     }
