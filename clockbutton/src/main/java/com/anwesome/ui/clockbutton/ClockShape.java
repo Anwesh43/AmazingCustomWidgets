@@ -10,7 +10,7 @@ import com.anwesome.ui.clockbutton.utils.ClockDrawingUtil;
 public class ClockShape {
     private ClockMovementController clockMovementController = new ClockMovementController();
     private int color = Color.parseColor("#009688");
-    public ClockShape(int color) {
+    public void setColor(int color) {
         this.color = color;
     }
     public void draw(Canvas canvas, Paint paint,float size) {
