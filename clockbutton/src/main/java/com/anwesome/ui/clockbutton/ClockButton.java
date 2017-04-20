@@ -24,7 +24,7 @@ public class ClockButton {
     public ClockButton(Activity activity) {
         this.activity = activity;
     }
-    public void show() {
+    public void show(int x,int y) {
         if(clockButtonView == null) {
             clockButtonView = new ClockButtonView(activity);
             animationController = new AnimationController(clockButtonView,clockShape);
@@ -32,6 +32,8 @@ public class ClockButton {
             int w = dimension.x;
             activity.addContentView(clockButtonView,new ViewGroup.LayoutParams(w/2,w/2));
         }
+        clockButtonView.setX(x);
+        clockButtonView.setY(y);
     }
     private class ClockButtonView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
