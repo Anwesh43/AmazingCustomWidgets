@@ -16,7 +16,7 @@ public class ClockShape {
         this.clockListener = clockListener;
     }
     public String getTimeString() {
-        return  (h>=10)?""+h:"0"+h+":"+((m>=10)?""+m:"0"+m);
+        return  ((h>=10)?""+h:"0"+h)+":"+((m>=10)?""+m:"0"+m);
     }
     public void setColor(int color) {
         this.color = color;
