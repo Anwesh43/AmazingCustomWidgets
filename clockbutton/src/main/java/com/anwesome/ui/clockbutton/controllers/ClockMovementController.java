@@ -10,9 +10,8 @@ public class ClockMovementController {
     }
     public void move() {
         deg+=dir*10;
-        if(deg>=360) {
+        if(deg%360 == 0) {
             dir = 0;
-            deg = 0;
         }
     }
     public void startMoving() {

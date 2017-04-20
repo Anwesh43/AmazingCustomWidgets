@@ -12,8 +12,10 @@ public class ClockDrawingUtil {
         canvas.translate(w,w);
         paint.setStrokeWidth(w/30);
         paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setColor(color);
-        canvas.drawCircle(0,0,w,paint);
+        canvas.drawCircle(0,0,w/2,paint);
         canvas.save();
         canvas.rotate(deg);
         canvas.drawLine(0,0,0,-w/3,paint);
