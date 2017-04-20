@@ -10,6 +10,10 @@ import com.anwesome.ui.clockbutton.utils.ClockDrawingUtil;
 public class ClockShape {
     private ClockMovementController clockMovementController = new ClockMovementController();
     private int color = Color.parseColor("#009688");
+    private int m=0,h=0;
+    public String getTimeString() {
+        return  (h>10)?""+h:"0"+h+":"+((m>10)?""+m:"0"+m);
+    }
     public void setColor(int color) {
         this.color = color;
     }
@@ -18,6 +22,8 @@ public class ClockShape {
     }
     public void move() {
         clockMovementController.move();
+        h = 12*(int)(((clockMovementController.getDeg()/12)%360)/360);
+        m = 60*(int)((clockMovementController.getDeg()%360)/360);
     }
     public void startMoving() {
         clockMovementController.startMoving();
