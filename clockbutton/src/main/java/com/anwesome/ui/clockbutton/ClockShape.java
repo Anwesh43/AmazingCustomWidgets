@@ -26,8 +26,8 @@ public class ClockShape {
     }
     public void move() {
         clockMovementController.move();
-        h = 12*(int)(((clockMovementController.getDeg()/12)%360)/360);
-        m = 60*(int)((clockMovementController.getDeg()%360)/360);
+        h = (int)(12*(((clockMovementController.getDeg()/12)%360)/360));
+        m = (int)(60*((clockMovementController.getDeg()%360)/360));
         if(clockListener!=null) {
             clockListener.onProgress(h,m);
         }
