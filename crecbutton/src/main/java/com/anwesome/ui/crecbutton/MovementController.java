@@ -20,4 +20,10 @@ public class MovementController {
     public boolean stopped() {
         return dir == 0;
     }
+    public float getDeg() {
+        return deg;
+    }
+    public float getScale() {
+        return scale;
+    }
 }

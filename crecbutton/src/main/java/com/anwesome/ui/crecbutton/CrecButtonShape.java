@@ -9,15 +9,15 @@ import android.graphics.Paint;
 public class CrecButtonShape {
     private MovementController movementController = new MovementController();
     public void draw(Canvas canvas, Paint paint,float w) {
-
+        DrawingUtil.drawCrec(canvas,paint,w,movementController.getDeg(),movementController.getScale());
     }
     public void update() {
-
+        movementController.update();
     }
     public void startUpdating() {
-
+        movementController.startUpdating();
     }
     public boolean stopped() {
-        return false;
+        return movementController.stopped();
     }
 }
