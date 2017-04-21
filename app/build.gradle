@@ -94,4 +94,5 @@ dependencies {
     compile project(':ninesqaure')
     compile project(':watchlikebutton')
     compile project(':clockbutton')
+    compile project(':crecbutton')
 }

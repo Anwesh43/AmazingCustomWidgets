@@ -95,6 +95,8 @@ import com.anwesome.ui.clockbutton.ClockListener;
 import com.anwesome.ui.compassbutton.CompassButton;
 import com.anwesome.ui.completeballbuttons.BallButton;
 import com.anwesome.ui.completeballbuttons.CompleteBallButton;
+import com.anwesome.ui.crecbutton.CrecButton;
+import com.anwesome.ui.crecbutton.OnClickListener;
 import com.anwesome.ui.crukybutton.CrukyButton;
 import com.anwesome.ui.emergencybutton.EmergencyButton;
 import com.anwesome.ui.footiepitchbutton.FootiePitchButton;
@@ -145,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showClockButton();
+                showCrecButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1025,6 +1027,16 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,clockButton.getTimeString(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showCrecButton() {
+        CrecButton crecButton = new CrecButton(this);
+        crecButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick() {
+                Toast.makeText(MainActivity.this, "Crec Show", Toast.LENGTH_SHORT).show();
+            }
+        });
+        crecButton.show();
     }
 
 }
