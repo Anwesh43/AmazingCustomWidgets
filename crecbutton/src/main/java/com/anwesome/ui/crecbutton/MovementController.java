@@ -6,10 +6,10 @@ package com.anwesome.ui.crecbutton;
 public class MovementController {
     private float deg = 0,dir = 0,scale=0;
     public void update() {
-        deg+=dir*9;
+        deg+=dir*36;
         scale+=dir*0.1f;
         if(deg>=360) {
-            deg = 180;
+            deg = 360;
             dir = -1;
         }
         if(deg<=0) {
