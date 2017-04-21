@@ -16,8 +16,11 @@ public class AnimationController {
     public void animate() {
         if(isAnimated) {
             crecButtonShape.update();
+            if(crecButtonShape.stopped()) {
+                isAnimated = false;
+            }
             try {
-                Thread.sleep(50);
+                Thread.sleep(200);
                 view.invalidate();
             }
             catch(Exception ex) {

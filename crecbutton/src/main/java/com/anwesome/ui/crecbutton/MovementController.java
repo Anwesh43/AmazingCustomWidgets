@@ -8,8 +8,14 @@ public class MovementController {
     public void update() {
         deg+=dir*36;
         scale+=dir*0.2f;
-        if(deg>=180 || deg<=0) {
-            dir *= -1;
+        if(deg>=180) {
+            deg = 180;
+            dir = -1;
+        }
+        if(deg<=0) {
+            dir = 0;
+            deg =0;
+            scale = 0;
         }
     }
     public void startUpdating() {
