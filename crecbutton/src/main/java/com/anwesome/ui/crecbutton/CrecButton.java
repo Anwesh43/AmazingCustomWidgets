@@ -19,6 +19,10 @@ public class CrecButton {
     private CrecButtonShape crecButtonShape = new CrecButtonShape();
     private CrecButtonView crecButtonView;
     private AnimationController animationController;
+    private OnClickListener onClickListener;
+    public void setOnClickListener(OnClickListener onClickListener) {
+        crecButtonShape.setOnClickListener(onClickListener);
+    }
     public CrecButton(Activity activity) {
         this.activity = activity;
     }

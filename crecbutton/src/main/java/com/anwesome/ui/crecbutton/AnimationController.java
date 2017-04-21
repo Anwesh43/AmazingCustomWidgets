@@ -20,7 +20,7 @@ public class AnimationController {
                 isAnimated = false;
             }
             try {
-                Thread.sleep(200);
+                Thread.sleep(50);
                 view.invalidate();
             }
             catch(Exception ex) {
