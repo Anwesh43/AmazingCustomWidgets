@@ -12,11 +12,16 @@ public class DrawingUtil {
         canvas.save();
         canvas.translate(w,w);
         canvas.rotate(deg);
-        canvas.scale(scale,scale);
         paint.setColor(Color.BLACK);
-        canvas.drawCircle(0,0,w/2,paint);
-        paint.setColor(Color.WHITE);
         canvas.drawCircle(0,0,w,paint);
+        paint.setColor(Color.WHITE);
+        canvas.drawCircle(0,0,w/2,paint);
+        canvas.save();
+        canvas.translate(0,0);
+        canvas.scale(scale,scale);
+        paint.setColor(Color.CYAN);
+        canvas.drawCircle(0,0,w/2,paint);
+        canvas.restore();
         for(int i=0;i<6;i++) {
             canvas.save();
             canvas.rotate(i*60);
