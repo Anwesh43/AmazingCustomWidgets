@@ -22,7 +22,7 @@ public class DrawingUtil {
         paint.setColor(Color.CYAN);
         canvas.drawCircle(0,0,w/2,paint);
         canvas.restore();
-        for(int i=0;i<4;i++) {
+        for(int i=0;i<1;i++) {
             canvas.save();
             canvas.rotate(i*90);
             paint.setColor(Color.WHITE);
