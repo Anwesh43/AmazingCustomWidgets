@@ -17,14 +17,14 @@ public class DrawingUtil {
         paint.setColor(Color.parseColor("#FDD835"));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(w/40);
-        canvas.drawRect(new RectF(-w/2,-w/2,w/2,w/2),paint);
+        canvas.drawRect(new RectF(-w/2,-w/3,w/2,w/3),paint);
         paint.setStyle(Paint.Style.FILL);
         Path path = new Path();
-        path.moveTo(-w/2,-w/2);
-        path.lineTo(-w/2,-w/2-w/10);
-        path.lineTo(-w/2+w/6,-w/2-w/10);
-        path.lineTo(-w/2+w/6+w/10,-w/2);
-        path.lineTo(-w/2,-w/2);
+        path.moveTo(-w/2,-w/3);
+        path.lineTo(-w/2,-w/3-w/10);
+        path.lineTo(-w/2+w/6,-w/3-w/10);
+        path.lineTo(-w/2+w/6+w/10,-w/3);
+        path.lineTo(-w/2,-w/3);
         canvas.drawPath(path,paint);
         canvas.restore();
     }
