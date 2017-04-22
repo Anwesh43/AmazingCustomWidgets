@@ -22,7 +22,7 @@ public class UiWindowShape {
     public boolean stopped() {
         boolean isStopped = movementController.stopped();
         if(isStopped) {
-            
+
         }
         return isStopped;
     }
