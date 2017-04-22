@@ -23,7 +23,7 @@ public class UiWindow {
     public UiWindow(Activity activity) {
         this.activity = activity;
     }
-    public void show() {
+    public void show(int x,int y) {
         if(uiWindowView == null) {
             uiWindowView = new UiWindowView(activity);
             animationController = new AnimationController(uiWindowView,uiWindowShape);
@@ -31,6 +31,8 @@ public class UiWindow {
             int w = dimension.x;
             activity.addContentView(uiWindowView,new ViewGroup.LayoutParams(w/2,w/2));
         }
+        uiWindowView.setX(x);
+        uiWindowView.setY(y);
     }
     private class UiWindowView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
