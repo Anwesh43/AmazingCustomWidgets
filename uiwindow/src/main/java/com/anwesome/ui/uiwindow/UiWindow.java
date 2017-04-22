@@ -23,6 +23,9 @@ public class UiWindow {
     public UiWindow(Activity activity) {
         this.activity = activity;
     }
+    public void setOnClickListener(OnClickListener onClickListener) {
+        uiWindowShape.setOnClickListener(onClickListener);
+    }
     public void show(int x,int y) {
         if(uiWindowView == null) {
             uiWindowView = new UiWindowView(activity);
