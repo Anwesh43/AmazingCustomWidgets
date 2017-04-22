@@ -1041,6 +1041,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showUiWindow() {
         UiWindow uiWindow = new UiWindow(this);
+        uiWindow.setOnClickListener(new com.anwesome.ui.uiwindow.OnClickListener() {
+            @Override
+            public void onClick() {
+                Toast.makeText(MainActivity.this, "Showing UIWindow", Toast.LENGTH_SHORT).show();
+            }
+        });
         uiWindow.show(300,300);
     }
 }
