@@ -11,7 +11,7 @@ import com.anwesome.ui.uiwindow.controllers.MovementController;
 public class UiWindowShape {
     private MovementController movementController = new MovementController();
     public void draw(Canvas canvas, Paint paint,float w) {
-
+        DrawingUtil.drawUiWindow(canvas,paint,w,movementController.getDeg());
     }
     public void update() {
         movementController.move();
@@ -22,7 +22,7 @@ public class UiWindowShape {
     public boolean stopped() {
         boolean isStopped = movementController.stopped();
         if(isStopped) {
-
+            
         }
         return isStopped;
     }
