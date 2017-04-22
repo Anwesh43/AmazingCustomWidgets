@@ -11,6 +11,6 @@ public class UiWindow {
         this.activity = activity;
     }
     public void show() {
-        
+
     }
 }
