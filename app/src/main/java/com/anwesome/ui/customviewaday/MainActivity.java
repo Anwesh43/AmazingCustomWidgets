@@ -124,6 +124,7 @@ import com.anwesome.ui.syncbutton.SyncButton;
 import com.anwesome.ui.trashbutton.TrashButton;
 import com.anwesome.ui.trashbutton.TrashButtonShape;
 import com.anwesome.ui.tricircledbutton.TriCircledButton;
+import com.anwesome.ui.uiwindow.UiWindow;
 import com.anwesome.ui.watchlikebutton.WatchClickListener;
 import com.anwesome.ui.watchlikebutton.WatchLikeButton;
 
@@ -147,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCrecButton();
+                showUiWindow();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1038,5 +1039,8 @@ public class MainActivity extends AppCompatActivity {
         });
         crecButton.show();
     }
-
+    public void showUiWindow() {
+        UiWindow uiWindow = new UiWindow(this);
+        uiWindow.show(300,300);
+    }
 }
