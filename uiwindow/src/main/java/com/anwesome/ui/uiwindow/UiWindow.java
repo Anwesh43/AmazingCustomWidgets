@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 import com.anwesome.ui.uiwindow.controllers.AnimationController;
 
 /**
@@ -24,6 +27,9 @@ public class UiWindow {
         if(uiWindowView == null) {
             uiWindowView = new UiWindowView(activity);
             animationController = new AnimationController(uiWindowView,uiWindowShape);
+            Point dimension = DimensionsUtil.getDeviceDimension(activity);
+            int w = dimension.x;
+            activity.addContentView(uiWindowView,new ViewGroup.LayoutParams(w/2,w/2));
         }
     }
     private class UiWindowView extends View {
