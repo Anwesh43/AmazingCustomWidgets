@@ -100,6 +100,7 @@ import com.anwesome.ui.crecbutton.OnClickListener;
 import com.anwesome.ui.crukybutton.CrukyButton;
 import com.anwesome.ui.emergencybutton.EmergencyButton;
 import com.anwesome.ui.fillringbutton.FillRingButton;
+import com.anwesome.ui.fillringbutton.OnFillChangeListener;
 import com.anwesome.ui.footiepitchbutton.FootiePitchButton;
 import com.anwesome.ui.fourbutton.FourButtons;
 import com.anwesome.ui.fsarrowbutton.FsArrowButton;
@@ -1052,6 +1053,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showFillRingButton() {
         FillRingButton fillRingButton = new FillRingButton(this);
+        fillRingButton.setOnFillChangeListener(new OnFillChangeListener() {
+            @Override
+            public void onFill() {
+                Toast.makeText(MainActivity.this, "Filled", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnFill() {
+                Toast.makeText(MainActivity.this, "UnFilled", Toast.LENGTH_SHORT).show();
+            }
+        });
         fillRingButton.show(300,300);
     }
 }
