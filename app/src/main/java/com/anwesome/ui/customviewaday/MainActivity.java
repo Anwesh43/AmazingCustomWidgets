@@ -99,6 +99,7 @@ import com.anwesome.ui.crecbutton.CrecButton;
 import com.anwesome.ui.crecbutton.OnClickListener;
 import com.anwesome.ui.crukybutton.CrukyButton;
 import com.anwesome.ui.emergencybutton.EmergencyButton;
+import com.anwesome.ui.fillringbutton.FillRingButton;
 import com.anwesome.ui.footiepitchbutton.FootiePitchButton;
 import com.anwesome.ui.fourbutton.FourButtons;
 import com.anwesome.ui.fsarrowbutton.FsArrowButton;
@@ -148,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showUiWindow();
+                showFillRingButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1048,5 +1049,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         uiWindow.show(300,300);
+    }
+    public void showFillRingButton() {
+        FillRingButton fillRingButton = new FillRingButton(this);
+        fillRingButton.show(300,300);
     }
 }
