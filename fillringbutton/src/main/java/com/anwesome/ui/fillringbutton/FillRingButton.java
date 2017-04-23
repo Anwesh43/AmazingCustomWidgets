@@ -11,6 +11,6 @@ public class FillRingButton {
         this.activity = activity;
     }
     public void show() {
-        
+
     }
 }
