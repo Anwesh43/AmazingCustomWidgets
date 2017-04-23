@@ -26,9 +26,9 @@ public class FillRingButton {
         if(fillRingView == null) {
             fillRingView = new FillRingView(activity);
             Point dimension = DimensionsUtil.getDeviceDimension(activity);
-            int w = dimension.x/2;
+            int w = dimension.x;
             animationController = new AnimationController(fillRingView,fillRingShape);
-            activity.addContentView(fillRingView,new ViewGroup.LayoutParams(w/2,w/2));
+            activity.addContentView(fillRingView,new ViewGroup.LayoutParams(2*w/3,2*w/3));
         }
         fillRingView.setX(x);
         fillRingView.setY(y);
