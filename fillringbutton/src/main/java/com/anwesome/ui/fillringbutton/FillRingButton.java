@@ -22,6 +22,9 @@ public class FillRingButton {
     public FillRingButton(Activity activity) {
         this.activity = activity;
     }
+    public void setOnFillChangeListener(OnFillChangeListener onFillChangeListener) {
+        fillRingShape.setOnFillChangeListener(onFillChangeListener);
+    }
     public void show(int x,int y) {
         if(fillRingView == null) {
             fillRingView = new FillRingView(activity);
