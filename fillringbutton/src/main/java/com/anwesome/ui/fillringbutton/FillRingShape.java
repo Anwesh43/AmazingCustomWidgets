@@ -11,8 +11,9 @@ public class FillRingShape {
     private MovementController movementController;
     public void draw(Canvas canvas, Paint paint,float w) {
         if(render == 0) {
-            movementController = new MovementController(w);
+            movementController = new MovementController(w/2);
         }
+        DrawingUtil.draw(canvas,paint,w,movementController.getDeg(),movementController.getL(),movementController.getA());
         render++;
     }
     public void update() {
