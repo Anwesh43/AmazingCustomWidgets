@@ -18,7 +18,7 @@ public class DrawingUtil {
         paint.setStrokeWidth(w/40);
         for(int i=0;i<4;i++) {
             canvas.save();
-            canvas.rotate(90);
+            canvas.rotate(i*90);
             paint.setColor(Color.GRAY);
             drawRing(canvas,paint,finalL,360,radius);
             paint.setColor(Color.GREEN);
