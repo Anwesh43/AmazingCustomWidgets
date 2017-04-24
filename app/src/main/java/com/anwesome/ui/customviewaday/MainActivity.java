@@ -99,6 +99,7 @@ import com.anwesome.ui.crecbutton.CrecButton;
 import com.anwesome.ui.crecbutton.OnClickListener;
 import com.anwesome.ui.crukybutton.CrukyButton;
 import com.anwesome.ui.emergencybutton.EmergencyButton;
+import com.anwesome.ui.eyebutton.EyeButton;
 import com.anwesome.ui.fillringbutton.FillRingButton;
 import com.anwesome.ui.fillringbutton.OnFillChangeListener;
 import com.anwesome.ui.footiepitchbutton.FootiePitchButton;
@@ -150,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showFillRingButton();
+                showEyeButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1065,5 +1066,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         fillRingButton.show(300,300);
+    }
+    public void showEyeButton() {
+        EyeButton eyeButton = new EyeButton(this);
+        eyeButton.setOnClickListener(new com.anwesome.ui.eyebutton.OnClickListener() {
+            @Override
+            public void onClick() {
+                Toast.makeText(MainActivity.this, "Eye Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+        eyeButton.show(400,400);
     }
 }

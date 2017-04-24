@@ -97,4 +97,5 @@ dependencies {
     compile project(':crecbutton')
     compile project(':uiwindow')
     compile project(':fillringbutton')
+    compile project(':eyebutton')
 }
