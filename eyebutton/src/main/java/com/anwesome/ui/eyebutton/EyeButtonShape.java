@@ -7,6 +7,10 @@ import android.graphics.Paint;
  * Created by anweshmishra on 24/04/17.
  */
 public class EyeButtonShape {
+    private OnClickListener onClickListener;
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
     private MovementController movementController = new MovementController();
     public void draw(Canvas canvas, Paint paint,float w) {
         DrawingUtil.drawEye(canvas,paint,movementController.getDeg(),w);
@@ -18,6 +22,10 @@ public class EyeButtonShape {
         movementController.startMoving();
     }
     public boolean stopped() {
-        return movementController.stopped();
+        boolean condition =  movementController.stopped();
+        if(condition && onClickListener != null) {
+            onClickListener.onClick();
+        }
+        return condition;
     }
 }

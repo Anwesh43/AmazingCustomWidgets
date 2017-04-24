@@ -22,6 +22,9 @@ public class EyeButton {
     public EyeButton(Activity activity) {
         this.activity = activity;
     }
+    public void setOnClickListener(OnClickListener onClickListener) {
+        eyeButtonShape.setOnClickListener(onClickListener);
+    }
     public void show(int x,int y) {
         if(eyeButtonView == null) {
             eyeButtonView = new EyeButtonView(activity);
