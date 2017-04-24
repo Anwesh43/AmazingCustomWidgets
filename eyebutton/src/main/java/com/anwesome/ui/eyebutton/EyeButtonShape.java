@@ -7,16 +7,17 @@ import android.graphics.Paint;
  * Created by anweshmishra on 24/04/17.
  */
 public class EyeButtonShape {
+    private MovementController movementController = new MovementController();
     public void draw(Canvas canvas, Paint paint,float w) {
 
     }
     public void update() {
-
+        movementController.move();
     }
     public void startUpdating() {
-
+        movementController.startMoving();
     }
     public boolean stopped() {
-        return false;
+        return movementController.stopped();
     }
 }
