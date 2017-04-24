@@ -9,7 +9,7 @@ import android.graphics.Paint;
 public class EyeButtonShape {
     private MovementController movementController = new MovementController();
     public void draw(Canvas canvas, Paint paint,float w) {
-
+        DrawingUtil.drawEye(canvas,paint,movementController.getDeg(),w);
     }
     public void update() {
         movementController.move();
