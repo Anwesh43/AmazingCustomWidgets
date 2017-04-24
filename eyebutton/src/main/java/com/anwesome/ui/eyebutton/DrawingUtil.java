@@ -14,9 +14,9 @@ public class DrawingUtil {
         canvas.rotate(deg);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(w/20);
-        float a  = w/2,b = w/4,r = w/6;
+        float a  = w/2,b = w/3,r = w/6;
         canvas.drawArc(new RectF(-a,-b,a,b),0,360,true,paint);
-        paint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(0,0,r,paint);
         canvas.restore();
     }
