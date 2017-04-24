@@ -11,6 +11,6 @@ public class EyeButton {
         this.activity = activity;
     }
     public void show() {
-        
+
     }
 }
