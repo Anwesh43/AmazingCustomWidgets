@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 import com.anwesome.ui.directionbutton.controller.AnimationController;
 
 /**
@@ -15,12 +18,19 @@ import com.anwesome.ui.directionbutton.controller.AnimationController;
 public class DirectionButton {
     private Activity activity;
     private AnimationController animationController;
+    private DirectionButtonView directionButtonView;
     private DirectionButtonShape directionButtonShape = new DirectionButtonShape();
     public DirectionButton(Activity activity) {
         this.activity = activity;
     }
     public void show() {
-
+        if(directionButtonView == null) {
+            directionButtonView = new DirectionButtonView(activity);
+            animationController = new AnimationController(directionButtonView,directionButtonShape);
+            Point dimension = DimensionsUtil.getDeviceDimension(activity);
+            int w = dimension.x;
+            activity.addContentView(directionButtonView,new ViewGroup.LayoutParams(w/2,w/2));
+        }
     }
     private class DirectionButtonView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
