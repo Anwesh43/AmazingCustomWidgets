@@ -23,6 +23,9 @@ public class DirectionButton {
     public DirectionButton(Activity activity) {
         this.activity = activity;
     }
+    public void setOnDirectionChangeListener(OnDirectionChangeListener onDirectionChangeListener) {
+        directionButtonShape.setOnDirectionChangeListener(onDirectionChangeListener);
+    }
     public void show(int x,int y) {
         if(directionButtonView == null) {
             directionButtonView = new DirectionButtonView(activity);
