@@ -23,7 +23,7 @@ public class DirectionButton {
     public DirectionButton(Activity activity) {
         this.activity = activity;
     }
-    public void show() {
+    public void show(int x,int y) {
         if(directionButtonView == null) {
             directionButtonView = new DirectionButtonView(activity);
             animationController = new AnimationController(directionButtonView,directionButtonShape);
@@ -31,6 +31,8 @@ public class DirectionButton {
             int w = dimension.x;
             activity.addContentView(directionButtonView,new ViewGroup.LayoutParams(w/2,w/2));
         }
+        directionButtonView.setX(x);
+        directionButtonView.setY(y);
     }
     private class DirectionButtonView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
