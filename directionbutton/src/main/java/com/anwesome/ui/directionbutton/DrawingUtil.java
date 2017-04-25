@@ -1,6 +1,7 @@
 package com.anwesome.ui.directionbutton;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 
@@ -12,6 +13,7 @@ public class DrawingUtil {
         canvas.save();
         canvas.translate(size,size);
         canvas.rotate(deg+60);
+        paint.setColor(Color.parseColor("#00BCD4"));
         for(int i=0;i<2;i++) {
             canvas.save();
             canvas.scale(i*2-1,1);
