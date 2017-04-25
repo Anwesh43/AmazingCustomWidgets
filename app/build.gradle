@@ -98,4 +98,5 @@ dependencies {
     compile project(':uiwindow')
     compile project(':fillringbutton')
     compile project(':eyebutton')
+    compile project(':directionbutton')
 }

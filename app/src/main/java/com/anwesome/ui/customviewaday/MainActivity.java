@@ -98,6 +98,8 @@ import com.anwesome.ui.completeballbuttons.CompleteBallButton;
 import com.anwesome.ui.crecbutton.CrecButton;
 import com.anwesome.ui.crecbutton.OnClickListener;
 import com.anwesome.ui.crukybutton.CrukyButton;
+import com.anwesome.ui.directionbutton.DirectionButton;
+import com.anwesome.ui.directionbutton.OnDirectionChangeListener;
 import com.anwesome.ui.emergencybutton.EmergencyButton;
 import com.anwesome.ui.eyebutton.EyeButton;
 import com.anwesome.ui.fillringbutton.FillRingButton;
@@ -151,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showEyeButton();
+                showDirectionButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1076,5 +1078,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         eyeButton.show(400,400);
+    }
+    public void showDirectionButton() {
+        DirectionButton directionButton = new DirectionButton(this);
+        directionButton.setOnDirectionChangeListener(new OnDirectionChangeListener() {
+            @Override
+            public void onPointingToLeft() {
+                Toast.makeText(MainActivity.this, "Left", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPointingToRight() {
+                Toast.makeText(MainActivity.this, "Right", Toast.LENGTH_SHORT).show();
+            }
+        });
+        directionButton.show(300,300);
     }
 }
