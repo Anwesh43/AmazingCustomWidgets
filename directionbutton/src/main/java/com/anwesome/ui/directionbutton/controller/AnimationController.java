@@ -33,7 +33,7 @@ public class AnimationController {
     public void startAnimating() {
         if(!isAnimated) {
             directionButtonShape.startUpdating();
-            isAnimated = false;
+            isAnimated = true;
             view.postInvalidate();
         }
     }
