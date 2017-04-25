@@ -19,7 +19,7 @@ public class DrawingUtil {
             canvas.scale(i*2-1,1);
             Path path = new Path();
             path.moveTo(0,0);
-            path.lineTo(size/2,-size/2);
+            path.lineTo(size/4,-size/4);
             path.lineTo(0,size/2);
             canvas.drawPath(path,paint);
             canvas.restore();
