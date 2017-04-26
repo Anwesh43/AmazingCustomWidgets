@@ -22,7 +22,7 @@ public class DrawingUtil {
         paint.setStrokeWidth(size/12);
         float a = 0;
         for(int i=0;i<3;i++) {
-            canvas.drawArc(new RectF(-size/2,-size/2,size/2,size/2),a,a+60,true,paint);
+            canvas.drawArc(new RectF(-size/2,-size/2,size/2,size/2),a,60,false,paint);
             a += 120;
         }
         canvas.restore();
