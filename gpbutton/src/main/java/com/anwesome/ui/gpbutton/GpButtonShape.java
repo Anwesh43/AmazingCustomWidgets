@@ -9,7 +9,7 @@ import android.graphics.Paint;
 public class GpButtonShape {
     private MovementController movementController = new MovementController();
     public void draw(Canvas canvas, Paint paint,float w) {
-
+        DrawingUtil.drawGpButton(canvas,paint,w,movementController.getScale(),movementController.getDeg());
     }
     public void update() {
         movementController.move();
