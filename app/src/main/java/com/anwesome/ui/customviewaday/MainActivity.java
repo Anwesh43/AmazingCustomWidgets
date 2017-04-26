@@ -110,6 +110,7 @@ import com.anwesome.ui.fsarrowbutton.FsArrowButton;
 import com.anwesome.ui.fsarrowbutton.FsArrowButtonShape;
 import com.anwesome.ui.fullscreenbutton.FullScreenButton;
 import com.anwesome.ui.fullscreenbutton.FullScreenButtonShape;
+import com.anwesome.ui.gpbutton.GpButton;
 import com.anwesome.ui.likebutton.LikeButton;
 import com.anwesome.ui.likebutton.OnLikeChangeListener;
 import com.anwesome.ui.messageui.MessageUIButton;
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDirectionButton();
+                showGpButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1093,5 +1094,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         directionButton.show(300,300);
+    }
+    public void showGpButton() {
+        GpButton gpButton = new GpButton(this);
+        gpButton.show();
     }
 }
