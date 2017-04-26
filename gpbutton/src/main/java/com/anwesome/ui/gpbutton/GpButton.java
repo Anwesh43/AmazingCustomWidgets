@@ -22,6 +22,9 @@ public class GpButton {
     public GpButton(Activity activity) {
         this.activity = activity;
     }
+    public void setOnSizeChangeListener(OnSizeChangeListener onSizeChangeListener) {
+        gpButtonShape.setOnSizeChangeListener(onSizeChangeListener);
+    }
     public void show(float...coordinates) {
         if(gpButtonView == null) {
             gpButtonView = new GpButtonView(activity);
