@@ -111,6 +111,7 @@ import com.anwesome.ui.fsarrowbutton.FsArrowButtonShape;
 import com.anwesome.ui.fullscreenbutton.FullScreenButton;
 import com.anwesome.ui.fullscreenbutton.FullScreenButtonShape;
 import com.anwesome.ui.gpbutton.GpButton;
+import com.anwesome.ui.gpbutton.OnSizeChangeListener;
 import com.anwesome.ui.likebutton.LikeButton;
 import com.anwesome.ui.likebutton.OnLikeChangeListener;
 import com.anwesome.ui.messageui.MessageUIButton;
@@ -1097,6 +1098,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showGpButton() {
         GpButton gpButton = new GpButton(this);
+        gpButton.setOnSizeChangeListener(new OnSizeChangeListener() {
+            @Override
+            public void onIncrease() {
+                Toast.makeText(MainActivity.this, "Increased", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDecrease() {
+                Toast.makeText(MainActivity.this, "Decreased", Toast.LENGTH_SHORT).show();
+            }
+        });
         gpButton.show();
     }
 }
