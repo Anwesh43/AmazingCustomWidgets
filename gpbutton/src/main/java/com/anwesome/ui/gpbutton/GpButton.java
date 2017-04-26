@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 26/04/17.
@@ -18,10 +22,19 @@ public class GpButton {
     public GpButton(Activity activity) {
         this.activity = activity;
     }
-    public void show() {
+    public void show(float...coordinates) {
         if(gpButtonView == null) {
             gpButtonView = new GpButtonView(activity);
             animationController = new AnimationController(gpButtonView,gpButtonShape);
+            Point dimension = DimensionsUtil.getDeviceDimension(activity);
+            int w = dimension.x;
+            activity.addContentView(gpButtonView,new ViewGroup.LayoutParams(w/2,w/2));
+            gpButtonView.setX(w/4);
+            gpButtonView.setY(w/4);
+        }
+        if(coordinates.length == 2) {
+            gpButtonView.setX(coordinates[0]);
+            gpButtonView.setY(coordinates[1]);
         }
     }
     private class GpButtonView extends View {
