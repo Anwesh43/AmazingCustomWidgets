@@ -14,11 +14,15 @@ public class GpButton {
     private Activity activity;
     private GpButtonShape gpButtonShape = new GpButtonShape();
     private AnimationController animationController;
+    private GpButtonView gpButtonView;
     public GpButton(Activity activity) {
         this.activity = activity;
     }
     public void show() {
-
+        if(gpButtonView == null) {
+            gpButtonView = new GpButtonView(activity);
+            animationController = new AnimationController(gpButtonView,gpButtonShape);
+        }
     }
     private class GpButtonView extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
