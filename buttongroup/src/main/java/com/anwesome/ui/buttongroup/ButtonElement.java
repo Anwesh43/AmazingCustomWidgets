@@ -9,21 +9,26 @@ import android.graphics.Paint;
 public class ButtonElement {
     private int color;
     private String title = "";
-    private float x,y,w,h;
+    private ButtonStateController buttonStateController;
+
     public ButtonElement(String title,int color) {
         this.title = title;
         this.color = color;
     }
     public void setDimension(float x,float y,float w,float h) {
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
+        buttonStateController = new ButtonStateController(x,y,w,h);
     }
     public void draw(Canvas canvas, Paint paint) {
-
+    }
+    public void update() {
+        if(buttonStateController!=null) {
+            buttonStateController.update();
+        }
+    }
+    public boolean handleTap(float x,float y) {
+        return buttonStateController!=null && buttonStateController.handleTap(x,y);
     }
     public int hashCode() {
-        return title.hashCode()+(int)h;
+        return title.hashCode()+buttonStateController.hashCode();
     }
 }
