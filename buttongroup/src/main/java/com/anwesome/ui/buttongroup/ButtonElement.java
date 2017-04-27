@@ -25,6 +25,9 @@ public class ButtonElement {
             buttonStateController.update();
         }
     }
+    public boolean stopped() {
+        return buttonStateController!=null && buttonStateController.stopped();
+    }
     public boolean handleTap(float x,float y) {
         return buttonStateController!=null && buttonStateController.handleTap(x,y);
     }
