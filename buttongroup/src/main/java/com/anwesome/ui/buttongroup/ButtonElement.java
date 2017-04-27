@@ -19,6 +19,7 @@ public class ButtonElement {
         buttonStateController = new ButtonStateController(x,y,w,h);
     }
     public void draw(Canvas canvas, Paint paint) {
+        DrawingUtil.drawButton(canvas,paint,title,buttonStateController,color);
     }
     public void update() {
         if(buttonStateController!=null) {
