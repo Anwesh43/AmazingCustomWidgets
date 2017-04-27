@@ -18,7 +18,7 @@ public class ButtonView extends View {
     private List<ButtonElement> buttonElements = new ArrayList<>();
     private AnimationController animationController;
     private int time = 0;
-    public ButtonView(Context context,int color,List<ButtonElement> buttonElements) {
+    public ButtonView(Context context,List<ButtonElement> buttonElements,int color) {
         super(context);
         this.color = color;
         this.buttonElements = buttonElements;
@@ -32,7 +32,7 @@ public class ButtonView extends View {
             }
             animationController = new AnimationController(this,buttonElements);
         }
-        DrawingUtil.drawButtons(buttonElements,canvas,paint);
+        DrawingUtil.drawButtons(buttonElements,canvas,paint,color);
         time++;
         animationController.animate();
     }

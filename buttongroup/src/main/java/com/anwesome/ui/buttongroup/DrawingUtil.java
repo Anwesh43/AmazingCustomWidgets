@@ -45,9 +45,9 @@ public class DrawingUtil {
         }
         return msg;
     }
-    public static void drawButtons(List<ButtonElement> buttonElements,Canvas canvas,Paint paint) {
+    public static void drawButtons(List<ButtonElement> buttonElements,Canvas canvas,Paint paint,int color) {
         for(ButtonElement buttonElement:buttonElements) {
-            buttonElement.draw(canvas,paint);
+            buttonElement.draw(canvas,paint,color);
         }
     }
 }

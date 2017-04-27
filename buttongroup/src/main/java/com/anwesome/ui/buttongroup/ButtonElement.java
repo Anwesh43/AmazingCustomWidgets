@@ -7,18 +7,15 @@ import android.graphics.Paint;
  * Created by anweshmishra on 27/04/17.
  */
 public class ButtonElement {
-    private int color;
     private String title = "";
     private ButtonStateController buttonStateController;
-
-    public ButtonElement(String title,int color) {
+    public ButtonElement(String title) {
         this.title = title;
-        this.color = color;
     }
     public void setDimension(float x,float y,float w,float h) {
         buttonStateController = new ButtonStateController(x,y,w,h);
     }
-    public void draw(Canvas canvas, Paint paint) {
+    public void draw(Canvas canvas, Paint paint,int color) {
         DrawingUtil.drawButton(canvas,paint,title,buttonStateController,color);
     }
     public void update() {
