@@ -13,7 +13,7 @@ public class ButtonGroup {
     private Activity activity;
     private ButtonView buttonView;
     private List<ButtonElement> buttonElements = new ArrayList<>();
-    private int color = Color.parseColor("#0277BD");
+    private int color = Color.parseColor("#990277BD");
     public ButtonGroup(Activity activity) {
         this.activity = activity;
     }
