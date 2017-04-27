@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import java.util.List;
+
 /**
  * Created by anweshmishra on 27/04/17.
  */
@@ -42,5 +44,10 @@ public class DrawingUtil {
             }
         }
         return msg;
+    }
+    public static void drawButtons(List<ButtonElement> buttonElements,Canvas canvas,Paint paint) {
+        for(ButtonElement buttonElement:buttonElements) {
+            buttonElement.draw(canvas,paint);
+        }
     }
 }

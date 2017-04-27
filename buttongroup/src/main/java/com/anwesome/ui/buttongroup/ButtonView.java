@@ -16,6 +16,7 @@ public class ButtonView extends View {
     private int color;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private List<ButtonElement> buttonElements = new ArrayList<>();
+    private AnimationController animationController;
     private int time = 0;
     public ButtonView(Context context,int color,List<ButtonElement> buttonElements) {
         super(context);
@@ -29,10 +30,16 @@ public class ButtonView extends View {
                 buttonElement.setDimension(x,y,4*canvas.getWidth()/5,gap);
                 y += 2*gap;
             }
+            animationController = new AnimationController(this,buttonElements);
         }
+        DrawingUtil.drawButtons(buttonElements,canvas,paint);
         time++;
+        animationController.animate();
     }
     public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationController != null) {
+            animationController.handleTapForAnimation(event.getX(),event.getY());
+        }
         return true;
     }
 }
