@@ -100,4 +100,5 @@ dependencies {
     compile project(':eyebutton')
     compile project(':directionbutton')
     compile project(':gpbutton')
+    compile project(':buttongroup')
 }

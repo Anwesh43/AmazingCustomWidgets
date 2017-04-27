@@ -88,6 +88,8 @@ import com.anwesome.ui.androidbuttonloader.AndroidLoaderButton;
 import com.anwesome.ui.bluetoothbutton.BluetoothButton;
 import com.anwesome.ui.bluetoothbutton.BluetoothButtonShape;
 import com.anwesome.ui.bulletedlist.BulletedList;
+import com.anwesome.ui.buttongroup.ButtonGroup;
+import com.anwesome.ui.buttongroup.OnSelectionListener;
 import com.anwesome.ui.calbutton.CalButton;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
 import com.anwesome.ui.clockbutton.ClockButton;
@@ -155,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showGpButton();
+                showButtonGroup();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1110,5 +1112,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         gpButton.show();
+    }
+    public void showButtonGroup() {
+        ButtonGroup buttonGroup = new ButtonGroup(this);
+        String titles[] = {"Hello","Hi","Ok","Show","Stick","Pick","Pluck"};
+        for(String title:titles) {
+            final String currTitle = title;
+            buttonGroup.addButton(title, new OnSelectionListener() {
+                @Override
+                public void onSelected() {
+                    Toast.makeText(MainActivity.this, currTitle+" is Selected", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onUnSelected() {
+                    Toast.makeText(MainActivity.this, currTitle+" is UnSelected", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        buttonGroup.show();
     }
 }
