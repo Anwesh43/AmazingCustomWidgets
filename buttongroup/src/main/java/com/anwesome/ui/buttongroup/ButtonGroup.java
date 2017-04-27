@@ -20,9 +20,10 @@ public class ButtonGroup {
     public void setColor(int color) {
         this.color = color;
     }
-    public void addButton(String title) {
+    public void addButton(String title,OnSelectionListener onSelectionListener) {
         if(buttonView == null) {
             ButtonElement buttonElement = new ButtonElement(title);
+            buttonElement.setOnSelectionListener(onSelectionListener);
             buttonElements.add(buttonElement);
         }
     }

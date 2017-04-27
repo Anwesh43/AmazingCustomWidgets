@@ -38,7 +38,7 @@ public class ButtonStateController {
         }
     }
     public boolean stopped() {
-        return false;
+        return dir == 0;
     }
     public boolean handleTap(float x,float y) {
         boolean condition =  x>=this.x -w/2 && x<=this.x+w/2 && y>=this.y-h/2 && y<=this.y+h/2;

@@ -8,6 +8,10 @@ import android.graphics.Paint;
  */
 public class ButtonElement {
     private String title = "";
+    private OnSelectionListener onSelectionListener;
+    public void setOnSelectionListener(OnSelectionListener onSelectionListener) {
+        this.onSelectionListener = onSelectionListener;
+    }
     private ButtonStateController buttonStateController;
     public ButtonElement(String title) {
         this.title = title;
@@ -24,7 +28,16 @@ public class ButtonElement {
         }
     }
     public boolean stopped() {
-        return buttonStateController!=null && buttonStateController.stopped();
+        boolean condition =  buttonStateController!=null && buttonStateController.stopped();
+        if(condition && onSelectionListener != null) {
+            if(buttonStateController.getScale() >= 1) {
+                onSelectionListener.onSelected();
+            }
+            else {
+                onSelectionListener.onUnSelected();
+            }
+        }
+        return condition;
     }
     public boolean handleTap(float x,float y) {
         return buttonStateController!=null && buttonStateController.handleTap(x,y);
