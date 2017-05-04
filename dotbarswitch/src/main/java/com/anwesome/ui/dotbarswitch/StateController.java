@@ -23,6 +23,9 @@ public class StateController {
             w =  w >= maxW ? maxW:0;
         }
     }
+    public void start() {
+        dir = scale <= 0?1:-1;
+    }
     public boolean stopped() {
         return dir == 0;
     }
