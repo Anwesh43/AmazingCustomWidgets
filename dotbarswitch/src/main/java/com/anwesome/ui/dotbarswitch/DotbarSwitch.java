@@ -37,9 +37,10 @@ public class DotbarSwitch {
             activity.addContentView(dotbarSwitchView,new ViewGroup.LayoutParams(w,(3*dotbarSwtichShapes.size()/2)*(yGap*5)/4));
         }
     }
-    public void addDotBar() {
+    public void addDotBar(OnSelectionChangeListener onSelectionChangeListener) {
         if(dotbarSwitchView == null) {
             DotbarSwitchShape dotbarSwitchShape = new DotbarSwitchShape();
+            dotbarSwitchShape.setOnSelectionChangeListener(onSelectionChangeListener);
             dotbarSwtichShapes.add(dotbarSwitchShape);
         }
     }

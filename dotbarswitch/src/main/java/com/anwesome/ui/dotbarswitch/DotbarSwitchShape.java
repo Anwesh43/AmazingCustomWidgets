@@ -10,6 +10,10 @@ public class DotbarSwitchShape {
     private StateController stateController = new StateController();
     private int render = 0;
     private float y;
+    private  OnSelectionChangeListener onSelectionChangeListener;
+    public void setOnSelectionChangeListener(OnSelectionChangeListener onSelectionChangeListener) {
+        this.onSelectionChangeListener = onSelectionChangeListener;
+    }
     public void setY(float y) {
      this.y = y;
     }
@@ -31,7 +35,16 @@ public class DotbarSwitchShape {
         stateController.start();
     }
     public boolean stopUpdating() {
-        return stateController.stopped();
+        boolean condition =  stateController.stopped();
+        if(condition && onSelectionChangeListener != null) {
+            if(stateController.getScale() <= 0) {
+                onSelectionChangeListener.onUnselected();
+            }
+            else {
+                onSelectionChangeListener.onUnselected();
+            }
+        }
+        return condition;
     }
     public boolean handleTap(float x,float y) {
         return stateController.handleTap(x,y-this.y);
