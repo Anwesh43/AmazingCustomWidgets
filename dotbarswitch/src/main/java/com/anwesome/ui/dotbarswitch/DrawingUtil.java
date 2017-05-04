@@ -10,6 +10,7 @@ import android.graphics.Paint;
 public class DrawingUtil {
     public static void drawDotBar(Canvas canvas, Paint paint,float w,float l,float scale) {
         paint.setColor(Color.parseColor("#0D47A1"));
+        paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeWidth(w/30);
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawCircle(w/10,w/10,w/10,paint);

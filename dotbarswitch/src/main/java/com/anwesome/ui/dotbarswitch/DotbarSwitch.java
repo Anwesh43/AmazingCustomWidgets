@@ -26,7 +26,7 @@ public class DotbarSwitch {
     public DotbarSwitch(Activity activity) {
         this.activity = activity;
     }
-    public void show() {
+    public void show(float x,float y) {
         if(dotbarSwitchView == null) {
             dotbarSwitchView = new DotbarSwitchView(activity);
             animationHandler = new AnimationHandler(dotbarSwitchView,dotbarSwtichShapes);
@@ -35,6 +35,8 @@ public class DotbarSwitch {
             yGap = w/5;
             activity.addContentView(dotbarSwitchView,new ViewGroup.LayoutParams(w/2,(dotbarSwtichShapes.size())*(yGap*5)/4));
         }
+        dotbarSwitchView.setX(x);
+        dotbarSwitchView.setY(y);
     }
     public void addDotBar() {
         if(dotbarSwitchView == null) {
