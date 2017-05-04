@@ -15,6 +15,7 @@ public class DotbarSwitchShape {
     }
     public void draw(Canvas canvas, Paint paint,float w) {
         if(render == 0) {
+            stateController.setSize(w/5);
             stateController.setMaxW(7*w/10);
         }
         canvas.save();
@@ -31,6 +32,9 @@ public class DotbarSwitchShape {
     }
     public boolean stopUpdating() {
         return stateController.stopped();
+    }
+    public boolean handleTap(float x,float y) {
+        return stateController.handleTap(x,y-this.y);
     }
     public int hashCode() {
         return (int)(y+stateController.getScale()+stateController.getW());

@@ -21,6 +21,12 @@ public class AnimationHandler {
         if (isAnimated) {
             for (DotbarSwitchShape shape : shapes) {
                 shape.update();
+                if(shape.stopUpdating()) {
+                    shapes.remove(shape);
+                    if(shapes.size() == 0) {
+                        isAnimated = false;
+                    }
+                }
             }
             try {
                 Thread.sleep(50);
@@ -32,8 +38,17 @@ public class AnimationHandler {
     }
     public void handleTouch(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            float x = event.getX(),y = event.getY();
             for(DotbarSwitchShape dotbarSwitchShape:dotbarSwitchShapes) {
-
+                if(dotbarSwitchShape.handleTap(x,y)) {
+                    boolean tappedFirst = shapes.size() == 0;
+                    dotbarSwitchShape.startUpdating();
+                    shapes.add(dotbarSwitchShape);
+                    if (tappedFirst) {
+                        isAnimated = true;
+                        view.postInvalidate();
+                    }
+                }
             }
         }
     }

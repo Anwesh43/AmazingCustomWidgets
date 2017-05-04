@@ -4,7 +4,7 @@ package com.anwesome.ui.dotbarswitch;
  * Created by anweshmishra on 04/05/17.
  */
 public class StateController {
-    private float scale = 0,w = 0,maxW,dir = 0;
+    private float scale = 0,w = 0,maxW,dir = 0,size;
     public float getScale() {
         return scale;
     }
@@ -13,6 +13,9 @@ public class StateController {
     }
     public float getW() {
         return w;
+    }
+    public void setSize(float size) {
+        this.size = size;
     }
     public void update() {
         scale+=dir*0.2f;
@@ -28,5 +31,8 @@ public class StateController {
     }
     public boolean stopped() {
         return dir == 0;
+    }
+    public boolean handleTap(float x,float y) {
+        return x>=0 && x<=size && y>=0 && y<=size;
     }
 }
