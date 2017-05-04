@@ -41,7 +41,7 @@ public class DotbarSwitchShape {
                 onSelectionChangeListener.onUnselected();
             }
             else {
-                onSelectionChangeListener.onUnselected();
+                onSelectionChangeListener.onSelected();
             }
         }
         return condition;
