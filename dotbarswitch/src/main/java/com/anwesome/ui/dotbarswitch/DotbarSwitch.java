@@ -18,12 +18,20 @@ public class DotbarSwitch {
     private DotbarSwitchView dotbarSwitchView;
     private int render = 0,yGap;
     private List<DotbarSwitchShape> dotbarSwtichShapes = new ArrayList<>();
+    private AnimationHandler animationHandler;
     public DotbarSwitch(Activity activity) {
         this.activity = activity;
     }
     public void show() {
         if(dotbarSwitchView == null) {
             dotbarSwitchView = new DotbarSwitchView(activity);
+            animationHandler = new AnimationHandler(dotbarSwitchView,dotbarSwtichShapes);
+        }
+    }
+    public void addDotBar() {
+        if(dotbarSwitchView == null) {
+            DotbarSwitchShape dotbarSwitchShape = new DotbarSwitchShape();
+            dotbarSwtichShapes.add(dotbarSwitchShape);
         }
     }
     private class DotbarSwitchView extends View {
@@ -43,8 +51,12 @@ public class DotbarSwitch {
                 dotbarSwitchShape.draw(canvas,paint,canvas.getWidth());
             }
             render++;
+            animationHandler.animate();
         }
         public boolean onTouchEvent(MotionEvent event) {
+            if(animationHandler != null) {
+                animationHandler.handleTouch(event);
+            }
             return true;
         }
     }
