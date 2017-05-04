@@ -9,10 +9,18 @@ import android.graphics.Paint;
 public class DotbarSwitchShape {
     private StateController stateController = new StateController();
     private int render = 0;
+    private float y;
+    public void setY(float y) {
+     this.y = y;
+    }
     public void draw(Canvas canvas, Paint paint,float w) {
         if(render == 0) {
             stateController.setMaxW(7*w/10);
         }
+        canvas.save();
+        canvas.translate(0,y);
+        DrawingUtil.drawDotBar(canvas,paint,w,stateController.getW(),stateController.getScale());
+        canvas.restore();
         render++;
     }
     public void update() {
