@@ -103,6 +103,7 @@ import com.anwesome.ui.crukybutton.CrukyButton;
 import com.anwesome.ui.directionbutton.DirectionButton;
 import com.anwesome.ui.directionbutton.OnDirectionChangeListener;
 import com.anwesome.ui.dotbarswitch.DotbarSwitch;
+import com.anwesome.ui.dotbarswitch.OnSelectionChangeListener;
 import com.anwesome.ui.emergencybutton.EmergencyButton;
 import com.anwesome.ui.eyebutton.EyeButton;
 import com.anwesome.ui.fillringbutton.FillRingButton;
@@ -1138,7 +1139,17 @@ public class MainActivity extends AppCompatActivity {
         String[] titles = {"hello","hi","start","zero"};
         for(int i=0;i<titles.length;i++) {
             final String title = titles[i];
-            dotbarSwitch.addDotBar();
+            dotbarSwitch.addDotBar(new OnSelectionChangeListener() {
+                @Override
+                public void onSelected() {
+                    Toast.makeText(MainActivity.this, String.format("%s is selected",title), Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onUnselected() {
+                    Toast.makeText(MainActivity.this, String.format("%s is unselected",title), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
         dotbarSwitch.show();
     }
