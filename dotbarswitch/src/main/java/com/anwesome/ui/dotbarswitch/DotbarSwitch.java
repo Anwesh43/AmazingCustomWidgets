@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +30,10 @@ public class DotbarSwitch {
         if(dotbarSwitchView == null) {
             dotbarSwitchView = new DotbarSwitchView(activity);
             animationHandler = new AnimationHandler(dotbarSwitchView,dotbarSwtichShapes);
+            Point size = DimensionsUtil.getDeviceDimension(activity);
+            int w = size.x/2;
+            yGap = w/5;
+            activity.addContentView(dotbarSwitchView,new ViewGroup.LayoutParams(w/2,(dotbarSwtichShapes.size())*(yGap*5)/4));
         }
     }
     public void addDotBar() {
