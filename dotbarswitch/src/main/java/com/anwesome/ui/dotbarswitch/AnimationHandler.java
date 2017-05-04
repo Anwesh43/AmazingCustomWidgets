@@ -36,9 +36,9 @@ public class AnimationHandler {
             }
         }
     }
-    public void handleTouch(MotionEvent event) {
+    public void handleTouch(MotionEvent event,float offsetX) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
-            float x = event.getX(),y = event.getY();
+            float x = event.getX()-offsetX,y = event.getY();
             for(DotbarSwitchShape dotbarSwitchShape:dotbarSwitchShapes) {
                 if(dotbarSwitchShape.handleTap(x,y)) {
                     boolean tappedFirst = shapes.size() == 0;

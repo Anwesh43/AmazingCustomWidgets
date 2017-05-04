@@ -20,23 +20,22 @@ import java.util.List;
 public class DotbarSwitch {
     private Activity activity;
     private DotbarSwitchView dotbarSwitchView;
-    private int render = 0,yGap;
+    private int render = 0,yGap,x;
     private List<DotbarSwitchShape> dotbarSwtichShapes = new ArrayList<>();
     private AnimationHandler animationHandler;
     public DotbarSwitch(Activity activity) {
         this.activity = activity;
     }
-    public void show(float x,float y) {
+    public void show() {
         if(dotbarSwitchView == null) {
             dotbarSwitchView = new DotbarSwitchView(activity);
             animationHandler = new AnimationHandler(dotbarSwitchView,dotbarSwtichShapes);
             Point size = DimensionsUtil.getDeviceDimension(activity);
-            int w = size.x/2;
-            yGap = w/5;
-            activity.addContentView(dotbarSwitchView,new ViewGroup.LayoutParams(w/2,(dotbarSwtichShapes.size())*(yGap*5)/4));
+            int w = size.x;
+            yGap = w/10;
+            x = w/4;
+            activity.addContentView(dotbarSwitchView,new ViewGroup.LayoutParams(w,(dotbarSwtichShapes.size())*(yGap*5)/4));
         }
-        dotbarSwitchView.setX(x);
-        dotbarSwitchView.setY(y);
     }
     public void addDotBar() {
         if(dotbarSwitchView == null) {
@@ -57,15 +56,18 @@ public class DotbarSwitch {
                     y+=(yGap*5)/4;
                 }
             }
+            canvas.save();
+            canvas.translate(x,0);
             for(DotbarSwitchShape dotbarSwitchShape:dotbarSwtichShapes) {
-                dotbarSwitchShape.draw(canvas,paint,canvas.getWidth());
+                dotbarSwitchShape.draw(canvas,paint,canvas.getWidth()/2);
             }
+            canvas.restore();
             render++;
             animationHandler.animate();
         }
         public boolean onTouchEvent(MotionEvent event) {
             if(animationHandler != null) {
-                animationHandler.handleTouch(event);
+                animationHandler.handleTouch(event,x);
             }
             return true;
         }
