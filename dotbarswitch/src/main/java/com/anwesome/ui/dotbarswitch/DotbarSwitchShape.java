@@ -32,4 +32,7 @@ public class DotbarSwitchShape {
     public boolean stopUpdating() {
         return stateController.stopped();
     }
+    public int hashCode() {
+        return (int)(y+stateController.getScale()+stateController.getW());
+    }
 }
