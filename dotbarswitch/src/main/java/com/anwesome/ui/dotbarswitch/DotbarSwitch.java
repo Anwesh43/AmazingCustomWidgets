@@ -34,7 +34,7 @@ public class DotbarSwitch {
             int w = size.x;
             yGap = w/10;
             x = w/4;
-            activity.addContentView(dotbarSwitchView,new ViewGroup.LayoutParams(w,(dotbarSwtichShapes.size())*(yGap*5)/4));
+            activity.addContentView(dotbarSwitchView,new ViewGroup.LayoutParams(w,(3*dotbarSwtichShapes.size()/2)*(yGap*5)/4));
         }
     }
     public void addDotBar() {
@@ -50,7 +50,7 @@ public class DotbarSwitch {
         }
         public void onDraw(Canvas canvas) {
             if(render == 0) {
-                float y = 0;
+                float y = yGap*dotbarSwtichShapes.size()/2;
                 for(DotbarSwitchShape dotbarSwitchShape:dotbarSwtichShapes) {
                     dotbarSwitchShape.setY(y);
                     y+=(yGap*5)/4;
