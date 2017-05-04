@@ -102,6 +102,7 @@ import com.anwesome.ui.crecbutton.OnClickListener;
 import com.anwesome.ui.crukybutton.CrukyButton;
 import com.anwesome.ui.directionbutton.DirectionButton;
 import com.anwesome.ui.directionbutton.OnDirectionChangeListener;
+import com.anwesome.ui.dotbarswitch.DotbarSwitch;
 import com.anwesome.ui.emergencybutton.EmergencyButton;
 import com.anwesome.ui.eyebutton.EyeButton;
 import com.anwesome.ui.fillringbutton.FillRingButton;
@@ -157,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showButtonGroup();
+                showDotBarSwitch();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1131,5 +1132,14 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         buttonGroup.show();
+    }
+    public void showDotBarSwitch() {
+        DotbarSwitch dotbarSwitch = new DotbarSwitch(this);
+        String[] titles = {"hello","hi","start","zero"};
+        for(int i=0;i<titles.length;i++) {
+            final String title = titles[i];
+            dotbarSwitch.addDotBar();
+        }
+        dotbarSwitch.show();
     }
 }

@@ -101,4 +101,5 @@ dependencies {
     compile project(':directionbutton')
     compile project(':gpbutton')
     compile project(':buttongroup')
+    compile project(':dotbarswitch')
 }
