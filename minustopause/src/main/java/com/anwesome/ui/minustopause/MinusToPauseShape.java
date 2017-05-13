@@ -18,7 +18,8 @@ public class MinusToPauseShape {
         }
         paint.setStyle(Paint.Style.STROKE);
         canvas.save();
-        canvas.translate(w/2,w/2);
+        canvas.translate(w,w);
+        canvas.drawCircle(0,0,w/2,paint);
         canvas.rotate(deg);
         for(int i=0;i<2;i++) {
             canvas.save();
