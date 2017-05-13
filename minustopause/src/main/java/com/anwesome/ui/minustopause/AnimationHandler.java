@@ -11,10 +11,17 @@ public class AnimationHandler {
         startAnim.setDuration(500);
         endAnim.setDuration(500);
     }}
-    public void startUpAnim() {
+    private MinusToPauseView minusToPauseView;
+    public AnimationHandler(MinusToPauseView minusToPauseView) {
+        this.minusToPauseView = minusToPauseView;
+    }
+    private void startUpAnim() {
 
     }
-    public void startDownAnim() {
+    private void startDownAnim() {
+
+    }
+    public void startAnim() {
 
     }
 }
