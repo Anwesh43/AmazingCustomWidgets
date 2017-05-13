@@ -120,6 +120,7 @@ import com.anwesome.ui.likebutton.LikeButton;
 import com.anwesome.ui.likebutton.OnLikeChangeListener;
 import com.anwesome.ui.messageui.MessageUIButton;
 import com.anwesome.ui.messengerbutton.MessengerButton;
+import com.anwesome.ui.minustopause.MinusToPause;
 import com.anwesome.ui.mutebutton.MuteButton;
 import com.anwesome.ui.mutebutton.MuteClickListener;
 import com.anwesome.ui.ninesqaure.NineSquare;
@@ -159,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDotBarSwitch();
+                showMinusToPause();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1152,5 +1153,9 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         dotbarSwitch.show();
+    }
+    public void showMinusToPause() {
+        MinusToPause minusToPause = new MinusToPause(this);
+        minusToPause.show(200,200);
     }
 }

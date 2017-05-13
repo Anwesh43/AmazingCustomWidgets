@@ -102,4 +102,5 @@ dependencies {
     compile project(':gpbutton')
     compile project(':buttongroup')
     compile project(':dotbarswitch')
+    compile project(':minustopause')
 }
