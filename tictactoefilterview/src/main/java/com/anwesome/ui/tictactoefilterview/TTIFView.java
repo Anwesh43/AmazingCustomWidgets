@@ -20,6 +20,8 @@ public class TTIFView extends View{
     private int time = 0,w,h;
     private Bitmap bitmap;
     private int index = 0;
+    private TicTacFilter ticTacFilter;
+    private boolean shouldShowFilter = false;
     public TTIFView(Context context, Bitmap bitmap,int index) {
         super(context);
         this.bitmap = bitmap;
@@ -30,12 +32,20 @@ public class TTIFView extends View{
             w = canvas.getWidth();
             h = canvas.getHeight();
             bitmap = Bitmap.createScaledBitmap(bitmap,w,h,true);
+            ticTacFilter = new TicTacFilter();
         }
         canvas.drawBitmap(bitmap,0,0,paint);
+        if(shouldShowFilter) {
+            ticTacFilter.draw(canvas);
+        }
+    }
+    public void update(float factor) {
+        ticTacFilter.update(factor);
+        postInvalidate();
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN){
-
+            shouldShowFilter = !shouldShowFilter;
         }
         return true;
     }
@@ -64,6 +74,9 @@ public class TTIFView extends View{
             }
             canvas.restore();
         }
+        public void update(float factor) {
+            scale = factor;
+        }
     }
     private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
         private boolean isAnimating = false;
@@ -78,7 +91,7 @@ public class TTIFView extends View{
             removeAnim.addListener(this);
         }
         public void onAnimationUpdate(ValueAnimator valueAnimator) {
-            
+            update((float)valueAnimator.getAnimatedValue());
         }
         public void onAnimationEnd(Animator animator) {
             if(!isAnimating) {
