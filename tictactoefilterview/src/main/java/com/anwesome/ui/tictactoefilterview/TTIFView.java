@@ -26,6 +26,10 @@ public class TTIFView extends View{
     private TicTacFilter ticTacFilter;
     private boolean shouldShowFilter = false;
     private AnimationHandler animationHandler;
+    private OnSelectionChangeListener onSelectionChangeListener;
+    public void setOnSelectionChangeListener(OnSelectionChangeListener onSelectionChangeListener) {
+        this.onSelectionChangeListener = onSelectionChangeListener;
+    }
     public TTIFView(Context context, Bitmap bitmap,int index) {
         super(context);
         this.bitmap = bitmap;
@@ -112,9 +116,19 @@ public class TTIFView extends View{
         public void onAnimationEnd(Animator animator) {
             if(isAnimating) {
                 isAnimating = false;
-                if(shouldShowFilter && dir == 0) {
-                    shouldShowFilter = false;
-                    postInvalidate();
+                if(shouldShowFilter) {
+                    if(dir == 0) {
+                        if(onSelectionChangeListener!=null) {
+                            onSelectionChangeListener.onUnSelect();;
+                        }
+                        shouldShowFilter = false;
+                        postInvalidate();
+                    }
+                    else {
+                        if(onSelectionChangeListener!=null) {
+                            onSelectionChangeListener.onSelect();;
+                        }
+                    }
                 }
             }
         }

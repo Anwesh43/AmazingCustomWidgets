@@ -28,8 +28,9 @@ public class ListLayout extends ViewGroup{
             viewSize = w/7;
         }
     }
-    public void addImage(Bitmap bitmap) {
+    public void addImage(Bitmap bitmap,OnSelectionChangeListener onSelectionChangeListener) {
         TTIFView ttifView = new TTIFView(getContext(),bitmap,getChildCount());
+        ttifView.setOnSelectionChangeListener(onSelectionChangeListener);
         addView(ttifView,new LayoutParams(viewSize,viewSize));
         requestLayout();
     }

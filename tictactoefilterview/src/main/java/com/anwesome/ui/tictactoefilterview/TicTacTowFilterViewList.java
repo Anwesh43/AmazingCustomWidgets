@@ -19,9 +19,9 @@ public class TicTacTowFilterViewList {
         listLayout = new ListLayout(activity);
         scrollView.addView(listLayout,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
-    public void addImage(Bitmap bitmap) {
+    public void addImage(Bitmap bitmap,OnSelectionChangeListener onSelectionChangeListener) {
         if(!isShown) {
-            listLayout.addImage(bitmap);
+            listLayout.addImage(bitmap,onSelectionChangeListener);
         }
     }
     public void show() {
