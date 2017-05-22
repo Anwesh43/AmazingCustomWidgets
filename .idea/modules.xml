@@ -82,6 +82,7 @@
       <module fileurl="file://$PROJECT_DIR$/syncbutton/syncbutton.iml" filepath="$PROJECT_DIR$/syncbutton/syncbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/syncbutton2/syncbutton2.iml" filepath="$PROJECT_DIR$/syncbutton2/syncbutton2.iml" />
       <module fileurl="file://$PROJECT_DIR$/tablikeviews/tablikeviews.iml" filepath="$PROJECT_DIR$/tablikeviews/tablikeviews.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tictactoefilterview/tictactoefilterview.iml" filepath="$PROJECT_DIR$/tictactoefilterview/tictactoefilterview.iml" />
       <module fileurl="file://$PROJECT_DIR$/trashbutton/trashbutton.iml" filepath="$PROJECT_DIR$/trashbutton/trashbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/trianglecirclebutton/trianglecirclebutton.iml" filepath="$PROJECT_DIR$/trianglecirclebutton/trianglecirclebutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/tricircledbutton/tricircledbutton.iml" filepath="$PROJECT_DIR$/tricircledbutton/tricircledbutton.iml" />

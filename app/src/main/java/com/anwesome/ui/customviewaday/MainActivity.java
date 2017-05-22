@@ -1156,6 +1156,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showMinusToPause() {
         MinusToPause minusToPause = new MinusToPause(this);
-        minusToPause.show(200,200);
+        minusToPause.show(300,300);
     }
 }
