@@ -1163,7 +1163,18 @@ public class MainActivity extends AppCompatActivity {
         TicTacTowFilterViewList ticTacTowFilterViewList = new TicTacTowFilterViewList(this);
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.penguin);
         for(int i=0;i<12;i++) {
-            ticTacTowFilterViewList.addImage(bitmap);
+            final int index = (i+1);
+            ticTacTowFilterViewList.addImage(bitmap, new com.anwesome.ui.tictactoefilterview.OnSelectionChangeListener() {
+                @Override
+                public void onSelect() {
+                    Toast.makeText(MainActivity.this, String.format("%d is selected",index), Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onUnSelect() {
+                    Toast.makeText(MainActivity.this, String.format("%d is unselected",index), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
         ticTacTowFilterViewList.show();
     }
