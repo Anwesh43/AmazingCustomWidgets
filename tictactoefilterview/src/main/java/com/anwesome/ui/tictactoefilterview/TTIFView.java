@@ -1,5 +1,8 @@
 package com.anwesome.ui.tictactoefilterview;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -60,6 +63,38 @@ public class TTIFView extends View{
                 canvas.drawCircle(0,0,w/2,paint);
             }
             canvas.restore();
+        }
+    }
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
+        private boolean isAnimating = false;
+        private float dir = 0;
+        private ValueAnimator addAnim = ValueAnimator.ofFloat(0,1),removeAnim = ValueAnimator.ofFloat(1,0);
+        public AnimationHandler() {
+            addAnim.setDuration(500);
+            removeAnim.setDuration(500);
+            addAnim.addUpdateListener(this);
+            removeAnim.addUpdateListener(this);
+            addAnim.addListener(this);
+            removeAnim.addListener(this);
+        }
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            
+        }
+        public void onAnimationEnd(Animator animator) {
+            if(!isAnimating) {
+                isAnimating = true;
+            }
+        }
+        public void start() {
+            if(!isAnimating) {
+                if(dir == 0) {
+                    addAnim.start();
+                }
+                else {
+                    removeAnim.start();
+                }
+                dir = dir==0?1:0;
+            }
         }
     }
 }
