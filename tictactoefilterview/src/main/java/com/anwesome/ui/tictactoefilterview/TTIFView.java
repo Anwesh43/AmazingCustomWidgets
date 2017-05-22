@@ -112,7 +112,7 @@ public class TTIFView extends View{
         public void onAnimationEnd(Animator animator) {
             if(isAnimating) {
                 isAnimating = false;
-                if(shouldShowFilter) {
+                if(shouldShowFilter && dir == 0) {
                     shouldShowFilter = false;
                     postInvalidate();
                 }
