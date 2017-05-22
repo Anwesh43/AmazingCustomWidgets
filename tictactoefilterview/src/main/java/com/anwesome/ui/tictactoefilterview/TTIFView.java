@@ -22,6 +22,7 @@ public class TTIFView extends View{
     private int index = 0;
     private TicTacFilter ticTacFilter;
     private boolean shouldShowFilter = false;
+    private AnimationHandler animationHandler;
     public TTIFView(Context context, Bitmap bitmap,int index) {
         super(context);
         this.bitmap = bitmap;
@@ -33,6 +34,7 @@ public class TTIFView extends View{
             h = canvas.getHeight();
             bitmap = Bitmap.createScaledBitmap(bitmap,w,h,true);
             ticTacFilter = new TicTacFilter();
+            animationHandler = new AnimationHandler();
         }
         canvas.drawBitmap(bitmap,0,0,paint);
         if(shouldShowFilter) {
@@ -46,6 +48,7 @@ public class TTIFView extends View{
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN){
             shouldShowFilter = !shouldShowFilter;
+            animationHandler.start();
         }
         return true;
     }
