@@ -133,6 +133,7 @@ import com.anwesome.ui.recordbutton.OnRecordButtonClickListener;
 import com.anwesome.ui.recordbutton.RecordButton;
 import com.anwesome.ui.sharebutton.ShareButton;
 import com.anwesome.ui.syncbutton.SyncButton;
+import com.anwesome.ui.tictactoefilterview.TicTacTowFilterViewList;
 import com.anwesome.ui.trashbutton.TrashButton;
 import com.anwesome.ui.trashbutton.TrashButtonShape;
 import com.anwesome.ui.tricircledbutton.TriCircledButton;
@@ -160,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMinusToPause();
+                showTicTacToeList();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1157,5 +1158,13 @@ public class MainActivity extends AppCompatActivity {
     public void showMinusToPause() {
         MinusToPause minusToPause = new MinusToPause(this);
         minusToPause.show(300,300);
+    }
+    public void showTicTacToeList() {
+        TicTacTowFilterViewList ticTacTowFilterViewList = new TicTacTowFilterViewList(this);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.penguin);
+        for(int i=0;i<12;i++) {
+            ticTacTowFilterViewList.addImage(bitmap);
+        }
+        ticTacTowFilterViewList.show();
     }
 }
