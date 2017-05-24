@@ -19,6 +19,7 @@ public class YSTButtonView extends View {
     private int time = 0,w,h;
     private YSTLine ystLine = new YSTLine();
     private YSTRect rect;
+    private AnimationHandler animationHandler;
     public YSTButtonView(Context context) {
         super(context);
     }
@@ -27,6 +28,7 @@ public class YSTButtonView extends View {
             w = canvas.getWidth();
             h = canvas.getHeight();
             rect = new YSTRect();
+            animationHandler = new AnimationHandler();
         }
         rect.draw(canvas);
         ystLine.draw(canvas);
@@ -38,8 +40,8 @@ public class YSTButtonView extends View {
         postInvalidate();
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && rect.handleTap(event.getX(),event.getY())) {
+            animationHandler.start();
         }
         return true;
     }
@@ -98,7 +100,7 @@ public class YSTButtonView extends View {
         public void onAnimationEnd(Animator animator) {
             if(isAnimating) {
                 if(dir == 0) {
-                    
+
                 }
                 else {
 
