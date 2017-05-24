@@ -16,11 +16,15 @@ import android.view.View;
  */
 
 public class CircularYSTButtonView extends View {
+    private OnSelectionChangeListener onSelectionChangeListener;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h;
     private ClipBoard clipBoard;
     private Indicator indicator;
     private AnimationHandler animationHandler = new AnimationHandler();
+    public void setOnSelectionChangeListener(OnSelectionChangeListener onSelectionChangeListener) {
+        this.onSelectionChangeListener = onSelectionChangeListener;
+    }
     public CircularYSTButtonView(Context context) {
         super(context);
     }
@@ -111,11 +115,12 @@ public class CircularYSTButtonView extends View {
         }
         public void onAnimationEnd(Animator animator) {
             if(isAnimating) {
-                if(dir == 0) {
-
-                }
-                else {
-
+                if(onSelectionChangeListener != null) {
+                    if (dir == 0) {
+                        onSelectionChangeListener.onSelect();
+                    } else {
+                        onSelectionChangeListener.onUnselect();
+                    }
                 }
                 dir = dir == 0?1:0;
                 isAnimating = false;

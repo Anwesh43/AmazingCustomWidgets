@@ -32,9 +32,9 @@ public class CYSTList {
             isShown = true;
         }
     }
-    public void addButton() {
+    public void addButton(OnSelectionChangeListener onSelectionChangeListener) {
         if(!isShown) {
-            listLayout.addButton();
+            listLayout.addButton(onSelectionChangeListener);
         }
     }
     private class ListLayout extends ViewGroup {
@@ -43,7 +43,7 @@ public class CYSTList {
             super(context);
             initDimension(context);
         }
-        public void addButton() {
+        public void addButton(OnSelectionChangeListener onSelectionChangeListener) {
             addView(new CircularYSTButtonView(getContext()),new LayoutParams(viewSize,viewSize));
             requestLayout();
         }
