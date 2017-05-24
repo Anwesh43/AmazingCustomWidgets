@@ -14,6 +14,8 @@ import android.view.View;
 public class YSTButtonView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h;
+    private YSTLine ystLine = new YSTLine();
+    private YSTRect rect;
     public YSTButtonView(Context context) {
         super(context);
     }
@@ -21,12 +23,15 @@ public class YSTButtonView extends View {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            rect = new YSTRect();
         }
+        rect.draw(canvas);
+        ystLine.draw(canvas);
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+            
         }
         return true;
     }
@@ -37,7 +42,7 @@ public class YSTButtonView extends View {
             y = h/2;
             size = 4*w/5;
         }
-        public void draw(Canvas canvas,Paint paint) {
+        public void draw(Canvas canvas) {
             paint.setColor(Color.WHITE);
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(size/15);
