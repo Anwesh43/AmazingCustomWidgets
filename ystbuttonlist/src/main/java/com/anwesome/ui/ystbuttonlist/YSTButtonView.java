@@ -15,6 +15,10 @@ import android.view.View;
  * Created by anweshmishra on 24/05/17.
  */
 public class YSTButtonView extends View {
+    private OnSelectionChangeListener onSelectionChangeListener;
+    public void setOnSelectionChangeListener(OnSelectionChangeListener onSelectionChangeListener) {
+        this.onSelectionChangeListener = onSelectionChangeListener;
+    }
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h;
     private YSTLine ystLine = new YSTLine();
@@ -102,11 +106,12 @@ public class YSTButtonView extends View {
         }
         public void onAnimationEnd(Animator animator) {
             if(isAnimating) {
-                if(dir == 0) {
-
-                }
-                else {
-
+                if(onSelectionChangeListener != null) {
+                    if (dir == 0) {
+                        onSelectionChangeListener.onSelect();
+                    } else {
+                        onSelectionChangeListener.onUnSelect();
+                    }
                 }
                 dir = dir == 0?1:0;
                 isAnimating = false;
