@@ -1,5 +1,8 @@
 package com.anwesome.ui.circularystbuttonlist;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -77,6 +80,38 @@ public class CircularYSTButtonView extends View {
         }
         public void update(float factor) {
             deg = 360*factor;
+        }
+    }
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener {
+        private boolean isAnimating = false;
+        private int dir = 0;
+        private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1),endAnim = ValueAnimator.ofFloat(1,0);
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            float factor = (float)valueAnimator.getAnimatedValue();
+            update(factor);
+        }
+        public void onAnimationEnd(Animator animator) {
+            if(isAnimating) {
+                if(dir == 0) {
+
+                }
+                else {
+
+                }
+                dir = dir == 0?1:0;
+                isAnimating = false;
+            }
+        }
+        public void start() {
+            if(!isAnimating) {
+                if(dir == 0) {
+                    startAnim.start();
+                }
+                else {
+                    endAnim.start();
+                }
+                isAnimating = true;
+            }
         }
     }
 }
