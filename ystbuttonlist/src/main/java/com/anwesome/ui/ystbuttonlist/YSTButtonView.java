@@ -55,22 +55,25 @@ public class YSTButtonView extends View {
         public void draw(Canvas canvas) {
             paint.setColor(Color.WHITE);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(size/15);
-            canvas.drawRoundRect(new RectF(x,y,x+size,y+size),size/10,size/10,paint);
-            canvas.drawLine(x+size/10,y+3*size/5,x+3*size/10,y+3*size/5,paint);
-            canvas.drawLine(x+4*size/10,y+3*size/5,x+9*size/10,y+3*size/5,paint);
-            canvas.drawLine(x+size/10,y+4*size/5,x+6*size/10,y+4*size/5,paint);
-            canvas.drawLine(x+7*size/10,y+4*size/5,x+9*size/10,y+4*size/5,paint);
+            paint.setStrokeWidth(size/20);
+            canvas.save();
+            canvas.translate(x-size/2,y-size/2);
+            canvas.drawRoundRect(new RectF(0,0,size,size),size/10,size/10,paint);
+            canvas.drawLine(size/5,3*size/5,3*size/10,3*size/5,paint);
+            canvas.drawLine(4*size/10,3*size/5,9*size/10,3*size/5,paint);
+            canvas.drawLine(size/5,4*size/5,6*size/10,4*size/5,paint);
+            canvas.drawLine(7*size/10,4*size/5,9*size/10,4*size/5,paint);
+            canvas.restore();
             paint.setColor(Color.argb(150,0,0,0));
             paint.setStyle(Paint.Style.FILL);
             canvas.save();
             canvas.translate(x,y);
             canvas.scale(scale,scale);
-            canvas.drawRoundRect(new RectF(-size/2,-size/2,size/2,size/2),w/10,h/10,paint);
+            canvas.drawRoundRect(new RectF(-size/2+size/20,-size/2+size/20,size/2-size/20,size/2-size/20),size/10,size/10,paint);
             canvas.restore();
         }
         public boolean handleTap(float x,float y) {
-            boolean condition = x>=this.x && x<=this.x+size && y>=this.y && y<=this.y+size;
+            boolean condition = x>=this.x-size/2 && x<=this.x+size/2 && y>=this.y-size/2 && y<=this.y+size/2;
             return condition;
         }
         public void update(float factor) {
@@ -124,6 +127,7 @@ public class YSTButtonView extends View {
                 } else {
                     endAnim.start();
                 }
+                isAnimating = true;
             }
         }
     }
