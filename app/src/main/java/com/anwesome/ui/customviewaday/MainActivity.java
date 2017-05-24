@@ -92,6 +92,7 @@ import com.anwesome.ui.buttongroup.ButtonGroup;
 import com.anwesome.ui.buttongroup.OnSelectionListener;
 import com.anwesome.ui.calbutton.CalButton;
 import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
+import com.anwesome.ui.circularystbuttonlist.CYSTList;
 import com.anwesome.ui.clockbutton.ClockButton;
 import com.anwesome.ui.clockbutton.ClockListener;
 import com.anwesome.ui.compassbutton.CompassButton;
@@ -162,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showYstButtonList();
+                showCYSTButtonList();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1196,5 +1197,12 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         ystButtonList.show();
+    }
+    public void showCYSTButtonList() {
+        CYSTList cystList = new CYSTList(this);
+        for(int i=0;i<6;i++) {
+            cystList.addButton();
+        }
+        cystList.show();
     }
 }

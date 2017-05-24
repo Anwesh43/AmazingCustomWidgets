@@ -29,7 +29,6 @@ dependencies {
     compile project(':bulletedlist')
     compile project(':completeballbuttons')
     compile project(':crukybutton')
-    compile project(':compassbutton')
     compile project(':tricircledbutton')
     compile project(':circularwindow')
     compile project(':prokbutton')
@@ -94,7 +93,6 @@ dependencies {
     compile project(':ninesqaure')
     compile project(':watchlikebutton')
     compile project(':clockbutton')
-    compile project(':crecbutton')
     compile project(':uiwindow')
     compile project(':fillringbutton')
     compile project(':eyebutton')
@@ -105,4 +103,5 @@ dependencies {
     compile project(':minustopause')
     compile project(':tictactoefilterview')
     compile project(':ystbuttonlist')
+    compile project(':circularystbuttonlist')
 }
