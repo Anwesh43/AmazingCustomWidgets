@@ -15,6 +15,8 @@ import android.view.View;
 public class CircularYSTButtonView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h;
+    private ClipBoard clipBoard;
+    private Indicator indicator;
     public CircularYSTButtonView(Context context) {
         super(context);
     }
@@ -22,8 +24,17 @@ public class CircularYSTButtonView extends View {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            clipBoard = new ClipBoard();
+            indicator = new Indicator();
         }
+        clipBoard.draw(canvas);
+        indicator.draw(canvas);
         time++;
+    }
+    public void update(float factor) {
+        clipBoard.update(factor);
+        indicator.update(factor);
+        postInvalidate();
     }
     public boolean onTouchEvent(MotionEvent event) {
         return true;
