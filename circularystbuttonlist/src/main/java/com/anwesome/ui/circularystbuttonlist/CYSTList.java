@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 
+import java.util.List;
+
 /**
  * Created by anweshmishra on 25/05/17.
  */
@@ -16,18 +18,23 @@ import android.widget.ScrollView;
 public class CYSTList {
     private Activity activity;
     private boolean isShown = false;
+    private ListLayout listLayout;
     private ScrollView scrollView;
     public CYSTList(Activity activity) {
         this.activity = activity;
+        scrollView = new ScrollView(activity);
+        listLayout = new ListLayout(activity);
+        scrollView.addView(listLayout,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
     public void show() {
         if(!isShown) {
+            activity.setContentView(scrollView);
             isShown = true;
         }
     }
     public void addButton() {
         if(!isShown) {
-
+            listLayout.addButton();
         }
     }
     private class ListLayout extends ViewGroup {
