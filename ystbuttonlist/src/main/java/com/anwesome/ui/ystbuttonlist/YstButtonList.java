@@ -23,9 +23,9 @@ public class YstButtonList {
         scrollView = new ScrollView(activity);
         scrollView.addView(listLayout,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
-    public void addButton() {
+    public void addButton(OnSelectionChangeListener onSelectionChangeListener) {
         if(!isShown) {
-            listLayout.addButton();
+            listLayout.addButton(onSelectionChangeListener);
         }
     }
     public void show() {
@@ -48,9 +48,10 @@ public class YstButtonList {
             super(context);
             initDimension(context);
         }
-        public void addButton() {
+        public void addButton(OnSelectionChangeListener onSelectionChangeListener) {
             YSTButtonView ystButtonView = new YSTButtonView(getContext());
             addView(ystButtonView,new LayoutParams(w/2,w/2));
+            ystButtonView.setOnSelectionChangeListener(onSelectionChangeListener);
             requestLayout();
         }
         public void onMeasure(int wspec,int hspec) {
