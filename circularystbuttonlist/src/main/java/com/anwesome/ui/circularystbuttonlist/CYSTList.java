@@ -65,7 +65,7 @@ public class CYSTList {
                 measureChild(child,wspec,hspec);
                 hmax += child.getMeasuredHeight()+h/25;
             }
-            setMeasuredDimension(w,Math.max(h,hmax+viewSize+h/25));
+            setMeasuredDimension(w,Math.max(h,hmax));
         }
         public void onLayout(boolean reloaded,int a,int b,int wa,int ha) {
             int y = h/25;
