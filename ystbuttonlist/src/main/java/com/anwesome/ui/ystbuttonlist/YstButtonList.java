@@ -7,6 +7,7 @@ import android.hardware.display.DisplayManager;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 
 /**
  * Created by anweshmishra on 24/05/17.
@@ -14,16 +15,22 @@ import android.view.ViewGroup;
 public class YstButtonList {
     private Activity activity;
     private boolean isShown = false;
+    private ScrollView scrollView;
+    private ListLayout listLayout;
     public YstButtonList(Activity activity) {
         this.activity = activity;
+        listLayout = new ListLayout(activity);
+        scrollView = new ScrollView(activity);
+        scrollView.addView(listLayout,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
     public void addButton() {
         if(!isShown) {
-            
+            listLayout.addButton();
         }
     }
     public void show() {
         if(!isShown) {
+            activity.setContentView(scrollView);
             isShown = true;
         }
     }
@@ -44,12 +51,13 @@ public class YstButtonList {
         public void addButton() {
             YSTButtonView ystButtonView = new YSTButtonView(getContext());
             addView(ystButtonView,new LayoutParams(w/2,w/2));
+            requestLayout();
         }
         public void onMeasure(int wspec,int hspec) {
             int hMax = h/25;
             for(int i=0;i<getChildCount();i++) {
                 View child = getChildAt(i);
-                measureChild(child,wspec,hsepc);
+                measureChild(child,wspec,hspec);
                 hMax += w/2 +h/25;
             }
             setMeasuredDimension(w,Math.max(hMax,h));
