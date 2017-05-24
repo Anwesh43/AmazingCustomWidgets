@@ -59,16 +59,16 @@ public class YstButtonList {
             for(int i=0;i<getChildCount();i++) {
                 View child = getChildAt(i);
                 measureChild(child,wspec,hspec);
-                hMax += w/2 +h/25;
+                hMax += (w/2 +h/25);
             }
-            setMeasuredDimension(w,Math.max(hMax,h));
+            setMeasuredDimension(w,Math.max(hMax+(w/2+h/25),h));
         }
         public void onLayout(boolean reloaded,int a,int b,int w,int h) {
             int x = w/4,y = h/25;
             for(int i=0;i<getChildCount();i++) {
                 View child = getChildAt(i);
                 child.layout(x,y,x+w/2,y+w/2);
-                y += w/2+h/25;
+                y += (w/2+h/25);
             }
         }
     }
