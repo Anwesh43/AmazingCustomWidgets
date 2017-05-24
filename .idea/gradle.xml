@@ -26,6 +26,7 @@
             <option value="$PROJECT_DIR$/circularbuttonchooser" />
             <option value="$PROJECT_DIR$/circularcontainerswitch" />
             <option value="$PROJECT_DIR$/circularwindow" />
+            <option value="$PROJECT_DIR$/circularystbuttonlist" />
             <option value="$PROJECT_DIR$/clockbutton" />
             <option value="$PROJECT_DIR$/clockswitch" />
             <option value="$PROJECT_DIR$/compassbutton" />
@@ -100,101 +101,7 @@
             <option value="$PROJECT_DIR$/zoomshapebutton" />
           </set>
         </option>
-        <option name="myModules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/actionsheettutorial" />
-            <option value="$PROJECT_DIR$/alphaimageswitch" />
-            <option value="$PROJECT_DIR$/androidbuttonloader" />
-            <option value="$PROJECT_DIR$/animationqueue" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/bargraphbutton" />
-            <option value="$PROJECT_DIR$/basicswitch" />
-            <option value="$PROJECT_DIR$/beanbutton" />
-            <option value="$PROJECT_DIR$/bluetoothbutton" />
-            <option value="$PROJECT_DIR$/breakablebutton" />
-            <option value="$PROJECT_DIR$/bulletedlist" />
-            <option value="$PROJECT_DIR$/buttongroup" />
-            <option value="$PROJECT_DIR$/buttonintriangle" />
-            <option value="$PROJECT_DIR$/calbutton" />
-            <option value="$PROJECT_DIR$/circledarrowbutton" />
-            <option value="$PROJECT_DIR$/circularbuttonchooser" />
-            <option value="$PROJECT_DIR$/circularcontainerswitch" />
-            <option value="$PROJECT_DIR$/circularwindow" />
-            <option value="$PROJECT_DIR$/clockbutton" />
-            <option value="$PROJECT_DIR$/clockswitch" />
-            <option value="$PROJECT_DIR$/compassbutton" />
-            <option value="$PROJECT_DIR$/completeballbuttons" />
-            <option value="$PROJECT_DIR$/concentriccircleswitch" />
-            <option value="$PROJECT_DIR$/crecbutton" />
-            <option value="$PROJECT_DIR$/crukybutton" />
-            <option value="$PROJECT_DIR$/customactionsheet" />
-            <option value="$PROJECT_DIR$/customfloatingactionbutton" />
-            <option value="$PROJECT_DIR$/dataindicationbutton" />
-            <option value="$PROJECT_DIR$/deletebutton" />
-            <option value="$PROJECT_DIR$/dimensionsutil" />
-            <option value="$PROJECT_DIR$/directionbutton" />
-            <option value="$PROJECT_DIR$/dotbarswitch" />
-            <option value="$PROJECT_DIR$/dotspin" />
-            <option value="$PROJECT_DIR$/ellipticalswitch" />
-            <option value="$PROJECT_DIR$/emergencybutton" />
-            <option value="$PROJECT_DIR$/eyebutton" />
-            <option value="$PROJECT_DIR$/fillringbutton" />
-            <option value="$PROJECT_DIR$/footiepitchbutton" />
-            <option value="$PROJECT_DIR$/fourbutton" />
-            <option value="$PROJECT_DIR$/fsarrowbutton" />
-            <option value="$PROJECT_DIR$/fullscreenbutton" />
-            <option value="$PROJECT_DIR$/fultonbutton" />
-            <option value="$PROJECT_DIR$/gpbutton" />
-            <option value="$PROJECT_DIR$/groupimagebuttons" />
-            <option value="$PROJECT_DIR$/hamburgbutton" />
-            <option value="$PROJECT_DIR$/imagebar" />
-            <option value="$PROJECT_DIR$/imageclippe" />
-            <option value="$PROJECT_DIR$/latchbutton" />
-            <option value="$PROJECT_DIR$/leaninputcontainer" />
-            <option value="$PROJECT_DIR$/likebutton" />
-            <option value="$PROJECT_DIR$/livestreamingbutton" />
-            <option value="$PROJECT_DIR$/lockbuttons" />
-            <option value="$PROJECT_DIR$/menuexpander" />
-            <option value="$PROJECT_DIR$/messageui" />
-            <option value="$PROJECT_DIR$/messengerbutton" />
-            <option value="$PROJECT_DIR$/minustopause" />
-            <option value="$PROJECT_DIR$/mirrorimagebutton" />
-            <option value="$PROJECT_DIR$/modakbutton" />
-            <option value="$PROJECT_DIR$/multiplecheckbox" />
-            <option value="$PROJECT_DIR$/mutebutton" />
-            <option value="$PROJECT_DIR$/ninesqaure" />
-            <option value="$PROJECT_DIR$/notepadbutton" />
-            <option value="$PROJECT_DIR$/notificationbutton" />
-            <option value="$PROJECT_DIR$/pathtext" />
-            <option value="$PROJECT_DIR$/pinbar" />
-            <option value="$PROJECT_DIR$/playbackbutton" />
-            <option value="$PROJECT_DIR$/playpause" />
-            <option value="$PROJECT_DIR$/polygonaltraverseview" />
-            <option value="$PROJECT_DIR$/powerbutton" />
-            <option value="$PROJECT_DIR$/prokbutton" />
-            <option value="$PROJECT_DIR$/recordbutton" />
-            <option value="$PROJECT_DIR$/settingsbutton" />
-            <option value="$PROJECT_DIR$/settingspallete" />
-            <option value="$PROJECT_DIR$/sharebutton" />
-            <option value="$PROJECT_DIR$/spinnybutton" />
-            <option value="$PROJECT_DIR$/stickynotification" />
-            <option value="$PROJECT_DIR$/syncbutton" />
-            <option value="$PROJECT_DIR$/syncbutton2" />
-            <option value="$PROJECT_DIR$/tablikeviews" />
-            <option value="$PROJECT_DIR$/tictactoefilterview" />
-            <option value="$PROJECT_DIR$/trashbutton" />
-            <option value="$PROJECT_DIR$/trianglecirclebutton" />
-            <option value="$PROJECT_DIR$/tricircledbutton" />
-            <option value="$PROJECT_DIR$/tripathbutton" />
-            <option value="$PROJECT_DIR$/uiwindow" />
-            <option value="$PROJECT_DIR$/valueanimatoradapter" />
-            <option value="$PROJECT_DIR$/watchlikebutton" />
-            <option value="$PROJECT_DIR$/widholder" />
-            <option value="$PROJECT_DIR$/ystbuttonlist" />
-            <option value="$PROJECT_DIR$/zoomshapebutton" />
-          </set>
-        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
