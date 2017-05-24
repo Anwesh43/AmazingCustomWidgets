@@ -20,6 +20,7 @@ public class CircularYSTButtonView extends View {
     private int time = 0,w,h;
     private ClipBoard clipBoard;
     private Indicator indicator;
+    private AnimationHandler animationHandler = new AnimationHandler();
     public CircularYSTButtonView(Context context) {
         super(context);
     }
@@ -40,6 +41,9 @@ public class CircularYSTButtonView extends View {
         postInvalidate();
     }
     public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            animationHandler.start();
+        }
         return true;
     }
     private class ClipBoard {
