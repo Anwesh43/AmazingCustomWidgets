@@ -140,6 +140,7 @@ import com.anwesome.ui.tricircledbutton.TriCircledButton;
 import com.anwesome.ui.uiwindow.UiWindow;
 import com.anwesome.ui.watchlikebutton.WatchClickListener;
 import com.anwesome.ui.watchlikebutton.WatchLikeButton;
+import com.anwesome.ui.ystbuttonlist.YstButtonList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -161,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTicTacToeList();
+                showYstButtonList();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1177,5 +1178,23 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         ticTacTowFilterViewList.show();
+    }
+    public void showYstButtonList() {
+        YstButtonList ystButtonList = new YstButtonList(this);
+        for(int i=0;i<6;i++) {
+            final int index = i+1;
+            ystButtonList.addButton(new com.anwesome.ui.ystbuttonlist.OnSelectionChangeListener() {
+                @Override
+                public void onSelect() {
+                    Toast.makeText(MainActivity.this, String.format("%d selected",index), Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onUnSelect() {
+                    Toast.makeText(MainActivity.this, String.format("%d unselected",index), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        ystButtonList.show();
     }
 }
