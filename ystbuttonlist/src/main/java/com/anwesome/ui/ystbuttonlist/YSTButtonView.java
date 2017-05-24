@@ -47,6 +47,7 @@ public class YSTButtonView extends View {
             canvas.drawLine(x+size/10,y+4*size/5,x+6*size/10,y+4*size/5,paint);
             canvas.drawLine(x+7*size/10,y+4*size/5,x+9*size/10,y+4*size/5,paint);
             paint.setColor(Color.argb(150,0,0,0));
+            paint.setStyle(Paint.Style.FILL);
             canvas.save();
             canvas.translate(x,y);
             canvas.scale(scale,scale);
@@ -59,6 +60,18 @@ public class YSTButtonView extends View {
         }
         public void update(float factor) {
             scale = factor;
+        }
+    }
+    private class YSTLine {
+        private float l = 0;
+        public void draw(Canvas canvas) {
+            paint.setStrokeWidth(w/20);
+            paint.setColor(Color.RED);
+            canvas.drawLine(w/2-l,9*h/10,w/2,9*h/10,paint);
+            canvas.drawLine(w/2,9*h/10,w/2+l,9*h/10,paint);
+        }
+        public void update(float factor) {
+            l = w/2*factor;
         }
     }
 }
