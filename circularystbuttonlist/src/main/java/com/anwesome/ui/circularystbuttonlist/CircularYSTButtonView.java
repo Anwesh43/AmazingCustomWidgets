@@ -57,4 +57,15 @@ public class CircularYSTButtonView extends View {
             scale = factor;
         }
     }
+    private class Indicator {
+        float deg = 0;
+        public void draw(Canvas canvas) {
+            paint.setColor(Color.parseColor("#e53935"));
+            paint.setStyle(Paint.Style.FILL);
+            canvas.drawArc(new RectF(w/2-w/10,0.9f*h-w/10,w/2+w/10,0.9f*h+w/10),0,deg,true,paint);
+        }
+        public void update(float factor) {
+            deg = 360*factor;
+        }
+    }
 }
