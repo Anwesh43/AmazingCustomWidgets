@@ -54,21 +54,28 @@ public class CircularYSTButtonView extends View {
             size = Math.min(w,h)*0.8f;
         }
         public void draw(Canvas canvas) {
+            paint.setStrokeWidth(size/10);
             canvas.save();
             canvas.translate(x,y);
-            paint.setColor(Color.WHITE);
+            paint.setColor(Color.GRAY);
             paint.setStyle(Paint.Style.STROKE);
             canvas.drawRoundRect(new RectF(-size/2,-size/2,size/2,size/2),size/20,size/20,paint);
             int n = 5;
-            float circleX = w/10,gap = size/11,y_gap = size/(2*n+1);
+            canvas.save();
+            canvas.translate(-size/2,-size/2);
+            float circleX = size/10,gap = size/11,y_gap = size/(2*n+1);
             for(int i=0;i<n;i++) {
-                canvas.drawCircle(circleX,y_gap,size/30,paint);
+                canvas.drawCircle(circleX,y_gap,size/40,paint);
                 canvas.drawLine(circleX+size/5,y_gap,circleX+size*0.9f,y_gap,paint);
-                y_gap += gap;
+                y_gap += 2*gap;
             }
+            canvas.restore();
             paint.setStyle(Paint.Style.FILL);
             paint.setColor(Color.argb(150,0,0,0));
+            canvas.save();
+            canvas.scale(scale,scale);
             canvas.drawRoundRect(new RectF(-size/2,-size/2,size/2,size/2),size/20,size/20,paint);
+            canvas.restore();
             canvas.restore();
         }
         public void update(float factor) {
@@ -80,7 +87,7 @@ public class CircularYSTButtonView extends View {
         public void draw(Canvas canvas) {
             paint.setColor(Color.parseColor("#e53935"));
             paint.setStyle(Paint.Style.FILL);
-            canvas.drawArc(new RectF(w/2-w/10,0.9f*h-w/10,w/2+w/10,0.9f*h+w/10),0,deg,true,paint);
+            canvas.drawArc(new RectF(w/2-w/20,0.9f*h-w/20,w/2+w/20,0.9f*h+w/20),0,deg,true,paint);
         }
         public void update(float factor) {
             deg = 360*factor;
@@ -90,6 +97,14 @@ public class CircularYSTButtonView extends View {
         private boolean isAnimating = false;
         private int dir = 0;
         private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1),endAnim = ValueAnimator.ofFloat(1,0);
+        public AnimationHandler() {
+            startAnim.setDuration(500);
+            endAnim.setDuration(500);
+            startAnim.addListener(this);
+            endAnim.addListener(this);
+            startAnim.addUpdateListener(this);
+            endAnim.addUpdateListener(this);
+        }
         public void onAnimationUpdate(ValueAnimator valueAnimator) {
             float factor = (float)valueAnimator.getAnimatedValue();
             update(factor);

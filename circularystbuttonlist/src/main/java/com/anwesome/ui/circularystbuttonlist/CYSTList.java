@@ -41,9 +41,10 @@ public class CYSTList {
         private int w,h,viewSize;
         public ListLayout(Context context) {
             super(context);
+            initDimension(context);
         }
         public void addButton() {
-            addView(new CircularYSTButtonView(getContext()),new LayoutParams(w,viewSize));
+            addView(new CircularYSTButtonView(getContext()),new LayoutParams(viewSize,viewSize));
             requestLayout();
         }
         public void initDimension(Context context) {
@@ -54,7 +55,7 @@ public class CYSTList {
                 display.getRealSize(size);
                 w = size.x;
                 h = size.y;
-                viewSize = h/3;
+                viewSize = w/2;
             }
         }
         public void onMeasure(int wspec,int hspec) {
@@ -70,7 +71,7 @@ public class CYSTList {
             int y = h/25;
             for(int i=0;i<getChildCount();i++) {
                 View child = getChildAt(i);
-                child.layout(0,y,w,y+h/25);
+                child.layout(w/4,y,3*w/4,y+w/4);
                 y += child.getMeasuredHeight()+h/25;
             }
         }
