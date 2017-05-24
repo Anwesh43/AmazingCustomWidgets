@@ -44,7 +44,9 @@ public class CYSTList {
             initDimension(context);
         }
         public void addButton(OnSelectionChangeListener onSelectionChangeListener) {
-            addView(new CircularYSTButtonView(getContext()),new LayoutParams(viewSize,viewSize));
+            CircularYSTButtonView view = new CircularYSTButtonView(getContext());
+            addView(view,new LayoutParams(viewSize,viewSize));
+            view.setOnSelectionChangeListener(onSelectionChangeListener);
             requestLayout();
         }
         public void initDimension(Context context) {
