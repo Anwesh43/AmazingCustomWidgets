@@ -91,6 +91,7 @@
       <module fileurl="file://$PROJECT_DIR$/valueanimatoradapter/valueanimatoradapter.iml" filepath="$PROJECT_DIR$/valueanimatoradapter/valueanimatoradapter.iml" />
       <module fileurl="file://$PROJECT_DIR$/watchlikebutton/watchlikebutton.iml" filepath="$PROJECT_DIR$/watchlikebutton/watchlikebutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/widholder/widholder.iml" filepath="$PROJECT_DIR$/widholder/widholder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ystbuttonlist/ystbuttonlist.iml" filepath="$PROJECT_DIR$/ystbuttonlist/ystbuttonlist.iml" />
       <module fileurl="file://$PROJECT_DIR$/zoomshapebutton/zoomshapebutton.iml" filepath="$PROJECT_DIR$/zoomshapebutton/zoomshapebutton.iml" />
     </modules>
   </component>
