@@ -1,5 +1,8 @@
 package com.anwesome.ui.ystbuttonlist;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -29,9 +32,14 @@ public class YSTButtonView extends View {
         ystLine.draw(canvas);
         time++;
     }
+    public void update(float factor) {
+        rect.update(factor);
+        ystLine.update(factor);
+        postInvalidate();
+    }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
-            
+
         }
         return true;
     }
@@ -77,6 +85,44 @@ public class YSTButtonView extends View {
         }
         public void update(float factor) {
             l = w/2*factor;
+        }
+    }
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
+        private int dir = 0;
+        private boolean isAnimating = false;
+        private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1),endAnim = ValueAnimator.ofFloat(1,0);
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+            update((float) valueAnimator.getAnimatedValue());
+        }
+        public void onAnimationEnd(Animator animator) {
+            if(isAnimating) {
+                if(dir == 0) {
+                    
+                }
+                else {
+
+                }
+                dir = dir == 0?1:0;
+                isAnimating = false;
+            }
+        }
+        public AnimationHandler() {
+            startAnim.setDuration(500);
+            endAnim.setDuration(500);
+            startAnim.addUpdateListener(this);
+            endAnim.addUpdateListener(this);
+            startAnim.addListener(this);
+            endAnim.addListener(this);
+        }
+        public void start() {
+            if(!isAnimating) {
+                if (dir == 0) {
+                    startAnim.start();
+                } else {
+                    endAnim.start();
+                }
+            }
         }
     }
 }
