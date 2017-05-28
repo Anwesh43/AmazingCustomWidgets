@@ -1196,7 +1196,18 @@ public class MainActivity extends AppCompatActivity {
     public void showTVButton() {
         TVButtonList tvButtonList = new TVButtonList(this);
         for(int i=0;i<9;i++) {
-            tvButtonList.addButton();
+            final int index = i+1;
+            tvButtonList.addButton(new com.anwesome.ui.tvbutton.OnSelectionChangeListener() {
+                @Override
+                public void onSelect() {
+                    Toast.makeText(MainActivity.this, String.format("%d selected",index), Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onUnSelect() {
+                    Toast.makeText(MainActivity.this, String.format("%d unselected",index), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
         tvButtonList.show();
     }
