@@ -16,14 +16,17 @@ import android.widget.ScrollView;
 public class TVButtonList {
     private Activity activity;
     private ScrollView scrollView;
+    private Listlayout listlayout;
     private boolean isShown = false;
     public TVButtonList(Activity activity) {
         this.activity = activity;
         this.scrollView = new ScrollView(activity);
+        listlayout = new Listlayout(activity);
+        scrollView.addView(listlayout,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
     public void addButton() {
         if(!isShown) {
-
+            listlayout.addButton();
         }
     }
     public void show() {
