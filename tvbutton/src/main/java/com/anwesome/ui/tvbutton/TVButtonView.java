@@ -31,12 +31,15 @@ public class TVButtonView extends View{
         canvas.save();
         canvas.translate(w/2,h/2);
         canvas.drawRoundRect(new RectF(-2*w/5,-2*h/5,2*w/5,2*h/5),r,r,paint);
+        canvas.save();
+        canvas.translate(0,2*w/5);
         Path path = new Path();
         path.moveTo(0,0);
         path.lineTo(w/20,w/20);
         path.lineTo(-w/20,w/20);
         path.lineTo(0,0);
         canvas.drawPath(path,paint);
+        canvas.restore();
         canvas.restore();
     }
     public boolean onTouchEvent(MotionEvent event) {
@@ -45,7 +48,7 @@ public class TVButtonView extends View{
         }
         return true;
     }
-    public void uodate() {
+    public void update() {
         postInvalidate();
     }
     private class Play {
@@ -66,6 +69,20 @@ public class TVButtonView extends View{
         }
         public void update(float factor) {
             wx = (w/10)*factor;
+        }
+    }
+    private class Indicator {
+        private float lx = 0;
+        public void update(float factor) {
+            lx = (w/20)*factor;
+        }
+        public void draw(Canvas canvas) {
+            paint.setColor(Color.RED);
+            canvas.save();
+            canvas.translate(w/2,h/2+w/10);
+            canvas.drawLine(-lx,0,0,0,paint);
+            canvas.drawLine(0,0,lx,0,paint);
+            canvas.restore();
         }
     }
 }
