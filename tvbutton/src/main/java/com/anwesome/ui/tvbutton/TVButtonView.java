@@ -34,6 +34,9 @@ public class TVButtonView extends View{
             animationHandler = new AnimationHandler();
         }
         int r = w/8;
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.GRAY);
         paint.setStrokeWidth(r/3);
@@ -52,6 +55,7 @@ public class TVButtonView extends View{
         play.draw(canvas);
         indicator.draw(canvas);
         canvas.restore();
+        time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -67,10 +71,12 @@ public class TVButtonView extends View{
     private class Play {
         float wx = 0;
         public void draw(Canvas canvas) {
+            paint.setStrokeWidth(2);
             Path path = new Path();
-            path.moveTo(-w/20,-w/20);
-            path.lineTo(w/20,0);
-            path.lineTo(-w/20,w/20);
+            path.moveTo(-w/10,-w/10);
+            path.lineTo(w/10,0);
+            path.lineTo(-w/10,w/10);
+            path.lineTo(-w/10,-w/10);
             paint.setStyle(Paint.Style.STROKE);
             paint.setColor(Color.GRAY);
             canvas.drawPath(path,paint);
@@ -90,9 +96,10 @@ public class TVButtonView extends View{
             lx = (w/20)*factor;
         }
         public void draw(Canvas canvas) {
+            paint.setStrokeWidth(w/20);
             paint.setColor(Color.RED);
             canvas.save();
-            canvas.translate(w/2,h/2+w/10);
+            canvas.translate(0,h/5);
             canvas.drawLine(-lx,0,0,0,paint);
             canvas.drawLine(0,0,lx,0,paint);
             canvas.restore();

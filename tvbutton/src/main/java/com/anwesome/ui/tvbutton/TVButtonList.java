@@ -53,7 +53,7 @@ public class TVButtonList {
         }
         public void addButton() {
             TVButtonView tvButtonView = new TVButtonView(getContext());
-            addView(tvButtonView,new LayoutParams(Math.max(w,h)/10,Math.max(w,h)/10));
+            addView(tvButtonView,new LayoutParams(Math.max(w,h)/5,Math.max(w,h)/5));
             requestLayout();
         }
         public void onMeasure(int wspec,int hspec) {
