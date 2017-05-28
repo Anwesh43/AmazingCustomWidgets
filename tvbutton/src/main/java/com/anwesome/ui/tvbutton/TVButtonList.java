@@ -24,9 +24,9 @@ public class TVButtonList {
         listlayout = new Listlayout(activity);
         scrollView.addView(listlayout,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
-    public void addButton() {
+    public void addButton(OnSelectionChangeListener onSelectionChangeListener) {
         if(!isShown) {
-            listlayout.addButton();
+            listlayout.addButton(onSelectionChangeListener);
         }
     }
     public void show() {
@@ -51,8 +51,9 @@ public class TVButtonList {
                 h = size.y;
             }
         }
-        public void addButton() {
+        public void addButton(OnSelectionChangeListener onSelectionChangeListener) {
             TVButtonView tvButtonView = new TVButtonView(getContext());
+            tvButtonView.setOnSelectionChangeListener(onSelectionChangeListener);
             addView(tvButtonView,new LayoutParams(Math.max(w,h)/5,Math.max(w,h)/5));
             requestLayout();
         }

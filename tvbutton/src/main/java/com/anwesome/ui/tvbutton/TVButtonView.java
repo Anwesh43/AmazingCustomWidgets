@@ -18,10 +18,14 @@ import android.view.View;
 
 public class TVButtonView extends View{
     private Indicator indicator;
+    private OnSelectionChangeListener onSelectionChangeListener;
     private Play play;
     private AnimationHandler animationHandler;
     private int time = 0,w,h,color = Color.parseColor("#0097A7");
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    public void setOnSelectionChangeListener(OnSelectionChangeListener onSelectionChangeListener) {
+        this.onSelectionChangeListener = onSelectionChangeListener;
+    }
     public TVButtonView(Context context) {
         super(context);
     }
@@ -124,6 +128,13 @@ public class TVButtonView extends View{
         }
         public void onAnimationEnd(Animator animator) {
             if(isAnimated) {
+                if(onSelectionChangeListener != null) {
+                    if (dir == 0) {
+                        onSelectionChangeListener.onSelect();
+                    } else {
+                        onSelectionChangeListener.onUnSelect();
+                    }
+                }
                 dir = dir == 0?1:0;
                 isAnimated = false;
             }
