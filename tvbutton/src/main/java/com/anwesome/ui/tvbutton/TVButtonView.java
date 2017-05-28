@@ -19,6 +19,7 @@ import android.view.View;
 public class TVButtonView extends View{
     private Indicator indicator;
     private Play play;
+    private AnimationHandler animationHandler;
     private int time = 0,w,h,color = Color.parseColor("#0097A7");
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     public TVButtonView(Context context) {
@@ -30,6 +31,7 @@ public class TVButtonView extends View{
             h = canvas.getHeight();
             indicator = new Indicator();
             play = new Play();
+            animationHandler = new AnimationHandler();
         }
         int r = w/8;
         paint.setStyle(Paint.Style.STROKE);
@@ -53,7 +55,7 @@ public class TVButtonView extends View{
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+            animationHandler.start();
         }
         return true;
     }
