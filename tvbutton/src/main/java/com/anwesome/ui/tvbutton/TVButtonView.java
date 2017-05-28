@@ -14,6 +14,8 @@ import android.view.View;
  */
 
 public class TVButtonView extends View{
+    private Indicator indicator;
+    private Play play;
     private int time = 0,w,h,color = Color.parseColor("#0097A7");
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     public TVButtonView(Context context) {
@@ -23,6 +25,8 @@ public class TVButtonView extends View{
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            indicator = new Indicator();
+            play = new Play();
         }
         int r = w/8;
         paint.setStyle(Paint.Style.STROKE);
@@ -40,6 +44,8 @@ public class TVButtonView extends View{
         path.lineTo(0,0);
         canvas.drawPath(path,paint);
         canvas.restore();
+        play.draw(canvas);
+        indicator.draw(canvas);
         canvas.restore();
     }
     public boolean onTouchEvent(MotionEvent event) {
@@ -48,7 +54,9 @@ public class TVButtonView extends View{
         }
         return true;
     }
-    public void update() {
+    public void update(float factor) {
+        play.update(factor);
+        indicator.update(factor);
         postInvalidate();
     }
     private class Play {
