@@ -95,6 +95,7 @@ import android.widget.Toast;
 import com.anwesome.ui.circularystbuttonlist.CYSTList;
 import com.anwesome.ui.circularystbuttonlist.OnSelectionChangeListener;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
+import com.anwesome.ui.tvbutton.TVButtonList;
 //import com.anwesome.ui.clockbutton.ClockButton;
 //import com.anwesome.ui.clockbutton.ClockListener;
 //import com.anwesome.ui.completeballbuttons.BallButton;
@@ -159,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCYSTButtonList();
+                showTVButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1191,5 +1192,12 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         cystList.show();
+    }
+    public void showTVButton() {
+        TVButtonList tvButtonList = new TVButtonList(this);
+        for(int i=0;i<9;i++) {
+            tvButtonList.addButton();
+        }
+        tvButtonList.show();
     }
 }

@@ -104,4 +104,5 @@ dependencies {
 //    compile project(':tictactoefilterview')
 //    compile project(':ystbuttonlist')
     compile project(':circularystbuttonlist')
+    compile project(':tvbutton')
 }
