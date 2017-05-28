@@ -66,7 +66,7 @@ public class TVButtonList {
             }
             setMeasuredDimension(w,Math.max(hmax,h));
         }
-        public void onLayout(boolean reloaded,int a,int b,int w,int h) {
+        public void onLayout(boolean reloaded,int a,int b,int wa,int ha) {
             int y = h/20;
             for(int i=0;i<getChildCount();i++) {
                 View child = getChildAt(i);
