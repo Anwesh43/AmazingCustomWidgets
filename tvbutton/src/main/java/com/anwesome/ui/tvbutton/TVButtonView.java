@@ -47,8 +47,8 @@ public class TVButtonView extends View{
         canvas.translate(0,2*w/5);
         Path path = new Path();
         path.moveTo(0,0);
-        path.lineTo(w/20,w/10);
-        path.lineTo(-w/20,w/10);
+        path.lineTo(w/20,w/10-r/6);
+        path.lineTo(-w/20,w/10-r/6);
         path.lineTo(0,0);
         canvas.drawPath(path,paint);
         canvas.restore();
