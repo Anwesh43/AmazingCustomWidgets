@@ -47,8 +47,8 @@ public class TVButtonView extends View{
         canvas.translate(0,2*w/5);
         Path path = new Path();
         path.moveTo(0,0);
-        path.lineTo(w/20,w/20);
-        path.lineTo(-w/20,w/20);
+        path.lineTo(w/20,w/10);
+        path.lineTo(-w/20,w/10);
         path.lineTo(0,0);
         canvas.drawPath(path,paint);
         canvas.restore();
@@ -71,7 +71,8 @@ public class TVButtonView extends View{
     private class Play {
         float wx = 0;
         public void draw(Canvas canvas) {
-            paint.setStrokeWidth(2);
+            canvas.save();
+            paint.setStrokeWidth(w/20);
             Path path = new Path();
             path.moveTo(-w/10,-w/10);
             path.lineTo(w/10,0);
@@ -84,16 +85,17 @@ public class TVButtonView extends View{
             paint.setStyle(Paint.Style.FILL);
             int r = Color.red(color),g = Color.green(color),b = Color.blue(color);
             paint.setColor(Color.argb(150,r,g,b));
-            canvas.drawRect(new RectF(-w/20,-w/20,-w/20+wx,w/20),paint);
+            canvas.drawRect(new RectF(-w/10+w/40,-w/10+w/40,-w/10+wx,w/10-w/40),paint);
+            canvas.restore();
         }
         public void update(float factor) {
-            wx = (w/10)*factor;
+            wx = (w/5-w/40)*factor;
         }
     }
     private class Indicator {
         private float lx = 0;
         public void update(float factor) {
-            lx = (w/20)*factor;
+            lx = (w/5)*factor;
         }
         public void draw(Canvas canvas) {
             paint.setStrokeWidth(w/20);
