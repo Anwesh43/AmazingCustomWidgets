@@ -14,7 +14,7 @@ import android.view.View;
  */
 
 public class TVButtonView extends View{
-    private int time = 0,w,h;
+    private int time = 0,w,h,color = Color.parseColor("#0097A7");
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     public TVButtonView(Context context) {
         super(context);
@@ -32,9 +32,10 @@ public class TVButtonView extends View{
         canvas.translate(w/2,h/2);
         canvas.drawRoundRect(new RectF(-2*w/5,-2*h/5,2*w/5,2*h/5),r,r,paint);
         Path path = new Path();
-        path.moveTo(0,2*w/5);
-        path.lineTo(w/10,w/10);
-        path.lineTo(-w/10,w/10);
+        path.moveTo(0,0);
+        path.lineTo(w/20,w/20);
+        path.lineTo(-w/20,w/20);
+        path.lineTo(0,0);
         canvas.drawPath(path,paint);
         canvas.restore();
     }
@@ -46,5 +47,25 @@ public class TVButtonView extends View{
     }
     public void uodate() {
         postInvalidate();
+    }
+    private class Play {
+        float wx = 0;
+        public void draw(Canvas canvas) {
+            Path path = new Path();
+            path.moveTo(-w/20,-w/20);
+            path.lineTo(w/20,0);
+            path.lineTo(-w/20,w/20);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setColor(Color.GRAY);
+            canvas.drawPath(path,paint);
+            canvas.clipPath(path);
+            paint.setStyle(Paint.Style.FILL);
+            int r = Color.red(color),g = Color.green(color),b = Color.blue(color);
+            paint.setColor(Color.argb(150,r,g,b));
+            canvas.drawRect(new RectF(-w/20,-w/20,-w/20+wx,w/20),paint);
+        }
+        public void update(float factor) {
+            wx = (w/10)*factor;
+        }
     }
 }
