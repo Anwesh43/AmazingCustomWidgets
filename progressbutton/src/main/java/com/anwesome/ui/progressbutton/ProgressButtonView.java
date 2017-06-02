@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
@@ -39,6 +40,7 @@ public class ProgressButtonView extends View {
                 progressBars.add(new ProgressBar(i));
             }
         }
+        paint.setColor(Color.parseColor("#283593"));
         for(ProgressBar progressBar:progressBars) {
             progressBar.draw(canvas);
         }
@@ -71,21 +73,20 @@ public class ProgressButtonView extends View {
             this.i = i;
         }
         public void draw(Canvas canvas) {
+            canvas.save();
+            canvas.translate(x,y);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(w/20);
-            canvas.drawCircle(x,y,r,paint);
+            paint.setStrokeWidth(w/40);
+            canvas.drawCircle(0,0,r,paint);
             paint.setStyle(Paint.Style.FILL);
             Path path = new Path();
+            path.moveTo(0,0);
             for(int i=0;i<=deg;i++) {
                 float x = (float)(r*Math.cos(i*Math.PI/180)),y = (float)(r*Math.sin(i*Math.PI/180));
-                if(i == 0) {
-                    path.moveTo(x,y);
-                }
-                else {
-                    path.lineTo(x,y);
-                }
+                path.lineTo(x,y);
             }
             canvas.drawPath(path,paint);
+            canvas.restore();
         }
         public void update(float factor) {
             deg = 360*factor;
@@ -94,7 +95,7 @@ public class ProgressButtonView extends View {
             return (int)(x+deg);
         }
         public boolean handleTap(float x,float y) {
-            boolean condition = x>=this.x-r && x>=this.x+r && y>=this.y-r && y<=this.y+r;
+            boolean condition = x>=this.x-r && x<=this.x+r && y>=this.y-r && y<=this.y+r;
             return condition;
         }
     }
@@ -157,6 +158,7 @@ public class ProgressButtonView extends View {
         public ProgressBar(int i) {
             circularProgressBar = new CircularProgressBar(i);
             linearBar = new LinearBar(i);
+            animationHandler = new AnimationHandler();
             this.i = i;
         }
         public void draw(Canvas canvas) {
