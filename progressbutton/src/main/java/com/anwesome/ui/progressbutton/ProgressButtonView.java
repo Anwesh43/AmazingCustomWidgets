@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.pm.ProviderInfo;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -18,6 +17,7 @@ import android.view.View;
 public class ProgressButtonView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h;
+    private boolean isAnimating = false;
     public ProgressButtonView(Context context) {
         super(context);
     }
@@ -38,17 +38,16 @@ public class ProgressButtonView extends View {
         private float x,y,r,deg = 0;
         private int i;
         public CircularProgressBar(int i) {
-            if(i == 0) {
-                x = w/4;
-            }
-            if(i == 1) {
-                x = 3*w/4;
-            }
+            x = w/4+(w/2)*i;
             y = h/2;
             r = w/10;
             this.i = i;
         }
         public void draw(Canvas canvas) {
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(w/20);
+            canvas.drawCircle(x,y,r,paint);
+            paint.setStyle(Paint.Style.FILL);
             Path path = new Path();
             for(int i=0;i<=deg;i++) {
                 float x = (float)(r*Math.cos(i*Math.PI/180)),y = (float)(r*Math.sin(i*Math.PI/180));
@@ -94,7 +93,6 @@ public class ProgressButtonView extends View {
     }
     private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
         private int dir = 0;
-        private boolean isAnimating = false;
         private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1),endAnim = ValueAnimator.ofFloat(1,0);
         public void start() {
             if(!isAnimating) {
@@ -124,6 +122,30 @@ public class ProgressButtonView extends View {
             endAnim.addUpdateListener(this);
             startAnim.addListener(this);
             endAnim.addListener(this);
+        }
+    }
+    private class ProgressBar {
+        private CircularProgressBar circularProgressBar;
+        private LinearBar linearBar;
+        private AnimationHandler animationHandler;
+        public ProgressBar(int i) {
+            circularProgressBar = new CircularProgressBar(i);
+            linearBar = new LinearBar(i);
+        }
+        public void draw(Canvas canvas) {
+            circularProgressBar.draw(canvas);
+            linearBar.draw(canvas);
+        }
+        public void update(float factor) {
+            circularProgressBar.update(factor);
+            linearBar.update(factor);
+        }
+        public boolean handleTap(float x,float y) {
+            boolean condition =  circularProgressBar.handleTap(x,y);
+            if(condition) {
+                animationHandler.start();
+            }
+            return condition;
         }
     }
 }
