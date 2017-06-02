@@ -95,6 +95,7 @@ import android.widget.Toast;
 import com.anwesome.ui.circularystbuttonlist.CYSTList;
 import com.anwesome.ui.circularystbuttonlist.OnSelectionChangeListener;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
+import com.anwesome.ui.progressbutton.ProgressButtonView;
 import com.anwesome.ui.tvbutton.TVButtonList;
 //import com.anwesome.ui.clockbutton.ClockButton;
 //import com.anwesome.ui.clockbutton.ClockListener;
@@ -160,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTVButton();
+                showProgressButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1210,5 +1211,8 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         tvButtonList.show();
+    }
+    public void showProgressButton() {
+        ProgressButtonView.create(this);
     }
 }

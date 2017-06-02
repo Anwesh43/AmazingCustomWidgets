@@ -105,4 +105,5 @@ dependencies {
 //    compile project(':ystbuttonlist')
     compile project(':circularystbuttonlist')
     compile project(':tvbutton')
+    compile project(':progressbutton')
 }
