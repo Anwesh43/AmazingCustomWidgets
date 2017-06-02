@@ -10,6 +10,9 @@ import android.graphics.Path;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by anweshmishra on 03/06/17.
  */
@@ -18,6 +21,8 @@ public class ProgressButtonView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h;
     private boolean isAnimating = false;
+    private int touchedButton = -1;
+    private List<ProgressBar> progressBars = new ArrayList<>();
     public ProgressButtonView(Context context) {
         super(context);
     }
@@ -25,14 +30,31 @@ public class ProgressButtonView extends View {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            for(int i=0;i<2;i++) {
+                progressBars.add(new ProgressBar(i));
+            }
+        }
+        for(ProgressBar progressBar:progressBars) {
+            progressBar.draw(canvas);
         }
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            for(ProgressBar progressBar:progressBars) {
+                progressBar.handleTap(event.getX(),event.getY());
+                if(touchedButton != -1) {
+                    break;
+                }
+            }
+        }
         return true;
     }
     public void update(float factor) {
-        postInvalidate();
+        if(touchedButton != -1) {
+            progressBars.get(touchedButton).update(factor);
+            postInvalidate();
+        }
     }
     private class CircularProgressBar {
         private float x,y,r,deg = 0;
@@ -68,9 +90,6 @@ public class ProgressButtonView extends View {
         }
         public boolean handleTap(float x,float y) {
             boolean condition = x>=this.x-r && x>=this.x+r && y>=this.y-r && y<=this.y+r;
-            if(condition) {
-
-            }
             return condition;
         }
     }
@@ -114,6 +133,7 @@ public class ProgressButtonView extends View {
             if(isAnimating) {
                 isAnimating = false;
                 dir = dir == 0?1:0;
+                touchedButton = -1;
             }
         }
         public AnimationHandler() {
@@ -127,10 +147,12 @@ public class ProgressButtonView extends View {
     private class ProgressBar {
         private CircularProgressBar circularProgressBar;
         private LinearBar linearBar;
+        private int i;
         private AnimationHandler animationHandler;
         public ProgressBar(int i) {
             circularProgressBar = new CircularProgressBar(i);
             linearBar = new LinearBar(i);
+            this.i = i;
         }
         public void draw(Canvas canvas) {
             circularProgressBar.draw(canvas);
@@ -144,8 +166,12 @@ public class ProgressButtonView extends View {
             boolean condition =  circularProgressBar.handleTap(x,y);
             if(condition) {
                 animationHandler.start();
+                touchedButton = i;
             }
             return condition;
+        }
+        public int hashCode() {
+            return linearBar.hashCode()+circularProgressBar.hashCode();
         }
     }
 }
