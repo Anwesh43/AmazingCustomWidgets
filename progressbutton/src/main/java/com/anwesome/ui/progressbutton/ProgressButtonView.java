@@ -54,7 +54,9 @@ public class ProgressButtonView extends View {
         public void update(float factor) {
             deg = 360*factor;
         }
-
+        public int hashCode() {
+            return (int)(x+deg);
+        }
     }
     private class LinearBar {
         private float x,y,wx = 0;
@@ -68,6 +70,9 @@ public class ProgressButtonView extends View {
         public void draw(Canvas canvas) {
             paint.setStrokeWidth(w/30);
             canvas.drawLine(x,y,wx,y,paint);
+        }
+        public int hashCode() {
+            return (int)(y+wx);
         }
     }
 }
