@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.ProviderInfo;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -29,5 +30,29 @@ public class ProgressButtonView extends View {
     }
     public void update(float factor) {
         postInvalidate();
+    }
+    private class CircularProgressBar {
+        private float x,y,r,deg = 0;
+        public CircularProgressBar(int i) {
+            x = w/4*(i+1);
+            y = h/2;
+            r = w/10;
+        }
+        public void draw(Canvas canvas) {
+            Path path = new Path();
+            for(int i=0;i<=deg;i++) {
+                float x = (float)(r*Math.cos(i*Math.PI/180)),y = (float)(r*Math.sin(i*Math.PI/180));
+                if(i == 0) {
+                    path.moveTo(x,y);
+                }
+                else {
+                    path.lineTo(x,y);
+                }
+            }
+            canvas.drawPath(path,paint);
+        }
+        public void update(float factor) {
+            deg = 360*factor;
+        }
     }
 }
