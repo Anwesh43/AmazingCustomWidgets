@@ -33,10 +33,17 @@ public class ProgressButtonView extends View {
     }
     private class CircularProgressBar {
         private float x,y,r,deg = 0;
+        private int i;
         public CircularProgressBar(int i) {
-            x = w/4*(i+1);
+            if(i == 0) {
+                x = w/4;
+            }
+            if(i == 1) {
+                x = 3*w/4;
+            }
             y = h/2;
             r = w/10;
+            this.i = i;
         }
         public void draw(Canvas canvas) {
             Path path = new Path();
@@ -57,12 +64,19 @@ public class ProgressButtonView extends View {
         public int hashCode() {
             return (int)(x+deg);
         }
+        public boolean handleTap(float x,float y) {
+            boolean condition = x>=this.x-r && x>=this.x+r && y>=this.y-r && y<=this.y+r;
+            if(condition) {
+
+            }
+            return condition;
+        }
     }
     private class LinearBar {
         private float x,y,wx = 0;
         public LinearBar(int i) {
             x = 0;
-            y = h/3*(i+1);
+            y = h / 3 * (i + 1);
         }
         public void update(float factor) {
             wx = w*factor;
