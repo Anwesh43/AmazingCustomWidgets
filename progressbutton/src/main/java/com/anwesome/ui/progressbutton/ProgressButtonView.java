@@ -1,5 +1,8 @@
 package com.anwesome.ui.progressbutton;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.pm.ProviderInfo;
 import android.graphics.Canvas;
@@ -87,6 +90,40 @@ public class ProgressButtonView extends View {
         }
         public int hashCode() {
             return (int)(y+wx);
+        }
+    }
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
+        private int dir = 0;
+        private boolean isAnimating = false;
+        private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1),endAnim = ValueAnimator.ofFloat(1,0);
+        public void start() {
+            if(!isAnimating) {
+                if(dir == 0) {
+                    startAnim.start();
+                }
+                else if(dir == 1) {
+                    endAnim.start();
+                }
+                isAnimating = true;
+            }
+        }
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            if(isAnimating) {
+                update((float)valueAnimator.getAnimatedValue());
+            }
+        }
+        public void onAnimationEnd(Animator animator) {
+            if(isAnimating) {
+                isAnimating = false;
+                dir = dir == 0?1:0;
+            }
+        }
+        public AnimationHandler() {
+            startAnim.setDuration(500);
+            startAnim.addUpdateListener(this);
+            endAnim.addUpdateListener(this);
+            startAnim.addListener(this);
+            endAnim.addListener(this);
         }
     }
 }
