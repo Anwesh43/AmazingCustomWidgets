@@ -29,6 +29,7 @@ public class ProgressButtonView extends View {
     private boolean isAnimating = false;
     private int touchedButton = -1;
     private List<ProgressBar> progressBars = new ArrayList<>();
+    private com.anwesome.ui.progressbutton.OnClickListener onClickListener;
     public ProgressButtonView(Context context) {
         super(context);
     }
@@ -47,7 +48,7 @@ public class ProgressButtonView extends View {
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimating) {
             for(ProgressBar progressBar:progressBars) {
                 progressBar.handleTap(event.getX(),event.getY());
                 if(touchedButton != -1) {
@@ -138,6 +139,24 @@ public class ProgressButtonView extends View {
         public void onAnimationEnd(Animator animator) {
             if(isAnimating) {
                 isAnimating = false;
+                if(onClickListener!=null) {
+                    if (dir == 0) {
+                        if(touchedButton == 0) {
+                            onClickListener.onFirstButtonSelected();
+                        }
+                        else {
+                            onClickListener.onSecondButtonSelected();
+                        }
+                    }
+                    else {
+                        if(touchedButton == 0) {
+                            onClickListener.onFirstButtonUnSelected();
+                        }
+                        else {
+                            onClickListener.onSecondButtonUnSelected();
+                        }
+                    }
+                }
                 dir = dir == 0?1:0;
                 touchedButton = -1;
             }
@@ -181,10 +200,11 @@ public class ProgressButtonView extends View {
             return linearBar.hashCode()+circularProgressBar.hashCode();
         }
     }
-    public static void create(Activity activity) {
+    public static void create(Activity activity, com.anwesome.ui.progressbutton.OnClickListener onClickListener) {
         Point size = DimensionsUtil.getDeviceDimension(activity);
         int mainW = size.x,mainH = size.y;
         ProgressButtonView progressButtonView = new ProgressButtonView(activity);
         activity.addContentView(progressButtonView,new ViewGroup.LayoutParams(mainW,mainH));
+        progressButtonView.onClickListener = onClickListener;
     }
 }
