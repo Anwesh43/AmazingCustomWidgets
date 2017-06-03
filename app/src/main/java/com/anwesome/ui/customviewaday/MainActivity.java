@@ -95,6 +95,7 @@ import android.widget.Toast;
 import com.anwesome.ui.circularystbuttonlist.CYSTList;
 import com.anwesome.ui.circularystbuttonlist.OnSelectionChangeListener;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
+import com.anwesome.ui.progressbutton.OnClickListener;
 import com.anwesome.ui.progressbutton.ProgressButtonView;
 import com.anwesome.ui.tvbutton.TVButtonList;
 //import com.anwesome.ui.clockbutton.ClockButton;
@@ -1213,6 +1214,26 @@ public class MainActivity extends AppCompatActivity {
         tvButtonList.show();
     }
     public void showProgressButton() {
-        ProgressButtonView.create(this);
+        ProgressButtonView.create(this, new OnClickListener() {
+            @Override
+            public void onFirstButtonSelected() {
+                Toast.makeText(MainActivity.this, "First Button Selected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSecondButtonSelected() {
+                Toast.makeText(MainActivity.this, "Second Button Selected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFirstButtonUnSelected() {
+                Toast.makeText(MainActivity.this, "First Button UnSelected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSecondButtonUnSelected() {
+                Toast.makeText(MainActivity.this, "Second Button UnSelected", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
