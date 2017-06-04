@@ -9,7 +9,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.hardware.display.DisplayManager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +54,7 @@ public class BridgeButtonView extends View {
                 bridgePoints.add(new BridgePoint(i));
             }
         }
+        paint.setStrokeWidth(w/60);
         for(BridgePoint bridgePoint:bridgePoints) {
             bridgePoint.draw(canvas);
         }
@@ -88,11 +88,10 @@ public class BridgeButtonView extends View {
             r = w/12;
         }
         public void draw(Canvas canvas) {
-            paint.setColor(Color.GRAY);
+            paint.setColor(color);
             paint.setStyle(Paint.Style.STROKE);
             canvas.drawCircle(x,y,r,paint);
             paint.setStyle(Paint.Style.FILL);
-            paint.setColor(color);
             canvas.save();
             canvas.translate(x,y);
             canvas.scale(scale,scale);
@@ -112,7 +111,7 @@ public class BridgeButtonView extends View {
     private class BridgeLine {
         private float x,y,deg = 45;
         public BridgeLine() {
-            x = w/4;
+            x = w/4+w/12;
             y = h/2;
         }
         public void draw(Canvas canvas) {
@@ -120,7 +119,7 @@ public class BridgeButtonView extends View {
             canvas.save();
             canvas.translate(x,y);
             canvas.rotate(deg);
-            canvas.drawLine(0,0,w/2,0,paint);
+            canvas.drawLine(0,0,w/3,0,paint);
             canvas.restore();
         }
         public void update(float factor) {
