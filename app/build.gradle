@@ -106,4 +106,5 @@ dependencies {
     compile project(':circularystbuttonlist')
     compile project(':tvbutton')
     compile project(':progressbutton')
+    compile project(':bridgebutton')
 }

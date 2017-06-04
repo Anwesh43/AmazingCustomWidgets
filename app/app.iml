@@ -105,6 +105,7 @@
     <orderEntry type="module" module-name="progressbutton" exported="" />
     <orderEntry type="module" module-name="tvbutton" exported="" />
     <orderEntry type="module" module-name="circularystbuttonlist" exported="" />
+    <orderEntry type="module" module-name="bridgebutton" exported="" />
     <orderEntry type="module" module-name="dimensionsutil" exported="" />
     <orderEntry type="module" module-name="polygonaltraverseview" exported="" />
     <orderEntry type="library" exported="" scope="TEST" name="espresso-core-2.2.2" level="project" />

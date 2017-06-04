@@ -1,5 +1,6 @@
 package com.anwesome.ui.customviewaday;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -92,6 +93,7 @@ import android.widget.Toast;
 //import com.anwesome.ui.buttongroup.OnSelectionListener;
 //import com.anwesome.ui.calbutton.CalButton;
 //import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
+import com.anwesome.ui.bridgebutton.BridgeButtonView;
 import com.anwesome.ui.circularystbuttonlist.CYSTList;
 import com.anwesome.ui.circularystbuttonlist.OnSelectionChangeListener;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
@@ -162,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showProgressButton();
+                showBridgeButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1233,6 +1235,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSecondButtonUnSelected() {
                 Toast.makeText(MainActivity.this, "Second Button UnSelected", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void showBridgeButton() {
+        BridgeButtonView.create(this, new BridgeButtonView.OnBridgeListener() {
+            @Override
+            public void onBridge() {
+                Toast.makeText(MainActivity.this, "On Bridge", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnBridge() {
+                Toast.makeText(MainActivity.this, "On Unbridge", Toast.LENGTH_SHORT).show();
             }
         });
     }
