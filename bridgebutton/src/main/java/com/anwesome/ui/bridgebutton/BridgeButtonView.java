@@ -22,9 +22,13 @@ public class BridgeButtonView extends View {
     private int color = Color.parseColor("#3F51B5");
     private int dir = 0;
     private boolean isAnimated = false;
+    private OnBridgeListener onBridgeListener;
     private AnimationHandler animationHandler;
     private ConcurrentLinkedQueue<BridgePoint> bridgePoints = new ConcurrentLinkedQueue<>();
     private BridgeLine bridgeLine;
+    public void setOnBridgeListener(OnBridgeListener onBridgeListener) {
+        this.onBridgeListener = onBridgeListener;
+    }
     public BridgeButtonView(Context context) {
         super(context);
     }
@@ -117,11 +121,12 @@ public class BridgeButtonView extends View {
         }
         public void onAnimationEnd(Animator animator) {
             if(isAnimated) {
-                if(dir == 0) {
-
-                }
-                else {
-
+                if(onBridgeListener != null) {
+                    if (dir == 0) {
+                        onBridgeListener.onBridge();
+                    } else {
+                        onBridgeListener.onUnBridge();
+                    }
                 }
                 dir = dir == 0?1:0;
                 isAnimated = false;
@@ -146,5 +151,9 @@ public class BridgeButtonView extends View {
             startAnim.addListener(this);
             endAnim.addListener(this);
         }
+    }
+    public interface OnBridgeListener {
+        void onBridge();
+        void onUnBridge();
     }
 }
