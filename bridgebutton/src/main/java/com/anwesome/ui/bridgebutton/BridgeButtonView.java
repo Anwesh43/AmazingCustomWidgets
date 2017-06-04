@@ -18,6 +18,8 @@ public class BridgeButtonView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h;
     private int color = Color.parseColor("#3F51B5");
+    private int dir = 0;
+    private boolean isAnimated = false;
     public BridgeButtonView(Context context) {
         super(context);
     }
@@ -87,10 +89,27 @@ public class BridgeButtonView extends View {
             update((float)valueAnimator.getAnimatedValue());
         }
         public void onAnimationEnd(Animator animator) {
+            if(isAnimated) {
+                if(dir == 0) {
 
+                }
+                else {
+
+                }
+                dir = dir == 0?1:0;
+                isAnimated = false;
+            }
         }
         public void start() {
-
+            if(!isAnimated) {
+                if(dir == 0) {
+                    startAnim.start();
+                }
+                else {
+                    endAnim.start();
+                }
+                isAnimated = true;
+            }
         }
         public AnimationHandler() {
             startAnim.setDuration(500);
