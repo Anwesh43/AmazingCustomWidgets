@@ -10,6 +10,8 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by anweshmishra on 04/06/17.
  */
@@ -20,6 +22,9 @@ public class BridgeButtonView extends View {
     private int color = Color.parseColor("#3F51B5");
     private int dir = 0;
     private boolean isAnimated = false;
+    private AnimationHandler animationHandler;
+    private ConcurrentLinkedQueue<BridgePoint> bridgePoints = new ConcurrentLinkedQueue<>();
+    private BridgeLine bridgeLine;
     public BridgeButtonView(Context context) {
         super(context);
     }
@@ -27,13 +32,35 @@ public class BridgeButtonView extends View {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            animationHandler = new AnimationHandler();
+            bridgeLine = new BridgeLine();
+            for(int i=0;i<2;i++) {
+                bridgePoints.add(new BridgePoint(i));
+            }
         }
+        for(BridgePoint bridgePoint:bridgePoints) {
+            bridgePoint.draw(canvas);
+        }
+        bridgeLine.draw(canvas);
         time++;
     }
     public void update(float factor) {
+        bridgeLine.update(factor);
+        for(BridgePoint bridgePoint:bridgePoints) {
+            bridgePoint.update(factor);
+        }
         postInvalidate();
     }
     public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
+            int i = 0;
+            for(BridgePoint bridgePoint:bridgePoints) {
+                if(bridgePoint.handleTap(event.getX(),event.getY()) && i == dir) {
+                    animationHandler.start();
+                }
+                i++;
+            }
+        }
         return true;
     }
     private class BridgePoint {
