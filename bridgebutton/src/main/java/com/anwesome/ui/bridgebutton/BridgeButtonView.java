@@ -56,5 +56,26 @@ public class BridgeButtonView extends View {
         public void update(float factor) {
             scale = factor;
         }
+        public int hashCode() {
+            return (int)(x+scale);
+        }
+    }
+    private class BridgeLine {
+        private float x,y,deg = 45;
+        public BridgeLine() {
+            x = w/4;
+            y = h/2;
+        }
+        public void draw(Canvas canvas) {
+            paint.setColor(color);
+            canvas.save();
+            canvas.translate(x,y);
+            canvas.rotate(deg);
+            canvas.drawLine(0,0,w/2,0,paint);
+            canvas.restore();
+        }
+        public void update(float factor) {
+            deg = 45*(1-factor);
+        }
     }
 }
