@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/beanbutton" />
             <option value="$PROJECT_DIR$/bluetoothbutton" />
             <option value="$PROJECT_DIR$/breakablebutton" />
+            <option value="$PROJECT_DIR$/bridgebutton" />
             <option value="$PROJECT_DIR$/bulletedlist" />
             <option value="$PROJECT_DIR$/buttongroup" />
             <option value="$PROJECT_DIR$/buttonintriangle" />
@@ -72,6 +73,7 @@
             <option value="$PROJECT_DIR$/ninesqaure" />
             <option value="$PROJECT_DIR$/notepadbutton" />
             <option value="$PROJECT_DIR$/notificationbutton" />
+            <option value="$PROJECT_DIR$/orderbutton" />
             <option value="$PROJECT_DIR$/pathtext" />
             <option value="$PROJECT_DIR$/pinbar" />
             <option value="$PROJECT_DIR$/playbackbutton" />

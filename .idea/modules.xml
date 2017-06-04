@@ -13,6 +13,7 @@
       <module fileurl="file://$PROJECT_DIR$/beanbutton/beanbutton.iml" filepath="$PROJECT_DIR$/beanbutton/beanbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/bluetoothbutton/bluetoothbutton.iml" filepath="$PROJECT_DIR$/bluetoothbutton/bluetoothbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/breakablebutton/breakablebutton.iml" filepath="$PROJECT_DIR$/breakablebutton/breakablebutton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bridgebutton/bridgebutton.iml" filepath="$PROJECT_DIR$/bridgebutton/bridgebutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/bulletedlist/bulletedlist.iml" filepath="$PROJECT_DIR$/bulletedlist/bulletedlist.iml" />
       <module fileurl="file://$PROJECT_DIR$/buttongroup/buttongroup.iml" filepath="$PROJECT_DIR$/buttongroup/buttongroup.iml" />
       <module fileurl="file://$PROJECT_DIR$/buttonintriangle/buttonintriangle.iml" filepath="$PROJECT_DIR$/buttonintriangle/buttonintriangle.iml" />
@@ -67,6 +68,7 @@
       <module fileurl="file://$PROJECT_DIR$/ninesqaure/ninesqaure.iml" filepath="$PROJECT_DIR$/ninesqaure/ninesqaure.iml" />
       <module fileurl="file://$PROJECT_DIR$/notepadbutton/notepadbutton.iml" filepath="$PROJECT_DIR$/notepadbutton/notepadbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/notificationbutton/notificationbutton.iml" filepath="$PROJECT_DIR$/notificationbutton/notificationbutton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/orderbutton/orderbutton.iml" filepath="$PROJECT_DIR$/orderbutton/orderbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/pathtext/pathtext.iml" filepath="$PROJECT_DIR$/pathtext/pathtext.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinbar/pinbar.iml" filepath="$PROJECT_DIR$/pinbar/pinbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/playbackbutton/playbackbutton.iml" filepath="$PROJECT_DIR$/playbackbutton/playbackbutton.iml" />
