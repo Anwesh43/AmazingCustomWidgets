@@ -3,12 +3,18 @@ package com.anwesome.ui.bridgebutton;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.hardware.display.DisplayManager;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -28,6 +34,13 @@ public class BridgeButtonView extends View {
     private BridgeLine bridgeLine;
     public void setOnBridgeListener(OnBridgeListener onBridgeListener) {
         this.onBridgeListener = onBridgeListener;
+    }
+    public static void create(Activity activity,OnBridgeListener onBridgeListener) {
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        int w = size.x;
+        BridgeButtonView bridgeButtonView = new BridgeButtonView(activity);
+        bridgeButtonView.setOnBridgeListener(onBridgeListener);
+        activity.addContentView(bridgeButtonView,new ViewGroup.LayoutParams(w,w));
     }
     public BridgeButtonView(Context context) {
         super(context);
