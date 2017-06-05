@@ -96,6 +96,7 @@ import android.widget.Toast;
 import com.anwesome.ui.bridgebutton.BridgeButtonView;
 import com.anwesome.ui.circularystbuttonlist.CYSTList;
 import com.anwesome.ui.circularystbuttonlist.OnSelectionChangeListener;
+import com.anwesome.ui.lineanddot.LineAndDotView;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 import com.anwesome.ui.progressbutton.OnClickListener;
 import com.anwesome.ui.progressbutton.ProgressButtonView;
@@ -164,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showBridgeButton();
+                showLineAndDot();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1250,5 +1251,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "On Unbridge", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showLineAndDot() {
+        LineAndDotView.create(this);
     }
 }
