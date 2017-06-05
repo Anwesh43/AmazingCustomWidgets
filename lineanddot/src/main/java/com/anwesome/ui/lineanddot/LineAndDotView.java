@@ -29,4 +29,21 @@ public class LineAndDotView extends View{
         }
         return true;
     }
+    private class AnimationHandler {
+        private boolean isAnimated = false;
+        public void animate() {
+            if(isAnimated) {
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
+                }
+            }
+        }
+        public void handleTap(float x,float y) {
+            
+        }
+    }
 }
