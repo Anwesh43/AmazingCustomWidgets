@@ -106,8 +106,41 @@ public class LineAndDotView extends View{
                 stopped = false;
             }
         }
+        public boolean isStopped() {
+            return stopped;
+        }
         public int hashCode() {
             return (int)(x+scale);
+        }
+    }
+    private class LineAndDot {
+        private Line line;
+        private float dir = 0,prevDir = -1;
+        private Dot dot;
+        public boolean stopped() {
+            return dir == 0;
+        }
+        public LineAndDot(float x,float y) {
+            line = new Line(y);
+            dot = new Dot(x);
+        }
+        public void draw(Canvas canvas) {
+            line.draw(canvas);
+            dot.draw(canvas);
+        }
+        public void startMoving() {
+            dir = -1*prevDir;
+        }
+        public void update() {
+            line.update(dir);
+            dot.update(dir);
+            if(line.isStopped() && dot.isStopped()) {
+                prevDir = dir;
+                dir = 0;
+            }
+        }
+        public int hashCode() {
+            return dot.hashCode()+line.hashCode();
         }
     }
 }
