@@ -21,6 +21,7 @@ public class LineAndDotView extends View{
             w = canvas.getWidth();
             h = canvas.getHeight();
         }
+        paint.setStrokeWidth(Math.max(w,h)/100);
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
@@ -43,7 +44,27 @@ public class LineAndDotView extends View{
             }
         }
         public void handleTap(float x,float y) {
-            
+
+        }
+    }
+    private class Line {
+        private float y,x,lx = 0;
+        private boolean stopped = false;
+        public Line(float y) {
+            x = w/10;
+            this.y = y;
+        }
+        public void update(float dir) {
+            lx += 0.2f*dir;
+            if(lx>=0.8f*w && lx<=0) {
+                stopped = true;
+            }
+        }
+        public boolean isStopped() {
+            return stopped;
+        }
+        public void draw(Canvas canvas) {
+            canvas.drawLine(x,y,x+lx,y,paint);
         }
     }
 }
