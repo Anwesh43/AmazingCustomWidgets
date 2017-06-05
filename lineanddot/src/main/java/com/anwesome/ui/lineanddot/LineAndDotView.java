@@ -1,10 +1,15 @@
 package com.anwesome.ui.lineanddot;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -185,5 +190,11 @@ public class LineAndDotView extends View{
         public boolean handleTap(float x,float y) {
             return dot!=null && dot.handleTap(x,y);
         }
+    }
+    public static void create(Activity activity) {
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        int w = size.x;
+        LineAndDotView lineAndDotView = new LineAndDotView(activity);
+        activity.addContentView(lineAndDotView,new ViewGroup.LayoutParams(w,w));
     }
 }
