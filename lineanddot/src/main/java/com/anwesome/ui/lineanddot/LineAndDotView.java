@@ -35,6 +35,8 @@ public class LineAndDotView extends View{
             for(int i=0;i<n;i++) {
                 LineAndDot lineAndDot = new LineAndDot(dotX,lineY);
                 lineAndDots.add(lineAndDot);
+                lineY += gapLine;
+                dotX += 2*gapDot;
             }
             animationHandler = new AnimationHandler();
         }
@@ -101,8 +103,8 @@ public class LineAndDotView extends View{
             }
         }
         public void update(float dir) {
-            lx += 0.16f*dir;
-            if(lx>=0.8f*w && lx<=0) {
+            lx += (0.16f*w)*dir;
+            if(lx>=0.8f*w || lx<0) {
                 stopped = true;
             }
         }
@@ -138,7 +140,7 @@ public class LineAndDotView extends View{
         }
         public void update(float dir) {
             scale += 0.2f*dir;
-            if(scale>=1 && scale<=0) {
+            if(scale>=1 || scale<0) {
                 stopped = true;
             }
         }
@@ -174,6 +176,8 @@ public class LineAndDotView extends View{
         }
         public void startMoving() {
             dir = -1*prevDir;
+            line.startMoving();
+            dot.startMoving();
         }
         public void update() {
             line.update(dir);
@@ -190,11 +194,14 @@ public class LineAndDotView extends View{
         public boolean handleTap(float x,float y) {
             return dot!=null && dot.handleTap(x,y);
         }
+
     }
     public static void create(Activity activity) {
         Point size = DimensionsUtil.getDeviceDimension(activity);
         int w = size.x;
         LineAndDotView lineAndDotView = new LineAndDotView(activity);
+        lineAndDotView.setX(0);
+        lineAndDotView.setY(0);
         activity.addContentView(lineAndDotView,new ViewGroup.LayoutParams(w,w));
     }
 }
