@@ -6,13 +6,18 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by anweshmishra on 06/06/17.
  */
 
 public class LineAndDotView extends View{
-    private int time = 0,w,h;
+    private int time = 0,w,h,n=4;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private List<LineAndDot> lineAndDots = new ArrayList<>();
     public LineAndDotView(Context context) {
         super(context);
     }
@@ -31,9 +36,19 @@ public class LineAndDotView extends View{
         return true;
     }
     private class AnimationHandler {
+        private ConcurrentLinkedQueue<LineAndDot> activeLineDots = new ConcurrentLinkedQueue<>();
         private boolean isAnimated = false;
         public void animate() {
             if(isAnimated) {
+                for(LineAndDot lineAndDot:activeLineDots) {
+                    lineAndDot.update();
+                    if(lineAndDot.stopped()) {
+                        activeLineDots.remove(lineAndDot);
+                        if(activeLineDots.size() == 0) {
+                            isAnimated = false;
+                        }
+                    }
+                }
                 try {
                     Thread.sleep(50);
                     invalidate();
@@ -44,7 +59,17 @@ public class LineAndDotView extends View{
             }
         }
         public void handleTap(float x,float y) {
-
+            for(LineAndDot lineAndDot:lineAndDots) {
+                if(lineAndDot.handleTap(x,y)) {
+                    lineAndDot.startMoving();
+                    activeLineDots.add(lineAndDot);
+                    if(activeLineDots.size() == 1) {
+                        isAnimated = true;
+                        postInvalidate();
+                    }
+                    break;
+                }
+            }
         }
     }
     private class Line {
@@ -112,6 +137,9 @@ public class LineAndDotView extends View{
         public int hashCode() {
             return (int)(x+scale);
         }
+        public boolean handleTap(float x,float y) {
+            return x>=this.x-1.5f*r && x<=this.x+1.5f*r && y>=this.y-15.f*r && y<=this.y+1.5f*r;
+        }
     }
     private class LineAndDot {
         private Line line;
@@ -141,6 +169,10 @@ public class LineAndDotView extends View{
         }
         public int hashCode() {
             return dot.hashCode()+line.hashCode();
+        }
+
+        public boolean handleTap(float x,float y) {
+            return dot!=null && dot.handleTap(x,y);
         }
     }
 }
