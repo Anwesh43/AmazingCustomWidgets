@@ -18,6 +18,7 @@ public class LineAndDotView extends View{
     private int time = 0,w,h,n=4;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private List<LineAndDot> lineAndDots = new ArrayList<>();
+    private AnimationHandler animationHandler;
     public LineAndDotView(Context context) {
         super(context);
     }
@@ -25,13 +26,23 @@ public class LineAndDotView extends View{
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            float gapLine = (4*h/5)/(n+1),gapDot = (w)/(2*n+1),lineY = gapLine,dotX = 3*gapDot/2;
+            for(int i=0;i<n;i++) {
+                LineAndDot lineAndDot = new LineAndDot(dotX,lineY);
+                lineAndDots.add(lineAndDot);
+            }
+            animationHandler = new AnimationHandler();
         }
         paint.setStrokeWidth(Math.max(w,h)/100);
+        for(LineAndDot lineAndDot:lineAndDots) {
+            lineAndDot.draw(canvas);
+        }
         time++;
+        animationHandler.animate();
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.handleTap(event.getX(),event.getY());
         }
         return true;
     }
