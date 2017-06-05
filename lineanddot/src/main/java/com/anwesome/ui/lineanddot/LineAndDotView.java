@@ -49,13 +49,18 @@ public class LineAndDotView extends View{
     }
     private class Line {
         private float y,x,lx = 0;
-        private boolean stopped = false;
+        private boolean stopped = true;
         public Line(float y) {
             x = w/10;
             this.y = y;
         }
+        public void startMoving() {
+            if(stopped) {
+                stopped = false;
+            }
+        }
         public void update(float dir) {
-            lx += 0.2f*dir;
+            lx += 0.16f*dir;
             if(lx>=0.8f*w && lx<=0) {
                 stopped = true;
             }
@@ -65,6 +70,44 @@ public class LineAndDotView extends View{
         }
         public void draw(Canvas canvas) {
             canvas.drawLine(x,y,x+lx,y,paint);
+        }
+        public int hashCode() {
+            return (int)(y+lx);
+        }
+    }
+    private class Dot {
+        private float x,y,scale = 0,r;
+        private boolean stopped = true;
+        public Dot(float x) {
+            this.x = x;
+            this.y = 9*h/10;
+            this.r = h/16;
+        }
+        public void draw(Canvas canvas) {
+            canvas.save();
+            canvas.translate(x,y);
+            paint.setStyle(Paint.Style.STROKE);
+            canvas.drawCircle(0,0,r,paint);
+            paint.setStyle(Paint.Style.FILL);
+            canvas.save();
+            canvas.scale(scale,scale);
+            canvas.drawCircle(0,0,r,paint);
+            canvas.restore();
+            canvas.restore();
+        }
+        public void update(float dir) {
+            scale += 0.2f*dir;
+            if(scale>=1 && scale<=0) {
+                stopped = true;
+            }
+        }
+        public void startMoving() {
+            if(stopped) {
+                stopped = false;
+            }
+        }
+        public int hashCode() {
+            return (int)(x+scale);
         }
     }
 }
