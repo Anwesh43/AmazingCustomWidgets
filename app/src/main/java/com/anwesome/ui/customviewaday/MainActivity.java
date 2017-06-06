@@ -1253,6 +1253,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showLineAndDot() {
-        LineAndDotView.create(this);
+        LineAndDotView.create(this,8);
     }
 }
