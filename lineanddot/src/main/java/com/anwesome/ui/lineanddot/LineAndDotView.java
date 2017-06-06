@@ -26,6 +26,10 @@ public class LineAndDotView extends View{
     private List<LineAndDot> lineAndDots = new ArrayList<>();
     private AnimationHandler animationHandler;
     private int color = Color.parseColor("#283593");
+    private OnSelectedListener onSelectedListener;
+    public void setOnSelectedListener(OnSelectedListener onSelectedListener) {
+        this.onSelectedListener = onSelectedListener;
+    }
     public LineAndDotView(Context context,int n) {
         super(context);
         this.n = Math.max(n,this.n);
@@ -37,6 +41,7 @@ public class LineAndDotView extends View{
             float gapLine = (4*h/5)/(n+1),gapDot = (w)/(2*n+1),lineY = gapLine,dotX = 3*gapDot/2;
             for(int i=0;i<n;i++) {
                 LineAndDot lineAndDot = new LineAndDot(dotX,lineY,gapDot/2);
+                lineAndDot.setIndex(i+1);
                 lineAndDots.add(lineAndDot);
                 lineY += gapLine;
                 dotX += 2*gapDot;
@@ -65,6 +70,14 @@ public class LineAndDotView extends View{
                 for(LineAndDot lineAndDot:activeLineDots) {
                     lineAndDot.update();
                     if(lineAndDot.stopped()) {
+                        int index = lineAndDot.getIndex();
+                        if(onSelectedListener != null) {
+                            if (lineAndDot.getPrevDir() == 1) {
+                                onSelectedListener.onSelected(index);
+                            } else {
+                                onSelectedListener.onUnSelected(index);
+                            }
+                        }
                         activeLineDots.remove(lineAndDot);
                         if(activeLineDots.size() == 0) {
                             isAnimated = false;
@@ -171,14 +184,24 @@ public class LineAndDotView extends View{
     }
     private class LineAndDot {
         private Line line;
+        private int index = 0;
         private float dir = 0,prevDir = -1;
         private Dot dot;
+        private float getPrevDir() {
+            return prevDir;
+        }
         public boolean stopped() {
             return dir == 0;
         }
         public LineAndDot(float x,float y,float r) {
             line = new Line(y);
             dot = new Dot(x,r);
+        }
+        public void setIndex(int index) {
+            this.index = index;
+        }
+        public int getIndex() {
+            return index;
         }
         public void draw(Canvas canvas) {
             line.draw(canvas);
@@ -206,12 +229,17 @@ public class LineAndDotView extends View{
         }
 
     }
-    public static void create(Activity activity,int n) {
+    public static void create(Activity activity,int n,OnSelectedListener onSelectedListener) {
         Point size = DimensionsUtil.getDeviceDimension(activity);
         int w = size.x;
         LineAndDotView lineAndDotView = new LineAndDotView(activity,n);
+        lineAndDotView.setOnSelectedListener(onSelectedListener);
         lineAndDotView.setX(0);
         lineAndDotView.setY(0);
         activity.addContentView(lineAndDotView,new ViewGroup.LayoutParams(w,w));
+    }
+    public interface OnSelectedListener {
+        void onSelected(int index);
+        void onUnSelected(int index);
     }
 }
