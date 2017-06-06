@@ -33,7 +33,7 @@ public class LineAndDotView extends View{
             h = canvas.getHeight();
             float gapLine = (4*h/5)/(n+1),gapDot = (w)/(2*n+1),lineY = gapLine,dotX = 3*gapDot/2;
             for(int i=0;i<n;i++) {
-                LineAndDot lineAndDot = new LineAndDot(dotX,lineY);
+                LineAndDot lineAndDot = new LineAndDot(dotX,lineY,gapDot/2);
                 lineAndDots.add(lineAndDot);
                 lineY += gapLine;
                 dotX += 2*gapDot;
@@ -106,6 +106,9 @@ public class LineAndDotView extends View{
             lx += (0.16f*w)*dir;
             if(lx>=0.8f*w || lx<0) {
                 stopped = true;
+                if(lx<0) {
+                    lx = 0;
+                }
             }
         }
         public boolean isStopped() {
@@ -121,10 +124,10 @@ public class LineAndDotView extends View{
     private class Dot {
         private float x,y,scale = 0,r;
         private boolean stopped = true;
-        public Dot(float x) {
+        public Dot(float x,float r) {
             this.x = x;
             this.y = 9*h/10;
-            this.r = h/16;
+            this.r = r;
         }
         public void draw(Canvas canvas) {
             canvas.save();
@@ -142,6 +145,9 @@ public class LineAndDotView extends View{
             scale += 0.2f*dir;
             if(scale>=1 || scale<0) {
                 stopped = true;
+                if(scale < 0) {
+                    scale = 0;
+                }
             }
         }
         public void startMoving() {
@@ -166,9 +172,9 @@ public class LineAndDotView extends View{
         public boolean stopped() {
             return dir == 0;
         }
-        public LineAndDot(float x,float y) {
+        public LineAndDot(float x,float y,float r) {
             line = new Line(y);
-            dot = new Dot(x);
+            dot = new Dot(x,r);
         }
         public void draw(Canvas canvas) {
             line.draw(canvas);
