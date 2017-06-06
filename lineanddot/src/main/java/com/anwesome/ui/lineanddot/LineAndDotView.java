@@ -26,8 +26,9 @@ public class LineAndDotView extends View{
     private List<LineAndDot> lineAndDots = new ArrayList<>();
     private AnimationHandler animationHandler;
     private int color = Color.parseColor("#283593");
-    public LineAndDotView(Context context) {
+    public LineAndDotView(Context context,int n) {
         super(context);
+        this.n = Math.max(n,this.n);
     }
     public void onDraw(Canvas canvas) {
         if(time == 0) {
@@ -205,10 +206,10 @@ public class LineAndDotView extends View{
         }
 
     }
-    public static void create(Activity activity) {
+    public static void create(Activity activity,int n) {
         Point size = DimensionsUtil.getDeviceDimension(activity);
         int w = size.x;
-        LineAndDotView lineAndDotView = new LineAndDotView(activity);
+        LineAndDotView lineAndDotView = new LineAndDotView(activity,n);
         lineAndDotView.setX(0);
         lineAndDotView.setY(0);
         activity.addContentView(lineAndDotView,new ViewGroup.LayoutParams(w,w));
