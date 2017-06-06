@@ -1253,6 +1253,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showLineAndDot() {
-        LineAndDotView.create(this,8);
+        LineAndDotView.create(this, 8, new LineAndDotView.OnSelectedListener() {
+            @Override
+            public void onSelected(int index) {
+                Toast.makeText(MainActivity.this,String.format("%d selected",index),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnSelected(int index) {
+                Toast.makeText(MainActivity.this, String.format("%d unselected",index), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }
