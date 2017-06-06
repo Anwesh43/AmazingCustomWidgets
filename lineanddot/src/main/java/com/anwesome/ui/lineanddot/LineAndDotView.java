@@ -3,6 +3,7 @@ package com.anwesome.ui.lineanddot;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
@@ -24,6 +25,7 @@ public class LineAndDotView extends View{
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private List<LineAndDot> lineAndDots = new ArrayList<>();
     private AnimationHandler animationHandler;
+    private int color = Color.parseColor("#283593");
     public LineAndDotView(Context context) {
         super(context);
     }
@@ -41,6 +43,7 @@ public class LineAndDotView extends View{
             animationHandler = new AnimationHandler();
         }
         paint.setStrokeWidth(Math.max(w,h)/100);
+        paint.setColor(color);
         for(LineAndDot lineAndDot:lineAndDots) {
             lineAndDot.draw(canvas);
         }
@@ -162,7 +165,7 @@ public class LineAndDotView extends View{
             return (int)(x+scale);
         }
         public boolean handleTap(float x,float y) {
-            return x>=this.x-1.5f*r && x<=this.x+1.5f*r && y>=this.y-15.f*r && y<=this.y+1.5f*r;
+            return x>=this.x-1.5f*r && x<=this.x+1.5f*r && y>=this.y-1.5f*r && y<=this.y+1.5f*r;
         }
     }
     private class LineAndDot {
