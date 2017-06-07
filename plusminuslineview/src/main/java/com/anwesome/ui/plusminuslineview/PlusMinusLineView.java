@@ -22,6 +22,7 @@ public class PlusMinusLineView extends View {
             w = canvas.getWidth();
             h = canvas.getHeight();
         }
+        paint.setStrokeCap(Paint.Cap.ROUND);
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
@@ -54,6 +55,21 @@ public class PlusMinusLineView extends View {
         }
         public void update(float factor) {
             deg = 90*(1-factor);
+        }
+    }
+    private class PMLine {
+        float wx = 0;
+        public void draw(Canvas canvas) {
+            paint.setColor(Color.BLUE);
+            paint.setStrokeWidth(w/80);
+            canvas.save();
+            canvas.translate(w/2,h/2);
+            canvas.drawLine(-(wx),0,0,0,paint);
+            canvas.drawLine(0,0,wx,0,paint);
+            canvas.restore();
+        }
+        public void update(float factor) {
+            wx = (3*w/10)*factor;
         }
     }
 }
