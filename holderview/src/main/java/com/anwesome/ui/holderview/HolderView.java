@@ -28,6 +28,10 @@ public class HolderView extends View {
     private int time = 0,w,h;
     private AnimationHandler animationHandler;
     private Holder holder;
+    private OnFillEmptyListener onFillEmptyListener;
+    public void setOnFillEmptyListener(OnFillEmptyListener onFillEmptyListener) {
+        this.onFillEmptyListener = onFillEmptyListener;
+    }
     public HolderView(Context context) {
         super(context);
     }
@@ -168,6 +172,14 @@ public class HolderView extends View {
         }
         public void onAnimationEnd(Animator animator) {
             if(isAnimating) {
+                if(onFillEmptyListener != null) {
+                    if(dir == 0) {
+                        onFillEmptyListener.onFill();
+                    }
+                    else {
+                        onFillEmptyListener.onEmpty();
+                    }
+                }
                 dir = dir==0?1:0;
                 isAnimating = false;
             }
@@ -184,12 +196,17 @@ public class HolderView extends View {
             }
         }
     }
-    public static void create(Activity activity) {
+    public static void create(Activity activity,OnFillEmptyListener onFillEmptyListener) {
         Point dimension = DimensionsUtil.getDeviceDimension(activity);
         int w = dimension.x;
         HolderView holderView = new HolderView(activity);
+        holderView.setOnFillEmptyListener(onFillEmptyListener);
         holderView.setX(0);
         holderView.setY(0);
         activity.addContentView(holderView,new ViewGroup.LayoutParams(w,w));
+    }
+    public interface OnFillEmptyListener{
+        void onFill();
+        void onEmpty();
     }
 }
