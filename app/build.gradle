@@ -109,4 +109,5 @@ dependencies {
 //    compile project(':bridgebutton')
 //    compile project(':lineanddot')
     compile project(':holderview')
+    compile project(':plusminuslineview')
 }
