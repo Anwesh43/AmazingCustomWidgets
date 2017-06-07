@@ -1,5 +1,8 @@
 package com.anwesome.ui.holderview;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -129,6 +132,41 @@ public class HolderView extends View {
         }
         public int hashCode() {
             return (int)(currX);
+        }
+    }
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
+        private ValueAnimator startAnim,endAnim;
+        private int dir = 0;
+        private boolean isAnimating = false;
+        public AnimationHandler(int n) {
+            startAnim = ValueAnimator.ofFloat(0,n);
+            endAnim = ValueAnimator.ofFloat(n,0);
+            startAnim.setDuration(n*500);
+            endAnim.setDuration(n*500);
+            startAnim.addUpdateListener(this);
+            endAnim.addUpdateListener(this);
+            startAnim.addListener(this);
+            endAnim.addListener(this);
+        }
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            update((float)valueAnimator.getAnimatedValue());
+        }
+        public void onAnimationEnd(Animator animator) {
+            if(isAnimating) {
+                dir = dir==0?1:0;
+                isAnimating = false;
+            }
+        }
+        public void start() {
+            if(!isAnimating) {
+                if(dir == 0) {
+                    startAnim.start();
+                }
+                else {
+                    endAnim.start();
+                }
+                isAnimating = true;
+            }
         }
     }
 }
