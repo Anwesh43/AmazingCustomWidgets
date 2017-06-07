@@ -3,12 +3,17 @@ package com.anwesome.ui.plusminuslineview;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 08/06/17.
@@ -121,6 +126,12 @@ public class PlusMinusLineView extends View {
                 isAnimated = true;
             }
         }
+    }
+    public static void create(Activity activity) {
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        int w = size.x,h = size.y;
+        PlusMinusLineView plusMinusLineView = new PlusMinusLineView(activity);
+        activity.addContentView(plusMinusLineView,new ViewGroup.LayoutParams(w,w));
     }
 }
 
