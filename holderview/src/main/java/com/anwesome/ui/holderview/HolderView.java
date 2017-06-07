@@ -37,6 +37,8 @@ public class HolderView extends View {
             h = canvas.getHeight();
             holder = new Holder();
         }
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(w/80);
         holder.draw(canvas);
         time++;
     }
@@ -77,7 +79,6 @@ public class HolderView extends View {
     private class HolderComponent {
         public void draw(Canvas canvas) {
             paint.setColor(Color.GRAY);
-            paint.setStyle(Paint.Style.STROKE);
             drawComponent(canvas,0);
             paint.setColor(Color.BLUE);
             drawComponent(canvas,1);
