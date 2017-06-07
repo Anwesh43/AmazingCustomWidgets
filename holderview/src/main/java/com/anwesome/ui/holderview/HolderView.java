@@ -174,10 +174,10 @@ public class HolderView extends View {
             if(isAnimating) {
                 if(onFillEmptyListener != null) {
                     if(dir == 0) {
-                        onFillEmptyListener.onFill();
+                        onFillEmptyListener.onEmpty();
                     }
                     else {
-                        onFillEmptyListener.onEmpty();
+                        onFillEmptyListener.onFill();
                     }
                 }
                 dir = dir==0?1:0;
