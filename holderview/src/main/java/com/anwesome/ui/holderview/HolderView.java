@@ -39,6 +39,7 @@ public class HolderView extends View {
         }
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(w/80);
+        paint.setStrokeCap(Paint.Cap.ROUND);
         holder.draw(canvas);
         time++;
     }
@@ -100,7 +101,7 @@ public class HolderView extends View {
             float y = h/4,r = h/6;
             canvas.save();
             canvas.translate(x,y);
-            canvas.drawArc(new RectF(-r,-r,r,r),deg*a,360-deg*a,false,paint);
+            canvas.drawArc(new RectF(-r,-r,r,r),90+deg*a,360-deg*a,false,paint);
             canvas.restore();
         }
         public void update(float factor) {
