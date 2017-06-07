@@ -66,9 +66,10 @@ public class PlusMinusLineView extends View {
             canvas.translate(x, y);
             canvas.drawCircle(0,0,r,paint);
             for(int i=0;i<2;i++) {
+                canvas.save();
                 canvas.rotate(deg*i);
                 paint.setColor(Color.WHITE);
-                paint.setStrokeWidth(r/50);
+                paint.setStrokeWidth(r/20);
                 canvas.drawLine(-r/2,0,r/2,0,paint);
                 canvas.restore();
             }
@@ -85,8 +86,8 @@ public class PlusMinusLineView extends View {
             paint.setStrokeWidth(w/80);
             canvas.save();
             canvas.translate(w/2,h/2);
-            canvas.drawLine(-(wx),0,0,0,paint);
-            canvas.drawLine(0,0,wx,0,paint);
+            canvas.drawLine(-(wx)-w/10,0,-w/10,0,paint);
+            canvas.drawLine(w/10,0,wx+w/10,0,paint);
             canvas.restore();
         }
         public void update(float factor) {
@@ -123,7 +124,7 @@ public class PlusMinusLineView extends View {
         public void onAnimationEnd(Animator animator) {
             if(isAnimated) {
                 dir = dir == 0?1:0;
-                isAnimated = true;
+                isAnimated = false;
             }
         }
     }
