@@ -29,7 +29,18 @@ public class HolderView extends View {
         }
         return true;
     }
-    public void update(int factor) {
+    public void update(float factor) {
         postInvalidate();
+    }
+    private class Holder {
+        public Holder() {
+
+        }
+        public void draw(Canvas canvas) {
+
+        }
+        public void update(float factor) {
+
+        }
     }
 }
