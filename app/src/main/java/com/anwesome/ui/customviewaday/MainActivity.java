@@ -1282,6 +1282,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showPlusMinusView() {
-        PlusMinusLineView.create(this);
+        PlusMinusLineView.create(this, new PlusMinusLineView.OnOpenCloseListener() {
+            @Override
+            public void onOpen() {
+                Toast.makeText(MainActivity.this, "On Opened", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onClose() {
+                Toast.makeText(MainActivity.this, "On Closed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
