@@ -69,7 +69,7 @@ public class PlusMinusLineView extends View {
                 canvas.save();
                 canvas.rotate(deg*i);
                 paint.setColor(Color.WHITE);
-                paint.setStrokeWidth(r/20);
+                paint.setStrokeWidth(r/10);
                 canvas.drawLine(-r/2,0,r/2,0,paint);
                 canvas.restore();
             }
@@ -123,16 +123,33 @@ public class PlusMinusLineView extends View {
         }
         public void onAnimationEnd(Animator animator) {
             if(isAnimated) {
+                if(onOpenCloseListener != null) {
+                    if(dir == 0) {
+                        onOpenCloseListener.onOpen();
+                    }
+                    else {
+                        onOpenCloseListener.onClose();
+                    }
+                }
                 dir = dir == 0?1:0;
                 isAnimated = false;
             }
         }
     }
-    public static void create(Activity activity) {
+    public static void create(Activity activity,OnOpenCloseListener onOpenCloseListener) {
         Point size = DimensionsUtil.getDeviceDimension(activity);
         int w = size.x,h = size.y;
         PlusMinusLineView plusMinusLineView = new PlusMinusLineView(activity);
+        plusMinusLineView.setOnOpenCloseListener(onOpenCloseListener);
         activity.addContentView(plusMinusLineView,new ViewGroup.LayoutParams(w,w));
+    }
+    private OnOpenCloseListener onOpenCloseListener;
+    public void setOnOpenCloseListener(OnOpenCloseListener onOpenCloseListener) {
+        this.onOpenCloseListener = onOpenCloseListener;
+    }
+    public interface OnOpenCloseListener {
+        void onOpen();
+        void onClose();
     }
 }
 
