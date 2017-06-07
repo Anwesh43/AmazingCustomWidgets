@@ -17,6 +17,9 @@ import android.view.View;
 public class PlusMinusLineView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h;
+    private AnimationHandler animationHandler;
+    private PMLine pmLine;
+    private PlusMinusButton plusMinusButton;
     public PlusMinusLineView(Context context) {
         super(context);
     }
@@ -24,14 +27,24 @@ public class PlusMinusLineView extends View {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            animationHandler = new AnimationHandler();
+            pmLine = new PMLine();
+            plusMinusButton = new PlusMinusButton();
         }
         paint.setStrokeCap(Paint.Cap.ROUND);
+        plusMinusButton.draw(canvas);
+        pmLine.draw(canvas);
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.start();
+        }
         return true;
     }
     public void update(float factor) {
+        plusMinusButton.update(factor);
+        pmLine.update(factor);
         postInvalidate();
     }
     private class PlusMinusButton {
