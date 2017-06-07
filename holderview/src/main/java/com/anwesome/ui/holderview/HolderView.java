@@ -21,6 +21,7 @@ import java.util.List;
 public class HolderView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h;
+    private AnimationHandler animationHandler;
     public HolderView(Context context) {
         super(context);
     }
@@ -32,8 +33,8 @@ public class HolderView extends View {
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler!=null) {
+            animationHandler.start();
         }
         return true;
     }
@@ -48,6 +49,7 @@ public class HolderView extends View {
             holderComponents.add(new HolderPlate());
             holderComponents.add(new HolderLeg(3*w/4,-1));
             holderComponents.add(new HolderCircle(w/4+w/2));
+            animationHandler = new AnimationHandler(holderComponents.size());
         }
         public void draw(Canvas canvas) {
             for(HolderComponent holderComponent:holderComponents) {
