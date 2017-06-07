@@ -1,5 +1,8 @@
 package com.anwesome.ui.plusminuslineview;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -70,6 +73,40 @@ public class PlusMinusLineView extends View {
         }
         public void update(float factor) {
             wx = (3*w/10)*factor;
+        }
+    }
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
+        private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1),endAnim = ValueAnimator.ofFloat(1,0);
+        private int dir = 0;
+        private boolean isAnimated = false;
+        public AnimationHandler() {
+            startAnim.setDuration(500);
+            endAnim.setDuration(500);
+            startAnim.addUpdateListener(this);
+            startAnim.addListener(this);
+            endAnim.addListener(this);
+            endAnim.addUpdateListener(this);
+        }
+        public void start() {
+            if(!isAnimated) {
+                if(dir == 0) {
+                    startAnim.start();
+                }
+                else {
+                    endAnim.start();
+                }
+                isAnimated = true;
+            }
+        }
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            float factor = (float)valueAnimator.getAnimatedValue();
+            update(factor);
+        }
+        public void onAnimationEnd(Animator animator) {
+            if(isAnimated) {
+                dir = dir == 0?1:0;
+                isAnimated = true;
+            }
         }
     }
 }
