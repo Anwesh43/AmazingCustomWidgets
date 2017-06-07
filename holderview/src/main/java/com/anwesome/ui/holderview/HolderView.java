@@ -27,6 +27,7 @@ public class HolderView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h;
     private AnimationHandler animationHandler;
+    private Holder holder;
     public HolderView(Context context) {
         super(context);
     }
@@ -34,7 +35,9 @@ public class HolderView extends View {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            holder = new Holder();
         }
+        holder.draw(canvas);
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
@@ -44,7 +47,10 @@ public class HolderView extends View {
         return true;
     }
     public void update(float factor) {
-        postInvalidate();
+        if(holder!=null) {
+            holder.update(factor);
+            postInvalidate();
+        }
     }
     private class Holder {
         private List<HolderComponent> holderComponents = new ArrayList<>();
