@@ -93,14 +93,15 @@ import android.widget.Toast;
 //import com.anwesome.ui.buttongroup.OnSelectionListener;
 //import com.anwesome.ui.calbutton.CalButton;
 //import com.anwesome.ui.circularbuttonchooser.CircularButtonChooser;
-import com.anwesome.ui.bridgebutton.BridgeButtonView;
-import com.anwesome.ui.circularystbuttonlist.CYSTList;
-import com.anwesome.ui.circularystbuttonlist.OnSelectionChangeListener;
-import com.anwesome.ui.lineanddot.LineAndDotView;
+//import com.anwesome.ui.bridgebutton.BridgeButtonView;
+//import com.anwesome.ui.circularystbuttonlist.CYSTList;
+//import com.anwesome.ui.circularystbuttonlist.OnSelectionChangeListener;
+//import com.anwesome.ui.lineanddot.LineAndDotView;
+import com.anwesome.ui.holderview.HolderView;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
-import com.anwesome.ui.progressbutton.OnClickListener;
-import com.anwesome.ui.progressbutton.ProgressButtonView;
-import com.anwesome.ui.tvbutton.TVButtonList;
+//import com.anwesome.ui.progressbutton.OnClickListener;
+//import com.anwesome.ui.progressbutton.ProgressButtonView;
+//import com.anwesome.ui.tvbutton.TVButtonList;
 //import com.anwesome.ui.clockbutton.ClockButton;
 //import com.anwesome.ui.clockbutton.ClockListener;
 //import com.anwesome.ui.completeballbuttons.BallButton;
@@ -165,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showLineAndDot();
+                showHolderView();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1252,18 +1253,21 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 //    }
-    public void showLineAndDot() {
-        LineAndDotView.create(this, 8, new LineAndDotView.OnSelectedListener() {
-            @Override
-            public void onSelected(int index) {
-                Toast.makeText(MainActivity.this,String.format("%d selected",index),Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onUnSelected(int index) {
-                Toast.makeText(MainActivity.this, String.format("%d unselected",index), Toast.LENGTH_SHORT).show();
-            }
-        });
-
+//    public void showLineAndDot() {
+//        LineAndDotView.create(this, 8, new LineAndDotView.OnSelectedListener() {
+//            @Override
+//            public void onSelected(int index) {
+//                Toast.makeText(MainActivity.this,String.format("%d selected",index),Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onUnSelected(int index) {
+//                Toast.makeText(MainActivity.this, String.format("%d unselected",index), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//    }
+    public void showHolderView() {
+        HolderView.create(this);
     }
 }
