@@ -1268,6 +1268,16 @@ public class MainActivity extends AppCompatActivity {
 //
 //    }
     public void showHolderView() {
-        HolderView.create(this);
+        HolderView.create(this, new HolderView.OnFillEmptyListener() {
+            @Override
+            public void onFill() {
+                Toast.makeText(MainActivity.this, "OnFilled", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onEmpty() {
+                Toast.makeText(MainActivity.this, "OnEmoty", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
