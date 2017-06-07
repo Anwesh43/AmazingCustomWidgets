@@ -1180,78 +1180,78 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //        ystButtonList.show();
 //    }
-    public void showCYSTButtonList() {
-        CYSTList cystList = new CYSTList(this);
-        for(int i=0;i<6;i++) {
-            final int index = i+1;
-            cystList.addButton(new OnSelectionChangeListener() {
-                @Override
-                public void onSelect() {
-                    Toast.makeText(MainActivity.this, index+" Selected", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onUnselect() {
-                    Toast.makeText(MainActivity.this, index+" UnSelected", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-        cystList.show();
-    }
-    public void showTVButton() {
-        TVButtonList tvButtonList = new TVButtonList(this);
-        for(int i=0;i<9;i++) {
-            final int index = i+1;
-            tvButtonList.addButton(new com.anwesome.ui.tvbutton.OnSelectionChangeListener() {
-                @Override
-                public void onSelect() {
-                    Toast.makeText(MainActivity.this, String.format("%d selected",index), Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onUnSelect() {
-                    Toast.makeText(MainActivity.this, String.format("%d unselected",index), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-        tvButtonList.show();
-    }
-    public void showProgressButton() {
-        ProgressButtonView.create(this, new OnClickListener() {
-            @Override
-            public void onFirstButtonSelected() {
-                Toast.makeText(MainActivity.this, "First Button Selected", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onSecondButtonSelected() {
-                Toast.makeText(MainActivity.this, "Second Button Selected", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFirstButtonUnSelected() {
-                Toast.makeText(MainActivity.this, "First Button UnSelected", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onSecondButtonUnSelected() {
-                Toast.makeText(MainActivity.this, "Second Button UnSelected", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void showBridgeButton() {
-        BridgeButtonView.create(this, new BridgeButtonView.OnBridgeListener() {
-            @Override
-            public void onBridge() {
-                Toast.makeText(MainActivity.this, "On Bridge", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onUnBridge() {
-                Toast.makeText(MainActivity.this, "On Unbridge", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    public void showCYSTButtonList() {
+//        CYSTList cystList = new CYSTList(this);
+//        for(int i=0;i<6;i++) {
+//            final int index = i+1;
+//            cystList.addButton(new OnSelectionChangeListener() {
+//                @Override
+//                public void onSelect() {
+//                    Toast.makeText(MainActivity.this, index+" Selected", Toast.LENGTH_SHORT).show();
+//                }
+//
+//                @Override
+//                public void onUnselect() {
+//                    Toast.makeText(MainActivity.this, index+" UnSelected", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        }
+//        cystList.show();
+//    }
+//    public void showTVButton() {
+//        TVButtonList tvButtonList = new TVButtonList(this);
+//        for(int i=0;i<9;i++) {
+//            final int index = i+1;
+//            tvButtonList.addButton(new com.anwesome.ui.tvbutton.OnSelectionChangeListener() {
+//                @Override
+//                public void onSelect() {
+//                    Toast.makeText(MainActivity.this, String.format("%d selected",index), Toast.LENGTH_SHORT).show();
+//                }
+//
+//                @Override
+//                public void onUnSelect() {
+//                    Toast.makeText(MainActivity.this, String.format("%d unselected",index), Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        }
+//        tvButtonList.show();
+//    }
+//    public void showProgressButton() {
+//        ProgressButtonView.create(this, new OnClickListener() {
+//            @Override
+//            public void onFirstButtonSelected() {
+//                Toast.makeText(MainActivity.this, "First Button Selected", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onSecondButtonSelected() {
+//                Toast.makeText(MainActivity.this, "Second Button Selected", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onFirstButtonUnSelected() {
+//                Toast.makeText(MainActivity.this, "First Button UnSelected", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onSecondButtonUnSelected() {
+//                Toast.makeText(MainActivity.this, "Second Button UnSelected", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    public void showBridgeButton() {
+//        BridgeButtonView.create(this, new BridgeButtonView.OnBridgeListener() {
+//            @Override
+//            public void onBridge() {
+//                Toast.makeText(MainActivity.this, "On Bridge", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onUnBridge() {
+//                Toast.makeText(MainActivity.this, "On Unbridge", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
     public void showLineAndDot() {
         LineAndDotView.create(this, 8, new LineAndDotView.OnSelectedListener() {
             @Override
