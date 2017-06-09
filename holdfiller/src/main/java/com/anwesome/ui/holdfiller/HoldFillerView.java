@@ -92,6 +92,7 @@ public class HoldFillerView extends View {
     }
     private class FillRect {
         private int dir = 0,y;
+        private boolean filled = false;
         public boolean isStopped() {
             return dir == 0;
         }
@@ -106,9 +107,18 @@ public class HoldFillerView extends View {
             this.dir = dir;
         }
         public void update() {
+            if(y != 4*h/5) {
+                filled = false;
+            }
             y+= (h/10)*dir;
             if(y > 4*h/5) {
                 y = 4*h/5;
+                if(!filled) {
+                    filled = true;
+                    if(onFillCompleteListener != null) {
+                        onFillCompleteListener.onFillComplete();
+                    }
+                }
             }
             if(y<0) {
                 y = 0;
@@ -147,10 +157,18 @@ public class HoldFillerView extends View {
             }
         }
     }
-    public static void create(Activity activity) {
+    private OnFillCompleteListener onFillCompleteListener;
+    public void setOnFillCompleteListener(OnFillCompleteListener onFillCompleteListener) {
+        this.onFillCompleteListener = onFillCompleteListener;
+    }
+    public static void create(Activity activity,OnFillCompleteListener onFillCompleteListener) {
         HoldFillerView holdFillerView = new HoldFillerView(activity);
+        holdFillerView.setOnFillCompleteListener(onFillCompleteListener);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         int w = size.x,h = size.y;
         activity.addContentView(holdFillerView,new ViewGroup.LayoutParams(w,h));
+    }
+    public interface OnFillCompleteListener {
+        void onFillComplete();
     }
 }
