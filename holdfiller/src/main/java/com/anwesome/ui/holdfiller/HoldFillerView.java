@@ -41,7 +41,7 @@ public class HoldFillerView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN && holdCircleButton != null) {
             if(holdCircleButton.handleTap(event.getX(),event.getY())) {
-                
+
             }
         }
         if(event.getAction() == MotionEvent.ACTION_UP && holdCircleButton != null) {
@@ -101,6 +101,37 @@ public class HoldFillerView extends View {
             if(y<0) {
                 y = 0;
                 dir = 0;
+            }
+        }
+    }
+    private class FillAnimationHandler  {
+        private boolean isAnimated = false;
+        public void animate() {
+            if(isAnimated) {
+                try {
+                    Thread.sleep(50);
+                }
+                catch (Exception ex) {
+
+                }
+                update();
+                if(fillRect!=null && fillRect.isStopped()) {
+                    isAnimated = false;
+                }
+            }
+        }
+        public void startFilling() {
+            if(fillRect!=null) {
+                fillRect.setDir(1);
+                if(!isAnimated) {
+                    isAnimated = true;
+                    postInvalidate();
+                }
+            }
+        }
+        public void stopFilling() {
+            if(fillRect!=null) {
+                fillRect.setDir(-1);
             }
         }
     }
