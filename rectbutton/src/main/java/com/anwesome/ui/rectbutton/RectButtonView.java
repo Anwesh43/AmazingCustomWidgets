@@ -1,5 +1,8 @@
 package com.anwesome.ui.rectbutton;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -83,6 +86,41 @@ public class RectButtonView extends View {
         }
         public void update(float factor) {
             scale = factor;
+        }
+    }
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
+        private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1),endAnim = ValueAnimator.ofFloat(1,0);
+        private int dir = 0;
+        private boolean isAnimating = false;
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            if(isAnimating) {
+                update((float)valueAnimator.getAnimatedValue());
+            }
+        }
+        public void onAnimationEnd(Animator animator) {
+            if(isAnimating) {
+                dir = dir == 0?1:0;
+                isAnimating = false;
+            }
+        }
+        public void start() {
+            if(!isAnimating) {
+                if(dir == 0) {
+                    startAnim.start();
+                }
+                if(dir == 1) {
+                    endAnim.start();
+                }
+                isAnimating = true;
+            }
+        }
+        public AnimationHandler() {
+            startAnim.setDuration(500);
+            endAnim.setDuration(500);
+            startAnim.addUpdateListener(this);
+            endAnim.addUpdateListener(this);
+            startAnim.addListener(this);
+            endAnim.addListener(this);
         }
     }
 }
