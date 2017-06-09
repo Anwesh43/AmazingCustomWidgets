@@ -111,4 +111,5 @@ dependencies {
     compile project(':holderview')
     compile project(':plusminuslineview')
     compile project(':rectbutton')
+    compile project(':holdfiller')
 }

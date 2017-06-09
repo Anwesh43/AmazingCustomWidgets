@@ -98,6 +98,7 @@ import android.widget.Toast;
 //import com.anwesome.ui.circularystbuttonlist.OnSelectionChangeListener;
 //import com.anwesome.ui.lineanddot.LineAndDotView;
 import com.anwesome.ui.holderview.HolderView;
+import com.anwesome.ui.holdfiller.HoldFillerView;
 import com.anwesome.ui.plusminuslineview.PlusMinusLineView;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 import com.anwesome.ui.rectbutton.RectButtonView;
@@ -168,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showRectButton();
+                showHoldFiller();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1308,4 +1309,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    public void showHoldFiller() {
+        HoldFillerView.create(this);
+    }
 }
+
