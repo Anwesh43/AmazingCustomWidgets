@@ -58,14 +58,16 @@ public class RectButtonView extends View {
         private float rot = 0,y = 0;
         public void draw(Canvas canvas) {
             float radius = w/15;
-            paint.setColor(Color.BLUE);
-            paint.setStyle(Paint.Style.FILL);
             for(int i=0;i<4;i++) {
                 canvas.save();
                 canvas.translate(w / 2, h/2);
                 canvas.rotate((-90+i*90)+45);
                 canvas.save();
                 canvas.translate(0,y);
+                paint.setColor(Color.BLUE);
+                paint.setStyle(Paint.Style.FILL);
+                paint.setStrokeWidth(radius/5);
+                canvas.drawCircle(0,0,radius,paint);
                 canvas.save();
                 canvas.rotate(rot);
                 paint.setColor(Color.WHITE);
@@ -79,14 +81,13 @@ public class RectButtonView extends View {
                     canvas.restore();
                 }
                 canvas.restore();
-                canvas.drawCircle(0,0,radius,paint);
                 canvas.restore();
                 canvas.restore();
             }
         }
         public void update(float factor) {
             rot = 180*factor;
-            y = (h/3-w/15)*factor;
+            y = (h/3)*factor;
         }
     }
     private class RectShape {
@@ -94,7 +95,7 @@ public class RectButtonView extends View {
         public void draw(Canvas canvas) {
             paint.setColor(Color.BLUE);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(w/12);
+            paint.setStrokeWidth(w/50);
             canvas.save();
             canvas.translate(w/2,h/2);
             canvas.scale(scale,scale);
