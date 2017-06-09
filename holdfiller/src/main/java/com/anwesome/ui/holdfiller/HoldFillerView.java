@@ -37,6 +37,7 @@ public class HoldFillerView extends View {
         canvas.drawColor(Color.BLACK);
         paint.setColor(Color.YELLOW);
         holdCircleButton.draw(canvas);
+        fillRect.draw(canvas);
         time++;
         if(fillAnimationHandler != null) {
             fillAnimationHandler.animate();
@@ -66,7 +67,7 @@ public class HoldFillerView extends View {
         public HoldCircleButton() {
             x = w/2;
             y = h/10;
-            r = h/20;
+            r = h/12;
         }
         public void setFill(boolean fill) {
             this.fill = fill;
@@ -98,7 +99,7 @@ public class HoldFillerView extends View {
             paint.setStyle(Paint.Style.FILL);
             canvas.save();
             canvas.translate(w/2,h);
-            canvas.drawRect(new RectF(-2*w/5,h-y,2*w/5,h),paint);
+            canvas.drawRect(new RectF(-w/2,-y,w/2,0),paint);
             canvas.restore();
         }
         public void setDir(int dir) {
@@ -149,7 +150,7 @@ public class HoldFillerView extends View {
     public static void create(Activity activity) {
         HoldFillerView holdFillerView = new HoldFillerView(activity);
         Point size = DimensionsUtil.getDeviceDimension(activity);
-        int w = size.x;
-        activity.addContentView(holdFillerView,new ViewGroup.LayoutParams(w,w));
+        int w = size.x,h = size.y;
+        activity.addContentView(holdFillerView,new ViewGroup.LayoutParams(w,h));
     }
 }
