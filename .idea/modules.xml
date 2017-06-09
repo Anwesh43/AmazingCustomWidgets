@@ -81,6 +81,7 @@
       <module fileurl="file://$PROJECT_DIR$/progressbutton/progressbutton.iml" filepath="$PROJECT_DIR$/progressbutton/progressbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/prokbutton/prokbutton.iml" filepath="$PROJECT_DIR$/prokbutton/prokbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/recordbutton/recordbutton.iml" filepath="$PROJECT_DIR$/recordbutton/recordbutton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rectbutton/rectbutton.iml" filepath="$PROJECT_DIR$/rectbutton/rectbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/settingsbutton/settingsbutton.iml" filepath="$PROJECT_DIR$/settingsbutton/settingsbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/settingspallete/settingspallete.iml" filepath="$PROJECT_DIR$/settingspallete/settingspallete.iml" />
       <module fileurl="file://$PROJECT_DIR$/sharebutton/sharebutton.iml" filepath="$PROJECT_DIR$/sharebutton/sharebutton.iml" />
