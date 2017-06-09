@@ -8,9 +8,13 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 09/06/17.
@@ -135,5 +139,11 @@ public class RectButtonView extends View {
             startAnim.addListener(this);
             endAnim.addListener(this);
         }
+    }
+    public static void create(Activity activity) {
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        int w = size.x;
+        RectButtonView rectButtonView = new RectButtonView(activity);
+        activity.addContentView(rectButtonView,new ViewGroup.LayoutParams(w,w));
     }
 }
