@@ -3,6 +3,7 @@ package com.anwesome.ui.rectbutton;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -18,6 +19,9 @@ import android.view.View;
 public class RectButtonView extends View {
     private int time = 0,w,h;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private AnimationHandler animationHandler;
+    private RectBall rectBall;
+    private RectShape rectShape;
     public RectButtonView(Context context) {
         super(context);
     }
@@ -25,16 +29,25 @@ public class RectButtonView extends View {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            rectBall = new RectBall();
+            rectShape = new RectShape();
+            animationHandler = new AnimationHandler();
         }
+        rectBall.draw(canvas);
+        rectShape.draw(canvas);
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.start();
         }
         return true;
     }
     public void update(float factor) {
+        if(rectBall != null && rectShape != null) {
+            rectBall.update(factor);
+            rectShape.update(factor);
+        }
         postInvalidate();
     }
     private class RectBall {
