@@ -16,6 +16,7 @@ public class HoldFillerView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h;
     private HoldCircleButton holdCircleButton;
+    private FillRect fillRect;
     public HoldFillerView(Context context) {
         super(context);
     }
@@ -24,6 +25,7 @@ public class HoldFillerView extends View {
             w = canvas.getWidth();
             h = canvas.getHeight();
             holdCircleButton = new HoldCircleButton();
+            fillRect = new FillRect();
         }
         canvas.drawColor(Color.BLACK);
         paint.setColor(Color.YELLOW);
@@ -31,12 +33,15 @@ public class HoldFillerView extends View {
         time++;
     }
     public void update() {
-        invalidate();
+        if(fillRect!=null) {
+            fillRect.update();
+            invalidate();
+        }
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN && holdCircleButton != null) {
             if(holdCircleButton.handleTap(event.getX(),event.getY())) {
-
+                
             }
         }
         if(event.getAction() == MotionEvent.ACTION_UP && holdCircleButton != null) {
@@ -84,6 +89,9 @@ public class HoldFillerView extends View {
             canvas.translate(w/2,h);
             canvas.drawRect(new RectF(-2*w/5,h-y,2*w/5,h),paint);
             canvas.restore();
+        }
+        public void setDir(int dir) {
+            this.dir = dir;
         }
         public void update() {
             y+= (h/10)*dir;
