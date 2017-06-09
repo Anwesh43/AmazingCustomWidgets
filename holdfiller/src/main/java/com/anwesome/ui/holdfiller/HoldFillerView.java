@@ -2,6 +2,7 @@ package com.anwesome.ui.holdfiller;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,6 +22,7 @@ public class HoldFillerView extends View {
             w = canvas.getWidth();
             h = canvas.getHeight();
         }
+        canvas.drawColor(Color.BLACK);
         time++;
     }
     public void update() {
@@ -34,5 +36,35 @@ public class HoldFillerView extends View {
 
         }
         return true;
+    }
+    private class HoldCircleButton {
+        private float x,y,r;
+        private boolean fill = false;
+        public HoldCircleButton() {
+            x = w/2;
+            y = h/10;
+            r = h/20;
+        }
+        public void setFill(boolean fill) {
+            this.fill = fill;
+        }
+        public void draw(Canvas canvas) {
+            paint.setColor(Color.YELLOW);
+            paint.setStrokeWidth(r/10);
+            if(!fill) {
+                paint.setStyle(Paint.Style.STROKE);
+            }
+            else {
+                paint.setStyle(Paint.Style.FILL);
+            }
+            canvas.drawCircle(x,y,r,paint);
+        }
+        public boolean handleTap(float x,float y) {
+            boolean condition =  x>=this.x-r && x<=this.x+r && y>=this.y-r && y<=this.y+r;
+            if(condition) {
+                setFill(true);
+            }
+            return condition;
+        }
     }
 }
