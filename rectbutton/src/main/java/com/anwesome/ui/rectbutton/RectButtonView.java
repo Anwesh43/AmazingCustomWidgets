@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -22,7 +23,6 @@ public class RectButtonView extends View {
             w = canvas.getWidth();
             h = canvas.getHeight();
         }
-        paint.setColor(Color.BLUE);
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
@@ -38,6 +38,7 @@ public class RectButtonView extends View {
         private float rot = 0,y = 0;
         public void draw(Canvas canvas) {
             float radius = w/15;
+            paint.setColor(Color.BLUE);
             paint.setStyle(Paint.Style.FILL);
             for(int i=0;i<4;i++) {
                 canvas.save();
@@ -66,6 +67,22 @@ public class RectButtonView extends View {
         public void update(float factor) {
             rot = 180*factor;
             y = (h/3-w/15)*factor;
+        }
+    }
+    private class RectShape {
+        private float scale = 0;
+        public void draw(Canvas canvas) {
+            paint.setColor(Color.BLUE);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(w/12);
+            canvas.save();
+            canvas.translate(w/2,h/2);
+            canvas.scale(scale,scale);
+            canvas.drawRoundRect(new RectF(-h/3,-h/3,h/3,h/3),h/15,h/15,paint);
+            canvas.restore();
+        }
+        public void update(float factor) {
+            scale = factor;
         }
     }
 }
