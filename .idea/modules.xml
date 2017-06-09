@@ -51,6 +51,7 @@
       <module fileurl="file://$PROJECT_DIR$/groupimagebuttons/groupimagebuttons.iml" filepath="$PROJECT_DIR$/groupimagebuttons/groupimagebuttons.iml" />
       <module fileurl="file://$PROJECT_DIR$/hamburgbutton/hamburgbutton.iml" filepath="$PROJECT_DIR$/hamburgbutton/hamburgbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/holderview/holderview.iml" filepath="$PROJECT_DIR$/holderview/holderview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/holdfiller/holdfiller.iml" filepath="$PROJECT_DIR$/holdfiller/holdfiller.iml" />
       <module fileurl="file://$PROJECT_DIR$/imagebar/imagebar.iml" filepath="$PROJECT_DIR$/imagebar/imagebar.iml" />
       <module fileurl="file://$PROJECT_DIR$/imageclippe/imageclippe.iml" filepath="$PROJECT_DIR$/imageclippe/imageclippe.iml" />
       <module fileurl="file://$PROJECT_DIR$/latchbutton/latchbutton.iml" filepath="$PROJECT_DIR$/latchbutton/latchbutton.iml" />
