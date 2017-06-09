@@ -55,7 +55,7 @@ public class RectButtonView extends View {
         postInvalidate();
     }
     private class RectBall {
-        private float rot = 0,y = 0;
+        private float rot = 180,y = 0;
         public void draw(Canvas canvas) {
             float radius = w/15;
             for(int i=0;i<4;i++) {
@@ -86,7 +86,7 @@ public class RectButtonView extends View {
             }
         }
         public void update(float factor) {
-            rot = 180*factor;
+            rot = 180*(1-factor);
             y = (h/3)*factor;
         }
     }
@@ -117,6 +117,14 @@ public class RectButtonView extends View {
         }
         public void onAnimationEnd(Animator animator) {
             if(isAnimating) {
+                if(onSizeChangeListener != null) {
+                    if (dir == 0) {
+                        onSizeChangeListener.onExpand();
+                    }
+                    else {
+                        onSizeChangeListener.onShrink();
+                    }
+                }
                 dir = dir == 0?1:0;
                 isAnimating = false;
             }
@@ -141,10 +149,19 @@ public class RectButtonView extends View {
             endAnim.addListener(this);
         }
     }
-    public static void create(Activity activity) {
+    private OnSizeChangeListener onSizeChangeListener;
+    public void setOnSizeChangeListener(OnSizeChangeListener onSizeChangeListener) {
+        this.onSizeChangeListener = onSizeChangeListener;
+    }
+    public static void create(Activity activity,OnSizeChangeListener onSizeChangeListener) {
         Point size = DimensionsUtil.getDeviceDimension(activity);
         int w = size.x;
         RectButtonView rectButtonView = new RectButtonView(activity);
+        rectButtonView.setOnSizeChangeListener(onSizeChangeListener);
         activity.addContentView(rectButtonView,new ViewGroup.LayoutParams(w,w));
+    }
+    public interface OnSizeChangeListener {
+        void onExpand();
+        void onShrink();
     }
 }
