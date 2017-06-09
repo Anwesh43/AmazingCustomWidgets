@@ -17,6 +17,7 @@ public class HoldFillerView extends View {
     private int time = 0,w,h;
     private HoldCircleButton holdCircleButton;
     private FillRect fillRect;
+    private FillAnimationHandler fillAnimationHandler;
     public HoldFillerView(Context context) {
         super(context);
     }
@@ -26,11 +27,15 @@ public class HoldFillerView extends View {
             h = canvas.getHeight();
             holdCircleButton = new HoldCircleButton();
             fillRect = new FillRect();
+            fillAnimationHandler = new FillAnimationHandler();
         }
         canvas.drawColor(Color.BLACK);
         paint.setColor(Color.YELLOW);
         holdCircleButton.draw(canvas);
         time++;
+        if(fillAnimationHandler != null) {
+            fillAnimationHandler.animate();
+        }
     }
     public void update() {
         if(fillRect!=null) {
@@ -39,12 +44,13 @@ public class HoldFillerView extends View {
         }
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN && holdCircleButton != null) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN && holdCircleButton != null && fillAnimationHandler!=null) {
             if(holdCircleButton.handleTap(event.getX(),event.getY())) {
-
+                fillAnimationHandler.startFilling();
             }
         }
         if(event.getAction() == MotionEvent.ACTION_UP && holdCircleButton != null) {
+            fillAnimationHandler.stopFilling();
             holdCircleButton.setFill(false);
         }
         return true;
