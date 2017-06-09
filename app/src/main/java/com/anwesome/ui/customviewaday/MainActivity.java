@@ -100,6 +100,7 @@ import android.widget.Toast;
 import com.anwesome.ui.holderview.HolderView;
 import com.anwesome.ui.plusminuslineview.PlusMinusLineView;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
+import com.anwesome.ui.rectbutton.RectButtonView;
 //import com.anwesome.ui.progressbutton.OnClickListener;
 //import com.anwesome.ui.progressbutton.ProgressButtonView;
 //import com.anwesome.ui.tvbutton.TVButtonList;
@@ -167,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPlusMinusView();
+                showRectButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1293,5 +1294,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "On Closed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showRectButton() {
+        RectButtonView.create(this);
     }
 }
