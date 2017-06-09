@@ -1296,6 +1296,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showRectButton() {
-        RectButtonView.create(this);
+        RectButtonView.create(this, new RectButtonView.OnSizeChangeListener() {
+            @Override
+            public void onExpand() {
+                Toast.makeText(MainActivity.this, "OnExpanded", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onShrink() {
+                Toast.makeText(MainActivity.this, "OnShrinked", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
