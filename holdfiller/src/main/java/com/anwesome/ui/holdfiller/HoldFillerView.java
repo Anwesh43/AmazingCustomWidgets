@@ -14,6 +14,7 @@ import android.view.View;
 public class HoldFillerView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h;
+    private HoldCircleButton holdCircleButton;
     public HoldFillerView(Context context) {
         super(context);
     }
@@ -21,19 +22,23 @@ public class HoldFillerView extends View {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            holdCircleButton = new HoldCircleButton();
         }
         canvas.drawColor(Color.BLACK);
+        holdCircleButton.draw(canvas);
         time++;
     }
     public void update() {
         invalidate();
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN && holdCircleButton != null) {
+            if(holdCircleButton.handleTap(event.getX(),event.getY())) {
 
+            }
         }
-        if(event.getAction() == MotionEvent.ACTION_UP) {
-
+        if(event.getAction() == MotionEvent.ACTION_UP && holdCircleButton != null) {
+            holdCircleButton.setFill(false);
         }
         return true;
     }
