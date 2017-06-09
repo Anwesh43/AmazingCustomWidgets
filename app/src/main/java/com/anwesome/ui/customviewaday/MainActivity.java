@@ -1310,7 +1310,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showHoldFiller() {
-        HoldFillerView.create(this);
+        HoldFillerView.create(this, new HoldFillerView.OnFillCompleteListener() {
+            @Override
+            public void onFillComplete() {
+                Toast.makeText(MainActivity.this, "Filled", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
