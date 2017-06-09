@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -25,6 +26,7 @@ public class HoldFillerView extends View {
             holdCircleButton = new HoldCircleButton();
         }
         canvas.drawColor(Color.BLACK);
+        paint.setColor(Color.YELLOW);
         holdCircleButton.draw(canvas);
         time++;
     }
@@ -54,7 +56,6 @@ public class HoldFillerView extends View {
             this.fill = fill;
         }
         public void draw(Canvas canvas) {
-            paint.setColor(Color.YELLOW);
             paint.setStrokeWidth(r/10);
             if(!fill) {
                 paint.setStyle(Paint.Style.STROKE);
@@ -70,6 +71,29 @@ public class HoldFillerView extends View {
                 setFill(true);
             }
             return condition;
+        }
+    }
+    private class FillRect {
+        private int dir = 0,y;
+        public boolean isStopped() {
+            return dir == 0;
+        }
+        public void draw(Canvas canvas) {
+            paint.setStyle(Paint.Style.FILL);
+            canvas.save();
+            canvas.translate(w/2,h);
+            canvas.drawRect(new RectF(-2*w/5,h-y,2*w/5,h),paint);
+            canvas.restore();
+        }
+        public void update() {
+            y+= (h/10)*dir;
+            if(y > 4*h/5) {
+                y = 4*h/5;
+            }
+            if(y<0) {
+                y = 0;
+                dir = 0;
+            }
         }
     }
 }
