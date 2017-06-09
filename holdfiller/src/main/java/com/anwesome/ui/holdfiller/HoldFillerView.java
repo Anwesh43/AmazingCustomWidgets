@@ -1,12 +1,17 @@
 package com.anwesome.ui.holdfiller;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 10/06/17.
@@ -140,5 +145,11 @@ public class HoldFillerView extends View {
                 fillRect.setDir(-1);
             }
         }
+    }
+    public static void create(Activity activity) {
+        HoldFillerView holdFillerView = new HoldFillerView(activity);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        int w = size.x;
+        activity.addContentView(holdFillerView,new ViewGroup.LayoutParams(w,w));
     }
 }
