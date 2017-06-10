@@ -123,6 +123,9 @@ public class PlusButtonRectView extends View {
         public void onAnimationEnd(Animator animator) {
             if(isAnimated) {
                 dir = dir == 0?1:0;
+                if(dir == 1 && onExpandListener != null) {
+                    onExpandListener.onExpand();
+                }
                 isAnimated = false;
             }
         }
@@ -146,10 +149,18 @@ public class PlusButtonRectView extends View {
             }
         }
     }
-    public static void create(Activity activity) {
+    public static void create(Activity activity,OnExpandListener onExpandListener) {
         PlusButtonRectView plusButtonRectView = new PlusButtonRectView(activity);
+        plusButtonRectView.setOnExpandListener(onExpandListener);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         int  w = size.x;
         activity.addContentView(plusButtonRectView,new ViewGroup.LayoutParams(w,w));
+    }
+    private OnExpandListener onExpandListener;
+    public void setOnExpandListener(OnExpandListener onExpandListener) {
+        this.onExpandListener = onExpandListener;
+    }
+    public interface OnExpandListener {
+        void onExpand();
     }
 }
