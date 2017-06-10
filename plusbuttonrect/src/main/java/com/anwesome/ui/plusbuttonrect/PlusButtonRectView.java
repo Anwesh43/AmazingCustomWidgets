@@ -3,6 +3,7 @@ package com.anwesome.ui.plusbuttonrect;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -137,5 +138,9 @@ public class PlusButtonRectView extends View {
                 isAnimated = true;
             }
         }
+    }
+    public static void create(Activity activity) {
+        PlusButtonRectView plusButtonRectView = new PlusButtonRectView(activity);
+
     }
 }
