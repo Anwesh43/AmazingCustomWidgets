@@ -20,23 +20,25 @@ public class PlusButtonRectView extends View {
     private int time = 0,w,h;
     private PlusButtonGroup plusButtonGroup;
     private RectShape rectShape;
+    private AnimationHandler animationHandler;
     public PlusButtonRectView(Context context) {
         super(context);
-        plusButtonGroup = new PlusButtonGroup();
-        rectShape = new RectShape();
     }
     public void onDraw(Canvas canvas) {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            plusButtonGroup = new PlusButtonGroup();
+            rectShape = new RectShape();
+            animationHandler = new AnimationHandler();
         }
         rectShape.draw(canvas);
         plusButtonGroup.draw(canvas);
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.start();
         }
         return true;
     }
