@@ -40,7 +40,7 @@ public class PlusButtonRectView extends View {
             paint.setColor(Color.BLACK);
             paint.setStyle(Paint.Style.FILL);
             canvas.save();
-            canvas.translate(w/2,h/2);
+            canvas.translate(0,0);
             canvas.rotate(rot);
             canvas.drawCircle(0,0,w/20,paint);
             paint.setColor(Color.WHITE);
@@ -69,6 +69,26 @@ public class PlusButtonRectView extends View {
         }
         public void update(float factor) {
             scale = factor;
+        }
+    }
+    private class PlusButtonGroup {
+        private float x=0,y=0;
+        private PlusButton plusButton;
+        public PlusButtonGroup() {
+            plusButton = new PlusButton();
+        }
+        public void draw(Canvas canvas) {
+            for(int i=0;i<4;i++) {
+                canvas.save();
+                canvas.translate(x,y);
+                canvas.rotate(i*90);
+                plusButton.draw(canvas);
+                canvas.restore();
+            }
+        }
+        public void update(float factor) {
+            x = -w/3*factor;
+            y = -h/3*factor;
         }
     }
 }
