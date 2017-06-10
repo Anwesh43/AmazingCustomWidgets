@@ -1319,7 +1319,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showPlusButtonRect() {
-        PlusButtonRectView.create(this);
+        PlusButtonRectView.create(this, new PlusButtonRectView.OnExpandListener() {
+            @Override
+            public void onExpand() {
+                Toast.makeText(MainActivity.this, "OnExpanded", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
