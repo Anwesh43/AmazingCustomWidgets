@@ -8,9 +8,13 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 11/06/17.
@@ -50,11 +54,12 @@ public class PlusButtonRectView extends View {
     }
     private class PlusButton {
         private float rot = 0;
-        public void draw(Canvas canvas) {
+        public void draw(Canvas canvas,float x,float y) {
             paint.setColor(Color.BLACK);
             paint.setStyle(Paint.Style.FILL);
+            paint.setStrokeCap(Paint.Cap.ROUND);
             canvas.save();
-            canvas.translate(0,0);
+            canvas.translate(x,y);
             canvas.rotate(rot);
             canvas.drawCircle(0,0,w/20,paint);
             paint.setColor(Color.WHITE);
@@ -74,6 +79,8 @@ public class PlusButtonRectView extends View {
     private class RectShape {
         private float scale = 0;
         public void draw(Canvas canvas) {
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setColor(Color.BLACK);
             canvas.save();
             canvas.translate(w/2,h/2);
             float r = Math.max(w,h)/10;
@@ -94,15 +101,15 @@ public class PlusButtonRectView extends View {
         public void draw(Canvas canvas) {
             for(int i=0;i<4;i++) {
                 canvas.save();
-                canvas.translate(x,y);
+                canvas.translate(w/2,h/2);
                 canvas.rotate(i*90);
-                plusButton.draw(canvas);
+                plusButton.draw(canvas,x,y);
                 canvas.restore();
             }
         }
         public void update(float factor) {
-            x = -w/3*factor;
-            y = -h/3*factor;
+            x = (-w/3+w/40)*factor;
+            y = (-h/3+w/40)*factor;
             plusButton.update(factor);
         }
     }
@@ -141,6 +148,8 @@ public class PlusButtonRectView extends View {
     }
     public static void create(Activity activity) {
         PlusButtonRectView plusButtonRectView = new PlusButtonRectView(activity);
-
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        int  w = size.x;
+        activity.addContentView(plusButtonRectView,new ViewGroup.LayoutParams(w,w));
     }
 }
