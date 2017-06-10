@@ -15,14 +15,20 @@ import android.view.View;
 public class PlusButtonRectView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h;
+    private PlusButtonGroup plusButtonGroup;
+    private RectShape rectShape;
     public PlusButtonRectView(Context context) {
         super(context);
+        plusButtonGroup = new PlusButtonGroup();
+        rectShape = new RectShape();
     }
     public void onDraw(Canvas canvas) {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
         }
+        rectShape.draw(canvas);
+        plusButtonGroup.draw(canvas);
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
@@ -32,6 +38,8 @@ public class PlusButtonRectView extends View {
         return true;
     }
     public void update(float factor) {
+        plusButtonGroup.update(factor);
+        rectShape.update(factor);
         postInvalidate();
     }
     private class PlusButton {
@@ -89,6 +97,7 @@ public class PlusButtonRectView extends View {
         public void update(float factor) {
             x = -w/3*factor;
             y = -h/3*factor;
+            plusButton.update(factor);
         }
     }
 }
