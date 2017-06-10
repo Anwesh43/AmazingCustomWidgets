@@ -1,5 +1,8 @@
 package com.anwesome.ui.plusbuttonrect;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -98,6 +101,39 @@ public class PlusButtonRectView extends View {
             x = -w/3*factor;
             y = -h/3*factor;
             plusButton.update(factor);
+        }
+    }
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener {
+        private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1),endAnim = ValueAnimator.ofFloat(1,0);
+        private int dir = 0;
+        private boolean isAnimated = false;
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            update((float)valueAnimator.getAnimatedValue());
+        }
+        public void onAnimationEnd(Animator animator) {
+            if(isAnimated) {
+                dir = dir == 0?1:0;
+                isAnimated = false;
+            }
+        }
+        public AnimationHandler() {
+            startAnim.setDuration(500);
+            endAnim.setDuration(500);
+            startAnim.addUpdateListener(this);
+            endAnim.addUpdateListener(this);
+            startAnim.addListener(this);
+            endAnim.addListener(this);
+        }
+        public void start() {
+            if(!isAnimated) {
+                if(dir == 0) {
+                    startAnim.start();
+                }
+                else {
+                    endAnim.start();
+                }
+                isAnimated = true;
+            }
         }
     }
 }
