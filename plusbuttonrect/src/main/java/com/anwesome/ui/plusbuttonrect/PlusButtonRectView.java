@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -54,6 +55,20 @@ public class PlusButtonRectView extends View {
         }
         public void update(float factor) {
             rot = 45*factor;
+        }
+    }
+    private class RectShape {
+        private float scale = 0;
+        public void draw(Canvas canvas) {
+            canvas.save();
+            canvas.translate(w/2,h/2);
+            float r = Math.max(w,h)/10;
+            canvas.scale(scale,scale);
+            canvas.drawRoundRect(new RectF(-w/3,-h/3,w/3,h/3),r,r,paint);
+            canvas.restore();
+        }
+        public void update(float factor) {
+            scale = factor;
         }
     }
 }
