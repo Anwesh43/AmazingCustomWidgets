@@ -59,11 +59,12 @@ public class CornerCenterBallView extends View {
             cornerCenterPath = new CornerCenterPath();
         }
         public void draw(Canvas canvas) {
+            canvas.save();
+            canvas.translate(w/2,h/2);
             cornerCenterPath.draw(canvas,diagSize);
             paint.setStyle(Paint.Style.STROKE);
             paint.setColor(Color.BLUE);
-            canvas.save();
-            canvas.translate(w/2,h/2);
+
             canvas.drawRect(new RectF(-w/3,-h/3,w/3,h/3),paint);
             for(int i=0;i<4;i++) {
                 canvas.save();
@@ -76,13 +77,12 @@ public class CornerCenterBallView extends View {
                 canvas.drawCircle(0,diagSize,w/15,paint);
                 canvas.restore();
             }
-            canvas.restore();
             paint.setStyle(Paint.Style.FILL);
             paint.setColor(Color.BLUE);
             canvas.save();
-            canvas.translate(w/2,h/2);
             canvas.rotate(index*90-45);
             canvas.drawCircle(0,r,w/15,paint);
+            canvas.restore();
             canvas.restore();
         }
         public void update(float factor) {
