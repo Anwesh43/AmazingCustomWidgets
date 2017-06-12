@@ -18,6 +18,7 @@ import android.view.View;
 public class CornerCenterBallView extends View {
     private int time = 0,w,h;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private CornerCenterBall cornerCenterBall;
     public CornerCenterBallView(Context context) {
         super(context);
     }
@@ -25,10 +26,13 @@ public class CornerCenterBallView extends View {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            cornerCenterBall = new CornerCenterBall();
         }
+        cornerCenterBall.draw(canvas);
         time++;
     }
     public void update(float factor) {
+        cornerCenterBall.update(factor);
         postInvalidate();
     }
     public boolean onTouchEvent(MotionEvent event) {
@@ -94,6 +98,9 @@ public class CornerCenterBallView extends View {
             if(isAnimating) {
                 dir = dir == 0?1:0;
                 isAnimating = false;
+                if(cornerCenterBall != null) {
+                    cornerCenterBall.incrementIndex();
+                }
             }
         }
         public void start() {
