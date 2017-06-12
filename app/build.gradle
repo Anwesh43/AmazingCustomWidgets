@@ -113,4 +113,5 @@ dependencies {
     compile project(':rectbutton')
     compile project(':holdfiller')
     compile project(':plusbuttonrect')
+    compile project(':cornercenterball')
 }
