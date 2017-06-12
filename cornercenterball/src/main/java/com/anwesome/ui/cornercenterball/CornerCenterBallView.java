@@ -35,6 +35,7 @@ public class CornerCenterBallView extends View {
             cornerCenterBall = new CornerCenterBall();
             animationHandler = new AnimationHandler();
         }
+        paint.setStrokeWidth(w/60);
         cornerCenterBall.draw(canvas);
         time++;
     }
@@ -51,21 +52,28 @@ public class CornerCenterBallView extends View {
     private class CornerCenterBall {
         private int index = 0;
         private float r = 0;
+        private float diagSize = 0;
+        public CornerCenterBall() {
+            diagSize = -(float)(Math.sqrt(Math.pow(h/3,2)+Math.pow(w/3,2)));
+        }
         public void draw(Canvas canvas) {
             paint.setStyle(Paint.Style.STROKE);
             paint.setColor(Color.BLUE);
+            canvas.save();
+            canvas.translate(w/2,h/2);
             canvas.drawRect(new RectF(-w/3,-h/3,w/3,h/3),paint);
             for(int i=0;i<4;i++) {
                 canvas.save();
                 canvas.rotate(i*90-45);
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setColor(Color.BLUE);
-                canvas.drawCircle(0,-h/3,w/15,paint);
+                canvas.drawCircle(0,diagSize,w/15,paint);
                 paint.setStyle(Paint.Style.FILL);
                 paint.setColor(Color.WHITE);
-                canvas.drawCircle(0,-h/3,w/15,paint);
+                canvas.drawCircle(0,diagSize,w/15,paint);
                 canvas.restore();
             }
+            canvas.restore();
             paint.setStyle(Paint.Style.FILL);
             paint.setColor(Color.BLUE);
             canvas.save();
@@ -75,7 +83,7 @@ public class CornerCenterBallView extends View {
             canvas.restore();
         }
         public void update(float factor) {
-            r = -h/3*factor;
+            r = diagSize*factor;
         }
         public void incrementIndex() {
             index++;
@@ -105,7 +113,7 @@ public class CornerCenterBallView extends View {
             if(isAnimating) {
                 dir = dir == 0?1:0;
                 isAnimating = false;
-                if(cornerCenterBall != null) {
+                if(dir == 0 && cornerCenterBall != null) {
                     cornerCenterBall.incrementIndex();
                 }
             }
