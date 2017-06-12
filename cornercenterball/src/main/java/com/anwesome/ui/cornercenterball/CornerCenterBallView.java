@@ -19,6 +19,7 @@ public class CornerCenterBallView extends View {
     private int time = 0,w,h;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private CornerCenterBall cornerCenterBall;
+    private AnimationHandler animationHandler;
     public CornerCenterBallView(Context context) {
         super(context);
     }
@@ -27,6 +28,7 @@ public class CornerCenterBallView extends View {
             w = canvas.getWidth();
             h = canvas.getHeight();
             cornerCenterBall = new CornerCenterBall();
+            animationHandler = new AnimationHandler();
         }
         cornerCenterBall.draw(canvas);
         time++;
@@ -36,8 +38,8 @@ public class CornerCenterBallView extends View {
         postInvalidate();
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler!=null) {
+            animationHandler.start();
         }
         return true;
     }
