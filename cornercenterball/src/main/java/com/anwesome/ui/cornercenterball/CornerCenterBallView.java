@@ -52,11 +52,14 @@ public class CornerCenterBallView extends View {
     private class CornerCenterBall {
         private int index = 0;
         private float r = 0;
+        private CornerCenterPath cornerCenterPath;
         private float diagSize = 0;
         public CornerCenterBall() {
             diagSize = -(float)(Math.sqrt(Math.pow(h/3,2)+Math.pow(w/3,2)));
+            cornerCenterPath = new CornerCenterPath();
         }
         public void draw(Canvas canvas) {
+            cornerCenterPath.draw(canvas,diagSize);
             paint.setStyle(Paint.Style.STROKE);
             paint.setColor(Color.BLUE);
             canvas.save();
@@ -134,5 +137,21 @@ public class CornerCenterBallView extends View {
         CornerCenterBallView cornerCenterBallView = new CornerCenterBallView(activity);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(cornerCenterBallView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    private class CornerCenterPath {
+        public void draw(Canvas canvas,float y) {
+            paint.setColor(Color.BLUE);
+            paint.setStyle(Paint.Style.STROKE);
+            for(int i=0;i<4;i++) {
+                canvas.save();
+                canvas.rotate(i*90-45);
+                canvas.drawLine(0,0,0,y,paint);
+                canvas.restore();
+            }
+            canvas.drawCircle(0,0,w/15,paint);
+            paint.setColor(Color.WHITE);
+            paint.setStyle(Paint.Style.FILL);
+            canvas.drawCircle(0,0,w/15,paint);
+        }
     }
 }
