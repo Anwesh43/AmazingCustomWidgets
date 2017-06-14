@@ -17,6 +17,7 @@ public class CircMoverView extends View {
     private GestureDetector gestureDetector;
     private ConcurrentLinkedQueue<CircMover> circMovers = new ConcurrentLinkedQueue<>();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private AnimationHandler animationHandler;
     public CircMoverView(Context context,int n) {
         super(context);
         this.n = Math.max(n,this.n);
@@ -31,11 +32,15 @@ public class CircMoverView extends View {
                 circMovers.add(new CircMover(y,gap));
                 y+=gap;
             }
+            animationHandler = new AnimationHandler();
         }
         for(CircMover circMover:circMovers) {
             circMover.draw(canvas);
         }
         time++;
+        if(animationHandler != null) {
+            animationHandler.animate();
+        }
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(gestureDetector != null) {
@@ -102,10 +107,44 @@ public class CircMoverView extends View {
                 for(CircMover circMover:circMovers) {
                     if(circMover.handleTap(y)) {
                         circMover.setDir(dir);
+                        if(animationHandler != null) {
+                            animationHandler.addSwipedMover(circMover);
+                        }
                     }
                 }
             }
             return true;
+        }
+    }
+    private class AnimationHandler {
+        private boolean isRunning = false;
+        private ConcurrentLinkedQueue<CircMover> swipedMovers = new ConcurrentLinkedQueue<>();
+        public void animate() {
+            if(isRunning) {
+                for(CircMover swipedMover:swipedMovers) {
+                    swipedMover.update();
+                    if(swipedMover.stopped()) {
+                        swipedMovers.remove(swipedMover);
+                        if(swipedMovers.size() == 0) {
+                            isRunning = false;
+                        }
+                    }
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
+                }
+            }
+        }
+        public void addSwipedMover(CircMover circMover) {
+            swipedMovers.add(circMover);
+            if(swipedMovers.size() == 1 && !isRunning) {
+                isRunning = true;
+                postInvalidate();
+            }
         }
     }
 }
