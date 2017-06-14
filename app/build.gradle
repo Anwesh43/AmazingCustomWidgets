@@ -114,4 +114,5 @@ dependencies {
     compile project(':holdfiller')
     compile project(':plusbuttonrect')
     compile project(':cornercenterball')
+    compile project(':circmover')
 }

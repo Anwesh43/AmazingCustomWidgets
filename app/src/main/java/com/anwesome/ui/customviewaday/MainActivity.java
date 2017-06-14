@@ -97,6 +97,7 @@ import android.widget.Toast;
 //import com.anwesome.ui.circularystbuttonlist.CYSTList;
 //import com.anwesome.ui.circularystbuttonlist.OnSelectionChangeListener;
 //import com.anwesome.ui.lineanddot.LineAndDotView;
+import com.anwesome.ui.circmover.CircMoverView;
 import com.anwesome.ui.cornercenterball.CornerCenterBallView;
 import com.anwesome.ui.holderview.HolderView;
 import com.anwesome.ui.holdfiller.HoldFillerView;
@@ -171,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCornerCenterBall();
+                showCircMover();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1330,6 +1331,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void showCornerCenterBall() {
         CornerCenterBallView.create(this);
+    }
+
+    public void showCircMover() {
+        CircMoverView.create(this,5);
     }
 }
 
