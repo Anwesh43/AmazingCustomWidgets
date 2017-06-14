@@ -67,7 +67,7 @@ public class CircMoverView extends View {
             canvas.save();
             canvas.translate(0,y);
             canvas.drawLine(0,0,w,0,paint);
-            canvas.drawCircle(x+h/10,0,h/10,paint);
+            canvas.drawCircle(x+h/5,0,h/5,paint);
             canvas.restore();
         }
         public boolean handleTap(float y) {
@@ -77,21 +77,21 @@ public class CircMoverView extends View {
             return dir == 0;
         }
         public void setDir(float dir) {
-            if(y <= x+h/10 && dir == 1) {
+            if(x <= 0 && dir == 1) {
                 this.dir = 1;
             }
-            if(x >= w-h/10 && dir == -1) {
+            if(x >= w-2*h/5 && dir == -1) {
                 this.dir = -1;
             }
         }
         public void update() {
-            x+=(w/5)*dir;
-            if(x > w-h/10) {
-                x = w-h/10;
+            x+=(w/8)*dir;
+            if(x > w-2*h/5) {
+                x = w-2*h/5;
                 dir = 0;
             }
-            if(x < h/10) {
-                x = h/10;
+            if(x < 0) {
+                x = 0;
                 dir = 0;
             }
         }
@@ -158,10 +158,7 @@ public class CircMoverView extends View {
         Point size = DimensionsUtil.getDeviceDimension(activity);
         int w = size.x,h = size.y;
         CircMoverView circMoverView = new CircMoverView(activity,n);
-        circMoverView.setMeasuredDimension(w,(h/15)*((Math.max(n,3)+1)));
-        ScrollView scrollView = new ScrollView(activity);
-        scrollView.addView(circMoverView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        activity.setContentView(scrollView);
+        activity.addContentView(circMoverView,new ViewGroup.LayoutParams(w,(h/10)*(Math.max(n,3)+1)));
 
     }
 }
