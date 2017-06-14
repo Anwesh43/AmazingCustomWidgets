@@ -5,29 +5,36 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by anweshmishra on 14/06/17.
  */
 
 public class CircMoverView extends View {
-    private int n,time = 0,w,h;
+    private int n=3,time = 0,w,h;
+    private ConcurrentLinkedQueue<CircMover> circMovers = new ConcurrentLinkedQueue<>();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     public CircMoverView(Context context,int n) {
         super(context);
-        this.n = n;
+        this.n = Math.max(n,this.n);
     }
     public void onDraw(Canvas canvas) {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            int gap = h/(n+1),y = gap;
+            for(int i=0;i<n;i++) {
+                circMovers.add(new CircMover(y,gap));
+                y+=gap;
+            }
+        }
+        for(CircMover circMover:circMovers) {
+            circMover.draw(canvas);
         }
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
-        }
         return true;
     }
     private class CircMover {
