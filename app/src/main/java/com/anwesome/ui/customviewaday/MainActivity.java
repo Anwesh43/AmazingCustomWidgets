@@ -1334,7 +1334,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showCircMover() {
-        CircMoverView.create(this,5);
+        CircMoverView.create(this, 5, new CircMoverView.OnMovementCompletionListener() {
+            @Override
+            public void onMoveToRight(int index) {
+                Toast.makeText(MainActivity.this, String.format("%d moved to right",index), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onMoveToLeft(int index) {
+                Toast.makeText(MainActivity.this, String.format("%d moved to left",index), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
