@@ -3,6 +3,7 @@ package com.anwesome.ui.circmover;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -13,11 +14,13 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class CircMoverView extends View {
     private int n=3,time = 0,w,h;
+    private GestureDetector gestureDetector;
     private ConcurrentLinkedQueue<CircMover> circMovers = new ConcurrentLinkedQueue<>();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     public CircMoverView(Context context,int n) {
         super(context);
         this.n = Math.max(n,this.n);
+        gestureDetector = new GestureDetector(context,new CustomGestureListener());
     }
     public void onDraw(Canvas canvas) {
         if(time == 0) {
@@ -35,6 +38,9 @@ public class CircMoverView extends View {
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
+        if(gestureDetector != null) {
+            return gestureDetector.onTouchEvent(event);
+        }
         return true;
     }
     private class CircMover {
@@ -55,16 +61,51 @@ public class CircMoverView extends View {
         public boolean handleTap(float y) {
             return y>=this.y-h/2 && y<=this.y+h/2 && dir == 0;
         }
-        public void setDir() {
-            if(y <= x+h/10) {
-                dir = 1;
+        public boolean stopped() {
+            return dir == 0;
+        }
+        public void setDir(float dir) {
+            if(y <= x+h/10 && dir == 1) {
+                this.dir = 1;
             }
-            if(x >= 9*h/10) {
-                dir = -1;
+            if(x >= w-h/10 && dir == -1) {
+                this.dir = -1;
+            }
+        }
+        public void update() {
+            x+=(w/5)*dir;
+            if(x > w-h/10) {
+                x = w-h/10;
+                dir = 0;
+            }
+            if(x < h/10) {
+                x = h/10;
+                dir = 0;
             }
         }
         public int hashCode() {
             return (int)(y+x+dir);
+        }
+    }
+    private class CustomGestureListener extends GestureDetector.SimpleOnGestureListener {
+        public boolean onDown(MotionEvent event) {
+            return true;
+        }
+        public boolean onSingleTapUp(MotionEvent event) {
+            return true;
+        }
+        public boolean onFling(MotionEvent e1,MotionEvent e2,float velx,float vely) {
+            float y = e1.getY();
+            if(Math.abs(velx)>Math.abs(vely) && e1.getX() != e2.getX()) {
+                float dir = (e2.getX()-e1.getX());
+                dir /= Math.abs(dir);
+                for(CircMover circMover:circMovers) {
+                    if(circMover.handleTap(y)) {
+                        circMover.setDir(dir);
+                    }
+                }
+            }
+            return true;
         }
     }
 }
