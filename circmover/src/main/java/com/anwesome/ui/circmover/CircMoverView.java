@@ -30,4 +30,34 @@ public class CircMoverView extends View {
         }
         return true;
     }
+    private class CircMover {
+        private float x,y,h,dir=0;
+        public CircMover(float y,float size) {
+            this.y = y;
+            this.x = 0;
+            this.h = size;
+        }
+        public void draw(Canvas canvas) {
+            paint.setStrokeWidth(h/15);
+            canvas.save();
+            canvas.translate(0,y);
+            canvas.drawLine(0,0,w,0,paint);
+            canvas.drawCircle(x+h/10,0,h/10,paint);
+            canvas.restore();
+        }
+        public boolean handleTap(float y) {
+            return y>=this.y-h/2 && y<=this.y+h/2 && dir == 0;
+        }
+        public void setDir() {
+            if(y <= x+h/10) {
+                dir = 1;
+            }
+            if(x >= 9*h/10) {
+                dir = -1;
+            }
+        }
+        public int hashCode() {
+            return (int)(y+x+dir);
+        }
+    }
 }
