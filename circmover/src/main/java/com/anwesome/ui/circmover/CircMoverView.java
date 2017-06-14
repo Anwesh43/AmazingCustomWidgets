@@ -1,11 +1,18 @@
 package com.anwesome.ui.circmover;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ScrollView;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
+
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -146,5 +153,15 @@ public class CircMoverView extends View {
                 postInvalidate();
             }
         }
+    }
+    public static void create(Activity activity,int n) {
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        int w = size.x,h = size.y;
+        CircMoverView circMoverView = new CircMoverView(activity,n);
+        circMoverView.setMeasuredDimension(w,(h/15)*((Math.max(n,3)+1)));
+        ScrollView scrollView = new ScrollView(activity);
+        scrollView.addView(circMoverView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        activity.setContentView(scrollView);
+
     }
 }
