@@ -25,10 +25,14 @@ public class CircMoverView extends View {
     private ConcurrentLinkedQueue<CircMover> circMovers = new ConcurrentLinkedQueue<>();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private AnimationHandler animationHandler;
+    private OnMovementCompletionListener onMovementCompletionListener;
     public CircMoverView(Context context,int n) {
         super(context);
         this.n = Math.max(n,this.n);
         gestureDetector = new GestureDetector(context,new CustomGestureListener());
+    }
+    public void setOnMovementCompletionListener(OnMovementCompletionListener onMovementCompletionListener) {
+        this.onMovementCompletionListener = onMovementCompletionListener;
     }
     public void onDraw(Canvas canvas) {
         if(time == 0) {
@@ -94,6 +98,15 @@ public class CircMoverView extends View {
                 x = 0;
                 dir = 0;
             }
+            if(onMovementCompletionListener != null && dir == 0) {
+                int index = (int)(y/h);
+                if(x <= 0) {
+                    onMovementCompletionListener.onMoveToLeft(index);
+                }
+                if(x >= w-2*h/5) {
+                    onMovementCompletionListener.onMoveToRight(index);
+                }
+            }
         }
         public int hashCode() {
             return (int)(y+x+dir);
@@ -154,11 +167,16 @@ public class CircMoverView extends View {
             }
         }
     }
-    public static void create(Activity activity,int n) {
+    public static void create(Activity activity,int n,OnMovementCompletionListener onMovementCompletionListener) {
         Point size = DimensionsUtil.getDeviceDimension(activity);
         int w = size.x,h = size.y;
         CircMoverView circMoverView = new CircMoverView(activity,n);
+        circMoverView.setOnMovementCompletionListener(onMovementCompletionListener);
         activity.addContentView(circMoverView,new ViewGroup.LayoutParams(w,(h/10)*(Math.max(n,3)+1)));
 
+    }
+    public interface OnMovementCompletionListener {
+        void onMoveToRight(int index);
+        void onMoveToLeft(int index);
     }
 }
