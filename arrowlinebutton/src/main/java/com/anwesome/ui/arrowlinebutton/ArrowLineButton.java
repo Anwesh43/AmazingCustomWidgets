@@ -14,6 +14,7 @@ import android.view.View;
 public class ArrowLineButton {
     public static class ArrowLineButtonView extends View {
         private int time = 0,w,h;
+        private ArrowLine arrowLine;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         public ArrowLineButtonView(Context context) {
             super(context);
@@ -22,6 +23,7 @@ public class ArrowLineButton {
             if(time == 0) {
                 w = canvas.getWidth();
                 h = canvas.getHeight();
+                arrowLine = new ArrowLine();
             }
             time++;
         }
@@ -30,6 +32,12 @@ public class ArrowLineButton {
 
             }
             return true;
+        }
+        public void update(float factor) {
+            if(arrowLine != null) {
+                arrowLine.update(Math.min(w,h)/3,factor);
+            }
+            postInvalidate();
         }
     }
     public static class ArrowLine {
