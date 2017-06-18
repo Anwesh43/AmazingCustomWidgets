@@ -68,35 +68,37 @@ public class ShareRotButton  {
         private float initDeg = 0,deg = 0;
         public void incrementDeg() {
             this.initDeg += 90;
-            this.initDeg %= 90;
+            this.initDeg %= 360;
         }
         public void draw(Canvas canvas, Paint paint,float x,float y,float size) {
             canvas.save();
             canvas.translate(x,y);
+            canvas.rotate(deg);
             Path path = new Path();
-            path.moveTo(size/3,1);
-            drawArrow(path,size/2,-size/5,size/12);
-            drawArc(path,size/4,-1);
+            path.moveTo(size/2,0);
+            drawArc(path,size/2,2*size/5,1);
+            drawArrow(path,size/2,-size/5,11*size/30,7*size/30);
+            drawArc(path,size/2,size/3,-1);
             paint.setColor(color);
             paint.setStyle(Paint.Style.FILL);
             canvas.drawPath(path,paint);
             canvas.restore();
         }
-        private void drawArrow(Path path,float uy,float mx,float ly) {
+        private void drawArrow(Path path,float uy,float mx,float my,float ly) {
             path.lineTo(0,uy);
-            path.lineTo(mx,0);
+            path.lineTo(mx,my);
             path.lineTo(0,ly);
         }
-        private void drawArc(Path path,float r,int dir) {
-            int a = 0,b = 90;
+        private void drawArc(Path path,float a,float b,int dir) {
+            int s = 0,e = 90;
             if(dir == -1) {
-               a = 90;
-                b = 0;
+                s = 90;
+                e = 0;
             }
-            for(int i=a;;i+=dir) {
-                float x = (float)(r*Math.cos(i*Math.PI/180)),y = (float)(r*Math.sin(i*Math.PI/180));
+            for(int i=s;;i+=dir) {
+                float x = (float)(a*Math.cos(i*Math.PI/180)),y = (float)(b*Math.sin(i*Math.PI/180));
                 path.lineTo(x,y);
-                if(i == b){
+                if(i == e){
                     break;
                 }
             }
