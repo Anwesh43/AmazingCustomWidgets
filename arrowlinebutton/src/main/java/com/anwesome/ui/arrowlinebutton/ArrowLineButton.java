@@ -3,6 +3,7 @@ package com.anwesome.ui.arrowlinebutton;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -31,5 +32,23 @@ public class ArrowLineButton {
             return true;
         }
     }
-    
+    public static class ArrowLine {
+        private float lx = 0;
+        public void draw(Canvas canvas,Paint paint,float x,float y,float size) {
+            for(int i=0;i<4;i++) {
+                canvas.save();
+                canvas.translate(x, y);
+                canvas.rotate(i*90);
+                Path path = new Path();
+                path.moveTo(0,0);
+                path.lineTo(lx,-size/3);
+                path.lineTo(0,-size/3);
+                canvas.drawPath(path,paint);
+                canvas.restore();
+            }
+        }
+        public void update(float maxLx,float factor) {
+            lx = maxLx * factor;
+        }
+    }
 }
