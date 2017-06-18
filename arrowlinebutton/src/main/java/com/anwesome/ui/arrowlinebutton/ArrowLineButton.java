@@ -18,6 +18,7 @@ public class ArrowLineButton {
     public static class ArrowLineButtonView extends View {
         private int time = 0,w,h;
         private ArrowLine arrowLine;
+        private AnimationHandler animationHandler;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         public ArrowLineButtonView(Context context) {
             super(context);
@@ -27,12 +28,14 @@ public class ArrowLineButton {
                 w = canvas.getWidth();
                 h = canvas.getHeight();
                 arrowLine = new ArrowLine();
+                animationHandler = new AnimationHandler(this);
             }
+            arrowLine.draw(canvas,paint,w/2,h/2,Math.min(w,h)/3);
             time++;
         }
         public boolean onTouchEvent(MotionEvent event) {
-            if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+            if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+                animationHandler.start();
             }
             return true;
         }
@@ -62,7 +65,7 @@ public class ArrowLineButton {
             lx = maxLx * factor;
         }
     }
-    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
+    private static class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
         private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1),endAnim = ValueAnimator.ofFloat(1,0);
         private boolean isAnimated = false;
         private int dir = 0;
