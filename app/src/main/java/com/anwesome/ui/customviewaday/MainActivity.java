@@ -1348,7 +1348,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showShareRotButton() {
-        ShareRotButton.create(this);
+        ShareRotButton.create(this, new ShareRotButton.OnClickListener() {
+            @Override
+            public void onClick() {
+                Toast.makeText(MainActivity.this, "Clicked Share Button", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
