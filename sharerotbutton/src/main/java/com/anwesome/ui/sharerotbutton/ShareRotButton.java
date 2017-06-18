@@ -1,5 +1,8 @@
 package com.anwesome.ui.sharerotbutton;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -32,7 +35,7 @@ public class ShareRotButton  {
         }
         public boolean onTouchEvent(MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                
+
             }
             return true;
         }
@@ -87,6 +90,34 @@ public class ShareRotButton  {
         }
         public void update(float factor) {
             deg = initDeg + 90*factor;
+        }
+    }
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener {
+        private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1);
+        private ShareRotButtonView shareRotButtonView;
+        private boolean isAnimated = false;
+        public void onAnimationEnd(Animator animator) {
+            if(isAnimated && shareRotButtonView != null) {
+                shareRotButtonView.doOnAnimEnd();
+                isAnimated = false;
+            }
+        }
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            if(shareRotButtonView != null && isAnimated) {
+                shareRotButtonView.update((float)valueAnimator.getAnimatedValue());
+            }
+        }
+        public AnimationHandler(ShareRotButtonView shareRotButtonView) {
+            this.shareRotButtonView = shareRotButtonView;
+            startAnim.setDuration(500);
+            startAnim.addListener(this);
+            startAnim.addUpdateListener(this);
+        }
+        public void start() {
+            if(!isAnimated) {
+                startAnim.start();
+                isAnimated = true;
+            }
         }
     }
 }
