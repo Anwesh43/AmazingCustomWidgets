@@ -1,5 +1,8 @@
 package com.anwesome.ui.arrowlinebutton;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -57,6 +60,43 @@ public class ArrowLineButton {
         }
         public void update(float maxLx,float factor) {
             lx = maxLx * factor;
+        }
+    }
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
+        private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1),endAnim = ValueAnimator.ofFloat(1,0);
+        private boolean isAnimated = false;
+        private int dir = 0;
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            if(isAnimated) {
+                view.update((float)valueAnimator.getAnimatedValue());
+            }
+        }
+        public void onAnimationEnd(Animator animator) {
+            if(isAnimated) {
+                dir = dir == 0?1:0;
+                isAnimated = false;
+            }
+        }
+        public void start() {
+            if(!isAnimated) {
+                if(dir == 0) {
+                    startAnim.start();
+                }
+                else {
+                    endAnim.start();
+                }
+                isAnimated = true;
+            }
+        }
+        private ArrowLineButtonView view;
+        public AnimationHandler(ArrowLineButtonView arrowLineButtonView) {
+            this.view = arrowLineButtonView;
+            startAnim.addListener(this);
+            endAnim.addListener(this);
+            startAnim.addUpdateListener(this);
+            endAnim.addUpdateListener(this);
+            startAnim.setDuration(500);
+            endAnim.setDuration(500);
         }
     }
 }
