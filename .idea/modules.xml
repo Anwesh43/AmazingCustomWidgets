@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/androidbuttonloader/androidbuttonloader.iml" filepath="$PROJECT_DIR$/androidbuttonloader/androidbuttonloader.iml" />
       <module fileurl="file://$PROJECT_DIR$/animationqueue/animationqueue.iml" filepath="$PROJECT_DIR$/animationqueue/animationqueue.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/arrowlinebutton/arrowlinebutton.iml" filepath="$PROJECT_DIR$/arrowlinebutton/arrowlinebutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/bargraphbutton/bargraphbutton.iml" filepath="$PROJECT_DIR$/bargraphbutton/bargraphbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/basicswitch/basicswitch.iml" filepath="$PROJECT_DIR$/basicswitch/basicswitch.iml" />
       <module fileurl="file://$PROJECT_DIR$/beanbutton/beanbutton.iml" filepath="$PROJECT_DIR$/beanbutton/beanbutton.iml" />
