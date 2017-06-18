@@ -3,21 +3,32 @@ package com.anwesome.ui.sharerotbutton;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 18/06/17.
  */
 
 public class ShareRotButton  {
-    private int color = Color.parseColor("#00838F");
-    private class ShareRotButtonView extends View {
+    private static int color = Color.parseColor("#00838F");
+    public static void create(Activity activity) {
+        ShareRotButtonView shareRotButtonView = new ShareRotButtonView(activity);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        int w = size.x;
+        activity.addContentView(shareRotButtonView,new ViewGroup.LayoutParams(w,w));
+    }
+    private static class ShareRotButtonView extends View {
         private ShareRotShape shareRotShape;
         private AnimationHandler animationHandler;
         private int time = 0,w,h;
@@ -53,7 +64,7 @@ public class ShareRotButton  {
             }
         }
     }
-    private class ShareRotShape {
+    private static class ShareRotShape {
         private float initDeg = 0,deg = 0;
         public void incrementDeg() {
             this.initDeg += 90;
@@ -94,7 +105,7 @@ public class ShareRotButton  {
             deg = initDeg + 90*factor;
         }
     }
-    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener {
+    private static class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener {
         private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1);
         private ShareRotButtonView shareRotButtonView;
         private boolean isAnimated = false;
