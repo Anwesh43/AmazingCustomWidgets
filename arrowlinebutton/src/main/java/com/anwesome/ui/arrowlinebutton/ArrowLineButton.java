@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
@@ -25,6 +26,7 @@ public class ArrowLineButton {
         private ArrowLine arrowLine;
         private AnimationHandler animationHandler;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        private int color = Color.parseColor("#FF5722");
         public ArrowLineButtonView(Context context) {
             super(context);
         }
@@ -35,6 +37,7 @@ public class ArrowLineButton {
                 arrowLine = new ArrowLine();
                 animationHandler = new AnimationHandler(this);
             }
+            paint.setColor(color);
             arrowLine.draw(canvas,paint,w/2,h/2,Math.min(w,h)/3);
             time++;
         }
