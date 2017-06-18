@@ -19,6 +19,7 @@ public class ShareRotButton  {
     private int color = Color.parseColor("#00838F");
     private class ShareRotButtonView extends View {
         private ShareRotShape shareRotShape;
+        private AnimationHandler animationHandler;
         private int time = 0,w,h;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         public ShareRotButtonView(Context context) {
@@ -29,13 +30,14 @@ public class ShareRotButton  {
                 w = canvas.getWidth();
                 h = canvas.getHeight();
                 shareRotShape = new ShareRotShape();
+                animationHandler = new AnimationHandler(this);
             }
             shareRotShape.draw(canvas,paint,w/2,h/2,2*w/5);
             time++;
         }
         public boolean onTouchEvent(MotionEvent event) {
-            if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+            if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler!=null) {
+                animationHandler.start();
             }
             return true;
         }
