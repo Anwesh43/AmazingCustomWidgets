@@ -22,8 +22,9 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 public class ShareRotButton  {
     private static int color = Color.parseColor("#00838F");
-    public static void create(Activity activity) {
+    public static void create(Activity activity,OnClickListener onClickListener) {
         ShareRotButtonView shareRotButtonView = new ShareRotButtonView(activity);
+        shareRotButtonView.setOnClickListener(onClickListener);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         int w = size.x;
         activity.addContentView(shareRotButtonView,new ViewGroup.LayoutParams(w,w));
@@ -33,6 +34,10 @@ public class ShareRotButton  {
         private AnimationHandler animationHandler;
         private int time = 0,w,h;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        private ShareRotButton.OnClickListener onClickListener;
+        public void setOnClickListener(ShareRotButton.OnClickListener onClickListener) {
+            this.onClickListener = onClickListener;
+        }
         public ShareRotButtonView(Context context) {
             super(context);
         }
@@ -115,6 +120,9 @@ public class ShareRotButton  {
             if(isAnimated && shareRotButtonView != null) {
                 shareRotButtonView.doOnAnimEnd();
                 isAnimated = false;
+                if(shareRotButtonView.onClickListener!=null) {
+                    shareRotButtonView.onClickListener.onClick();
+                }
             }
         }
         public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -134,5 +142,8 @@ public class ShareRotButton  {
                 isAnimated = true;
             }
         }
+    }
+    public static interface OnClickListener {
+        void onClick();
     }
 }
