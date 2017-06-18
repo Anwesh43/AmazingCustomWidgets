@@ -3,19 +3,24 @@ package com.anwesome.ui.arrowlinebutton;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 19/06/17.
  */
 
 public class ArrowLineButton {
-    public static class ArrowLineButtonView extends View {
+    private static class ArrowLineButtonView extends View {
         private int time = 0,w,h;
         private ArrowLine arrowLine;
         private AnimationHandler animationHandler;
@@ -46,7 +51,7 @@ public class ArrowLineButton {
             postInvalidate();
         }
     }
-    public static class ArrowLine {
+    private static class ArrowLine {
         private float lx = 0;
         public void draw(Canvas canvas,Paint paint,float x,float y,float size) {
             for(int i=0;i<4;i++) {
@@ -101,5 +106,11 @@ public class ArrowLineButton {
             startAnim.setDuration(500);
             endAnim.setDuration(500);
         }
+    }
+    public static void create(Activity activity) {
+        ArrowLineButtonView arrowLineButtonView = new ArrowLineButtonView(activity);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        int w = size.x;
+        activity.addContentView(arrowLineButtonView,new ViewGroup.LayoutParams(w,w));
     }
 }
