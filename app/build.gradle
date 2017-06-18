@@ -115,4 +115,5 @@ dependencies {
     compile project(':plusbuttonrect')
     compile project(':cornercenterball')
     compile project(':circmover')
+    compile project(':sharerotbutton')
 }

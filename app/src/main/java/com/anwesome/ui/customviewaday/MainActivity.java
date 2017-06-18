@@ -105,6 +105,7 @@ import com.anwesome.ui.plusbuttonrect.PlusButtonRectView;
 import com.anwesome.ui.plusminuslineview.PlusMinusLineView;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 import com.anwesome.ui.rectbutton.RectButtonView;
+import com.anwesome.ui.sharerotbutton.ShareRotButton;
 //import com.anwesome.ui.progressbutton.OnClickListener;
 //import com.anwesome.ui.progressbutton.ProgressButtonView;
 //import com.anwesome.ui.tvbutton.TVButtonList;
@@ -172,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCircMover();
+                showShareRotButton();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1345,6 +1346,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, String.format("%d moved to left",index), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showShareRotButton() {
+        ShareRotButton.create(this);
     }
 }
 
