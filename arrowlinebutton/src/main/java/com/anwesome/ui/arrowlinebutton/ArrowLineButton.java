@@ -38,7 +38,7 @@ public class ArrowLineButton {
                 animationHandler = new AnimationHandler(this);
             }
             paint.setColor(color);
-            arrowLine.draw(canvas,paint,w/2,h/2,Math.min(w,h)/3);
+            arrowLine.draw(canvas,paint,w/2,h/2,Math.min(w,h));
             time++;
         }
         public boolean onTouchEvent(MotionEvent event) {
@@ -65,6 +65,10 @@ public class ArrowLineButton {
                 path.moveTo(0,0);
                 path.lineTo(lx,-size/3);
                 path.lineTo(0,-size/3);
+                paint.setStrokeWidth(size/30);
+                paint.setStyle(Paint.Style.STROKE);
+                canvas.drawPath(path,paint);
+                paint.setStyle(Paint.Style.FILL);
                 canvas.drawPath(path,paint);
                 canvas.restore();
             }
