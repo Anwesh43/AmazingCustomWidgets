@@ -15,20 +15,37 @@ import android.view.View;
 public class ShareRotButton  {
     private int color = Color.parseColor("#00838F");
     private class ShareRotButtonView extends View {
+        private ShareRotShape shareRotShape;
+        private int time = 0,w,h;
+        private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         public ShareRotButtonView(Context context) {
             super(context);
         }
         public void onDraw(Canvas canvas) {
-
+            if(time == 0) {
+                w = canvas.getWidth();
+                h = canvas.getHeight();
+                shareRotShape = new ShareRotShape();
+            }
+            shareRotShape.draw(canvas,paint,w/2,h/2,2*w/5);
+            time++;
         }
         public boolean onTouchEvent(MotionEvent event) {
             if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+                
             }
             return true;
         }
         public void update(float factor) {
+            if(shareRotShape != null) {
+                shareRotShape.update(factor);
+            }
             postInvalidate();
+        }
+        public void doOnAnimEnd() {
+            if(shareRotShape != null) {
+                shareRotShape.incrementDeg();
+            }
         }
     }
     private class ShareRotShape {
