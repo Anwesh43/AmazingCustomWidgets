@@ -1357,7 +1357,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showArrowLineButton() {
-        ArrowLineButton.create(this);
+        ArrowLineButton.create(this, new ArrowLineButton.OnOpenCloseListener() {
+            @Override
+            public void onOpen() {
+                Toast.makeText(MainActivity.this, "Opened", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onClose() {
+                Toast.makeText(MainActivity.this, "Closed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
