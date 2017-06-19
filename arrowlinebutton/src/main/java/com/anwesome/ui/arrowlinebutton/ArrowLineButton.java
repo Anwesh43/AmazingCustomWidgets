@@ -30,6 +30,10 @@ public class ArrowLineButton {
         public ArrowLineButtonView(Context context) {
             super(context);
         }
+        private OnOpenCloseListener onOpenCloseListener;
+        public void setOnOpenCloseListener(OnOpenCloseListener onOpenCloseListener) {
+            this.onOpenCloseListener = onOpenCloseListener;
+        }
         public void onDraw(Canvas canvas) {
             if(time == 0) {
                 w = canvas.getWidth();
@@ -88,6 +92,15 @@ public class ArrowLineButton {
         }
         public void onAnimationEnd(Animator animator) {
             if(isAnimated) {
+                if(view!=null && view.onOpenCloseListener != null) {
+                    if(dir == 0) {
+                        view.onOpenCloseListener.onOpen();
+                    }
+                    else {
+                        view.onOpenCloseListener.onClose();
+                    }
+                }
+
                 dir = dir == 0?1:0;
                 isAnimated = false;
             }
@@ -114,10 +127,15 @@ public class ArrowLineButton {
             endAnim.setDuration(500);
         }
     }
-    public static void create(Activity activity) {
+    public static void create(Activity activity,OnOpenCloseListener onOpenCloseListener) {
         ArrowLineButtonView arrowLineButtonView = new ArrowLineButtonView(activity);
+        arrowLineButtonView.setOnOpenCloseListener(onOpenCloseListener);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         int w = size.x;
         activity.addContentView(arrowLineButtonView,new ViewGroup.LayoutParams(w,w));
+    }
+    public interface OnOpenCloseListener {
+        void onOpen();
+        void onClose();
     }
 }
