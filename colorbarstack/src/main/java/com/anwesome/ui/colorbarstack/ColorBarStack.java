@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,10 +42,14 @@ public class ColorBarStack {
                 bitmap = Bitmap.createScaledBitmap(bitmap,w/2,w/2,true);
                 colorBarStackContainer = new ColorBarStackContainer(this,colors,w/2,w/2);
             }
+            paint.setColor(Color.BLACK);
             canvas.drawBitmap(bitmap,w/4,h/2-w/4,paint);
+            canvas.save();
+            canvas.translate(w/4,w/4);
             if(colorBarStackContainer != null) {
                 colorBarStackContainer.draw(canvas,paint);
             }
+            canvas.restore();
             time++;
         }
         public boolean onTouchEvent(MotionEvent event) {
@@ -59,7 +64,7 @@ public class ColorBarStack {
     }
     private static class ColorBar {
         private int color;
-        private float dir = 0,wBar = 0,y,w,h;
+        private float wBar = 0,y,w,h;
         public ColorBar(int color,float y,float w,float h) {
             this.color = color;
             this.y = y;
@@ -67,7 +72,6 @@ public class ColorBarStack {
             this.h = h;
         }
         public void draw(Canvas canvas,Paint paint) {
-            paint.setColor(Color.BLACK);
             canvas.save();
             canvas.translate(0,y);
             int r = Color.red(color),g = Color.green(color),b = Color.blue(color);
@@ -76,7 +80,8 @@ public class ColorBarStack {
             canvas.restore();
         }
         public void update(float factor) {
-            wBar = w/2*factor;
+            wBar = w*factor;
+            Log.d("wBar",""+wBar);
         }
         public int hashCode() {
             return (int)(y+wBar)+color;
@@ -85,7 +90,7 @@ public class ColorBarStack {
     private static class ColorBarStackContainer {
         private ColorBarStackView view;
         private AnimationHandler animationHandler;
-        private float dir = 0;
+        private float dir = 1;
         private int index = 0;
         private ConcurrentLinkedQueue<ColorBar> colorBars = new ConcurrentLinkedQueue<>();
         public ColorBarStackContainer(ColorBarStackView view,int colors[],float w,float h) {
@@ -99,16 +104,12 @@ public class ColorBarStack {
             float yGap = h/colors.length,y = h-yGap;
             for(int color:colors) {
                 colorBars.add(new ColorBar(color,y,w,yGap));
+                y -= yGap;
             }
         }
         public void draw(Canvas canvas,Paint paint) {
-            int i=0;
             for(ColorBar colorBar:colorBars) {
                 colorBar.draw(canvas,paint);
-                i++;
-                if(i == index) {
-                    break;
-                }
             }
         }
         public void update(float factor) {
@@ -120,6 +121,12 @@ public class ColorBarStack {
                     break;
                 }
                 i++;
+            }
+            if(currBar != null) {
+                currBar.update(factor);
+            }
+            if(view != null) {
+                view.update(factor);
             }
         }
         public void adjustParametersOnAnimEnd() {
@@ -154,7 +161,7 @@ public class ColorBarStack {
         public void onAnimationEnd(Animator animator) {
             if(colorBarStackContainer != null && isAnimated) {
                 colorBarStackContainer.adjustParametersOnAnimEnd();
-                isAnimated = true;
+                isAnimated = false;
             }
         }
         public void open() {
