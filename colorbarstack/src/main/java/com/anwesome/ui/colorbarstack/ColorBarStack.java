@@ -141,22 +141,24 @@ public class ColorBarStack {
                     color = colorBar.color;
                     break;
                 }
+                i++;
             }
             return color;
         }
         public void adjustParametersOnAnimEnd() {
-            index+=dir;
             if(view.onOpenCloseColorListener != null) {
                 if(dir == 1) {
                     view.onOpenCloseColorListener.onOpen(index,getCurrColor());
                 }
                 else {
+                    Log.d("index",""+index);
                     view.onOpenCloseColorListener.onClose(index,getCurrColor());
                 }
             }
+            index+=dir;
             if(index == colorBars.size()) {
                 dir = -1;
-                index += dir;
+                index = colorBars.size()-1;
             }
             if(index < 0) {
                 index = 0;
