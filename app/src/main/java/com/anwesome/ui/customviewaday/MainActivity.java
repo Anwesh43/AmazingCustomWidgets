@@ -99,6 +99,7 @@ import android.widget.Toast;
 //import com.anwesome.ui.lineanddot.LineAndDotView;
 import com.anwesome.ui.arrowlinebutton.ArrowLineButton;
 import com.anwesome.ui.circmover.CircMoverView;
+import com.anwesome.ui.colorbarstack.ColorBarStack;
 import com.anwesome.ui.cornercenterball.CornerCenterBallView;
 import com.anwesome.ui.holderview.HolderView;
 import com.anwesome.ui.holdfiller.HoldFillerView;
@@ -174,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showArrowLineButton();
+                showColorBarStack();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1368,6 +1369,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Closed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showColorBarStack() {
+        int[] colors = {Color.parseColor("#f44336"),Color.parseColor("#26A69A"),Color.parseColor("#1E88E5"),Color.parseColor("#C2185B")};
+        ColorBarStack.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.penguin),colors);
     }
 }
 
