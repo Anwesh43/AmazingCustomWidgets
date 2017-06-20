@@ -1,5 +1,8 @@
 package com.anwesome.ui.colorbarstack;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -123,6 +126,43 @@ public class ColorBarStack {
             else {
 
             }
+        }
+    }
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
+        private ValueAnimator openAnim = ValueAnimator.ofFloat(0,1),closeAnim = ValueAnimator.ofFloat(1,0);
+        private boolean isAnimated = false;
+        private ColorBarStackContainer colorBarStackContainer;
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            if (colorBarStackContainer != null && isAnimated) {
+                colorBarStackContainer.update((float)valueAnimator.getAnimatedValue());
+            }
+        }
+        public void onAnimationEnd(Animator animator) {
+            if(colorBarStackContainer != null && isAnimated) {
+                colorBarStackContainer.adjustParametersOnAnimEnd();
+                isAnimated = true;
+            }
+        }
+        public void open() {
+            if(!isAnimated) {
+                openAnim.start();
+                isAnimated = true;
+            }
+        }
+        public void close() {
+            if(!isAnimated) {
+                closeAnim.start();
+                isAnimated = true;
+            }
+        }
+        public AnimationHandler(ColorBarStackContainer colorBarStackContainer) {
+            openAnim.setDuration(500);
+            closeAnim.setDuration(500);
+            openAnim.addListener(this);
+            closeAnim.addListener(this);
+            openAnim.addUpdateListener(this);
+            closeAnim.addUpdateListener(this);
+            this.colorBarStackContainer = colorBarStackContainer;
         }
     }
 }
