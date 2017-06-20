@@ -9,8 +9,12 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -19,7 +23,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 
 public class ColorBarStack {
-    public class ColorBarStackView extends View {
+    public static class ColorBarStackView extends View {
         private ColorBarStackContainer colorBarStackContainer;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         private int w,h,time=0;
@@ -53,7 +57,7 @@ public class ColorBarStack {
             postInvalidate();
         }
     }
-    private class ColorBar {
+    private static class ColorBar {
         private int color;
         private float dir = 0,wBar = 0,y,w,h;
         public ColorBar(int color,float y,float w,float h) {
@@ -78,7 +82,7 @@ public class ColorBarStack {
             return (int)(y+wBar)+color;
         }
     }
-    private class ColorBarStackContainer {
+    private static class ColorBarStackContainer {
         private ColorBarStackView view;
         private AnimationHandler animationHandler;
         private float dir = 0;
@@ -138,7 +142,7 @@ public class ColorBarStack {
             }
         }
     }
-    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
+    private static class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
         private ValueAnimator openAnim = ValueAnimator.ofFloat(0,1),closeAnim = ValueAnimator.ofFloat(1,0);
         private boolean isAnimated = false;
         private ColorBarStackContainer colorBarStackContainer;
@@ -174,5 +178,10 @@ public class ColorBarStack {
             closeAnim.addUpdateListener(this);
             this.colorBarStackContainer = colorBarStackContainer;
         }
+    }
+    public static void create(Activity activity,Bitmap bitmap,int colors[]) {
+        ColorBarStackView colorBarStackView = new ColorBarStackView(activity,bitmap,colors);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        activity.addContentView(colorBarStackView,new ViewGroup.LayoutParams(size.x,size.x));
     }
 }
