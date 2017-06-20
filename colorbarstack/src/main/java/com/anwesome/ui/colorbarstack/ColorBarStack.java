@@ -20,25 +20,32 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class ColorBarStack {
     public class ColorBarStackView extends View {
+        private ColorBarStackContainer colorBarStackContainer;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         private int w,h,time=0;
         private Bitmap bitmap;
+        private int colors[];
         public ColorBarStackView(Context context,Bitmap bitmap,int[] colors) {
             super(context);
             this.bitmap = bitmap;
+            this.colors = colors;
         }
         public void onDraw(Canvas canvas) {
             if(time == 0) {
                 w = canvas.getWidth();
                 h = canvas.getHeight();
                 bitmap = Bitmap.createScaledBitmap(bitmap,w/2,w/2,true);
+                colorBarStackContainer = new ColorBarStackContainer(this,colors,w/2,w/2);
             }
             canvas.drawBitmap(bitmap,w/4,h/2-w/4,paint);
+            if(colorBarStackContainer != null) {
+                colorBarStackContainer.draw(canvas,paint);
+            }
             time++;
         }
         public boolean onTouchEvent(MotionEvent event) {
-            if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+            if(event.getAction() == MotionEvent.ACTION_DOWN && colorBarStackContainer != null) {
+                colorBarStackContainer.handleTap();
             }
             return true;
         }
@@ -56,6 +63,7 @@ public class ColorBarStack {
             this.h = h;
         }
         public void draw(Canvas canvas,Paint paint) {
+            paint.setColor(Color.BLACK);
             canvas.save();
             canvas.translate(0,y);
             int r = Color.red(color),g = Color.green(color),b = Color.blue(color);
@@ -72,6 +80,7 @@ public class ColorBarStack {
     }
     private class ColorBarStackContainer {
         private ColorBarStackView view;
+        private AnimationHandler animationHandler;
         private float dir = 0;
         private int index = 0;
         private ConcurrentLinkedQueue<ColorBar> colorBars = new ConcurrentLinkedQueue<>();
@@ -80,6 +89,7 @@ public class ColorBarStack {
             if(colors.length > 0) {
                 initColorBars(colors,w,h);
             }
+            animationHandler = new AnimationHandler(this);
         }
         private void initColorBars(int colors[],float w,float h) {
             float yGap = h/colors.length,y = h-yGap;
@@ -119,12 +129,12 @@ public class ColorBarStack {
                 dir = 1;
             }
         }
-        public void start() {
+        public void handleTap() {
             if(dir == 1){
-
+                animationHandler.open();
             }
             else {
-
+                animationHandler.close();
             }
         }
     }
