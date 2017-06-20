@@ -1372,7 +1372,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showColorBarStack() {
         int[] colors = {Color.parseColor("#f44336"),Color.parseColor("#26A69A"),Color.parseColor("#1E88E5"),Color.parseColor("#C2185B")};
-        ColorBarStack.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.penguin),colors);
+        ColorBarStack.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.penguin), colors, new ColorBarStack.OnOpenCloseColorListener() {
+            @Override
+            public void onOpen(int index, int color) {
+                Toast.makeText(MainActivity.this, String.format("Opened %d color",index), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onClose(int index, int color) {
+                Toast.makeText(MainActivity.this, String.format("Closed %d color",index), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
