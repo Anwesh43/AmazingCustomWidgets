@@ -3,6 +3,7 @@ package com.anwesome.ui.colorbarstack;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
@@ -37,6 +38,27 @@ public class ColorBarStack {
         }
         public void update(float factor) {
             postInvalidate();
+        }
+    }
+    private class ColorBar {
+        private int color;
+        private float dir = 0,wBar = 0,y,w,h;
+        public ColorBar(int color,float y,float w,float h) {
+            this.color = color;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+        }
+        public void draw(Canvas canvas,Paint paint) {
+            canvas.save();
+            canvas.translate(0,y);
+            int r = Color.red(color),g = Color.green(color),b = Color.blue(color);
+            paint.setColor(Color.argb(150,r,g,b));
+            canvas.drawRect(0,0,wBar,h,paint);
+            canvas.restore();
+        }
+        public void update(float factor) {
+            wBar = w/2*factor;
         }
     }
 }
