@@ -30,6 +30,10 @@ public class ColorBarStack {
         private int w,h,time=0;
         private Bitmap bitmap;
         private int colors[];
+        private OnOpenCloseColorListener onOpenCloseColorListener;
+        public void setOnOpenCloseColorListener(OnOpenCloseColorListener onOpenCloseColorListener) {
+            this.onOpenCloseColorListener = onOpenCloseColorListener;
+        }
         public ColorBarStackView(Context context,Bitmap bitmap,int[] colors) {
             super(context);
             this.bitmap = bitmap;
@@ -129,8 +133,27 @@ public class ColorBarStack {
                 view.update(factor);
             }
         }
+        private int getCurrColor() {
+            int i = 0;
+            int color = 0;
+            for(ColorBar colorBar:colorBars) {
+                if(i == index) {
+                    color = colorBar.color;
+                    break;
+                }
+            }
+            return color;
+        }
         public void adjustParametersOnAnimEnd() {
             index+=dir;
+            if(view.onOpenCloseColorListener != null) {
+                if(dir == 1) {
+                    view.onOpenCloseColorListener.onOpen(index,getCurrColor());
+                }
+                else {
+                    view.onOpenCloseColorListener.onClose(index,getCurrColor());
+                }
+            }
             if(index == colorBars.size()) {
                 dir = -1;
                 index += dir;
@@ -186,9 +209,14 @@ public class ColorBarStack {
             this.colorBarStackContainer = colorBarStackContainer;
         }
     }
-    public static void create(Activity activity,Bitmap bitmap,int colors[]) {
+    public static void create(Activity activity,Bitmap bitmap,int colors[],OnOpenCloseColorListener onOpenCloseColorListener) {
         ColorBarStackView colorBarStackView = new ColorBarStackView(activity,bitmap,colors);
         Point size = DimensionsUtil.getDeviceDimension(activity);
+        colorBarStackView.setOnOpenCloseColorListener(onOpenCloseColorListener);
         activity.addContentView(colorBarStackView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    public interface OnOpenCloseColorListener {
+        void onOpen(int index,int color);
+        void onClose(int index,int color);
     }
 }
