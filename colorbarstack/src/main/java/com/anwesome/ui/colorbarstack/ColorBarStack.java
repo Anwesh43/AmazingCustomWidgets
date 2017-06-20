@@ -1,5 +1,6 @@
 package com.anwesome.ui.colorbarstack;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -7,6 +8,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by anweshmishra on 20/06/17.
@@ -59,6 +62,67 @@ public class ColorBarStack {
         }
         public void update(float factor) {
             wBar = w/2*factor;
+        }
+        public int hashCode() {
+            return (int)(y+wBar)+color;
+        }
+    }
+    private class ColorBarStackContainer {
+        private ColorBarStackView view;
+        private float dir = 0;
+        private int index = 0;
+        private ConcurrentLinkedQueue<ColorBar> colorBars = new ConcurrentLinkedQueue<>();
+        public ColorBarStackContainer(ColorBarStackView view,int colors[],float w,float h) {
+            this.view = view;
+            if(colors.length > 0) {
+                initColorBars(colors,w,h);
+            }
+        }
+        private void initColorBars(int colors[],float w,float h) {
+            float yGap = h/colors.length,y = h-yGap;
+            for(int color:colors) {
+                colorBars.add(new ColorBar(color,y,w,yGap));
+            }
+        }
+        public void draw(Canvas canvas,Paint paint) {
+            int i=0;
+            for(ColorBar colorBar:colorBars) {
+                colorBar.draw(canvas,paint);
+                i++;
+                if(i == index) {
+                    break;
+                }
+            }
+        }
+        public void update(float factor) {
+            int i = 0;
+            ColorBar currBar = null;
+            for(ColorBar colorBar:colorBars) {
+                if(i == index) {
+                    currBar = colorBar;
+                    break;
+                }
+                i++;
+            }
+        }
+        public void adjustParametersOnAnimEnd() {
+            index+=dir;
+            if(index == colorBars.size()) {
+                dir = -1;
+                index += dir;
+            }
+            if(index < 0) {
+                index = 0;
+                dir = 1;
+            }
+        }
+        public void start() {
+            if(dir == 1){
+
+            }
+            else {
+
+            }
         }
     }
 }
