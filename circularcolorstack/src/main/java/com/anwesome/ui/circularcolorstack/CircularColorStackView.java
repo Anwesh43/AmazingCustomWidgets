@@ -1,5 +1,8 @@
 package com.anwesome.ui.circularcolorstack;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -17,6 +20,8 @@ public class CircularColorStackView extends View {
     private int time = 0,w,h;
     private int colors[];
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private ColorStackContainer colorStackContainer;
+    private AnimationHandler animationHandler;
     public CircularColorStackView(Context context,int colors[]) {
         super(context);
         this.colors = colors;
@@ -25,12 +30,20 @@ public class CircularColorStackView extends View {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            animationHandler = new AnimationHandler();
+            colorStackContainer = new ColorStackContainer(colors);
         }
+
         time++;
     }
+    public void handleAnimationEnd() {
+        if(colorStackContainer != null) {
+            colorStackContainer.startUpdating();
+        }
+    }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && colorStackContainer != null) {
+            colorStackContainer.startUpdating();
         }
         return true;
     }
@@ -72,6 +85,11 @@ public class CircularColorStackView extends View {
                 }
             }
         }
+        public void draw(Canvas canvas) {
+            for(ColorPie colorPie:colorPies) {
+                colorPie.draw(canvas);
+            }
+        }
         public void adjustParametersOnStop() {
             index+=dir;
             if(index < 0) {
@@ -84,14 +102,14 @@ public class CircularColorStackView extends View {
             }
         }
         public void startUpdating() {
-            if(dir == 1) {
-
-            }
-            else {
-
-            }
+            if(animationHandler != null) {
+                if (dir == 1) {
+                    animationHandler.open();
+                } else {
+                    animationHandler.close();
+                }
+            }}
         }
-    }
     private class ColorPie {
         private float deg = 0,maxDeg = 0,rot;
         private int color;
@@ -113,6 +131,37 @@ public class CircularColorStackView extends View {
         }
         public int hashCode() {
             return (int)(deg+rot)+color;
+        }
+    }
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener {
+        private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1),endAnim = ValueAnimator.ofFloat(1,0);
+        private boolean isAnimating = false;
+        public AnimationHandler() {
+            startAnim.setDuration(500);
+            endAnim.setDuration(500);
+            startAnim.addUpdateListener(this);
+            endAnim.addUpdateListener(this);
+            startAnim.addListener(this);
+            endAnim.addListener(this);
+        }
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            float factor = (float)valueAnimator.getAnimatedValue();
+            update(factor);
+        }
+        public void onAnimationEnd(Animator animator) {
+            handleAnimationEnd();
+        }
+        public void open() {
+            if(!isAnimating) {
+                startAnim.start();
+                isAnimating = true;
+            }
+        }
+        public void close() {
+            if(!isAnimating) {
+                endAnim.start();
+                isAnimating = true;
+            }
         }
     }
 }
