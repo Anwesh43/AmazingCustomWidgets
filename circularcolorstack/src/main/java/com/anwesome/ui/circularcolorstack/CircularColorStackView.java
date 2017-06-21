@@ -7,6 +7,8 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by anweshmishra on 21/06/17.
  */
@@ -37,17 +39,56 @@ public class CircularColorStackView extends View {
     }
     private class ColorStackContainer {
         private int index = 0,dir = 1;
+        private ConcurrentLinkedQueue<ColorPie> colorPies = new ConcurrentLinkedQueue<>();
         public ColorStackContainer(int colors[]) {
-
+            initColorPies(colors);
         }
-        public void startUpdating() {
-
+        public void initColorPies(int[] colors) {
+            if(colors.length > 0) {
+                int gapDeg = 360/colors.length,deg = 0;
+                for(int color:colors) {
+                    colorPies.add(new ColorPie(color,gapDeg,deg));
+                    deg+=gapDeg;
+                }
+            }
+        }
+        private ColorPie getColorPie() {
+            ColorPie currPie = null;
+            int i = 0;
+            for(ColorPie colorPie:colorPies) {
+                if(i == index) {
+                    currPie = colorPie;
+                    break;
+                }
+                i++;
+            }
+            return currPie;
+        }
+        public void update(float factor) {
+            if(index < colorPies.size()) {
+                ColorPie currPie = getColorPie();
+                if(currPie != null) {
+                    currPie.update(factor);
+                }
+            }
         }
         public void adjustParametersOnStop() {
             index+=dir;
             if(index < 0) {
                 index = 0;
+                dir = 1;
+            }
+            if(index == colorPies.size()) {
+                index = colorPies.size()-1;
                 dir = -1;
+            }
+        }
+        public void startUpdating() {
+            if(dir == 1) {
+
+            }
+            else {
+
             }
         }
     }
