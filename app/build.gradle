@@ -118,4 +118,5 @@ dependencies {
     compile project(':sharerotbutton')
     compile project(':arrowlinebutton')
     compile project(':colorbarstack')
+    compile project(':circularcolorstack')
 }
