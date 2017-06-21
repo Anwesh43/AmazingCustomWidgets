@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -19,12 +20,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class CircularColorStackView extends View {
     private int time = 0,w,h;
     private int colors[];
+    private Bitmap bitmap;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private ColorStackContainer colorStackContainer;
     private AnimationHandler animationHandler;
-    public CircularColorStackView(Context context,int colors[]) {
+    public CircularColorStackView(Context context,Bitmap bitmap,int colors[]) {
         super(context);
         this.colors = colors;
+        this.bitmap = bitmap;
     }
     public void onDraw(Canvas canvas) {
         if(time == 0) {
@@ -32,8 +35,12 @@ public class CircularColorStackView extends View {
             h = canvas.getHeight();
             animationHandler = new AnimationHandler();
             colorStackContainer = new ColorStackContainer(colors);
+            bitmap = Bitmap.createScaledBitmap(bitmap,2*w/3,2*w/3,true);
         }
-
+        canvas.drawBitmap(bitmap,w/2-bitmap.getWidth()/2,h/2-bitmap.getHeight()/2,paint);
+        if(colorStackContainer != null) {
+            colorStackContainer.draw(canvas);
+        }
         time++;
     }
     public void handleAnimationEnd() {
@@ -48,6 +55,9 @@ public class CircularColorStackView extends View {
         return true;
     }
     public void update(float factor) {
+        if(colorStackContainer != null) {
+            colorStackContainer.update(factor);
+        }
         postInvalidate();
     }
     private class ColorStackContainer {
@@ -163,5 +173,8 @@ public class CircularColorStackView extends View {
                 isAnimating = true;
             }
         }
+    }
+    public static void create(Context context,Bitmap bitmap,int colors[]) {
+        CircularColorStackView view = new CircularColorStackView(context,bitmap,colors);
     }
 }
