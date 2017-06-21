@@ -3,13 +3,18 @@ package com.anwesome.ui.circularcolorstack;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -174,7 +179,9 @@ public class CircularColorStackView extends View {
             }
         }
     }
-    public static void create(Context context,Bitmap bitmap,int colors[]) {
-        CircularColorStackView view = new CircularColorStackView(context,bitmap,colors);
+    public static void create(Activity activity, Bitmap bitmap, int colors[]) {
+        CircularColorStackView view = new CircularColorStackView(activity,bitmap,colors);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        activity.addContentView(view,new ViewGroup.LayoutParams(size.x,size.x));
     }
 }
