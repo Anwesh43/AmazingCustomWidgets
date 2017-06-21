@@ -52,7 +52,7 @@ public class CircularColorStackView extends View {
     }
     public void handleAnimationEnd() {
         if(colorStackContainer != null) {
-            colorStackContainer.startUpdating();
+            colorStackContainer.adjustParametersOnStop();
         }
     }
     public boolean onTouchEvent(MotionEvent event) {
@@ -167,7 +167,10 @@ public class CircularColorStackView extends View {
             update(factor);
         }
         public void onAnimationEnd(Animator animator) {
-            handleAnimationEnd();
+            if(isAnimating) {
+                handleAnimationEnd();
+                isAnimating = false;
+            }
         }
         public void open() {
             if(!isAnimating) {
