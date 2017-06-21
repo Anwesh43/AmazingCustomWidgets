@@ -32,4 +32,20 @@ public class CircularColorStackView extends View {
     public void update(float factor) {
         postInvalidate();
     }
+    private class ColorStackContainer {
+        private int index = 0,dir = 1;
+        public ColorStackContainer(int colors[]) {
+
+        }
+        public void startUpdating() {
+
+        }
+        public void adjustParametersOnStop() {
+            index+=dir;
+            if(index < 0) {
+                index = 0;
+                dir = -1;
+            }
+        }
+    }
 }
