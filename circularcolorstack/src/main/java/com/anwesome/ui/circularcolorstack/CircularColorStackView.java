@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.RectF;
@@ -42,6 +43,7 @@ public class CircularColorStackView extends View {
             colorStackContainer = new ColorStackContainer(colors);
             bitmap = Bitmap.createScaledBitmap(bitmap,2*w/3,2*w/3,true);
         }
+        paint.setColor(Color.BLACK);
         canvas.drawBitmap(bitmap,w/2-bitmap.getWidth()/2,h/2-bitmap.getHeight()/2,paint);
         if(colorStackContainer != null) {
             colorStackContainer.draw(canvas);
@@ -137,7 +139,8 @@ public class CircularColorStackView extends View {
             deg = maxDeg*factor;
         }
         public void draw(Canvas canvas) {
-            paint.setColor(color);
+            int r = Color.red(color),g = Color.green(color),b = Color.blue(color);
+            paint.setColor(Color.argb(150,r,g,b));
             canvas.save();
             canvas.translate(w/2,h/2);
             canvas.rotate(rot);
