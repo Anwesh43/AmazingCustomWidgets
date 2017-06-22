@@ -95,5 +95,12 @@ public class ImageColorGridView extends View {
         public int hashCode() {
             return (int)(x+y);
         }
+        public boolean handleTap(float x,float y) {
+            boolean condition = x>=this.x-size/2 && x<=this.x+size/2 && y>=this.y-size/2 && y<=this.y+size/2 && dir == 0;
+            if(condition) {
+                startUpdating();
+            }
+            return condition;
+        }
     }
 }
