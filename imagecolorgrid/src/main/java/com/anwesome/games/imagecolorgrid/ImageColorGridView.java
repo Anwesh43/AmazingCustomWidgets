@@ -10,6 +10,10 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by anweshmishra on 22/06/17.
  */
@@ -19,6 +23,7 @@ public class ImageColorGridView extends View {
     private int color = Color.parseColor("#0D47A1");
     private Bitmap bitmap;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private ConcurrentLinkedQueue<ColorGrid> colorGrids = new ConcurrentLinkedQueue<>();
     public ImageColorGridView(Context context, Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
@@ -28,11 +33,20 @@ public class ImageColorGridView extends View {
             w = canvas.getWidth();
             h = canvas.getHeight();
             bitmap = Bitmap.createScaledBitmap(bitmap,2*w/3,2*w/3,true);
+            for(int i=0;i<n*n;i++) {
+                colorGrids.add(new ColorGrid(i));
+            }
         }
         canvas.drawBitmap(bitmap,w/2-bitmap.getWidth()/2,h/2-bitmap.getHeight()/2,paint);
+        for(ColorGrid colorGrid:colorGrids) {
+            colorGrid.draw(canvas);
+        }
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+
+        }
         return true;
     }
     private class ColorGrid {
