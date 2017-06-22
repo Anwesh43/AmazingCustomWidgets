@@ -35,12 +35,13 @@ public class ImageColorGridView extends View {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
-            bitmap = Bitmap.createScaledBitmap(bitmap,2*w/3,2*w/3,true);
+            bitmap = Bitmap.createScaledBitmap(bitmap,w,w,true);
             for(int i=0;i<n*n;i++) {
                 colorGrids.add(new ColorGrid(i));
             }
             animationHandler = new AnimationHandler();
         }
+        paint.setColor(Color.BLACK);
         canvas.drawBitmap(bitmap,w/2-bitmap.getWidth()/2,h/2-bitmap.getHeight()/2,paint);
         for(ColorGrid colorGrid:colorGrids) {
             colorGrid.draw(canvas);
@@ -92,8 +93,9 @@ public class ImageColorGridView extends View {
             canvas.save();
             canvas.scale(scale,scale);
             r = Color.red(color);
-            b = Color.green(color);
+            g = Color.green(color);
             b = Color.blue(color);
+            paint.setStyle(Paint.Style.FILL);
             paint.setColor(Color.argb(150,r,g,b));
             canvas.drawRect(new RectF(-size/2,-size/2,size/2,size/2),paint);
             canvas.restore();
@@ -118,13 +120,13 @@ public class ImageColorGridView extends View {
                 for(ColorGrid colorGrid:colorGrids) {
                     colorGrid.update();
                     if(colorGrid.stopped()) {
-                        colorGrids.remove(colorGrid);
-                        if(colorGrids.size() == 0) {
+                        tappedGrids.remove(colorGrid);
+                        if(tappedGrids.size() == 0) {
                             isAnimated = false;
                         }
                     }
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(5);
                         invalidate();
                     }
                     catch (Exception ex) {
