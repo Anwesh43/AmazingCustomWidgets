@@ -1,6 +1,7 @@
 package com.anwesome.games.imagecolorgrid;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -16,15 +17,19 @@ import android.view.View;
 public class ImageColorGridView extends View {
     private int n = 3,time = 0,w,h;
     private int color = Color.parseColor("#0D47A1");
+    private Bitmap bitmap;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    public ImageColorGridView(Context context) {
+    public ImageColorGridView(Context context, Bitmap bitmap) {
         super(context);
+        this.bitmap = bitmap;
     }
     public void onDraw(Canvas canvas) {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            bitmap = Bitmap.createScaledBitmap(bitmap,2*w/3,2*w/3,true);
         }
+        canvas.drawBitmap(bitmap,w/2-bitmap.getWidth()/2,h/2-bitmap.getHeight()/2,paint);
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
