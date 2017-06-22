@@ -119,4 +119,5 @@ dependencies {
     compile project(':arrowlinebutton')
     compile project(':colorbarstack')
     compile project(':circularcolorstack')
+    compile project(':imagecolorgrid')
 }
