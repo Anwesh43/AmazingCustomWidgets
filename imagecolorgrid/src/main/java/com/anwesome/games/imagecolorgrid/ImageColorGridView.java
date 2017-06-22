@@ -103,4 +103,39 @@ public class ImageColorGridView extends View {
             return condition;
         }
     }
+    private class AnimationHandler {
+        private boolean isAnimated = false;
+        private ConcurrentLinkedQueue<ColorGrid> tappedGrids = new ConcurrentLinkedQueue<>();
+        public void animate() {
+            if(isAnimated) {
+                for(ColorGrid colorGrid:colorGrids) {
+                    colorGrid.update();
+                    if(colorGrid.stopped()) {
+                        colorGrids.remove(colorGrid);
+                        if(colorGrids.size() == 0) {
+                            isAnimated = false;
+                        }
+                    }
+                    try {
+                        Thread.sleep(50);
+                        invalidate();
+                    }
+                    catch (Exception ex) {
+
+                    }
+                }
+            }
+        }
+        public void handleTap(float x,float y) {
+            for(ColorGrid colorGrid:colorGrids) {
+                if(colorGrid.handleTap(x,y)) {
+                    tappedGrids.add(colorGrid);
+                    if(tappedGrids.size() == 1) {
+                        isAnimated = true;
+                        postInvalidate();
+                    }
+                }
+            }
+        }
+    }
 }
