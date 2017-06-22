@@ -5,13 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -24,6 +20,7 @@ public class ImageColorGridView extends View {
     private Bitmap bitmap;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private ConcurrentLinkedQueue<ColorGrid> colorGrids = new ConcurrentLinkedQueue<>();
+    private AnimationHandler animationHandler;
     public ImageColorGridView(Context context, Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
@@ -36,16 +33,20 @@ public class ImageColorGridView extends View {
             for(int i=0;i<n*n;i++) {
                 colorGrids.add(new ColorGrid(i));
             }
+            animationHandler = new AnimationHandler();
         }
         canvas.drawBitmap(bitmap,w/2-bitmap.getWidth()/2,h/2-bitmap.getHeight()/2,paint);
         for(ColorGrid colorGrid:colorGrids) {
             colorGrid.draw(canvas);
         }
         time++;
+        if(animationHandler != null) {
+            animationHandler.animate();
+        }
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.handleTap(event.getX(),event.getY());
         }
         return true;
     }
