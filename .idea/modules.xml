@@ -59,6 +59,7 @@
       <module fileurl="file://$PROJECT_DIR$/holdfiller/holdfiller.iml" filepath="$PROJECT_DIR$/holdfiller/holdfiller.iml" />
       <module fileurl="file://$PROJECT_DIR$/imagebar/imagebar.iml" filepath="$PROJECT_DIR$/imagebar/imagebar.iml" />
       <module fileurl="file://$PROJECT_DIR$/imageclippe/imageclippe.iml" filepath="$PROJECT_DIR$/imageclippe/imageclippe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/imagecolorgrid/imagecolorgrid.iml" filepath="$PROJECT_DIR$/imagecolorgrid/imagecolorgrid.iml" />
       <module fileurl="file://$PROJECT_DIR$/latchbutton/latchbutton.iml" filepath="$PROJECT_DIR$/latchbutton/latchbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/leaninputcontainer/leaninputcontainer.iml" filepath="$PROJECT_DIR$/leaninputcontainer/leaninputcontainer.iml" />
       <module fileurl="file://$PROJECT_DIR$/likebutton/likebutton.iml" filepath="$PROJECT_DIR$/likebutton/likebutton.iml" />
