@@ -1,13 +1,19 @@
 package com.anwesome.games.imagecolorgrid;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
+
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -138,5 +144,10 @@ public class ImageColorGridView extends View {
                 }
             }
         }
+    }
+    public static void create(Activity activity,Bitmap bitmap) {
+        ImageColorGridView imageColorGridView = new ImageColorGridView(activity,bitmap);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        activity.addContentView(imageColorGridView,new ViewGroup.LayoutParams(size.x,size.x));
     }
 }
