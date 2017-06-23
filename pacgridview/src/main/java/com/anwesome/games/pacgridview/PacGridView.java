@@ -9,6 +9,8 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by anweshmishra on 24/06/17.
  */
@@ -71,6 +73,9 @@ public class PacGridView extends View {
                 dir = 0;
             }
         }
+        public boolean stopped(){
+            return dir == 0;
+        }
         public int hashCode() {
             return (int)(x+y+index);
         }
@@ -80,6 +85,26 @@ public class PacGridView extends View {
                 startUpdating();
             }
             return condition;
+        }
+    }
+    private class AnimationHandler {
+        private boolean isAnimated = false;
+        private ConcurrentLinkedQueue<PacGrid> tappedPacs = new ConcurrentLinkedQueue<>();
+        public void animate() {
+            if(isAnimated) {
+                for(PacGrid tappedPac:tappedPacs) {
+                    tappedPac.update();
+                    if(tappedPac.stopped()) {
+                        tappedPacs.remove(tappedPac);
+                        if(tappedPacs.size() == 0) {
+                            isAnimated = false;
+                        }
+                    }
+                }
+            }
+        }
+        public void handleTap(float x,float y) {
+            
         }
     }
 }
