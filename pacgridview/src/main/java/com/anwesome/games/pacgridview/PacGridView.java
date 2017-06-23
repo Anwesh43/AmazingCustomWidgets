@@ -74,7 +74,7 @@ public class PacGridView extends View {
             int color = Color.parseColor("#FF5722");
             int r = Color.red(color),g = Color.green(color),b = Color.blue(color);
             paint.setColor(Color.argb(150,r,g,b));
-            canvas.drawArc(new RectF(-size/2,-size/2,size/2,size/2),deg,360-2*deg,true,paint);
+            canvas.drawArc(new RectF(-size/3,-size/3,size/3,size/3),deg,360-2*deg,true,paint);
             canvas.restore();
         }
         private void startUpdating() {
@@ -117,6 +117,13 @@ public class PacGridView extends View {
                             isAnimated = false;
                         }
                     }
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
                 }
             }
         }
