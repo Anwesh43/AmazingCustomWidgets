@@ -111,7 +111,15 @@ public class PacGridView extends View {
             }
         }
         public void handleTap(float x,float y) {
-
+            for(PacGrid pacGrid:pacGrids) {
+                if(pacGrid.handleTap(x,y)) {
+                    tappedPacs.add(pacGrid);
+                    if(tappedPacs.size() == 1) {
+                        isAnimated = true;
+                        postInvalidate();
+                    }
+                }
+            }
         }
     }
 }
