@@ -1,13 +1,18 @@
 package com.anwesome.games.pacgridview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -21,7 +26,7 @@ public class PacGridView extends View {
     private Bitmap bitmap;
     private AnimationHandler animationHandler;
     private ConcurrentLinkedQueue<PacGrid> pacGrids = new ConcurrentLinkedQueue<>();
-    public PacGridView(Context context,Bitmap bitmap) {
+    private PacGridView(Context context,Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
     }
@@ -126,5 +131,10 @@ public class PacGridView extends View {
                 }
             }
         }
+    }
+    public static void create(Activity activity,Bitmap bitmap) {
+        PacGridView pacGridView = new PacGridView(activity,bitmap);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        activity.addContentView(pacGridView,new ViewGroup.LayoutParams(size.x,size.x));
     }
 }
