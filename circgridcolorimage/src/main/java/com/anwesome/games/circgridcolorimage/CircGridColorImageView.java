@@ -152,8 +152,9 @@ public class CircGridColorImageView extends View {
             }
         }
     }
-    public static void create(Activity activity,Bitmap bitmap) {
+    public static void create(Activity activity,Bitmap bitmap,OnSelectionChangeListener onSelectionChangeListener) {
         CircGridColorImageView circGridColorImageView = new CircGridColorImageView(activity,bitmap);
+        circGridColorImageView.setOnSelectionChangeListener(onSelectionChangeListener);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(circGridColorImageView,new ViewGroup.LayoutParams(size.x,size.x));
     }
