@@ -1,13 +1,18 @@
 package com.anwesome.games.circgridcolorimage;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -134,5 +139,10 @@ public class CircGridColorImageView extends View {
                 }
             }
         }
+    }
+    public static void create(Activity activity,Bitmap bitmap) {
+        CircGridColorImageView circGridColorImageView = new CircGridColorImageView(activity,bitmap);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        activity.addContentView(circGridColorImageView,new ViewGroup.LayoutParams(size.x,size.x));
     }
 }
