@@ -55,8 +55,10 @@ public class CircGridColorImageView extends View {
         return true;
     }
     private class CircGridImage {
+        private int index = 0;
         private float x,y,size,dir = 0,prevDir = -1,scale = 0;
         public CircGridImage(int i) {
+            this.index = i;
             size = Math.max(w,h)/3;
             x = ((i%n)*size)+size/2;
             y = ((i/n)*size)+size/2;
@@ -96,7 +98,16 @@ public class CircGridColorImageView extends View {
             }
         }
         public boolean stopped() {
-            return dir == 0;
+            boolean condition =  dir == 0;
+            if(condition && onSelectionChangeListener!=null) {
+                if(prevDir == 1) {
+                    onSelectionChangeListener.onSelect(index);
+                }
+                else {
+                    onSelectionChangeListener.onUnSelect(index);
+                }
+            }
+            return condition;
         }
         public boolean handleTap(float x,float y) {
             boolean condition = x>=this.x-size/2 && x<=this.x+size/2 && y>=this.y-size/2 && y<=this.y+size/2 && dir == 0;
@@ -145,5 +156,13 @@ public class CircGridColorImageView extends View {
         CircGridColorImageView circGridColorImageView = new CircGridColorImageView(activity,bitmap);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(circGridColorImageView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    private OnSelectionChangeListener onSelectionChangeListener;
+    public void setOnSelectionChangeListener(OnSelectionChangeListener onSelectionChangeListener) {
+        this.onSelectionChangeListener = onSelectionChangeListener;
+    }
+    public interface OnSelectionChangeListener {
+        void onSelect(int index);
+        void onUnSelect(int index);
     }
 }
