@@ -120,4 +120,5 @@ dependencies {
     compile project(':colorbarstack')
     compile project(':circularcolorstack')
     compile project(':imagecolorgrid')
+    compile project(':circgridcolorimage')
 }

@@ -97,6 +97,7 @@ import android.widget.Toast;
 //import com.anwesome.ui.circularystbuttonlist.CYSTList;
 //import com.anwesome.ui.circularystbuttonlist.OnSelectionChangeListener;
 //import com.anwesome.ui.lineanddot.LineAndDotView;
+import com.anwesome.games.circgridcolorimage.CircGridColorImageView;
 import com.anwesome.games.imagecolorgrid.ImageColorGridView;
 import com.anwesome.ui.arrowlinebutton.ArrowLineButton;
 import com.anwesome.ui.circmover.CircMoverView;
@@ -177,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showImageColorGrid();
+                showCircGridColorImage();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1392,6 +1393,9 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showImageColorGrid() {
         ImageColorGridView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.penguin));
+    }
+    public void showCircGridColorImage() {
+        CircGridColorImageView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.penguin));
     }
 }
 
