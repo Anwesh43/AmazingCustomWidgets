@@ -20,6 +20,7 @@ public class CircGridColorImageView extends View {
     private int w,h,time=0,n=3;
     private ConcurrentLinkedQueue<CircGridImage> circGridImages = new ConcurrentLinkedQueue<>();
     private Bitmap bitmap;
+    private AnimationHandler animationHandler;
     public CircGridColorImageView(Context context, Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
@@ -32,15 +33,19 @@ public class CircGridColorImageView extends View {
             for(int i=0;i<n*n;i++) {
                 circGridImages.add(new CircGridImage(i));
             }
+            animationHandler = new AnimationHandler();
         }
         for(CircGridImage circGridImage:circGridImages) {
             circGridImage.draw(canvas);
         }
         time++;
+        if(animationHandler != null) {
+            animationHandler.animate();
+        }
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.handleTap(event.getX(),event.getY());
         }
         return true;
     }
