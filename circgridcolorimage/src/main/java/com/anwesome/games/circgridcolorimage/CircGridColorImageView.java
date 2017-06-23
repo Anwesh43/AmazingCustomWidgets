@@ -70,6 +70,7 @@ public class CircGridColorImageView extends View {
             Path path = new Path();
             path.addCircle(0,0,size/2, Path.Direction.CCW);
             canvas.clipPath(path);
+            paint.setColor(Color.BLACK);
             canvas.drawBitmap(bitmap,-size/2,-size/2,paint);
             canvas.save();
             canvas.scale(scale,scale);
@@ -132,7 +133,7 @@ public class CircGridColorImageView extends View {
             for(CircGridImage circGridImage:circGridImages) {
                 if(circGridImage.handleTap(x,y)) {
                     tappedImages.add(circGridImage);
-                    if(circGridImages.size() == 1) {
+                    if(tappedImages.size() == 1) {
                         isAnimated = true;
                         postInvalidate();
                     }
