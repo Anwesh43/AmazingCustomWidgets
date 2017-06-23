@@ -19,6 +19,7 @@ public class PacGridView extends View {
     private int time = 0,w,h,n=3;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Bitmap bitmap;
+    private ConcurrentLinkedQueue<PacGrid> pacGrids = new ConcurrentLinkedQueue<>();
     public PacGridView(Context context,Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
@@ -29,12 +30,18 @@ public class PacGridView extends View {
             h = canvas.getHeight();
             int minSize = Math.min(w,h);
             bitmap = Bitmap.createScaledBitmap(bitmap,minSize,minSize,true);
+            for(int i=0;i<n*n;i++) {
+                pacGrids.add(new PacGrid(i));
+            }
         }
         canvas.save();
         canvas.translate(w/2,h/2);
         paint.setColor(Color.BLACK);
         canvas.drawBitmap(bitmap,-bitmap.getWidth()/2,-bitmap.getHeight()/2,paint);
         canvas.restore();
+        for(PacGrid pacGrid:pacGrids) {
+            pacGrid.draw(canvas);
+        }
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
@@ -104,7 +111,7 @@ public class PacGridView extends View {
             }
         }
         public void handleTap(float x,float y) {
-            
+
         }
     }
 }
