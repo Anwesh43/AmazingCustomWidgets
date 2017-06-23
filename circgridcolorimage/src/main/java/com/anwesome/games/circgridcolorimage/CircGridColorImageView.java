@@ -9,6 +9,8 @@ import android.graphics.Path;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by anweshmishra on 23/06/17.
  */
@@ -75,12 +77,42 @@ public class CircGridColorImageView extends View {
                 scale = 0;
             }
         }
+        public boolean stopped() {
+            return dir == 0;
+        }
         public boolean handleTap(float x,float y) {
             boolean condition = x>=this.x-size/2 && x<=this.x+size/2 && y>=this.y-size/2 && y<=this.y+size/2 && dir == 0;
             if(condition) {
                 startUpdating();
             }
             return condition;
+        }
+    }
+    private class AnimationHandler {
+        private ConcurrentLinkedQueue<CircGridImage> tappedImages = new ConcurrentLinkedQueue<>();
+        private boolean isAnimated = false;
+        public void animate() {
+            if(isAnimated) {
+                for(CircGridImage tappedImage:tappedImages) {
+                    tappedImage.update();
+                    if(tappedImage.stopped()) {
+                        tappedImages.remove(tappedImage);
+                        if(tappedImages.size() == 0) {
+                            isAnimated = false;
+                        }
+                    }
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
+                    
+                }
+            }
+        }
+        public void handleTap(float x,float y) {
+
         }
     }
 }
