@@ -99,6 +99,7 @@ import android.widget.Toast;
 //import com.anwesome.ui.lineanddot.LineAndDotView;
 import com.anwesome.games.circgridcolorimage.CircGridColorImageView;
 import com.anwesome.games.imagecolorgrid.ImageColorGridView;
+import com.anwesome.games.pacgridview.PacGridView;
 import com.anwesome.ui.arrowlinebutton.ArrowLineButton;
 import com.anwesome.ui.circmover.CircMoverView;
 import com.anwesome.ui.circularcolorstack.CircularColorStackView;
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCircGridColorImage();
+                showPacGridView();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1406,6 +1407,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, String.format("%d unselected",index), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showPacGridView() {
+        PacGridView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.penguin));
     }
 }
 

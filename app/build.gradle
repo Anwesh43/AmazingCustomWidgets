@@ -121,4 +121,5 @@ dependencies {
     compile project(':circularcolorstack')
     compile project(':imagecolorgrid')
     compile project(':circgridcolorimage')
+    compile project(':pacgridview')
 }

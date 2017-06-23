@@ -116,6 +116,7 @@
     <orderEntry type="module" module-name="arrowlinebutton" exported="" />
     <orderEntry type="module" module-name="circularcolorstack" exported="" />
     <orderEntry type="module" module-name="rectbutton" exported="" />
+    <orderEntry type="module" module-name="pacgridview" exported="" />
     <orderEntry type="module" module-name="colorbarstack" exported="" />
     <orderEntry type="library" exported="" scope="TEST" name="espresso-core-2.2.2" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="runner-0.5" level="project" />
