@@ -119,7 +119,15 @@ public class CircGridColorImageView extends View {
             }
         }
         public void handleTap(float x,float y) {
-
+            for(CircGridImage circGridImage:circGridImages) {
+                if(circGridImage.handleTap(x,y)) {
+                    tappedImages.add(circGridImage);
+                    if(circGridImages.size() == 1) {
+                        isAnimated = true;
+                        postInvalidate();
+                    }
+                }
+            }
         }
     }
 }
