@@ -19,6 +19,7 @@ public class PacGridView extends View {
     private int time = 0,w,h,n=3;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Bitmap bitmap;
+    private AnimationHandler animationHandler;
     private ConcurrentLinkedQueue<PacGrid> pacGrids = new ConcurrentLinkedQueue<>();
     public PacGridView(Context context,Bitmap bitmap) {
         super(context);
@@ -33,6 +34,7 @@ public class PacGridView extends View {
             for(int i=0;i<n*n;i++) {
                 pacGrids.add(new PacGrid(i));
             }
+            animationHandler = new AnimationHandler();
         }
         canvas.save();
         canvas.translate(w/2,h/2);
@@ -43,10 +45,13 @@ public class PacGridView extends View {
             pacGrid.draw(canvas);
         }
         time++;
+        if(animationHandler!=null) {
+            animationHandler.animate();
+        }
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.handleTap(event.getX(),event.getY());
         }
         return true;
     }
