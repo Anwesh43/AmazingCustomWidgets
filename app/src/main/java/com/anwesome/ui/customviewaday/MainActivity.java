@@ -1395,7 +1395,17 @@ public class MainActivity extends AppCompatActivity {
         ImageColorGridView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.penguin));
     }
     public void showCircGridColorImage() {
-        CircGridColorImageView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.penguin));
+        CircGridColorImageView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.penguin), new CircGridColorImageView.OnSelectionChangeListener() {
+            @Override
+            public void onSelect(int index) {
+                Toast.makeText(MainActivity.this, String.format("%d selected",index), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnSelect(int index) {
+                Toast.makeText(MainActivity.this, String.format("%d unselected",index), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
