@@ -18,6 +18,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class CircGridColorImageView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int w,h,time=0,n=3;
+    private ConcurrentLinkedQueue<CircGridImage> circGridImages = new ConcurrentLinkedQueue<>();
     private Bitmap bitmap;
     public CircGridColorImageView(Context context, Bitmap bitmap) {
         super(context);
@@ -28,6 +29,12 @@ public class CircGridColorImageView extends View {
             w = canvas.getWidth();
             h = canvas.getHeight();
             bitmap = Bitmap.createScaledBitmap(bitmap,Math.max(w,h)/3,Math.max(w,h)/3,true);
+            for(int i=0;i<n*n;i++) {
+                circGridImages.add(new CircGridImage(i));
+            }
+        }
+        for(CircGridImage circGridImage:circGridImages) {
+            circGridImage.draw(canvas);
         }
         time++;
     }
@@ -41,8 +48,8 @@ public class CircGridColorImageView extends View {
         private float x,y,size,dir = 0,prevDir = -1,scale = 0;
         public CircGridImage(int i) {
             size = Math.max(w,h)/3;
-            x = ((i%3)*size)+size/2;
-            y = ((i/3)*size)+size/2;
+            x = ((i%n)*size)+size/2;
+            y = ((i/n)*size)+size/2;
         }
         public int hashCode() {
             return (int)(x+y);
@@ -107,7 +114,7 @@ public class CircGridColorImageView extends View {
                     invalidate();
                 }
                 catch (Exception ex) {
-                    
+
                 }
             }
         }
