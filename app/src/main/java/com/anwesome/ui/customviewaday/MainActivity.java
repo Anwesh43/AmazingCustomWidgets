@@ -1409,7 +1409,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showPacGridView() {
-        PacGridView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.penguin));
+        PacGridView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.penguin), new PacGridView.OnClickListener() {
+            @Override
+            public void onClick(int index) {
+                Toast.makeText(MainActivity.this, String.format("%d clicked",index), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
