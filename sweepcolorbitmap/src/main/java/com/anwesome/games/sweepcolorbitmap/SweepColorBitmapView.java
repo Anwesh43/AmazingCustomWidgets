@@ -9,6 +9,8 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by anweshmishra on 25/06/17.
  */
@@ -16,6 +18,7 @@ import android.view.View;
 public class SweepColorBitmapView extends View {
     private int time =0,w,h;
     private Bitmap bitmap;
+    private ConcurrentLinkedQueue<SweepColorArc> sweepColorArcs = new ConcurrentLinkedQueue<>();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int colors[];
     private SweepColorBitmapView(Context context,Bitmap bitmap,int colors[]) {
@@ -28,9 +31,15 @@ public class SweepColorBitmapView extends View {
             w = canvas.getWidth();
             h = canvas.getHeight();
             bitmap = Bitmap.createScaledBitmap(bitmap,w,h,true);
+            for(int i=0;i<colors.length;i++) {
+                sweepColorArcs.add(new SweepColorArc(i));
+            }
         }
         paint.setColor(Color.BLACK);
         canvas.drawBitmap(bitmap,0,0,paint);
+        for(SweepColorArc sweepColorArc:sweepColorArcs) {
+            sweepColorArc.draw(canvas);
+        }
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
