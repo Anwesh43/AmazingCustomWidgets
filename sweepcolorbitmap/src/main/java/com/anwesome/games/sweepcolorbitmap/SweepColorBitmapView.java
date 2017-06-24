@@ -21,10 +21,12 @@ public class SweepColorBitmapView extends View {
     private ConcurrentLinkedQueue<SweepColorArc> sweepColorArcs = new ConcurrentLinkedQueue<>();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int colors[];
+    private AnimationHandler animationHandler;
     private SweepColorBitmapView(Context context,Bitmap bitmap,int colors[]) {
         super(context);
         this.bitmap = bitmap;
         this.colors = colors;
+        this.animationHandler = new AnimationHandler();
     }
     private SweepColorArc getArcAt(int index) {
         SweepColorArc currArc = null;
@@ -52,10 +54,11 @@ public class SweepColorBitmapView extends View {
             sweepColorArc.draw(canvas);
         }
         time++;
+        animationHandler.animate();
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.handleAnimation();
         }
         return true;
     }
