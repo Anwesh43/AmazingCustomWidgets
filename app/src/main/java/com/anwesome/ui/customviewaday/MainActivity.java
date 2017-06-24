@@ -100,6 +100,7 @@ import android.widget.Toast;
 import com.anwesome.games.circgridcolorimage.CircGridColorImageView;
 import com.anwesome.games.imagecolorgrid.ImageColorGridView;
 import com.anwesome.games.pacgridview.PacGridView;
+import com.anwesome.games.sweepcolorbitmap.SweepColorBitmapView;
 import com.anwesome.ui.arrowlinebutton.ArrowLineButton;
 import com.anwesome.ui.circmover.CircMoverView;
 import com.anwesome.ui.circularcolorstack.CircularColorStackView;
@@ -1415,6 +1416,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, String.format("%d clicked",index), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showSweepColorBitmap() {
+        int colors[] = {Color.RED,Color.GREEN,Color.BLUE,Color.CYAN,Color.MAGENTA,Color.MAGENTA};
+        SweepColorBitmapView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.penguin),colors);
     }
 }
 
