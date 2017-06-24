@@ -41,6 +41,7 @@ public class SweepColorBitmapView extends View {
                 currArc = sweepColorArc;
                 break;
             }
+            i++;
         }
         return currArc;
     }
@@ -78,7 +79,7 @@ public class SweepColorBitmapView extends View {
             float radius = Math.min(w,h)/2;
             int color = colors[this.index];
             int r = Color.red(color),g = Color.green(color),b = Color.blue(color);
-            paint.setColor(Color.argb(150,r,g,b));
+            paint.setColor(Color.argb(100,r,g,b));
             canvas.save();
             canvas.translate(w/2,h/2);
             canvas.drawArc(new RectF(-radius,-radius,radius,radius),startDeg,deg,true,paint);
@@ -91,6 +92,9 @@ public class SweepColorBitmapView extends View {
             this.deg+=(dir)*(gapDeg)/5;
             if(this.deg>this.gapDeg || this.deg < 0) {
                 this.dir = 0;
+                if(this.deg < 0) {
+                    this.deg = 0;
+                }
             }
         }
         public boolean stopped() {
@@ -113,6 +117,8 @@ public class SweepColorBitmapView extends View {
                     currArc.update();
                     if(currArc.stopped()) {
                         isAnimated = false;
+                        i++;
+                        i%=sweepColorArcs.size();
                     }
                 }
                 try {
