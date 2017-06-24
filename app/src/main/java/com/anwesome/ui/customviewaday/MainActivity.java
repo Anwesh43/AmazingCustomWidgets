@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPacGridView();
+                showSweepColorBitmap();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1418,7 +1418,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showSweepColorBitmap() {
-        int colors[] = {Color.RED,Color.GREEN,Color.BLUE,Color.CYAN,Color.MAGENTA,Color.MAGENTA};
+        int colors[] = {Color.RED,Color.GREEN,Color.BLUE,Color.CYAN,Color.BLACK,Color.YELLOW};
         SweepColorBitmapView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.penguin),colors);
     }
 }
