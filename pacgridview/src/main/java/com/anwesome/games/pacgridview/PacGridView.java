@@ -61,7 +61,8 @@ public class PacGridView extends View {
         return true;
     }
     private class PacGrid {
-        private float x,y,size,deg=0,dir = 0,index;
+        private float x,y,size,deg=0,dir = 0;
+        private int index;
         public PacGrid(int i) {
             this.index = i;
             size = Math.min(w,h)/3;
@@ -88,6 +89,9 @@ public class PacGridView extends View {
             if(deg<0) {
                 deg = 0;
                 dir = 0;
+                if(onClickListener != null) {
+                    onClickListener.onClick(index);
+                }
             }
         }
         public boolean stopped(){
@@ -139,9 +143,17 @@ public class PacGridView extends View {
             }
         }
     }
-    public static void create(Activity activity,Bitmap bitmap) {
+    private OnClickListener onClickListener;
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+    public static void create(Activity activity,Bitmap bitmap,OnClickListener onClickListener) {
         PacGridView pacGridView = new PacGridView(activity,bitmap);
+        pacGridView.setOnClickListener(onClickListener);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(pacGridView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    public interface OnClickListener {
+        void onClick(int index);
     }
 }
