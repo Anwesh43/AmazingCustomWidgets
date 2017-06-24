@@ -26,6 +26,17 @@ public class SweepColorBitmapView extends View {
         this.bitmap = bitmap;
         this.colors = colors;
     }
+    private SweepColorArc getArcAt(int index) {
+        SweepColorArc currArc = null;
+        int i=0;
+        for(SweepColorArc sweepColorArc:sweepColorArcs) {
+            if(i == index) {
+                currArc = sweepColorArc;
+                break;
+            }
+        }
+        return currArc;
+    }
     public void onDraw(Canvas canvas) {
         if(time == 0) {
             w = canvas.getWidth();
@@ -74,8 +85,50 @@ public class SweepColorBitmapView extends View {
                 this.dir = 0;
             }
         }
+        public boolean stopped() {
+            return dir == 0;
+        }
         public int hashCode() {
             return startDeg;
+        }
+    }
+    private class AnimationHandler {
+        private int i=0;
+        private SweepColorArc currArc,prevArc;
+        private boolean isAnimated = false;
+        public void animate() {
+            if(isAnimated) {
+                if(prevArc!=null) {
+                    prevArc.update();
+                }
+                if(currArc != null) {
+                    currArc.update();
+                    if(currArc.stopped()) {
+                        isAnimated = false;
+                    }
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
+                }
+            }
+        }
+        public void handleAnimation() {
+            if(!isAnimated) {
+                if(currArc != null) {
+                    prevArc = currArc;
+                    prevArc.startUpdating(-1);
+                }
+                currArc = getArcAt(i);
+                if(currArc != null) {
+                    currArc.startUpdating(1);
+                    isAnimated = true;
+                    postInvalidate();
+                }
+            }
         }
     }
 }
