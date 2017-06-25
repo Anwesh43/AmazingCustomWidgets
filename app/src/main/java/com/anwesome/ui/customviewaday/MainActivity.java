@@ -1419,7 +1419,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showSweepColorBitmap() {
         int colors[] = {Color.RED,Color.GREEN,Color.BLUE,Color.CYAN,Color.BLACK,Color.YELLOW};
-        SweepColorBitmapView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.penguin),colors);
+        SweepColorBitmapView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.penguin), colors, new SweepColorBitmapView.OnOpenCloseListener() {
+            @Override
+            public void onOpen(int index) {
+                Toast.makeText(MainActivity.this,String.format("color at %d opened",index),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onClose(int index) {
+                Toast.makeText(MainActivity.this,String.format("color at %d closed",index),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
