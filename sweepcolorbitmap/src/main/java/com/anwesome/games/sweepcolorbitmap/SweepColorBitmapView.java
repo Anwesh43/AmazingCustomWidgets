@@ -131,6 +131,14 @@ public class SweepColorBitmapView extends View {
                 if(currArc != null) {
                     currArc.update();
                     if(currArc.stopped()) {
+                        if(onOpenCloseListener != null) {
+                            if (prevArc != null) {
+                                onOpenCloseListener.onClose(prevArc.index);
+                            }
+                            if (currArc != null) {
+                                onOpenCloseListener.onOpen(currArc.index);
+                            }
+                        }
                         isAnimated = false;
                         i++;
                         i%=sweepColorArcs.size();
@@ -161,9 +169,18 @@ public class SweepColorBitmapView extends View {
             }
         }
     }
-    public static void create(Activity activity,Bitmap bitmap,int colors[]) {
+    private OnOpenCloseListener onOpenCloseListener;
+    public void setOnOpenCloseListener(OnOpenCloseListener onOpenCloseListener) {
+        this.onOpenCloseListener = onOpenCloseListener;
+    }
+    public static void create(Activity activity,Bitmap bitmap,int colors[],OnOpenCloseListener onOpenCloseListener) {
         SweepColorBitmapView sweepColorBitmapView = new SweepColorBitmapView(activity,bitmap,colors);
+        sweepColorBitmapView.setOnOpenCloseListener(onOpenCloseListener);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(sweepColorBitmapView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    public interface OnOpenCloseListener {
+        void onOpen(int index);
+        void onClose(int index);
     }
 }
