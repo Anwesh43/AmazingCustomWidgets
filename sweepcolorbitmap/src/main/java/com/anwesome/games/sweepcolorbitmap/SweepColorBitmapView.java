@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.RectF;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 
 public class SweepColorBitmapView extends View {
-    private int time =0,w,h;
+    private int time =0,w,h,gapDeg=0;
     private Bitmap bitmap;
     private ConcurrentLinkedQueue<SweepColorArc> sweepColorArcs = new ConcurrentLinkedQueue<>();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -50,17 +51,17 @@ public class SweepColorBitmapView extends View {
             w = canvas.getWidth();
             h = canvas.getHeight();
             bitmap = Bitmap.createScaledBitmap(bitmap,w,h,true);
+            if(colors.length > 0) {
+                this.gapDeg = 360/(colors.length);
+            }
             for(int i=0;i<colors.length;i++) {
                 sweepColorArcs.add(new SweepColorArc(i));
             }
         }
         paint.setColor(Color.BLACK);
         canvas.drawBitmap(bitmap,0,0,paint);
-        for(SweepColorArc sweepColorArc:sweepColorArcs) {
-            sweepColorArc.draw(canvas);
-        }
         time++;
-        animationHandler.animate();
+        animationHandler.animate(canvas);
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
@@ -69,9 +70,9 @@ public class SweepColorBitmapView extends View {
         return true;
     }
     private class SweepColorArc {
-        private int startDeg,gapDeg,index=0,deg=0,dir=0;
+        private int startDeg,index=0,deg=0,dir=0;
         public SweepColorArc(int index) {
-            this.gapDeg = 360/(colors.length);
+
             this.index = index;
             this.startDeg = index*gapDeg;
         }
@@ -82,7 +83,12 @@ public class SweepColorBitmapView extends View {
             paint.setColor(Color.argb(100,r,g,b));
             canvas.save();
             canvas.translate(w/2,h/2);
-            canvas.drawArc(new RectF(-radius,-radius,radius,radius),startDeg,deg,true,paint);
+            if(index == animationHandler.i-1) {
+                Log.d("deg",""+deg);
+            }
+            if(this.deg > 0) {
+                canvas.drawArc(new RectF(-radius, -radius, radius, radius), startDeg, deg, true, paint);
+            }
             canvas.restore();
         }
         public void startUpdating(int dir) {
@@ -90,8 +96,11 @@ public class SweepColorBitmapView extends View {
         }
         public void update() {
             this.deg+=(dir)*(gapDeg)/5;
-            if(this.deg>this.gapDeg || this.deg < 0) {
+            if(this.deg>gapDeg || this.deg < 0) {
                 this.dir = 0;
+                if(this.deg > gapDeg) {
+                    this.deg = gapDeg;
+                }
                 if(this.deg < 0) {
                     this.deg = 0;
                 }
@@ -108,7 +117,13 @@ public class SweepColorBitmapView extends View {
         private int i=0;
         private SweepColorArc currArc,prevArc;
         private boolean isAnimated = false;
-        public void animate() {
+        public void animate(Canvas canvas) {
+            if(prevArc != null) {
+                prevArc.draw(canvas);
+            }
+            if(currArc != null) {
+                currArc.draw(canvas);
+            }
             if(isAnimated) {
                 if(prevArc!=null) {
                     prevArc.update();
@@ -119,6 +134,7 @@ public class SweepColorBitmapView extends View {
                         isAnimated = false;
                         i++;
                         i%=sweepColorArcs.size();
+                        prevArc = null;
                     }
                 }
                 try {
@@ -131,7 +147,7 @@ public class SweepColorBitmapView extends View {
             }
         }
         public void handleAnimation() {
-            if(!isAnimated) {
+            if(!isAnimated && prevArc == null) {
                 if(currArc != null) {
                     prevArc = currArc;
                     prevArc.startUpdating(-1);
