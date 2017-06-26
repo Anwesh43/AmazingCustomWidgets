@@ -1,12 +1,17 @@
 package com.anwesome.games.bicirccolorview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.*;
 /**
@@ -127,5 +132,10 @@ public class BiCircColorView extends View {
                 postInvalidate();
             }
         }
+    }
+    public static void create(Activity activity,int colors[]) {
+        BiCircColorView biCircColorView = new BiCircColorView(activity,colors);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        activity.addContentView(biCircColorView,new ViewGroup.LayoutParams(size.x,size.x));
     }
 }
