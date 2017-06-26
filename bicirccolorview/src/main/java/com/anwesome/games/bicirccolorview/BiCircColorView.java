@@ -43,7 +43,7 @@ public class BiCircColorView extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(w/60);
         paint.setColor(Color.GRAY);
-        int r = Math.min(w,h)/2;
+        int r = (2*Math.min(w,h))/5;
         canvas.drawCircle(w/2,h/2,r,paint);
         time++;
         if(animationHandler != null) {
@@ -63,10 +63,15 @@ public class BiCircColorView extends View {
             startDeg = gapDeg*index;
         }
         public void draw(Canvas canvas) {
-            paint.setColor(colors[index]);
-            int r = Math.min(w,h)/2;
-            canvas.drawArc(new RectF(-r,-r,r,r),startDeg,sweepDeg,false,paint);
-            canvas.drawArc(new RectF(-r,-r,r,r),startDeg+gapDeg-sweepDeg,sweepDeg,false,paint);
+            if(sweepDeg != 0) {
+                paint.setColor(colors[index]);
+                int r = (2 * Math.min(w, h)) / 5;
+                canvas.save();
+                canvas.translate(w / 2, h / 2);
+                canvas.drawArc(new RectF(-r, -r, r, r), startDeg, sweepDeg, false, paint);
+                canvas.drawArc(new RectF(-r, -r, r, r), startDeg + gapDeg - sweepDeg, sweepDeg, false, paint);
+                canvas.restore();
+            }
         }
         public void update() {
             this.sweepDeg += (this.dir)*(gapDeg/10);
@@ -94,13 +99,17 @@ public class BiCircColorView extends View {
         private int i = 0;
         private boolean isAnimated = false;
         public void animate(Canvas canvas) {
+            if(prev != null) {
+                prev.draw(canvas);
+            }
+            if(curr != null) {
+                curr.draw(canvas);
+            }
             if(isAnimated) {
                 if(prev!=null) {
-                    prev.draw(canvas);
                     prev.update();
                 }
                 if(curr != null) {
-                    curr.draw(canvas);
                     curr.update();
                     if(curr.stopped()) {
                         i++;
@@ -124,7 +133,7 @@ public class BiCircColorView extends View {
                 if(prev != null) {
                     prev.startUpdating(-1);
                 }
-                if(curr!=null) {
+                if(curr == null) {
                     curr = biCircColors.get(i);
                     curr.startUpdating(1);
                 }
