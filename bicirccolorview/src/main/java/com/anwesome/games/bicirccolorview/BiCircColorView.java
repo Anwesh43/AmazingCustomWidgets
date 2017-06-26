@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.*;
 /**
  * Created by anweshmishra on 26/06/17.
  */
@@ -15,6 +16,7 @@ public class BiCircColorView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h,gapDeg = 0;
     private int[] colors;
+    private List<BiCircColor> biCircColors = new ArrayList<>();
     public BiCircColorView(Context context,int[] colors) {
         super(context);
         this.colors = colors;
@@ -25,6 +27,9 @@ public class BiCircColorView extends View {
             h = canvas.getHeight();
             if(colors.length > 0) {
                 gapDeg = 360/colors.length;
+                for(int i=0;i<colors.length;i++) {
+                    biCircColors.add(new BiCircColor(i));
+                }
             }
         }
         time++;
@@ -106,6 +111,7 @@ public class BiCircColorView extends View {
                     prev.startUpdating(-1);
                 }
                 if(curr!=null) {
+                    curr = biCircColors.get(i);
                     curr.startUpdating(1);
                 }
                 isAnimated = true;
