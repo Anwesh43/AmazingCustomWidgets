@@ -114,6 +114,12 @@ public class BiCircColorView extends View {
                     if(curr.stopped()) {
                         i++;
                         i%=colors.length;
+                        if(onOpenCloseListener!=null) {
+                            if(prev!=null) {
+                                onOpenCloseListener.onClose(prev.index);
+                            }
+                            onOpenCloseListener.onOpen(curr.index);
+                        }
                         prev = curr;
                         curr = null;
                         isAnimated = false;
@@ -142,9 +148,18 @@ public class BiCircColorView extends View {
             }
         }
     }
-    public static void create(Activity activity,int colors[]) {
+    private OnOpenCloseListener onOpenCloseListener;
+    public void setOnOpenCloseListener(OnOpenCloseListener onOpenCloseListener) {
+        this.onOpenCloseListener = onOpenCloseListener;
+    }
+    public static void create(Activity activity,int colors[],OnOpenCloseListener onOpenCloseListener) {
         BiCircColorView biCircColorView = new BiCircColorView(activity,colors);
+        biCircColorView.setOnOpenCloseListener(onOpenCloseListener);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(biCircColorView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    public interface OnOpenCloseListener {
+        void onOpen(int index);
+        void onClose(int index);
     }
 }
