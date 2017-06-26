@@ -66,5 +66,51 @@ public class BiCircColorView extends View {
         public int hashCode() {
             return index;
         }
+        public void startUpdating(int dir) {
+            this.dir = dir;
+        }
+    }
+    private class AnimationHandler {
+        private BiCircColor curr,prev;
+        private int i = 0;
+        private boolean isAnimated = false;
+        public void animate(Canvas canvas) {
+            if(isAnimated) {
+                if(prev!=null) {
+                    prev.draw(canvas);
+                    prev.update();
+                }
+                if(curr != null) {
+                    curr.draw(canvas);
+                    curr.update();
+                    if(curr.stopped()) {
+                        i++;
+                        i%=colors.length;
+                        prev = curr;
+                        curr = null;
+                        isAnimated = false;
+                    }
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
+                }
+            }
+        }
+        public void startAnimation() {
+            if(!isAnimated && curr == null) {
+                if(prev != null) {
+                    prev.startUpdating(-1);
+                }
+                if(curr!=null) {
+                    curr.startUpdating(1);
+                }
+                isAnimated = true;
+                postInvalidate();
+            }
+        }
     }
 }
