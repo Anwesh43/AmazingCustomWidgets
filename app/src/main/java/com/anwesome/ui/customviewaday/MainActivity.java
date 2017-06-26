@@ -1434,7 +1434,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showBiCircColorView() {
         int colors[] = {Color.RED,Color.GREEN,Color.BLUE,Color.CYAN,Color.BLACK,Color.YELLOW};
-        BiCircColorView.create(this,colors);
+        BiCircColorView.create(this, colors, new BiCircColorView.OnOpenCloseListener() {
+            @Override
+            public void onOpen(int index) {
+                Toast.makeText(MainActivity.this, String.format("opened %d",index), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onClose(int index) {
+                Toast.makeText(MainActivity.this, String.format("closed %d",index), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
