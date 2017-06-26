@@ -97,6 +97,7 @@ import android.widget.Toast;
 //import com.anwesome.ui.circularystbuttonlist.CYSTList;
 //import com.anwesome.ui.circularystbuttonlist.OnSelectionChangeListener;
 //import com.anwesome.ui.lineanddot.LineAndDotView;
+import com.anwesome.games.bicirccolorview.BiCircColorView;
 import com.anwesome.games.circgridcolorimage.CircGridColorImageView;
 import com.anwesome.games.imagecolorgrid.ImageColorGridView;
 import com.anwesome.games.pacgridview.PacGridView;
@@ -180,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showSweepColorBitmap();
+                showBiCircColorView();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1430,6 +1431,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,String.format("color at %d closed",index),Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showBiCircColorView() {
+        int colors[] = {Color.RED,Color.GREEN,Color.BLUE,Color.CYAN,Color.BLACK,Color.YELLOW};
+        BiCircColorView.create(this,colors);
     }
 }
 

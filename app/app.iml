@@ -122,6 +122,7 @@
     <orderEntry type="module" module-name="plusbuttonrect" exported="" />
     <orderEntry type="module" module-name="sweepcolorbitmap" exported="" />
     <orderEntry type="module" module-name="dimensionsutil" exported="" />
+    <orderEntry type="module" module-name="bicirccolorview" exported="" />
     <orderEntry type="module" module-name="polygonaltraverseview" exported="" />
     <orderEntry type="module" module-name="holderview" exported="" />
     <orderEntry type="module" module-name="arrowlinebutton" exported="" />
