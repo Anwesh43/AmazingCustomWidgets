@@ -2,6 +2,7 @@ package com.anwesome.games.bicirccolorview;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.MotionEvent;
@@ -17,6 +18,7 @@ public class BiCircColorView extends View {
     private int time = 0,w,h,gapDeg = 0;
     private int[] colors;
     private List<BiCircColor> biCircColors = new ArrayList<>();
+    private AnimationHandler animationHandler;
     public BiCircColorView(Context context,int[] colors) {
         super(context);
         this.colors = colors;
@@ -31,12 +33,21 @@ public class BiCircColorView extends View {
                     biCircColors.add(new BiCircColor(i));
                 }
             }
+            animationHandler = new AnimationHandler();
         }
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(w/60);
+        paint.setColor(Color.GRAY);
+        int r = Math.min(w,h)/2;
+        canvas.drawCircle(w/2,h/2,r,paint);
         time++;
+        if(animationHandler != null) {
+            animationHandler.animate(canvas);
+        }
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler!=null) {
+            animationHandler.startAnimation();
         }
         return true;
     }
@@ -47,9 +58,7 @@ public class BiCircColorView extends View {
             startDeg = gapDeg*index;
         }
         public void draw(Canvas canvas) {
-            paint.setStyle(Paint.Style.STROKE);
             paint.setColor(colors[index]);
-            paint.setStrokeWidth(w/60);
             int r = Math.min(w,h)/2;
             canvas.drawArc(new RectF(-r,-r,r,r),startDeg,sweepDeg,false,paint);
             canvas.drawArc(new RectF(-r,-r,r,r),startDeg+gapDeg-sweepDeg,sweepDeg,false,paint);
