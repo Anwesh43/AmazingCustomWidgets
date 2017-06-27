@@ -1,10 +1,15 @@
 package com.anwesome.games.linedegcolorview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.*;
 
@@ -125,5 +130,10 @@ public class LineDegColorView extends View {
                 postInvalidate();
             }
         }
+    }
+    public static void create(Activity activity,int[] colors) {
+        LineDegColorView lineDegColorView = new LineDegColorView(activity,colors);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        activity.addContentView(lineDegColorView,new ViewGroup.LayoutParams(size.x,size.x));
     }
 }
