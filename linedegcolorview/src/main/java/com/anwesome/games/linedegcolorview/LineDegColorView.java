@@ -28,6 +28,9 @@ public class LineDegColorView extends View {
             h = canvas.getHeight();
             if(colors.length > 0) {
                 gapDeg = 360/colors.length;
+                for(int i=0;i<lineDegList.size();i++) {
+                    lineDegList.add(new LineDeg(i));
+                }
             }
             r = Math.min(w,h)/2;
             animationHandler = new AnimationHandler();
