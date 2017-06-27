@@ -124,4 +124,5 @@ dependencies {
     compile project(':pacgridview')
     compile project(':sweepcolorbitmap')
     compile project(':bicirccolorview')
+    compile project(':linedegcolorview')
 }
