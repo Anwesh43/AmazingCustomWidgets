@@ -38,9 +38,11 @@ public class LineDegColorView extends View {
                     lineDegList.add(new LineDeg(i));
                 }
             }
-            r = Math.min(w,h)/2;
+            r = (2*Math.min(w,h))/5;
             animationHandler = new AnimationHandler();
         }
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(r/30);
         paint.setColor(Color.GRAY);
