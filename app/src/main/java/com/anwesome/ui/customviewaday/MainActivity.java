@@ -1449,7 +1449,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showLineDeg() {
         int colors[] = {Color.RED,Color.GREEN,Color.BLUE,Color.CYAN,Color.BLACK,Color.YELLOW};
-        LineDegColorView.create(this,colors);
+        LineDegColorView.create(this, colors, new LineDegColorView.OnExpandShrinkListener() {
+            @Override
+            public void onExpand(int index) {
+                Toast.makeText(MainActivity.this, String.format("expanded %d",(index+1)), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onShrink(int index) {
+                Toast.makeText(MainActivity.this, String.format("shrinked %d",(index+1)), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
