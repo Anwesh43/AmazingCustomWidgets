@@ -69,4 +69,44 @@ public class LineDegColorView extends View {
             this.dir = dir;
         }
     }
+    private class AnimationHandler {
+        private LineDeg curr,prev;
+        private boolean animating = false;
+        private int index = 0;
+        public void animate() {
+            if(animating) {
+                if(prev != null) {
+                    prev.update();
+                }
+                if(curr != null) {
+                    curr.update();
+                    if(curr.stopUpdating()) {
+                        index++;
+                        index%=colors.length;
+                        prev = curr;
+                        curr = null;
+                        animating = false;
+                    }
+                }
+                try {
+                    Thread.sleep(100);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
+                }
+            }
+        }
+        public void startAnimating() {
+            if(!animating) {
+                if(prev != null) {
+                    prev.startUpdating(-1);
+                }
+                if(curr == null) {
+                }
+                animating = true;
+                postInvalidate();
+            }
+        }
+    }
 }
