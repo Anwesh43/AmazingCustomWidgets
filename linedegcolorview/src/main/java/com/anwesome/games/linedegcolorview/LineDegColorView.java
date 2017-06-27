@@ -112,6 +112,12 @@ public class LineDegColorView extends View {
                     if(curr.stopUpdating()) {
                         index++;
                         index%=colors.length;
+                        if(onExpandShrinkListener != null) {
+                            if(prev != null) {
+                                onExpandShrinkListener.onShrink(prev.index);
+                            }
+                            onExpandShrinkListener.onExpand(curr.index);
+                        }
                         prev = curr;
                         curr = null;
                         animating = false;
@@ -140,9 +146,18 @@ public class LineDegColorView extends View {
             }
         }
     }
-    public static void create(Activity activity,int[] colors) {
+    public static void create(Activity activity,int[] colors,OnExpandShrinkListener onExpandShrinkListener) {
         LineDegColorView lineDegColorView = new LineDegColorView(activity,colors);
+        lineDegColorView.setOnExpandShrinkListener(onExpandShrinkListener);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(lineDegColorView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    private OnExpandShrinkListener onExpandShrinkListener;
+    public void setOnExpandShrinkListener(OnExpandShrinkListener onExpandShrinkListener) {
+        this.onExpandShrinkListener = onExpandShrinkListener;
+    }
+    public interface OnExpandShrinkListener {
+        void onExpand(int index);
+        void onShrink(int index);
     }
 }
