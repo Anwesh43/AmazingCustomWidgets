@@ -3,6 +3,7 @@ package com.anwesome.games.linedegcolorview;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
@@ -33,29 +34,35 @@ public class LineDegColorView extends View {
             h = canvas.getHeight();
             if(colors.length > 0) {
                 gapDeg = 360/colors.length;
-                for(int i=0;i<lineDegList.size();i++) {
+                for(int i=0;i<colors.length;i++) {
                     lineDegList.add(new LineDeg(i));
                 }
             }
             r = Math.min(w,h)/2;
             animationHandler = new AnimationHandler();
         }
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(r/30);
+        paint.setColor(Color.GRAY);
+        canvas.drawCircle(w/2,h/2,r,paint);
         time++;
         animationHandler.animate(canvas);
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null && lineDegList.size()>0) {
             animationHandler.startAnimating();
         }
         return true;
     }
     private class LineDeg {
-        private int index,dir = 0,deg = 0,color,lx = 0;
+        private int index,dir = 0,deg = 0,lx = 0;
         public LineDeg(int index) {
             this.index = index;
             deg = gapDeg*index;
         }
         public void draw(Canvas canvas) {
+            int color = colors[index];
+            paint.setColor(color);
             canvas.save();
             canvas.translate(w/2,h/2);
             canvas.rotate(deg);
