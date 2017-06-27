@@ -6,6 +6,8 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.*;
+
 /**
  * Created by anweshmishra on 27/06/17.
  */
@@ -14,6 +16,8 @@ public class LineDegColorView extends View {
     private int[] colors;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time=0,w,h,gapDeg=0,r=0;
+    private List<LineDeg> lineDegList = new ArrayList<>();
+    private AnimationHandler animationHandler;
     public LineDegColorView(Context context,int[] colors) {
         super(context);
         this.colors = colors;
@@ -26,12 +30,14 @@ public class LineDegColorView extends View {
                 gapDeg = 360/colors.length;
             }
             r = Math.min(w,h)/2;
+            animationHandler = new AnimationHandler();
         }
         time++;
+        animationHandler.animate(canvas);
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.startAnimating();
         }
         return true;
     }
@@ -73,7 +79,13 @@ public class LineDegColorView extends View {
         private LineDeg curr,prev;
         private boolean animating = false;
         private int index = 0;
-        public void animate() {
+        public void animate(Canvas canvas) {
+            if(prev != null) {
+                prev.draw(canvas);
+            }
+            if(curr != null) {
+                curr.draw(canvas);
+            }
             if(animating) {
                 if(prev != null) {
                     prev.update();
@@ -103,6 +115,8 @@ public class LineDegColorView extends View {
                     prev.startUpdating(-1);
                 }
                 if(curr == null) {
+                    curr = lineDegList.get(index);
+                    curr.startUpdating(1);
                 }
                 animating = true;
                 postInvalidate();
