@@ -49,7 +49,7 @@ public class CircFourBitmapView extends View{
         canvas.clipPath(path);
         canvas.drawBitmap(bitmap,-r,-r,paint);
         canvas.restore();
-        paint.setStrokeWidth(r/40);
+        paint.setStrokeWidth(r/20);
         paint.setColor(Color.parseColor("#0097A7"));
         if(circFour != null) {
             circFour.draw(canvas);
@@ -72,6 +72,7 @@ public class CircFourBitmapView extends View{
         private float deg = 0;
         public void draw(Canvas canvas) {
             int scales[][] = {{1,1},{-1,1},{-1,-1},{1,-1}};
+            paint.setStyle(Paint.Style.STROKE);
             for(int i=0;i<scales.length;i++) {
                 canvas.save();
                 canvas.translate(w / 2, h / 2);
