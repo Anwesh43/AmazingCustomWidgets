@@ -125,4 +125,5 @@ dependencies {
     compile project(':sweepcolorbitmap')
     compile project(':bicirccolorview')
     compile project(':linedegcolorview')
+    compile project(':circfourbitmap')
 }

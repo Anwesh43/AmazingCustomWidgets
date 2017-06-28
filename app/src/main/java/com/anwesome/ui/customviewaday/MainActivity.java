@@ -98,6 +98,7 @@ import android.widget.Toast;
 //import com.anwesome.ui.circularystbuttonlist.OnSelectionChangeListener;
 //import com.anwesome.ui.lineanddot.LineAndDotView;
 import com.anwesome.games.bicirccolorview.BiCircColorView;
+import com.anwesome.games.circfourbitmap.CircFourBitmapView;
 import com.anwesome.games.circgridcolorimage.CircGridColorImageView;
 import com.anwesome.games.imagecolorgrid.ImageColorGridView;
 import com.anwesome.games.linedegcolorview.LineDegColorView;
@@ -182,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showLineDeg();
+                showCircFourView();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1460,6 +1461,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, String.format("shrinked %d",(index+1)), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showCircFourView() {
+        CircFourBitmapView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t2));
     }
 }
 
