@@ -20,6 +20,7 @@
       <module fileurl="file://$PROJECT_DIR$/buttongroup/buttongroup.iml" filepath="$PROJECT_DIR$/buttongroup/buttongroup.iml" />
       <module fileurl="file://$PROJECT_DIR$/buttonintriangle/buttonintriangle.iml" filepath="$PROJECT_DIR$/buttonintriangle/buttonintriangle.iml" />
       <module fileurl="file://$PROJECT_DIR$/calbutton/calbutton.iml" filepath="$PROJECT_DIR$/calbutton/calbutton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/circfourbitmap/circfourbitmap.iml" filepath="$PROJECT_DIR$/circfourbitmap/circfourbitmap.iml" />
       <module fileurl="file://$PROJECT_DIR$/circgridcolorimage/circgridcolorimage.iml" filepath="$PROJECT_DIR$/circgridcolorimage/circgridcolorimage.iml" />
       <module fileurl="file://$PROJECT_DIR$/circledarrowbutton/circledarrowbutton.iml" filepath="$PROJECT_DIR$/circledarrowbutton/circledarrowbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/circmover/circmover.iml" filepath="$PROJECT_DIR$/circmover/circmover.iml" />
