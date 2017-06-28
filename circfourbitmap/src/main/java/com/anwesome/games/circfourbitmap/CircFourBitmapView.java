@@ -21,6 +21,7 @@ public class CircFourBitmapView extends View{
     private int time = 0,w,h,r;
     private Bitmap bitmap;
     private CircFour circFour;
+    private AnimationHandler animationHandler;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     public CircFourBitmapView(Context context, Bitmap bitmap) {
         super(context);
@@ -34,6 +35,7 @@ public class CircFourBitmapView extends View{
             r = size/2;
             bitmap = Bitmap.createScaledBitmap(bitmap,size,size,true);
             circFour = new CircFour();
+            animationHandler = new AnimationHandler();
         }
         canvas.save();
         canvas.translate(w/2,h/2);
@@ -50,8 +52,8 @@ public class CircFourBitmapView extends View{
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.start();
         }
         return true;
     }
