@@ -1,5 +1,8 @@
 package com.anwesome.games.circfourbitmap;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -72,6 +75,40 @@ public class CircFourBitmapView extends View{
         }
         public void update(float factor) {
             this.deg = 90*factor;
+        }
+    }
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener {
+        private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1),endAnim = ValueAnimator.ofFloat(1,0);
+        private boolean isAnimated = false;
+        private int state = 0;
+        public AnimationHandler() {
+            startAnim.setDuration(500);
+            endAnim.setDuration(500);
+            startAnim.addListener(this);
+            endAnim.addListener(this);
+            startAnim.addUpdateListener(this);
+            endAnim.addUpdateListener(this);
+        }
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            float factor = (float)valueAnimator.getAnimatedValue();
+            update(factor);
+        }
+        public void onAnimationEnd(Animator animator) {
+            if(isAnimated) {
+                state = state == 0?1:0;
+                isAnimated = false;
+            }
+        }
+        public void start() {
+            if(!isAnimated) {
+                if(state == 0) {
+                    startAnim.start();
+                }
+                else {
+                    endAnim.start();
+                }
+                isAnimated = true;
+            }
         }
     }
 }
