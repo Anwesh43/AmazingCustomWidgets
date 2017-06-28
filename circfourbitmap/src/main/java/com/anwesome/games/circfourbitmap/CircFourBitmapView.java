@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -42,5 +43,21 @@ public class CircFourBitmapView extends View{
 
         }
         return true;
+    }
+    private class CircFour {
+        private float deg = 0;
+        public void draw(Canvas canvas) {
+            int scales[][] = {{1,1},{-1,1},{-1,-1},{1,-1}};
+            for(int i=0;i<scales.length;i++) {
+                canvas.save();
+                canvas.translate(w / 2, h / 2);
+                canvas.scale(scales[i][0],scales[i][1]);
+                canvas.drawArc(new RectF(-r,-r,r,r),0,deg,false,paint);
+                canvas.restore();
+            }
+        }
+        public void update(float factor) {
+            this.deg = 90*factor;
+        }
     }
 }
