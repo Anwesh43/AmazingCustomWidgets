@@ -3,6 +3,7 @@ package com.anwesome.games.circfourbitmap;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
@@ -16,6 +17,7 @@ import android.view.View;
 public class CircFourBitmapView extends View{
     private int time = 0,w,h,r;
     private Bitmap bitmap;
+    private CircFour circFour;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     public CircFourBitmapView(Context context, Bitmap bitmap) {
         super(context);
@@ -28,6 +30,7 @@ public class CircFourBitmapView extends View{
             int size = 2*Math.min(w,h)/3;
             r = size/2;
             bitmap = Bitmap.createScaledBitmap(bitmap,size,size,true);
+            circFour = new CircFour();
         }
         canvas.save();
         canvas.translate(w/2,h/2);
@@ -36,6 +39,11 @@ public class CircFourBitmapView extends View{
         canvas.clipPath(path);
         canvas.drawBitmap(bitmap,-r,-r,paint);
         canvas.restore();
+        paint.setStrokeWidth(r/40);
+        paint.setColor(Color.parseColor("#0097A7"));
+        if(circFour != null) {
+            circFour.draw(canvas);
+        }
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
@@ -43,6 +51,12 @@ public class CircFourBitmapView extends View{
 
         }
         return true;
+    }
+    public void update(float factor) {
+        if(circFour != null) {
+            circFour.update(factor);
+        }
+        postInvalidate();
     }
     private class CircFour {
         private float deg = 0;
