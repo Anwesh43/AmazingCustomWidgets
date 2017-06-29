@@ -8,6 +8,9 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by anweshmishra on 29/06/17.
  */
@@ -17,6 +20,7 @@ public class BoundaryLineSwitchView extends View {
     private Bitmap bitmap;
     private int color = Color.parseColor("#00BCD4");
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private List<BoundaryLine> boundaryLineList = new ArrayList<>();
     public BoundaryLineSwitchView(Context context, Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
@@ -77,6 +81,7 @@ public class BoundaryLineSwitchView extends View {
     private class AnimationHandler {
         private boolean animated = false;
         private BoundaryLine curr,prev;
+        private int index = 0;
         public void animate(Canvas canvas) {
             if(curr != null) {
                 curr.draw(canvas);
@@ -95,6 +100,8 @@ public class BoundaryLineSwitchView extends View {
                     prev = curr;
                     animated = false;
                     curr = null;
+                    index++;
+                    index %= boundaryLineList.size();
                 }
                 try  {
                     Thread.sleep(50);
@@ -110,8 +117,12 @@ public class BoundaryLineSwitchView extends View {
                 if(prev != null) {
                     prev.startUpdating(-1);
                 }
-                animated = true;
-                postInvalidate();
+                if(index < boundaryLineList.size()) {
+                    curr = boundaryLineList.get(index);
+                    animated = true;
+                    postInvalidate();
+                }
+
             }
         }
     }
