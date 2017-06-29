@@ -1,12 +1,17 @@
 package com.anwesome.games.boundarylineswitch;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,5 +133,10 @@ public class BoundaryLineSwitchView extends View {
 
             }
         }
+    }
+    public static void create(Activity activity,Bitmap bitmap) {
+        BoundaryLineSwitchView boundaryLineSwitchView = new BoundaryLineSwitchView(activity,bitmap);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        activity.addContentView(boundaryLineSwitchView,new ViewGroup.LayoutParams(size.x,size.x));
     }
 }
