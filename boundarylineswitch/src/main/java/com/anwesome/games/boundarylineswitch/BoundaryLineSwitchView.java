@@ -40,4 +40,38 @@ public class BoundaryLineSwitchView extends View {
         }
         return true;
     }
+    private class BoundaryLine {
+        private float wx = 0;
+        private int index = 0,dir = 0;
+        public BoundaryLine(int index) {
+            this.index = index;
+        }
+        public void draw(Canvas canvas) {
+            canvas.save();
+            canvas.translate(w/2,h/2);
+            canvas.rotate(index*90);
+            canvas.drawLine(size/2,-wx,size/2,wx,paint);
+            canvas.restore();
+        }
+        public void update() {
+            wx += (size/10)*dir;
+            if(wx>size/2) {
+                dir = 0;
+                wx = size/2;
+            }
+            if(wx<0) {
+                dir = 0;
+                wx = 0;
+            }
+        }
+        public int hashCode() {
+            return index;
+        }
+        public void startUpdating(int dir) {
+            this.dir = dir;
+        }
+        public boolean stopUpdating() {
+            return dir == 0;
+        }
+    }
 }
