@@ -113,6 +113,9 @@ public class BoundaryLineSwitchView extends View {
                     prev = curr;
                     animated = false;
                     curr = null;
+                    if(onSelectionListener != null) {
+                        onSelectionListener.onSelected(index);
+                    }
                     index++;
                     index %= boundaryLineList.size();
                 }
@@ -145,12 +148,20 @@ public class BoundaryLineSwitchView extends View {
             this.color = color;
         }
     }
-    public static void create(Activity activity,Bitmap bitmap,int...colors) {
+    private OnSelectionListener onSelectionListener;
+    public void setOnSelectionListener(OnSelectionListener onSelectionListener) {
+        this.onSelectionListener = onSelectionListener;
+    }
+    public static void create(Activity activity,Bitmap bitmap,OnSelectionListener onSelectionListener,int...colors) {
         BoundaryLineSwitchView boundaryLineSwitchView = new BoundaryLineSwitchView(activity,bitmap);
+        boundaryLineSwitchView.setOnSelectionListener(onSelectionListener);
         if(colors.length == 1) {
             boundaryLineSwitchView.setColor(colors[0]);
         }
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(boundaryLineSwitchView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    public interface OnSelectionListener{
+        void onSelected(int index);
     }
 }
