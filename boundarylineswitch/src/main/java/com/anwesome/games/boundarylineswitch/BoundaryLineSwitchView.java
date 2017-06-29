@@ -47,6 +47,8 @@ public class BoundaryLineSwitchView extends View {
         canvas.drawBitmap(bitmap,-size/2,-size/2,paint);
         canvas.restore();
         time++;
+        paint.setColor(color);
+        paint.setStrokeWidth(w/60);
         animationHandler.animate(canvas);
     }
     public boolean onTouchEvent(MotionEvent event) {
