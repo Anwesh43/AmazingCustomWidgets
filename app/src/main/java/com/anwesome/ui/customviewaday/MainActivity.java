@@ -117,6 +117,8 @@ import com.anwesome.ui.plusminuslineview.PlusMinusLineView;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 import com.anwesome.ui.rectbutton.RectButtonView;
 import com.anwesome.ui.sharerotbutton.ShareRotButton;
+
+import java.util.Locale;
 //import com.anwesome.ui.progressbutton.OnClickListener;
 //import com.anwesome.ui.progressbutton.ProgressButtonView;
 //import com.anwesome.ui.tvbutton.TVButtonList;
@@ -1467,7 +1469,12 @@ public class MainActivity extends AppCompatActivity {
         CircFourBitmapView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t2));
     }
     public void showBoundaryLineSwitch() {
-        BoundaryLineSwitchView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t2));
+        BoundaryLineSwitchView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.t2), new BoundaryLineSwitchView.OnSelectionListener() {
+            @Override
+            public void onSelected(int index) {
+                Toast.makeText(MainActivity.this, String.format(Locale.ENGLISH,"Selected %d",index), Toast.LENGTH_SHORT).show();
+            }
+        }, Color.parseColor("#FF6F00"));
     }
 }
 
