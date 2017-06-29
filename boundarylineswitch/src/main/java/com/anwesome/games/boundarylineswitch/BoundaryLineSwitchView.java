@@ -21,6 +21,7 @@ public class BoundaryLineSwitchView extends View {
     private int color = Color.parseColor("#00BCD4");
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private List<BoundaryLine> boundaryLineList = new ArrayList<>();
+    private AnimationHandler animationHandler;
     public BoundaryLineSwitchView(Context context, Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
@@ -31,16 +32,18 @@ public class BoundaryLineSwitchView extends View {
             h = canvas.getHeight();
             size = Math.min(w,h)/2;
             bitmap = Bitmap.createScaledBitmap(bitmap,size,size,true);
+            animationHandler = new AnimationHandler();
         }
         canvas.save();
         canvas.translate(w/2,h/2);
         canvas.drawBitmap(bitmap,-size/2,-size/2,paint);
         canvas.restore();
         time++;
+        animationHandler.animate(canvas);
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.startAnimating();
         }
         return true;
     }
