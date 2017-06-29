@@ -74,4 +74,45 @@ public class BoundaryLineSwitchView extends View {
             return dir == 0;
         }
     }
+    private class AnimationHandler {
+        private boolean animated = false;
+        private BoundaryLine curr,prev;
+        public void animate(Canvas canvas) {
+            if(curr != null) {
+                curr.draw(canvas);
+            }
+            if(prev != null) {
+                prev.draw(canvas);
+            }
+            if(animated) {
+                if(prev!=null) {
+                    prev.update();
+                }
+                if(curr != null) {
+                    curr.update();
+                }
+                if(curr.stopUpdating()) {
+                    prev = curr;
+                    animated = false;
+                    curr = null;
+                }
+                try  {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
+                }
+            }
+        }
+        public void startAnimating() {
+            if(!animated && curr == null) {
+                if(prev != null) {
+                    prev.startUpdating(-1);
+                }
+                animated = true;
+                postInvalidate();
+            }
+        }
+    }
 }
