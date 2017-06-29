@@ -98,6 +98,7 @@ import android.widget.Toast;
 //import com.anwesome.ui.circularystbuttonlist.OnSelectionChangeListener;
 //import com.anwesome.ui.lineanddot.LineAndDotView;
 import com.anwesome.games.bicirccolorview.BiCircColorView;
+import com.anwesome.games.boundarylineswitch.BoundaryLineSwitchView;
 import com.anwesome.games.circfourbitmap.CircFourBitmapView;
 import com.anwesome.games.circgridcolorimage.CircGridColorImageView;
 import com.anwesome.games.imagecolorgrid.ImageColorGridView;
@@ -183,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCircFourView();
+                showBoundaryLineSwitch();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1464,6 +1465,9 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showCircFourView() {
         CircFourBitmapView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t2));
+    }
+    public void showBoundaryLineSwitch() {
+        BoundaryLineSwitchView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t2));
     }
 }
 

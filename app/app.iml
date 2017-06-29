@@ -116,6 +116,7 @@
     <orderEntry type="module" module-name="sharerotbutton" exported="" />
     <orderEntry type="module" module-name="circgridcolorimage" exported="" />
     <orderEntry type="module" module-name="linedegcolorview" exported="" />
+    <orderEntry type="module" module-name="boundarylineswitch" exported="" />
     <orderEntry type="module" module-name="plusminuslineview" exported="" />
     <orderEntry type="module" module-name="imagecolorgrid" exported="" />
     <orderEntry type="module" module-name="cornercenterball" exported="" />
