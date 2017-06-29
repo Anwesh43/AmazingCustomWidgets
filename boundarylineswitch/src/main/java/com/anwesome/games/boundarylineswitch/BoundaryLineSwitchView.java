@@ -38,6 +38,9 @@ public class BoundaryLineSwitchView extends View {
             size = Math.min(w,h)/2;
             bitmap = Bitmap.createScaledBitmap(bitmap,size,size,true);
             animationHandler = new AnimationHandler();
+            for(int i=0;i<4;i++) {
+                boundaryLineList.add(new BoundaryLine(i));
+            }
         }
         canvas.save();
         canvas.translate(w/2,h/2);
@@ -127,6 +130,7 @@ public class BoundaryLineSwitchView extends View {
                 }
                 if(index < boundaryLineList.size()) {
                     curr = boundaryLineList.get(index);
+                    curr.startUpdating(1);
                     animated = true;
                     postInvalidate();
                 }
