@@ -140,8 +140,16 @@ public class BoundaryLineSwitchView extends View {
             }
         }
     }
-    public static void create(Activity activity,Bitmap bitmap) {
+    public void setColor(int color) {
+        if(color != 0) {
+            this.color = color;
+        }
+    }
+    public static void create(Activity activity,Bitmap bitmap,int...colors) {
         BoundaryLineSwitchView boundaryLineSwitchView = new BoundaryLineSwitchView(activity,bitmap);
+        if(colors.length == 1) {
+            boundaryLineSwitchView.setColor(colors[0]);
+        }
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(boundaryLineSwitchView,new ViewGroup.LayoutParams(size.x,size.x));
     }
