@@ -38,6 +38,9 @@ public class ClippieImageView extends View {
             r = Math.min(w,h)/4;
             bitmap = Bitmap.createScaledBitmap(bitmap,w/2,w/2,true);
             animationHandler = new AnimationHandler();
+            for(int i=0;i<6;i++) {
+                clipImages.add(new ClipImage(i));
+            }
         }
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(r/30);
@@ -59,8 +62,14 @@ public class ClippieImageView extends View {
         }
         public void draw(Canvas canvas) {
             canvas.save();
+            canvas.translate(w/2,h/2);
             Path path = new Path();
-            path.addArc(new RectF(-r,-r,r,r),index*60,deg);
+            path.moveTo(0,0);
+            for(int i=0;i<=deg;i+=5) {
+                float currDeg = 60*index+i;
+                float x = (float)(r*Math.cos(currDeg*Math.PI/180)),y = (float)(r*Math.sin(currDeg*Math.PI/180));
+                path.lineTo(x,y);
+            }
             canvas.clipPath(path);
             canvas.drawBitmap(bitmap,-r,-r,paint);
             canvas.restore();
