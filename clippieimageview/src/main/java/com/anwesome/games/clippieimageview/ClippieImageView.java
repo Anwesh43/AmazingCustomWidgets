@@ -71,4 +71,42 @@ public class ClippieImageView extends View {
             return dir == 0;
         }
     }
+    private class AnimationHandler {
+        private int index = 0;
+        private ClipImage curr,prev;
+        private boolean animated = false;
+        public void animate(Canvas canvas) {
+            if(prev != null) {
+                prev.draw(canvas);
+            }
+            if(curr != null) {
+                curr.draw(canvas);
+            }
+            if(animated) {
+                if(curr != null) {
+                    if (prev != null) {
+                        prev.update();
+                    }
+                    curr.update();
+                    if(curr.stopped()) {
+                        prev = curr;
+                        animated = false;
+                        curr = null;
+                        index++;
+                    }
+                }
+            }
+        }
+        public void startAnimating() {
+            if(!animated) {
+                animated = true;
+                if(prev != null) {
+                    prev.startUpdating(-1);
+                }
+                
+                postInvalidate();
+
+            }
+        }
+    }
 }
