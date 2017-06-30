@@ -39,6 +39,9 @@ public class ClippieImageView extends View {
             bitmap = Bitmap.createScaledBitmap(bitmap,w/2,w/2,true);
             animationHandler = new AnimationHandler();
         }
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(r/30);
+        canvas.drawCircle(w/2,h/2,r,paint);
         animationHandler.animate(canvas);
         time++;
     }
