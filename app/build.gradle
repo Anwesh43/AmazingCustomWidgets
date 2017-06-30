@@ -127,4 +127,5 @@ dependencies {
     compile project(':linedegcolorview')
     compile project(':circfourbitmap')
     compile project(':boundarylineswitch')
+    compile project(':clippieimageview')
 }

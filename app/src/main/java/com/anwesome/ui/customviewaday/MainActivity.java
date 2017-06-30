@@ -101,6 +101,7 @@ import com.anwesome.games.bicirccolorview.BiCircColorView;
 import com.anwesome.games.boundarylineswitch.BoundaryLineSwitchView;
 import com.anwesome.games.circfourbitmap.CircFourBitmapView;
 import com.anwesome.games.circgridcolorimage.CircGridColorImageView;
+import com.anwesome.games.clippieimageview.ClippieImageView;
 import com.anwesome.games.imagecolorgrid.ImageColorGridView;
 import com.anwesome.games.linedegcolorview.LineDegColorView;
 import com.anwesome.games.pacgridview.PacGridView;
@@ -186,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showBoundaryLineSwitch();
+                showClippieImage();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1475,6 +1476,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, String.format(Locale.ENGLISH,"Selected %d",index), Toast.LENGTH_SHORT).show();
             }
         }, Color.parseColor("#FF6F00"));
+    }
+    public void showClippieImage() {
+        ClippieImageView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t2));
     }
 }
 
