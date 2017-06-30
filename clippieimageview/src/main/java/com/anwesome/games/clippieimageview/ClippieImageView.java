@@ -21,6 +21,7 @@ public class ClippieImageView extends View {
     private int time = 0,w,h,r;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private List<ClipImage> clipImages = new ArrayList<>();
+    private AnimationHandler animationHandler;
     public ClippieImageView(Context context,Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
@@ -31,12 +32,14 @@ public class ClippieImageView extends View {
             h = canvas.getHeight();
             r = Math.min(w,h)/4;
             bitmap = Bitmap.createScaledBitmap(bitmap,w/2,w/2,true);
+            animationHandler = new AnimationHandler();
         }
+        animationHandler.animate(canvas);
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.startAnimating();
         }
         return true;
     }
@@ -92,6 +95,13 @@ public class ClippieImageView extends View {
                         prev.update();
                     }
                     curr.update();
+                    try {
+                        Thread.sleep(50);
+                        invalidate();
+                    }
+                    catch (Exception ex) {
+
+                    }
                     if(curr.stopped()) {
                         prev = curr;
                         animated = false;
