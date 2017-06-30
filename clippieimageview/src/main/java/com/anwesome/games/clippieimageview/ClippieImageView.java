@@ -9,6 +9,9 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by anweshmishra on 01/07/17.
  */
@@ -17,6 +20,7 @@ public class ClippieImageView extends View {
     private Bitmap bitmap;
     private int time = 0,w,h,r;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private List<ClipImage> clipImages = new ArrayList<>();
     public ClippieImageView(Context context,Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
@@ -93,17 +97,19 @@ public class ClippieImageView extends View {
                         animated = false;
                         curr = null;
                         index++;
+                        index %= clipImages.size();
                     }
                 }
             }
         }
         public void startAnimating() {
-            if(!animated) {
+            if(!animated && index < clipImages.size()) {
                 animated = true;
                 if(prev != null) {
                     prev.startUpdating(-1);
                 }
-                
+                curr = clipImages.get(index);
+                curr.startUpdating(1);
                 postInvalidate();
 
             }
