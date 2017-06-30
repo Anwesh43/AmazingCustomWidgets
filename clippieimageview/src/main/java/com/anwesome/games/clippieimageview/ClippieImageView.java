@@ -3,6 +3,9 @@ package com.anwesome.games.clippieimageview;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -13,6 +16,7 @@ import android.view.View;
 public class ClippieImageView extends View {
     private Bitmap bitmap;
     private int time = 0,w,h,r;
+    private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     public ClippieImageView(Context context,Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
@@ -28,8 +32,43 @@ public class ClippieImageView extends View {
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
-            
+
         }
         return true;
+    }
+    private class ClipImage{
+        private int index,deg=0,dir = 0;
+        public ClipImage(int index) {
+            this.index = index;
+
+        }
+        public void draw(Canvas canvas) {
+            canvas.save();
+            Path path = new Path();
+            path.addArc(new RectF(-r,-r,r,r),index*60,deg);
+            canvas.clipPath(path);
+            canvas.drawBitmap(bitmap,-r,-r,paint);
+            canvas.restore();
+        }
+        public void update() {
+            deg += 12*dir;
+            if(deg > 60) {
+                deg = 60;
+                dir = 0;
+            }
+            if(deg < 0) {
+                deg = 0;
+                dir = 0;
+            }
+        }
+        public int hashCode() {
+            return index;
+        }
+        public void startUpdating(int dir) {
+            this.dir = dir;
+        }
+        public boolean stopped() {
+            return dir == 0;
+        }
     }
 }
