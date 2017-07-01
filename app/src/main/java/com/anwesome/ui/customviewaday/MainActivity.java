@@ -1478,7 +1478,12 @@ public class MainActivity extends AppCompatActivity {
         }, Color.parseColor("#FF6F00"));
     }
     public void showClippieImage() {
-        ClippieImageView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t2));
+        ClippieImageView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.t2), new ClippieImageView.OnClickListener() {
+            @Override
+            public void onClick(int index) {
+                Toast.makeText(MainActivity.this, String.format("Clicked %d",index), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
