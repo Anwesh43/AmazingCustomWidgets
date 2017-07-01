@@ -79,6 +79,9 @@ public class ClippieImageView extends View {
             if(deg > 60) {
                 deg = 60;
                 dir = 0;
+                if(onClickListener != null) {
+                    onClickListener.onClick(index);
+                }
             }
             if(deg < 0) {
                 deg = 0;
@@ -142,9 +145,17 @@ public class ClippieImageView extends View {
             }
         }
     }
-    public static void create(Activity activity,Bitmap bitmap) {
+    public static void create(Activity activity,Bitmap bitmap,OnClickListener onClickListener) {
         ClippieImageView clippieImageView = new ClippieImageView(activity,bitmap);
+        clippieImageView.setOnClickListener(onClickListener);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(clippieImageView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    private OnClickListener onClickListener;
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+    public interface OnClickListener {
+        void onClick(int index);
     }
 }
