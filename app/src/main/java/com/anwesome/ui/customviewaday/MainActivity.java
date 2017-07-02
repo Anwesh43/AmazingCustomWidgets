@@ -1487,7 +1487,11 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //    }
     public void showBarClipImage() {
-        BarClipImageView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t3));
+        BarClipImageView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t3),new BarClipImageView.OnClickListener(){
+            public void onClick(int index) {
+                Toast.makeText(MainActivity.this, String.format("clicked %d",index), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
