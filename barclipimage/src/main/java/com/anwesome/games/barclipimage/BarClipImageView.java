@@ -9,12 +9,16 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by anweshmishra on 02/07/17.
  */
 
 public class BarClipImageView extends View {
     private Bitmap bitmap;
+    private List<BarClipImage> barClipImages = new LinkedList<>();
     private int time = 0,w,h,size,n=3,hSize = 0;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private BarClipImageView(Context context, Bitmap bitmap,int n) {
@@ -69,6 +73,52 @@ public class BarClipImageView extends View {
         }
         public int hashCode() {
             return index;
+        }
+    }
+    private class AnimationHandler {
+        private int index = 0;
+        private BarClipImage curr,prev;
+        private boolean animated = false;
+        public void animate(Canvas canvas) {
+            if(prev != null) {
+                prev.draw(canvas);
+            }
+            if(curr != null) {
+                curr.draw(canvas);
+            }
+            if(animated) {
+                if(curr != null) {
+                    if(prev != null) {
+                        prev.update();
+                    }
+                    curr.update();
+                    if(curr.dir == 0) {
+                        prev = curr;
+                        index++;
+                        index %= barClipImages.size();
+                        animated = false;
+                    }
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
+                }
+            }
+        }
+        public void startAnimation() {
+            if(!animated && index < barClipImages.size()) {
+                animated = true;
+                if(prev != null) {
+                    prev.startUpdating(-1);
+                }
+                curr = barClipImages.get(index);
+                curr.startUpdating(1);
+                animated = true;
+                postInvalidate();
+            }
         }
     }
 }
