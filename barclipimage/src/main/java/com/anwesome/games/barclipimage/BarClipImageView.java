@@ -33,6 +33,9 @@ public class BarClipImageView extends View {
             size = Math.min(w,h)/2;
             bitmap = Bitmap.createScaledBitmap(bitmap,size,size,true);
             hSize = size/n;
+            for(int i=0;i<n;i++) {
+                barClipImages.add(new BarClipImage(i));
+            }
         }
         time++;
     }
