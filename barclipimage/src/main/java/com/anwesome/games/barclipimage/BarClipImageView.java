@@ -1,13 +1,18 @@
 package com.anwesome.games.barclipimage;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -126,5 +131,14 @@ public class BarClipImageView extends View {
                 postInvalidate();
             }
         }
+    }
+    public static void create(Activity activity,Bitmap bitmap,int...numbers) {
+        BarClipImageView barClipImageView = new BarClipImageView(activity,bitmap,0);
+        if(numbers.length == 1) {
+            barClipImageView = new BarClipImageView(activity,bitmap,numbers[0]);
+
+        }
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        activity.addContentView(barClipImageView,new ViewGroup.LayoutParams(size.x,size.x));
     }
 }
