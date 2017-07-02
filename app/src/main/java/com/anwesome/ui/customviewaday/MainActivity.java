@@ -97,27 +97,28 @@ import android.widget.Toast;
 //import com.anwesome.ui.circularystbuttonlist.CYSTList;
 //import com.anwesome.ui.circularystbuttonlist.OnSelectionChangeListener;
 //import com.anwesome.ui.lineanddot.LineAndDotView;
-import com.anwesome.games.bicirccolorview.BiCircColorView;
-import com.anwesome.games.boundarylineswitch.BoundaryLineSwitchView;
-import com.anwesome.games.circfourbitmap.CircFourBitmapView;
-import com.anwesome.games.circgridcolorimage.CircGridColorImageView;
-import com.anwesome.games.clippieimageview.ClippieImageView;
-import com.anwesome.games.imagecolorgrid.ImageColorGridView;
-import com.anwesome.games.linedegcolorview.LineDegColorView;
-import com.anwesome.games.pacgridview.PacGridView;
-import com.anwesome.games.sweepcolorbitmap.SweepColorBitmapView;
-import com.anwesome.ui.arrowlinebutton.ArrowLineButton;
-import com.anwesome.ui.circmover.CircMoverView;
-import com.anwesome.ui.circularcolorstack.CircularColorStackView;
-import com.anwesome.ui.colorbarstack.ColorBarStack;
-import com.anwesome.ui.cornercenterball.CornerCenterBallView;
-import com.anwesome.ui.holderview.HolderView;
-import com.anwesome.ui.holdfiller.HoldFillerView;
-import com.anwesome.ui.plusbuttonrect.PlusButtonRectView;
-import com.anwesome.ui.plusminuslineview.PlusMinusLineView;
+import com.anwesome.games.barclipimage.BarClipImageView;
+//import com.anwesome.games.bicirccolorview.BiCircColorView;
+//import com.anwesome.games.boundarylineswitch.BoundaryLineSwitchView;
+//import com.anwesome.games.circfourbitmap.CircFourBitmapView;
+////import com.anwesome.games.circgridcolorimage.CircGridColorImageView;
+////import com.anwesome.games.clippieimageview.ClippieImageView;
+////import com.anwesome.games.imagecolorgrid.ImageColorGridView;
+////import com.anwesome.games.linedegcolorview.LineDegColorView;
+////import com.anwesome.games.pacgridview.PacGridView;
+////import com.anwesome.games.sweepcolorbitmap.SweepColorBitmapView;
+////import com.anwesome.ui.arrowlinebutton.ArrowLineButton;
+////import com.anwesome.ui.circmover.CircMoverView;
+////import com.anwesome.ui.circularcolorstack.CircularColorStackView;
+////import com.anwesome.ui.colorbarstack.ColorBarStack;
+////import com.anwesome.ui.cornercenterball.CornerCenterBallView;
+////import com.anwesome.ui.holderview.HolderView;
+////import com.anwesome.ui.holdfiller.HoldFillerView;
+////import com.anwesome.ui.plusbuttonrect.PlusButtonRectView;
+////import com.anwesome.ui.plusminuslineview.PlusMinusLineView;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
-import com.anwesome.ui.rectbutton.RectButtonView;
-import com.anwesome.ui.sharerotbutton.ShareRotButton;
+////import com.anwesome.ui.rectbutton.RectButtonView;
+////import com.anwesome.ui.sharerotbutton.ShareRotButton;
 
 import java.util.Locale;
 //import com.anwesome.ui.progressbutton.OnClickListener;
@@ -187,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showClippieImage();
+                showBarClipImage();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1288,202 +1289,205 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //
 //    }
-    public void showHolderView() {
-        HolderView.create(this, new HolderView.OnFillEmptyListener() {
-            @Override
-            public void onFill() {
-                Toast.makeText(MainActivity.this, "OnFilled", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onEmpty() {
-                Toast.makeText(MainActivity.this, "OnEmoty", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void showPlusMinusView() {
-        PlusMinusLineView.create(this, new PlusMinusLineView.OnOpenCloseListener() {
-            @Override
-            public void onOpen() {
-                Toast.makeText(MainActivity.this, "On Opened", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onClose() {
-                Toast.makeText(MainActivity.this, "On Closed", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void showRectButton() {
-        RectButtonView.create(this, new RectButtonView.OnSizeChangeListener() {
-            @Override
-            public void onExpand() {
-                Toast.makeText(MainActivity.this, "OnExpanded", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onShrink() {
-                Toast.makeText(MainActivity.this, "OnShrinked", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void showHoldFiller() {
-        HoldFillerView.create(this, new HoldFillerView.OnFillCompleteListener() {
-            @Override
-            public void onFillComplete() {
-                Toast.makeText(MainActivity.this, "Filled", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void showPlusButtonRect() {
-        PlusButtonRectView.create(this, new PlusButtonRectView.OnExpandListener() {
-            @Override
-            public void onExpand() {
-                Toast.makeText(MainActivity.this, "OnExpanded", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void showCornerCenterBall() {
-        CornerCenterBallView.create(this);
-    }
-
-    public void showCircMover() {
-        CircMoverView.create(this, 5, new CircMoverView.OnMovementCompletionListener() {
-            @Override
-            public void onMoveToRight(int index) {
-                Toast.makeText(MainActivity.this, String.format("%d moved to right",index), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onMoveToLeft(int index) {
-                Toast.makeText(MainActivity.this, String.format("%d moved to left",index), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void showShareRotButton() {
-        ShareRotButton.create(this, new ShareRotButton.OnClickListener() {
-            @Override
-            public void onClick() {
-                Toast.makeText(MainActivity.this, "Clicked Share Button", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void showArrowLineButton() {
-        ArrowLineButton.create(this, new ArrowLineButton.OnOpenCloseListener() {
-            @Override
-            public void onOpen() {
-                Toast.makeText(MainActivity.this, "Opened", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onClose() {
-                Toast.makeText(MainActivity.this, "Closed", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void showColorBarStack() {
-        int[] colors = {Color.parseColor("#f44336"),Color.parseColor("#26A69A"),Color.parseColor("#1E88E5"),Color.parseColor("#C2185B")};
-        ColorBarStack.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.penguin), colors, new ColorBarStack.OnOpenCloseColorListener() {
-            @Override
-            public void onOpen(int index, int color) {
-                Toast.makeText(MainActivity.this, String.format("Opened %d color",index), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onClose(int index, int color) {
-                Toast.makeText(MainActivity.this, String.format("Closed %d color",index), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void showCircularColorStack() {
-        int[] colors = {Color.parseColor("#f44336"),Color.parseColor("#26A69A"),Color.parseColor("#1E88E5"),Color.parseColor("#C2185B")};
-        CircularColorStackView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.penguin), colors);
-    }
-    public void showImageColorGrid() {
-        ImageColorGridView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.penguin));
-    }
-    public void showCircGridColorImage() {
-        CircGridColorImageView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.penguin), new CircGridColorImageView.OnSelectionChangeListener() {
-            @Override
-            public void onSelect(int index) {
-                Toast.makeText(MainActivity.this, String.format("%d selected",index), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onUnSelect(int index) {
-                Toast.makeText(MainActivity.this, String.format("%d unselected",index), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void showPacGridView() {
-        PacGridView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.penguin), new PacGridView.OnClickListener() {
-            @Override
-            public void onClick(int index) {
-                Toast.makeText(MainActivity.this, String.format("%d clicked",index), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void showSweepColorBitmap() {
-        int colors[] = {Color.RED,Color.GREEN,Color.BLUE,Color.CYAN,Color.BLACK,Color.YELLOW};
-        SweepColorBitmapView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.penguin), colors, new SweepColorBitmapView.OnOpenCloseListener() {
-            @Override
-            public void onOpen(int index) {
-                Toast.makeText(MainActivity.this,String.format("color at %d opened",index),Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onClose(int index) {
-                Toast.makeText(MainActivity.this,String.format("color at %d closed",index),Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void showBiCircColorView() {
-        int colors[] = {Color.RED,Color.GREEN,Color.BLUE,Color.CYAN,Color.BLACK,Color.YELLOW};
-        BiCircColorView.create(this, colors, new BiCircColorView.OnOpenCloseListener() {
-            @Override
-            public void onOpen(int index) {
-                Toast.makeText(MainActivity.this, String.format("opened %d",index), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onClose(int index) {
-                Toast.makeText(MainActivity.this, String.format("closed %d",index), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void showLineDeg() {
-        int colors[] = {Color.RED,Color.GREEN,Color.BLUE,Color.CYAN,Color.BLACK,Color.YELLOW};
-        LineDegColorView.create(this, colors, new LineDegColorView.OnExpandShrinkListener() {
-            @Override
-            public void onExpand(int index) {
-                Toast.makeText(MainActivity.this, String.format("expanded %d",(index+1)), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onShrink(int index) {
-                Toast.makeText(MainActivity.this, String.format("shrinked %d",(index+1)), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void showCircFourView() {
-        CircFourBitmapView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t2));
-    }
-    public void showBoundaryLineSwitch() {
-        BoundaryLineSwitchView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.t2), new BoundaryLineSwitchView.OnSelectionListener() {
-            @Override
-            public void onSelected(int index) {
-                Toast.makeText(MainActivity.this, String.format(Locale.ENGLISH,"Selected %d",index), Toast.LENGTH_SHORT).show();
-            }
-        }, Color.parseColor("#FF6F00"));
-    }
-    public void showClippieImage() {
-        ClippieImageView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.t2), new ClippieImageView.OnClickListener() {
-            @Override
-            public void onClick(int index) {
-                Toast.makeText(MainActivity.this, String.format("Clicked %d",index), Toast.LENGTH_SHORT).show();
-            }
-        });
+//    public void showHolderView() {
+//        HolderView.create(this, new HolderView.OnFillEmptyListener() {
+//            @Override
+//            public void onFill() {
+//                Toast.makeText(MainActivity.this, "OnFilled", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onEmpty() {
+//                Toast.makeText(MainActivity.this, "OnEmoty", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    public void showPlusMinusView() {
+//        PlusMinusLineView.create(this, new PlusMinusLineView.OnOpenCloseListener() {
+//            @Override
+//            public void onOpen() {
+//                Toast.makeText(MainActivity.this, "On Opened", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onClose() {
+//                Toast.makeText(MainActivity.this, "On Closed", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    public void showRectButton() {
+//        RectButtonView.create(this, new RectButtonView.OnSizeChangeListener() {
+//            @Override
+//            public void onExpand() {
+//                Toast.makeText(MainActivity.this, "OnExpanded", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onShrink() {
+//                Toast.makeText(MainActivity.this, "OnShrinked", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    public void showHoldFiller() {
+//        HoldFillerView.create(this, new HoldFillerView.OnFillCompleteListener() {
+//            @Override
+//            public void onFillComplete() {
+//                Toast.makeText(MainActivity.this, "Filled", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    public void showPlusButtonRect() {
+//        PlusButtonRectView.create(this, new PlusButtonRectView.OnExpandListener() {
+//            @Override
+//            public void onExpand() {
+//                Toast.makeText(MainActivity.this, "OnExpanded", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//
+//    public void showCornerCenterBall() {
+//        CornerCenterBallView.create(this);
+//    }
+//
+//    public void showCircMover() {
+//        CircMoverView.create(this, 5, new CircMoverView.OnMovementCompletionListener() {
+//            @Override
+//            public void onMoveToRight(int index) {
+//                Toast.makeText(MainActivity.this, String.format("%d moved to right",index), Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onMoveToLeft(int index) {
+//                Toast.makeText(MainActivity.this, String.format("%d moved to left",index), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    public void showShareRotButton() {
+//        ShareRotButton.create(this, new ShareRotButton.OnClickListener() {
+//            @Override
+//            public void onClick() {
+//                Toast.makeText(MainActivity.this, "Clicked Share Button", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    public void showArrowLineButton() {
+//        ArrowLineButton.create(this, new ArrowLineButton.OnOpenCloseListener() {
+//            @Override
+//            public void onOpen() {
+//                Toast.makeText(MainActivity.this, "Opened", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onClose() {
+//                Toast.makeText(MainActivity.this, "Closed", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    public void showColorBarStack() {
+//        int[] colors = {Color.parseColor("#f44336"),Color.parseColor("#26A69A"),Color.parseColor("#1E88E5"),Color.parseColor("#C2185B")};
+//        ColorBarStack.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.penguin), colors, new ColorBarStack.OnOpenCloseColorListener() {
+//            @Override
+//            public void onOpen(int index, int color) {
+//                Toast.makeText(MainActivity.this, String.format("Opened %d color",index), Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onClose(int index, int color) {
+//                Toast.makeText(MainActivity.this, String.format("Closed %d color",index), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    public void showCircularColorStack() {
+//        int[] colors = {Color.parseColor("#f44336"),Color.parseColor("#26A69A"),Color.parseColor("#1E88E5"),Color.parseColor("#C2185B")};
+//        CircularColorStackView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.penguin), colors);
+//    }
+//    public void showImageColorGrid() {
+//        ImageColorGridView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.penguin));
+//    }
+//    public void showCircGridColorImage() {
+//        CircGridColorImageView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.penguin), new CircGridColorImageView.OnSelectionChangeListener() {
+//            @Override
+//            public void onSelect(int index) {
+//                Toast.makeText(MainActivity.this, String.format("%d selected",index), Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onUnSelect(int index) {
+//                Toast.makeText(MainActivity.this, String.format("%d unselected",index), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    public void showPacGridView() {
+//        PacGridView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.penguin), new PacGridView.OnClickListener() {
+//            @Override
+//            public void onClick(int index) {
+//                Toast.makeText(MainActivity.this, String.format("%d clicked",index), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    public void showSweepColorBitmap() {
+//        int colors[] = {Color.RED,Color.GREEN,Color.BLUE,Color.CYAN,Color.BLACK,Color.YELLOW};
+//        SweepColorBitmapView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.penguin), colors, new SweepColorBitmapView.OnOpenCloseListener() {
+//            @Override
+//            public void onOpen(int index) {
+//                Toast.makeText(MainActivity.this,String.format("color at %d opened",index),Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onClose(int index) {
+//                Toast.makeText(MainActivity.this,String.format("color at %d closed",index),Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    public void showBiCircColorView() {
+//        int colors[] = {Color.RED,Color.GREEN,Color.BLUE,Color.CYAN,Color.BLACK,Color.YELLOW};
+//        BiCircColorView.create(this, colors, new BiCircColorView.OnOpenCloseListener() {
+//            @Override
+//            public void onOpen(int index) {
+//                Toast.makeText(MainActivity.this, String.format("opened %d",index), Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onClose(int index) {
+//                Toast.makeText(MainActivity.this, String.format("closed %d",index), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    public void showLineDeg() {
+//        int colors[] = {Color.RED,Color.GREEN,Color.BLUE,Color.CYAN,Color.BLACK,Color.YELLOW};
+//        LineDegColorView.create(this, colors, new LineDegColorView.OnExpandShrinkListener() {
+//            @Override
+//            public void onExpand(int index) {
+//                Toast.makeText(MainActivity.this, String.format("expanded %d",(index+1)), Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onShrink(int index) {
+//                Toast.makeText(MainActivity.this, String.format("shrinked %d",(index+1)), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    public void showCircFourView() {
+//        CircFourBitmapView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t2));
+//    }
+//    public void showBoundaryLineSwitch() {
+//        BoundaryLineSwitchView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.t2), new BoundaryLineSwitchView.OnSelectionListener() {
+//            @Override
+//            public void onSelected(int index) {
+//                Toast.makeText(MainActivity.this, String.format(Locale.ENGLISH,"Selected %d",index), Toast.LENGTH_SHORT).show();
+//            }
+//        }, Color.parseColor("#FF6F00"));
+//    }
+//    public void showClippieImage() {
+//        ClippieImageView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.t2), new ClippieImageView.OnClickListener() {
+//            @Override
+//            public void onClick(int index) {
+//                Toast.makeText(MainActivity.this, String.format("Clicked %d",index), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+    public void showBarClipImage() {
+        BarClipImageView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t3));
     }
 }
 

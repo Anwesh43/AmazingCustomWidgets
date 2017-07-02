@@ -112,28 +112,9 @@
     <orderEntry type="library" exported="" scope="TEST" name="junit-4.12" level="project" />
     <orderEntry type="library" exported="" name="support-vector-drawable-23.4.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.4.0" level="project" />
-    <orderEntry type="module" module-name="holdfiller" exported="" />
-    <orderEntry type="module" module-name="sharerotbutton" exported="" />
-    <orderEntry type="module" module-name="circgridcolorimage" exported="" />
-    <orderEntry type="module" module-name="linedegcolorview" exported="" />
-    <orderEntry type="module" module-name="boundarylineswitch" exported="" />
-    <orderEntry type="module" module-name="plusminuslineview" exported="" />
-    <orderEntry type="module" module-name="imagecolorgrid" exported="" />
-    <orderEntry type="module" module-name="clippieimageview" exported="" />
-    <orderEntry type="module" module-name="cornercenterball" exported="" />
-    <orderEntry type="module" module-name="circmover" exported="" />
-    <orderEntry type="module" module-name="plusbuttonrect" exported="" />
-    <orderEntry type="module" module-name="sweepcolorbitmap" exported="" />
+    <orderEntry type="module" module-name="barclipimage" exported="" />
     <orderEntry type="module" module-name="dimensionsutil" exported="" />
-    <orderEntry type="module" module-name="bicirccolorview" exported="" />
-    <orderEntry type="module" module-name="circfourbitmap" exported="" />
     <orderEntry type="module" module-name="polygonaltraverseview" exported="" />
-    <orderEntry type="module" module-name="holderview" exported="" />
-    <orderEntry type="module" module-name="arrowlinebutton" exported="" />
-    <orderEntry type="module" module-name="circularcolorstack" exported="" />
-    <orderEntry type="module" module-name="rectbutton" exported="" />
-    <orderEntry type="module" module-name="pacgridview" exported="" />
-    <orderEntry type="module" module-name="colorbarstack" exported="" />
     <orderEntry type="library" exported="" scope="TEST" name="espresso-core-2.2.2" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="runner-0.5" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="exposed-instrumentation-api-publish-0.5" level="project" />
