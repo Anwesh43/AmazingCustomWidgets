@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
@@ -47,6 +48,10 @@ public class BarClipImageView extends View {
         time++;
         canvas.save();
         canvas.translate(w/2,h/2-size/2);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(Color.GRAY);
+        paint.setStrokeWidth(size/30);
+        canvas.drawRect(new RectF(-size/2,0,size/2,size),paint);
         animationHandler.animate(canvas);
         canvas.restore();
     }
