@@ -45,7 +45,10 @@ public class BarClipImageView extends View {
             animationHandler = new AnimationHandler();
         }
         time++;
+        canvas.save();
+        canvas.translate(w/2,h/2-size/2);
         animationHandler.animate(canvas);
+        canvas.restore();
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
@@ -63,9 +66,9 @@ public class BarClipImageView extends View {
         public void draw(Canvas canvas) {
             canvas.save();
             Path path = new Path();
-            path.addRect(new RectF(-(size/2)*scale,-hSize/2,(size/2)*scale,hSize/2), Path.Direction.CCW);
+            path.addRect(new RectF(-(size/2)*scale,y,(size/2)*scale,y+hSize), Path.Direction.CCW);
             canvas.clipPath(path);
-            canvas.drawBitmap(bitmap,-size/2,-size/2,paint);
+            canvas.drawBitmap(bitmap,-size/2,0,paint);
             canvas.restore();
         }
         public void update() {
