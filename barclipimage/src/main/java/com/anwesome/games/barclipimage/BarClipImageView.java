@@ -21,6 +21,7 @@ public class BarClipImageView extends View {
     private List<BarClipImage> barClipImages = new LinkedList<>();
     private int time = 0,w,h,size,n=3,hSize = 0;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private AnimationHandler animationHandler;
     private BarClipImageView(Context context, Bitmap bitmap,int n) {
         super(context);
         this.bitmap = bitmap;
@@ -36,12 +37,14 @@ public class BarClipImageView extends View {
             for(int i=0;i<n;i++) {
                 barClipImages.add(new BarClipImage(i));
             }
+            animationHandler = new AnimationHandler();
         }
         time++;
+        animationHandler.animate(canvas);
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.startAnimation();
         }
         return true;
     }
