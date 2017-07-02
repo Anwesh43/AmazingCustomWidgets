@@ -113,6 +113,9 @@ public class BarClipImageView extends View {
                     curr.update();
                     if(curr.dir == 0) {
                         prev = curr;
+                        if(onClickListener != null) {
+                            onClickListener.onClick(index);
+                        }
                         index++;
                         index %= barClipImages.size();
                         animated = false;
@@ -140,13 +143,21 @@ public class BarClipImageView extends View {
             }
         }
     }
-    public static void create(Activity activity,Bitmap bitmap,int...numbers) {
+    private OnClickListener onClickListener;
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+    public static void create(Activity activity,Bitmap bitmap,OnClickListener onClickListener,int...numbers) {
         BarClipImageView barClipImageView = new BarClipImageView(activity,bitmap,0);
         if(numbers.length == 1) {
             barClipImageView = new BarClipImageView(activity,bitmap,numbers[0]);
 
         }
+        barClipImageView.setOnClickListener(onClickListener);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(barClipImageView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    public interface OnClickListener {
+        void onClick(int index);
     }
 }
