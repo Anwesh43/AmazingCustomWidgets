@@ -131,6 +131,15 @@ public class VerticalClipImageView extends View {
             }
         }
         public void handleTap(float x,float y) {
+            for(VerticalClipImage image:images) {
+                if(image.handleTap(x,y)) {
+                    tappedImages.add(image);
+                    if(tappedImages.size() == 1) {
+                        animated = true;
+                        postInvalidate();
+                    }
+                }
+            }
         }
     }
 }
