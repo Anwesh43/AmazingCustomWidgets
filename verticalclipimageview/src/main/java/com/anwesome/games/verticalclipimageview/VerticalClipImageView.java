@@ -38,6 +38,9 @@ public class VerticalClipImageView extends View {
             size = Math.min(w,h)/2;
             bitmap = Bitmap.createScaledBitmap(bitmap,size,size,true);
             wSize = size/n;
+            for(int i=0;i<n;i++) {
+                images.add(new VerticalClipImage(i));
+            }
             animationHandler = new AnimationHandler();
         }
         canvas.save();
