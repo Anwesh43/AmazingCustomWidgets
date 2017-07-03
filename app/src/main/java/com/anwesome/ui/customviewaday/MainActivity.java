@@ -1495,7 +1495,12 @@ public class MainActivity extends AppCompatActivity {
 //        },6);
 //    }
     public void showVerticalClipImage() {
-        VerticalClipImageView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t3),5);
+        VerticalClipImageView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.t3), new VerticalClipImageView.OnClickListener() {
+            @Override
+            public void onClick(int index) {
+                Toast.makeText(MainActivity.this, String.format(Locale.ENGLISH,"expanded %d",index+1), Toast.LENGTH_SHORT).show();
+            }
+        }, 5);
     }
 }
 
