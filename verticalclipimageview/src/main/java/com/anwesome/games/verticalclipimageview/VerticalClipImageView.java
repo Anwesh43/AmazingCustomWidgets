@@ -100,6 +100,9 @@ public class VerticalClipImageView extends View {
             if(scale > 1) {
                 scale = 1;
                 dir = 0;
+                if(onClickListener != null) {
+                    onClickListener.onClick(index);
+                }
             }
             if(scale < 0) {
                 scale = 0;
@@ -156,12 +159,20 @@ public class VerticalClipImageView extends View {
             }
         }
     }
-    public static void create(Activity activity,Bitmap bitmap,int...n) {
+    private OnClickListener onClickListener;
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+    public static void create(Activity activity,Bitmap bitmap,OnClickListener onClickListener,int...n) {
        VerticalClipImageView view = new VerticalClipImageView(activity,bitmap);
         if(n.length == 1) {
             view.setN(n[0]);
         }
+        view.setOnClickListener(onClickListener);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(view,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    public interface OnClickListener {
+        void onClick(int index);
     }
 }
