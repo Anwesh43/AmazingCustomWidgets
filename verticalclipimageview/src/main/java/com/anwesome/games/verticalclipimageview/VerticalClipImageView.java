@@ -20,6 +20,7 @@ public class VerticalClipImageView extends View {
     private int n = 3,time = 0,w,h,wSize,size;
     private Bitmap bitmap;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private AnimationHandler animationHandler;
     private ConcurrentLinkedQueue<VerticalClipImage> images = new ConcurrentLinkedQueue<>();
     public VerticalClipImageView(Context context, Bitmap bitmap) {
         super(context);
@@ -32,6 +33,7 @@ public class VerticalClipImageView extends View {
             size = Math.min(w,h)/2;
             bitmap = Bitmap.createScaledBitmap(bitmap,size,size,true);
             wSize = size/n;
+            animationHandler = new AnimationHandler();
         }
         canvas.save();
         canvas.translate(w/2-size/2,h/2-size/2);
@@ -48,10 +50,13 @@ public class VerticalClipImageView extends View {
         }
         canvas.restore();
         time++;
+        if(animationHandler != null) {
+            animationHandler.animate();
+        }
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.handleTap(event.getX(),event.getY());
         }
         return true;
     }
