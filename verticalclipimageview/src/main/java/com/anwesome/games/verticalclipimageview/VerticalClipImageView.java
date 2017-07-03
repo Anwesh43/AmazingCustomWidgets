@@ -10,6 +10,8 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by anweshmishra on 03/07/17.
  */
@@ -99,6 +101,32 @@ public class VerticalClipImageView extends View {
         }
         public boolean stopped() {
             return dir == 0;
+        }
+    }
+    private class AnimationHandler {
+        private boolean animated = false;
+        private ConcurrentLinkedQueue<VerticalClipImage> tappedImages = new ConcurrentLinkedQueue<>();
+        public void animate() {
+            if(animated) {
+                for(VerticalClipImage tappedImage:tappedImages) {
+                    tappedImage.update();
+                    if(tappedImage.stopped()) {
+                        tappedImages.remove(tappedImage);
+                        if(tappedImages.size() == 0) {
+                            animated = false;
+                        }
+                    }
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
+                }
+            }
+        }
+        public void handleTap(float x,float y) {
         }
     }
 }
