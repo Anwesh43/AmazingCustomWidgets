@@ -20,6 +20,7 @@ public class VerticalClipImageView extends View {
     private int n = 3,time = 0,w,h,wSize,size;
     private Bitmap bitmap;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private ConcurrentLinkedQueue<VerticalClipImage> images = new ConcurrentLinkedQueue<>();
     public VerticalClipImageView(Context context, Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
@@ -42,6 +43,9 @@ public class VerticalClipImageView extends View {
             canvas.drawRect(new RectF(x,0,x+wSize,size),paint);
         }
         paint.setStyle(Paint.Style.FILL);
+        for(VerticalClipImage image:images) {
+            image.draw(canvas);
+        }
         canvas.restore();
         time++;
     }
