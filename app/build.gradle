@@ -128,5 +128,6 @@ dependencies {
 //    compile project(':circfourbitmap')
 //    compile project(':boundarylineswitch')
 //    compile project(':clippieimageview')
-    compile project(':barclipimage')
+//    compile project(':barclipimage')
+    compile project(':verticalclipimageview')
 }

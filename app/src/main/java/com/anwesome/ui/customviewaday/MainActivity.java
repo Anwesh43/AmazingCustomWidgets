@@ -97,7 +97,7 @@ import android.widget.Toast;
 //import com.anwesome.ui.circularystbuttonlist.CYSTList;
 //import com.anwesome.ui.circularystbuttonlist.OnSelectionChangeListener;
 //import com.anwesome.ui.lineanddot.LineAndDotView;
-import com.anwesome.games.barclipimage.BarClipImageView;
+//import com.anwesome.games.barclipimage.BarClipImageView;
 //import com.anwesome.games.bicirccolorview.BiCircColorView;
 //import com.anwesome.games.boundarylineswitch.BoundaryLineSwitchView;
 //import com.anwesome.games.circfourbitmap.CircFourBitmapView;
@@ -116,6 +116,7 @@ import com.anwesome.games.barclipimage.BarClipImageView;
 ////import com.anwesome.ui.holdfiller.HoldFillerView;
 ////import com.anwesome.ui.plusbuttonrect.PlusButtonRectView;
 ////import com.anwesome.ui.plusminuslineview.PlusMinusLineView;
+import com.anwesome.games.verticalclipimageview.VerticalClipImageView;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 ////import com.anwesome.ui.rectbutton.RectButtonView;
 ////import com.anwesome.ui.sharerotbutton.ShareRotButton;
@@ -188,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showBarClipImage();
+                showVerticalClipImage();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1486,12 +1487,15 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 //    }
-    public void showBarClipImage() {
-        BarClipImageView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t3),new BarClipImageView.OnClickListener(){
-            public void onClick(int index) {
-                Toast.makeText(MainActivity.this, String.format("clicked %d",index+1), Toast.LENGTH_SHORT).show();
-            }
-        },6);
+//    public void showBarClipImage() {
+//        BarClipImageView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t3),new BarClipImageView.OnClickListener(){
+//            public void onClick(int index) {
+//                Toast.makeText(MainActivity.this, String.format("clicked %d",index+1), Toast.LENGTH_SHORT).show();
+//            }
+//        },6);
+//    }
+    public void showVerticalClipImage() {
+        VerticalClipImageView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t3),5);
     }
 }
 
