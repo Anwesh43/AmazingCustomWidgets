@@ -64,7 +64,7 @@ public class VerticalClipImageView extends View {
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
-            animationHandler.handleTap(event.getX(),event.getY());
+            animationHandler.handleTap(event.getX()-w/2+size/2,event.getY()-h/2+size/2);
         }
         return true;
     }
@@ -82,7 +82,7 @@ public class VerticalClipImageView extends View {
         public void draw(Canvas canvas) {
             canvas.save();
             Path path = new Path();
-            path.addRect(new RectF(0,0,wSize,size*scale), Path.Direction.CCW);
+            path.addRect(new RectF(x,0,x+wSize,size*scale), Path.Direction.CCW);
             canvas.clipPath(path);
             canvas.drawBitmap(bitmap,0,0,paint);
             canvas.restore();
@@ -150,6 +150,7 @@ public class VerticalClipImageView extends View {
                     if(tappedImages.size() == 1) {
                         animated = true;
                         postInvalidate();
+                        break;
                     }
                 }
             }
