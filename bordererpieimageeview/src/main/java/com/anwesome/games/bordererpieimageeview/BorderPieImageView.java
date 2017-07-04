@@ -58,7 +58,7 @@ public class BorderPieImageView extends View {
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
-            animationHandler.handleTap(event.getX(),event.getY());
+            animationHandler.handleTap(event.getX()-w/2,event.getY()-h/2);
         }
         return true;
     }
@@ -68,8 +68,8 @@ public class BorderPieImageView extends View {
         public PieBitmap(int index) {
             this.index = index;
             r = size/5;
-            x = (float)((size+r)*Math.cos(((index*90)+45)*Math.PI/180));
-            y = (float)((size+r)*Math.sin(((index*90)+45)*Math.PI/180));
+            x = (float)((size/2+2*r)*Math.cos(((index*90)+45)*Math.PI/180));
+            y = (float)((size/2+2*r)*Math.sin(((index*90)+45)*Math.PI/180));
         }
         public void draw(Canvas canvas) {
             canvas.save();
@@ -82,9 +82,10 @@ public class BorderPieImageView extends View {
             canvas.drawArc(new RectF(-r,-r,r,r),0,360*scale,true,paint);
             canvas.restore();
             canvas.save();
-            canvas.translate(size/2*bitmapPivots[index][0],size/2*bitmapPivots[index][1]);
+            float tx = size/4*bitmapPivots[index][0],ty = size/4*bitmapPivots[index][1];
             Path path = new Path();
-            path.addRect(new RectF((-size/4)*scale,(-size/4)*scale,(size/4)*scale,(size/4)*scale), Path.Direction.CCW);
+            path.addRect(new RectF(tx+(-size/4)*scale,ty+(-size/4)*scale,tx+(size/4)*scale,ty+(size/4)*scale), Path.Direction.CCW);
+            canvas.clipPath(path);
             canvas.drawBitmap(bitmap,-size/2,-size/2,paint);
             canvas.restore();
         }
@@ -107,10 +108,10 @@ public class BorderPieImageView extends View {
         }
         private void startUpdating() {
             if(scale >= 1) {
-                dir = 1;
+                dir = -1;
             }
             if(scale <= 0) {
-                dir = 0;
+                dir = 1;
             }
         }
         public boolean handleTap(float x,float y) {
