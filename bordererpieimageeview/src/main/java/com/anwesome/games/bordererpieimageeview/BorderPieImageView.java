@@ -19,6 +19,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class BorderPieImageView extends View {
     private int time = 0,w,h,size;
     private Bitmap bitmap;
+    private AnimationHandler animationHandler;
+    private ConcurrentLinkedQueue<PieBitmap> pieBitmaps = new ConcurrentLinkedQueue<>();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int bitmapPivots[][] = {{1,1},{-1,1},{-1,-1},{1,-1}};
     public BorderPieImageView(Context context,Bitmap bitmap) {
@@ -31,9 +33,20 @@ public class BorderPieImageView extends View {
             h = canvas.getHeight();
             size = Math.min(w,h)/2;
             bitmap = Bitmap.createScaledBitmap(bitmap,size,size,true);
+            for(int i=0;i<4;i++) {
+                pieBitmaps.add(new PieBitmap(i));
+            }
+            animationHandler = new AnimationHandler();
         }
         canvas.save();
         canvas.translate(w/2,h/2);
+        paint.setColor(Color.BLUE);
+        paint.setStrokeWidth(w/90);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawRect(new RectF(-size/2,size/2,size/2,size/2),paint);
+        for(PieBitmap pieBitmap:pieBitmaps) {
+            pieBitmap.draw(canvas);
+        }
         canvas.restore();
         time++;
     }
@@ -126,7 +139,16 @@ public class BorderPieImageView extends View {
             }
         }
         public void handleTap(float x,float y) {
-
+            for(PieBitmap pieBitmap:pieBitmaps) {
+                if(pieBitmap.handleTap(x,y)) {
+                    tappedBitmaps.add(pieBitmap);
+                    if(tappedBitmaps.size() == 1) {
+                        animated = true;
+                        postInvalidate();
+                    }
+                    break;
+                }
+            }
         }
     }
 }
