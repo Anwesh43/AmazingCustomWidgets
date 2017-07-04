@@ -10,6 +10,8 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by anweshmishra on 04/07/17.
  */
@@ -81,6 +83,9 @@ public class BorderPieImageView extends View {
                 scale = 0;
             }
         }
+        public boolean stopped() {
+            return dir == 0;
+        }
         private void startUpdating() {
             if(scale >= 1) {
                 dir = 1;
@@ -95,6 +100,33 @@ public class BorderPieImageView extends View {
                 startUpdating();
             }
             return condition;
+        }
+    }
+    private class AnimationHandler {
+        private boolean animated = false;
+        private ConcurrentLinkedQueue<PieBitmap> tappedBitmaps = new ConcurrentLinkedQueue<>();
+        public void animate() {
+            if(animated) {
+                for(PieBitmap tappedBitmap:tappedBitmaps) {
+                    tappedBitmap.update();
+                    if(tappedBitmap.stopped()) {
+                        tappedBitmaps.remove(tappedBitmap);
+                        if(tappedBitmaps.size() == 0) {
+                            animated = false;
+                        }
+                    }
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch(Exception ex) {
+
+                }
+            }
+        }
+        public void handleTap(float x,float y) {
+
         }
     }
 }
