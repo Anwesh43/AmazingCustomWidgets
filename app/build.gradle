@@ -129,5 +129,6 @@ dependencies {
 //    compile project(':boundarylineswitch')
 //    compile project(':clippieimageview')
 //    compile project(':barclipimage')
-    compile project(':verticalclipimageview')
+//    compile project(':verticalclipimageview')
+    compile project(':bordererpieimageeview')
 }

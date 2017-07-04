@@ -116,7 +116,7 @@ import android.widget.Toast;
 ////import com.anwesome.ui.holdfiller.HoldFillerView;
 ////import com.anwesome.ui.plusbuttonrect.PlusButtonRectView;
 ////import com.anwesome.ui.plusminuslineview.PlusMinusLineView;
-import com.anwesome.games.verticalclipimageview.VerticalClipImageView;
+import com.anwesome.games.bordererpieimageeview.BorderPieImageView;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 ////import com.anwesome.ui.rectbutton.RectButtonView;
 ////import com.anwesome.ui.sharerotbutton.ShareRotButton;
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showVerticalClipImage();
+                showBorderPieImageView();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1494,13 +1494,26 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        },6);
 //    }
-    public void showVerticalClipImage() {
-        VerticalClipImageView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.t3), new VerticalClipImageView.OnClickListener() {
+//    public void showVerticalClipImage() {
+//        VerticalClipImageView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.t3), new VerticalClipImageView.OnClickListener() {
+//            @Override
+//            public void onClick(int index) {
+//                Toast.makeText(MainActivity.this, String.format(Locale.ENGLISH,"expanded %d",index+1), Toast.LENGTH_SHORT).show();
+//            }
+//        }, 5);
+//    }
+    public void showBorderPieImageView() {
+        BorderPieImageView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.t3), new BorderPieImageView.OnExpandCloseListener() {
             @Override
-            public void onClick(int index) {
-                Toast.makeText(MainActivity.this, String.format(Locale.ENGLISH,"expanded %d",index+1), Toast.LENGTH_SHORT).show();
+            public void onExpand(int index) {
+                Toast.makeText(MainActivity.this, String.format(Locale.ENGLISH,"expanded %d",index), Toast.LENGTH_SHORT).show();
             }
-        }, 5);
+
+            @Override
+            public void onClose(int index) {
+                Toast.makeText(MainActivity.this, String.format(Locale.ENGLISH,"closed %d",index), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
