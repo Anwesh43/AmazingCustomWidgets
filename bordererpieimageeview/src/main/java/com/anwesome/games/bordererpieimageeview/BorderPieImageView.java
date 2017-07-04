@@ -97,10 +97,16 @@ public class BorderPieImageView extends View {
             if(scale > 1) {
                 dir = 0;
                 scale = 1;
+                if(onExpandCloseListener != null) {
+                   onExpandCloseListener.onExpand(index);
+                }
             }
             if(scale < 0) {
                 dir = 0;
                 scale = 0;
+                if(onExpandCloseListener != null) {
+                    onExpandCloseListener.onClose(index);
+                }
             }
         }
         public boolean stopped() {
@@ -158,8 +164,17 @@ public class BorderPieImageView extends View {
             }
         }
     }
-    public static void create(Activity activity,Bitmap bitmap) {
+    private OnExpandCloseListener onExpandCloseListener;
+    public void setOnExpandCloseListener(OnExpandCloseListener onExpandCloseListener) {
+        this.onExpandCloseListener = onExpandCloseListener;
+    }
+    public interface OnExpandCloseListener {
+        void onExpand(int index);
+        void onClose(int index);
+    }
+    public static void create(Activity activity,Bitmap bitmap,OnExpandCloseListener onExpandCloseListener) {
         BorderPieImageView borderPieImageView = new BorderPieImageView(activity,bitmap);
+        borderPieImageView.setOnExpandCloseListener(onExpandCloseListener);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(borderPieImageView,new ViewGroup.LayoutParams(size.x,size.x));
     }
