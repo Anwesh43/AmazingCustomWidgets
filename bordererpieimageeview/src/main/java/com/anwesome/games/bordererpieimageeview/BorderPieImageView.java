@@ -49,10 +49,11 @@ public class BorderPieImageView extends View {
         }
         canvas.restore();
         time++;
+        animationHandler.animate();
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.handleTap(event.getX(),event.getY());
         }
         return true;
     }
