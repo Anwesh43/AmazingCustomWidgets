@@ -15,6 +15,7 @@ import android.view.View;
 public class CornerBorderImageView extends View {
     private Bitmap bitmap;
     private int time = 0,w,h,size;
+    private CornerBorder cornerBorder = new CornerBorder();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     public CornerBorderImageView(Context context,Bitmap bitmap) {
         super(context);
@@ -30,8 +31,13 @@ public class CornerBorderImageView extends View {
         canvas.save();
         canvas.translate(w/2,h/2);
         canvas.drawBitmap(bitmap,-size/2,-size/2,paint);
+        cornerBorder.draw(canvas);
         canvas.restore();
         time++;
+    }
+    public void update(float factor) {
+        cornerBorder.update(factor);
+        postInvalidate();
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
