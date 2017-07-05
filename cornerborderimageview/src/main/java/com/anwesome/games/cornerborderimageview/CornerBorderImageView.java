@@ -20,6 +20,7 @@ public class CornerBorderImageView extends View {
     private int time = 0,w,h,size;
     private CornerBorder cornerBorder = new CornerBorder();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private AnimationHandler animationHandler = new AnimationHandler();
     public CornerBorderImageView(Context context,Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
@@ -43,8 +44,8 @@ public class CornerBorderImageView extends View {
         postInvalidate();
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && animationHandler != null) {
+            animationHandler.startAnimation();
         }
         return true;
     }
@@ -93,7 +94,7 @@ public class CornerBorderImageView extends View {
                 state = state == 0?1:0;
             }
         }
-        public void openAnimation() {
+        public void startAnimation() {
             if(!animated) {
                 if(state == 0) {
                     openAnim.start();   
