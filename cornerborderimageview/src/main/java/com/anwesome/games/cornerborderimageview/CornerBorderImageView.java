@@ -3,13 +3,18 @@ package com.anwesome.games.cornerborderimageview;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 05/07/17.
@@ -105,5 +110,10 @@ public class CornerBorderImageView extends View {
                 animated = true;
             }
         }
+    }
+    public static void create(Activity activity,Bitmap bitmap) {
+        CornerBorderImageView view = new CornerBorderImageView(activity,bitmap);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        activity.addContentView(view,new ViewGroup.LayoutParams(size.x,size.x));
     }
 }
