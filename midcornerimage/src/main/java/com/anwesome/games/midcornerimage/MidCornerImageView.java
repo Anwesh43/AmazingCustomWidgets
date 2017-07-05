@@ -18,6 +18,8 @@ import android.view.View;
 public class MidCornerImageView extends View {
     private int time = 0,w,h,size;
     private Bitmap bitmap;
+    private MidCornerImage midCornerImage;
+    private AnimationHandler animationHandler = new AnimationHandler();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     public MidCornerImageView(Context context,Bitmap bitmap) {
         super(context);
@@ -29,19 +31,24 @@ public class MidCornerImageView extends View {
             h = canvas.getHeight();
             size = Math.min(w,h)/2;
             bitmap = Bitmap.createScaledBitmap(bitmap,size,size,true);
+            midCornerImage = new MidCornerImage();
         }
         canvas.save();
         canvas.translate(w/2,h/2);
         canvas.drawBitmap(bitmap,-size/2,-size/2,paint);
+        midCornerImage.draw(canvas);
         canvas.restore();
         time++;
     }
     public void update(float factor) {
-        postInvalidate();
+        if(midCornerImage != null) {
+            midCornerImage.update(factor);
+            postInvalidate();
+        }
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+            animationHandler.start();
         }
         return true;
     }
