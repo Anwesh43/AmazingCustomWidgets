@@ -117,9 +117,18 @@ public class CornerBorderImageView extends View {
             }
         }
     }
-    public static void create(Activity activity,Bitmap bitmap) {
+    private OnSelectionListener onSelectionListener;
+    public void setOnSelectionListener(OnSelectionListener onSelectionListener) {
+        this.onSelectionListener = onSelectionListener;
+    }
+    public static void create(Activity activity,Bitmap bitmap,OnSelectionListener onSelectionListener) {
         CornerBorderImageView view = new CornerBorderImageView(activity,bitmap);
+        view.setOnSelectionListener(onSelectionListener);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(view,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    public interface OnSelectionListener {
+        void onSelect();
+        void onUnSelect();
     }
 }
