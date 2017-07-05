@@ -63,6 +63,7 @@ public class MidCornerImageView extends View {
     private class MidCornerImage {
         private float scale = 0;
         public void draw(Canvas canvas) {
+            canvas.drawArc(new RectF(-size/10,-size/10,size/10,size/10),0,360*scale,true,paint);
             for(int i=0;i<4;i++) {
                 canvas.save();
                 canvas.rotate(i*90);
