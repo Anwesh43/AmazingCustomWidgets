@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.RectF;
@@ -36,6 +37,8 @@ public class CornerBorderImageView extends View {
             h = canvas.getHeight();
             size = 2*Math.min(w,h)/3;
             bitmap = Bitmap.createScaledBitmap(bitmap,size,size,true);
+            paint.setColor(Color.parseColor("#00838F"));
+            paint.setStrokeWidth(size/40);
         }
         canvas.save();
         canvas.translate(w/2,h/2);
@@ -61,12 +64,15 @@ public class CornerBorderImageView extends View {
             for(int i=0;i<2;i++) {
                 canvas.save();
                 canvas.rotate(i*180);
-                canvas.drawArc(new RectF(x-size/10,y-size/10,x+size/10,y+size/10),0,360*scale,true,paint);
                 for(int j=0;j<2;j++) {
+                    canvas.save();
+                    canvas.translate(x+size*j,y);
+                    canvas.drawArc(new RectF(-size/10,-size/10,size/10,size/10),0,360*scale,true,paint);
+                    canvas.restore();
                     canvas.save();
                     canvas.translate(x,y);
                     canvas.rotate(j*90);
-                    canvas.drawLine(0,0,size,0,paint);
+                    canvas.drawLine(0,0,size*scale,0,paint);
                     canvas.restore();
                 }
                 canvas.restore();
