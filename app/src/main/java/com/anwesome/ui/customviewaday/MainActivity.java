@@ -1517,7 +1517,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showCornerBorderImage() {
-        CornerBorderImageView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t3));
+        CornerBorderImageView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.t3), new CornerBorderImageView.OnSelectionListener() {
+            @Override
+            public void onSelect() {
+                Toast.makeText(MainActivity.this, "Selected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnSelect() {
+                Toast.makeText(MainActivity.this, "Unselected", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
