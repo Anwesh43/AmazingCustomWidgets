@@ -3,13 +3,19 @@ package com.anwesome.games.midcornerimage;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 06/07/17.
@@ -32,6 +38,8 @@ public class MidCornerImageView extends View {
             size = Math.min(w,h)/2;
             bitmap = Bitmap.createScaledBitmap(bitmap,size,size,true);
             midCornerImage = new MidCornerImage();
+            paint.setStrokeWidth(size/60);
+            paint.setColor(Color.parseColor("#0277BD"));
         }
         canvas.save();
         canvas.translate(w/2,h/2);
@@ -105,5 +113,10 @@ public class MidCornerImageView extends View {
             openAnim.addListener(this);
             closeAnim.addListener(this);
         }
+    }
+    public static void create(Activity activity,Bitmap bitmap) {
+        MidCornerImageView midCornerImageView = new MidCornerImageView(activity,bitmap);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        activity.addContentView(midCornerImageView,new ViewGroup.LayoutParams(size.x,size.x));
     }
 }
