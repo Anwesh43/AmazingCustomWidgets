@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -37,5 +38,27 @@ public class CornerBorderImageView extends View {
 
         }
         return true;
+    }
+    private class CornerBorder {
+        private float scale = 0;
+        public void draw(Canvas canvas) {
+            float x = -size/2,y=-size/2;
+            for(int i=0;i<2;i++) {
+                canvas.save();
+                canvas.rotate(i*180);
+                canvas.drawArc(new RectF(x-size/10,y-size/10,x+size/10,y+size/10),0,360*scale,true,paint);
+                for(int j=0;j<2;j++) {
+                    canvas.save();
+                    canvas.translate(x,y);
+                    canvas.rotate(j*90);
+                    canvas.drawLine(0,0,size,0,paint);
+                    canvas.restore();
+                }
+                canvas.restore();
+            }
+        }
+        public void update(float factor) {
+            scale = factor;
+        }
     }
 }
