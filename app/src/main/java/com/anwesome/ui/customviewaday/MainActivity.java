@@ -117,6 +117,7 @@ import android.widget.Toast;
 ////import com.anwesome.ui.plusbuttonrect.PlusButtonRectView;
 ////import com.anwesome.ui.plusminuslineview.PlusMinusLineView;
 import com.anwesome.games.bordererpieimageeview.BorderPieImageView;
+import com.anwesome.games.cornerborderimageview.CornerBorderImageView;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 ////import com.anwesome.ui.rectbutton.RectButtonView;
 ////import com.anwesome.ui.sharerotbutton.ShareRotButton;
@@ -189,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showBorderPieImageView();
+                showCornerBorderImage();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1514,6 +1515,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, String.format(Locale.ENGLISH,"closed %d",index), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showCornerBorderImage() {
+        CornerBorderImageView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t3));
     }
 }
 

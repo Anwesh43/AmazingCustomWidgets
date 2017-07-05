@@ -131,4 +131,5 @@ dependencies {
 //    compile project(':barclipimage')
 //    compile project(':verticalclipimageview')
     compile project(':bordererpieimageeview')
+    compile project(':cornerborderimageview')
 }
