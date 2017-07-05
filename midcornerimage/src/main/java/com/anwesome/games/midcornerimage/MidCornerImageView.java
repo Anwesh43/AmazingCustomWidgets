@@ -1,5 +1,8 @@
 package com.anwesome.games.midcornerimage;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -33,6 +36,9 @@ public class MidCornerImageView extends View {
         canvas.restore();
         time++;
     }
+    public void update(float factor) {
+        postInvalidate();
+    }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
 
@@ -56,6 +62,41 @@ public class MidCornerImageView extends View {
         }
         public void update(float factor) {
             scale = factor;
+        }
+    }
+    class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
+        private ValueAnimator openAnim = ValueAnimator.ofFloat(0,1),closeAnim = ValueAnimator.ofFloat(1,0);
+        private boolean animated = false;
+        private int state = 0;
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            if(animated) {
+                update((float)valueAnimator.getAnimatedValue());
+            }
+        }
+        public void onAnimationEnd(Animator animator) {
+            if(animated) {
+                animated = false;
+                state = state == 0?1:0;
+            }
+        }
+        public void start() {
+            if(!animated) {
+                if(state == 0) {
+                    openAnim.start();
+                }
+                else {
+                    closeAnim.start();
+                }
+                animated = true;
+            }
+        }
+        public AnimationHandler() {
+            openAnim.setDuration(500);
+            closeAnim.setDuration(500);
+            openAnim.addUpdateListener(this);
+            closeAnim.addUpdateListener(this);
+            openAnim.addListener(this);
+            closeAnim.addListener(this);
         }
     }
 }
