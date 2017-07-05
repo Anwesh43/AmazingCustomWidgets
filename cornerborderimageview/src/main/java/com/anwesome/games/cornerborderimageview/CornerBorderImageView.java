@@ -1,5 +1,8 @@
 package com.anwesome.games.cornerborderimageview;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -65,6 +68,41 @@ public class CornerBorderImageView extends View {
         }
         public void update(float factor) {
             scale = factor;
+        }
+    }
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
+        private ValueAnimator openAnim = ValueAnimator.ofFloat(0,1),closeAnim = ValueAnimator.ofFloat(1,0);
+        private int state = 0;
+        private boolean animated = false;
+        public AnimationHandler() {
+            openAnim.setDuration(500);
+            closeAnim.setDuration(500);
+            openAnim.addListener(this);
+            closeAnim.addListener(this);
+            openAnim.addUpdateListener(this);
+            closeAnim.addUpdateListener(this);
+        }
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            if(animated) {
+                update((float)valueAnimator.getAnimatedValue());
+            }
+        }
+        public void onAnimationEnd(Animator animator) {
+            if(animated) {
+                animated = false;
+                state = state == 0?1:0;
+            }
+        }
+        public void openAnimation() {
+            if(!animated) {
+                if(state == 0) {
+                    openAnim.start();   
+                }
+                else {
+                    closeAnim.start();
+                }
+                animated = true;
+            }
         }
     }
 }
