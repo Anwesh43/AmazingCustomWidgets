@@ -102,6 +102,14 @@ public class CornerBorderImageView extends View {
         public void onAnimationEnd(Animator animator) {
             if(animated) {
                 animated = false;
+                if(onSelectionListener != null) {
+                    if(state == 0) {
+                        onSelectionListener.onSelect();
+                    }
+                    else {
+                        onSelectionListener.onUnSelect();
+                    }
+                }
                 state = state == 0?1:0;
             }
         }
