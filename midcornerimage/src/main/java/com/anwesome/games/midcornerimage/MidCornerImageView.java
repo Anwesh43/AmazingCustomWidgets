@@ -93,6 +93,13 @@ public class MidCornerImageView extends View {
             if(animated) {
                 animated = false;
                 state = state == 0?1:0;
+                if(onOpenCloseListener != null) {
+                    if (state == 1) {
+                        onOpenCloseListener.onOpen();
+                    } else {
+                        onOpenCloseListener.onClose();
+                    }
+                }
             }
         }
         public void start() {
@@ -115,9 +122,20 @@ public class MidCornerImageView extends View {
             closeAnim.addListener(this);
         }
     }
-    public static void create(Activity activity,Bitmap bitmap) {
+    public static void create(Activity activity,Bitmap bitmap,OnOpenCloseListener...listeners) {
         MidCornerImageView midCornerImageView = new MidCornerImageView(activity,bitmap);
+        if(listeners.length == 1) {
+            midCornerImageView.setOnOpenCloseListener(listeners[0]);
+        }
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(midCornerImageView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    private OnOpenCloseListener onOpenCloseListener;
+    public void setOnOpenCloseListener(OnOpenCloseListener onOpenCloseListener) {
+        this.onOpenCloseListener = onOpenCloseListener;
+    }
+    public interface OnOpenCloseListener {
+        void onOpen();
+        void onClose();
     }
 }
