@@ -1531,7 +1531,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showMidCornerImageView() {
-        MidCornerImageView.create(this,BitmapFactory.decodeResource(getResources(),R.drawable.t3));
+        MidCornerImageView.create(this, BitmapFactory.decodeResource(getResources(), R.drawable.t3), new MidCornerImageView.OnOpenCloseListener() {
+            @Override
+            public void onOpen() {
+                Toast.makeText(MainActivity.this, "Opened", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onClose() {
+                Toast.makeText(MainActivity.this, "Closed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
