@@ -7,12 +7,15 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by anweshmishra on 08/07/17.
  */
 
 public class MidDotLineView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    ConcurrentLinkedQueue<MidDotLine> midDotLines = new ConcurrentLinkedQueue<>();
     private int time = 0,w,h,size,n = 5;
     public MidDotLineView(Context context) {
         super(context);
@@ -25,6 +28,9 @@ public class MidDotLineView extends View {
             w = canvas.getWidth();
             h = canvas.getHeight();
             size = h/(2*n+1);
+            for(int i=0;i<n;i++) {
+                midDotLines.add(new MidDotLine(i));
+            }
         }
         time++;
     }
