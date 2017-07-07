@@ -118,6 +118,7 @@ import android.widget.Toast;
 ////import com.anwesome.ui.plusminuslineview.PlusMinusLineView;
 import com.anwesome.games.bordererpieimageeview.BorderPieImageView;
 import com.anwesome.games.cornerborderimageview.CornerBorderImageView;
+import com.anwesome.games.linedotgraphview.LineDotGraphView;
 import com.anwesome.games.midcornerimage.MidCornerImageView;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 ////import com.anwesome.ui.rectbutton.RectButtonView;
@@ -191,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMidCornerImageView();
+                showLineDotGraphView();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1542,6 +1543,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Closed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showLineDotGraphView() {
+        LineDotGraphView.create(this,new int[]{10,20,30,5,50,60,36});
     }
 }
 

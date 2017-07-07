@@ -133,4 +133,5 @@ dependencies {
     compile project(':bordererpieimageeview')
     compile project(':cornerborderimageview')
     compile project(':midcornerimage')
+    compile project(':linedotgraphview')
 }
