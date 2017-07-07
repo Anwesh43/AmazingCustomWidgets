@@ -120,6 +120,7 @@ import com.anwesome.games.bordererpieimageeview.BorderPieImageView;
 import com.anwesome.games.cornerborderimageview.CornerBorderImageView;
 import com.anwesome.games.linedotgraphview.LineDotGraphView;
 import com.anwesome.games.midcornerimage.MidCornerImageView;
+import com.anwesome.games.middotlineview.MidDotLineView;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 ////import com.anwesome.ui.rectbutton.RectButtonView;
 ////import com.anwesome.ui.sharerotbutton.ShareRotButton;
@@ -192,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showLineDotGraphView();
+                showMidDotLineView();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1556,6 +1557,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,String.format("%d unselected",data), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showMidDotLineView() {
+        MidDotLineView.create(this,8);
     }
 }
 
