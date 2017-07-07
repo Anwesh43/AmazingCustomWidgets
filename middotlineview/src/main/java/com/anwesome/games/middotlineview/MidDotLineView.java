@@ -75,7 +75,7 @@ public class MidDotLineView extends View {
                 canvas.save();
                 canvas.scale(2*i-1,1);
                 canvas.drawLine(r,0,r+(w/3)*scale,0,paint);
-                canvas.drawArc(new RectF((r+w/3)-r,-r,r,r),0,360*scale,true,paint);
+                canvas.drawArc(new RectF((2*r+w/3)-r,-r,(2*r+w/3)+r,r),0,360*scale,true,paint);
                 canvas.restore();
             }
             canvas.restore();
@@ -150,6 +150,6 @@ public class MidDotLineView extends View {
             midDotLineView.setN(nVals[0]);
         }
         Point size = DimensionsUtil.getDeviceDimension(activity);
-        activity.addContentView(midDotLineView,new ViewGroup.LayoutParams(size.x,size.y));
+        activity.addContentView(midDotLineView,new ViewGroup.LayoutParams(size.x,size.x));
     }
 }
