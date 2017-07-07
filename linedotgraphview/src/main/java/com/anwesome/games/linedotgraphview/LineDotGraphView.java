@@ -5,12 +5,16 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.Arrays;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by anweshmishra on 07/07/17.
  */
 
 public class LineDotGraphView extends View {
     private int data[],time = 0,w,h,size,px,py;
+    private ConcurrentLinkedQueue<LineDot> lineDots = new ConcurrentLinkedQueue<>();
     public LineDotGraphView(Context context,int[] data) {
         super(context);
         this.data = data;
@@ -22,6 +26,21 @@ public class LineDotGraphView extends View {
             size = w/(2*data.length+1);
             px = w/8;
             py = h/8;
+            int maxData = data[0];
+            for(int i=1;i<data.length;i++) {
+                if(data[i] > maxData) {
+                    maxData = data[i];
+                }
+            }
+            float currX = 3*size/2;
+            for(int i=0;i<data.length;i++) {
+                float currH = (3*h/4)*((data[i]*1.0f)/maxData);
+                lineDots.add(new LineDot(currX,currH));
+                currX += 2*size;
+            }
+        }
+        for(LineDot lineDot:lineDots) {
+            lineDot.draw(canvas);
         }
         time++;
     }
