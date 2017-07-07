@@ -2,6 +2,7 @@ package com.anwesome.games.linedotgraphview;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -14,6 +15,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class LineDotGraphView extends View {
     private int data[],time = 0,w,h,size,px,py;
+    private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private ConcurrentLinkedQueue<LineDot> lineDots = new ConcurrentLinkedQueue<>();
     public LineDotGraphView(Context context,int[] data) {
         super(context);
@@ -27,11 +29,16 @@ public class LineDotGraphView extends View {
             px = w/8;
             py = h/8;
             int maxData = data[0];
+            canvas.save();
+            canvas.translate(px,py);
+            canvas.drawLine(0,0,3*w/4,0,paint);
+            canvas.drawLine(0,0,0,-3*h/4,paint);
             for(int i=1;i<data.length;i++) {
                 if(data[i] > maxData) {
                     maxData = data[i];
                 }
             }
+            canvas.restore();
             float currX = 3*size/2;
             for(int i=0;i<data.length;i++) {
                 float currH = (3*h/4)*((data[i]*1.0f)/maxData);
