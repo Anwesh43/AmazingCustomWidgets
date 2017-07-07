@@ -15,6 +15,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class LineDotGraphView extends View {
     private int data[],time = 0,w,h,size,px,py;
+    private AnimationHandler animationHandler = new AnimationHandler();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private ConcurrentLinkedQueue<LineDot> lineDots = new ConcurrentLinkedQueue<>();
     public LineDotGraphView(Context context,int[] data) {
@@ -52,10 +53,11 @@ public class LineDotGraphView extends View {
         }
         canvas.restore();
         time++;
+        animationHandler.animate();
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+            animationHandler.handlTap(event.getX(),event.getY());
         }
         return true;
     }
