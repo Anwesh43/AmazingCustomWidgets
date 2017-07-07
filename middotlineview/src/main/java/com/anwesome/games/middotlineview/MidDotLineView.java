@@ -93,4 +93,40 @@ public class MidDotLineView extends View {
             return condition;
         }
     }
+    private class AnimationHandler {
+        private boolean animated = false;
+        private ConcurrentLinkedQueue<MidDotLine> tappedMidDotLines = new ConcurrentLinkedQueue<>();
+        public void animate() {
+            if(animated) {
+                for(MidDotLine midDotLine:tappedMidDotLines) {
+                    midDotLine.update();
+                    if(midDotLine.stopped()) {
+                        tappedMidDotLines.remove(midDotLine);
+                        if(tappedMidDotLines.size() == 0) {
+                            animated = false;
+                        }
+                    }
+                }
+                try {
+                    Thread.sleep(75);
+                    invalidate();
+
+                }
+                catch (Exception ex) {
+
+                }
+            }
+        }
+        public void startAnimating(float x,float y) {
+            for(MidDotLine midDotLine:midDotLines) {
+                if(midDotLine.handleTap(x,y)) {
+                     tappedMidDotLines.add(midDotLine);
+                     if(!animated) {
+                         animated = true;
+                         postInvalidate();
+                     }
+                    }
+                }
+            }
+    }
 }
