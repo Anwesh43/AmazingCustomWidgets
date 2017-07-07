@@ -1,11 +1,16 @@
 package com.anwesome.games.middotlineview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -133,5 +138,13 @@ public class MidDotLineView extends View {
                     }
                 }
             }
+    }
+    public static void create(Activity activity,int...nVals) {
+        MidDotLineView midDotLineView = new MidDotLineView(activity);
+        if(nVals.length == 1) {
+            midDotLineView.setN(nVals[0]);
+        }
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        activity.addContentView(midDotLineView,new ViewGroup.LayoutParams(size.x,size.y));
     }
 }
