@@ -44,7 +44,7 @@ public class LineDotGraphView extends View {
             float currX = 3*size/2;
             for(int i=0;i<data.length;i++) {
                 float currH = (4*h/5)*((data[i]*1.0f)/maxData);
-                lineDots.add(new LineDot(currX,currH));
+                lineDots.add(new LineDot(currX,currH,i));
                 currX += 2*size;
             }
         }
@@ -69,17 +69,19 @@ public class LineDotGraphView extends View {
     }
     private class LineDot {
         private float x,h,dir = 0,scale = 0;
-        public LineDot(float x,float h) {
+        private int index;
+        public LineDot(float x,float h,int index) {
             this.x = x;
             this.h = h;
+            this.index = index;
         }
         public void draw(Canvas canvas) {
             canvas.save();
             canvas.translate(x,-h);
             paint.setStyle(Paint.Style.STROKE);
-            canvas.drawCircle(0,0,size,paint);
+            canvas.drawCircle(0,0,size/2,paint);
             paint.setStyle(Paint.Style.FILL);
-            canvas.drawArc(new RectF(-size,-size,size,size),0,360*scale,true,paint);
+            canvas.drawArc(new RectF(-size/2,-size/2,size/2,size/2),0,360*scale,true,paint);
             canvas.drawLine(0,h,0,h*(1-scale),paint);
             canvas.restore();
         }
@@ -92,6 +94,14 @@ public class LineDotGraphView extends View {
             if(scale < 0) {
                 dir = 0;
                 scale = 0;
+            }
+            if(dir == 0 && onSelectionListener != null) {
+                if(scale >= 1) {
+                    onSelectionListener.onSelect(data[index]);
+                }
+                else {
+                    onSelectionListener.onUnSelect(data[index]);
+                }
             }
         }
         private void startUpdating() {
@@ -146,9 +156,20 @@ public class LineDotGraphView extends View {
             }
         }
     }
-    public static void create(Activity activity,int[] data) {
+    private OnSelectionListener onSelectionListener;
+    public void setOnSelectionListener(OnSelectionListener onSelectionListener) {
+        this.onSelectionListener = onSelectionListener;
+    }
+    public static void create(Activity activity,int[] data,OnSelectionListener...listeners) {
         LineDotGraphView lineDotGraphView = new LineDotGraphView(activity,data);
+        if(listeners.length == 1) {
+            lineDotGraphView.setOnSelectionListener(listeners[0]);
+        }
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(lineDotGraphView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    public interface OnSelectionListener {
+        void onSelect(int data);
+        void onUnSelect(int data);
     }
 }
