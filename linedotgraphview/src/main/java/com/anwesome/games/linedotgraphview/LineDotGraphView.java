@@ -7,8 +7,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
-
-import java.util.Arrays;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -95,7 +93,7 @@ public class LineDotGraphView extends View {
             return (int)(x+h+scale+dir);
         }
         public boolean handleTap(float x,float y) {
-            boolean condition =  x>=px+this.x-size && x<=px+this.x+size && y>=py+this.h-size && y<=py+this.h+size;
+            boolean condition =  x>=px+this.x-size && x<=px+this.x+size && y>=py-this.h-size && y<=py-this.h+size;
             if(condition) {
                 startUpdating();
             }
@@ -103,6 +101,41 @@ public class LineDotGraphView extends View {
         }
         public boolean stopUpdating() {
             return dir == 0;
+        }
+    }
+    private class AnimationHandler {
+        private boolean animating = false;
+        private ConcurrentLinkedQueue<LineDot> tappedLineDots = new ConcurrentLinkedQueue<>();
+        public void animate() {
+            if(animating) {
+                for(LineDot lineDot:tappedLineDots) {
+                    lineDot.update();
+                    if(lineDot.stopUpdating()) {
+                        tappedLineDots.remove(lineDot);
+                        if(tappedLineDots.size() == 0) {
+                            animating = false;
+                        }
+                    }
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
+                }
+            }
+        }
+        public void handlTap(float x,float y) {
+            for(LineDot lineDot:lineDots) {
+                if(lineDot.handleTap(x,y)) {
+                    tappedLineDots.add(lineDot);
+                    if(!animating) {
+                        animating = true;
+                        postInvalidate();
+                    }
+                }
+            }
         }
     }
 }
