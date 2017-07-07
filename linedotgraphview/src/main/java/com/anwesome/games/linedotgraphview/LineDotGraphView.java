@@ -2,7 +2,9 @@ package com.anwesome.games.linedotgraphview;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -29,16 +31,11 @@ public class LineDotGraphView extends View {
             px = w/8;
             py = h/8;
             int maxData = data[0];
-            canvas.save();
-            canvas.translate(px,py);
-            canvas.drawLine(0,0,3*w/4,0,paint);
-            canvas.drawLine(0,0,0,-3*h/4,paint);
             for(int i=1;i<data.length;i++) {
                 if(data[i] > maxData) {
                     maxData = data[i];
                 }
             }
-            canvas.restore();
             float currX = 3*size/2;
             for(int i=0;i<data.length;i++) {
                 float currH = (3*h/4)*((data[i]*1.0f)/maxData);
@@ -46,9 +43,16 @@ public class LineDotGraphView extends View {
                 currX += 2*size;
             }
         }
+        paint.setColor(Color.BLUE);
+        paint.setStrokeWidth(size/30);
+        canvas.save();
+        canvas.translate(px,py);
+        canvas.drawLine(0,0,3*w/4,0,paint);
+        canvas.drawLine(0,0,0,-3*h/4,paint);
         for(LineDot lineDot:lineDots) {
             lineDot.draw(canvas);
         }
+        canvas.restore();
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
@@ -64,7 +68,14 @@ public class LineDotGraphView extends View {
             this.h = h;
         }
         public void draw(Canvas canvas) {
-
+            canvas.save();
+            canvas.translate(x,-h);
+            paint.setStyle(Paint.Style.STROKE);
+            canvas.drawCircle(0,0,size,paint);
+            paint.setStyle(Paint.Style.FILL);
+            canvas.drawArc(new RectF(-size,-size,size,size),0,360*scale,true,paint);
+            canvas.drawLine(0,h,0,h*(1-scale),paint);
+            canvas.restore();
         }
         public void update() {
             scale += 0.2f*dir;
