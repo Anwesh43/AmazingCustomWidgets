@@ -32,9 +32,9 @@ public class LineDotGraphView extends View {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
-            size = w/(2*data.length+1);
-            px = w/8;
-            py = h/8;
+            size = (4*w/5)/(2*data.length+1);
+            px = w/10;
+            py = 9*h/10;
             int maxData = data[0];
             for(int i=1;i<data.length;i++) {
                 if(data[i] > maxData) {
@@ -43,17 +43,17 @@ public class LineDotGraphView extends View {
             }
             float currX = 3*size/2;
             for(int i=0;i<data.length;i++) {
-                float currH = (3*h/4)*((data[i]*1.0f)/maxData);
+                float currH = (4*h/5)*((data[i]*1.0f)/maxData);
                 lineDots.add(new LineDot(currX,currH));
                 currX += 2*size;
             }
         }
         paint.setColor(Color.BLUE);
-        paint.setStrokeWidth(size/30);
+        paint.setStrokeWidth(size/8);
         canvas.save();
         canvas.translate(px,py);
-        canvas.drawLine(0,0,3*w/4,0,paint);
-        canvas.drawLine(0,0,0,-3*h/4,paint);
+        canvas.drawLine(0,0,4*w/5,0,paint);
+        canvas.drawLine(0,0,0,-4*h/5,paint);
         for(LineDot lineDot:lineDots) {
             lineDot.draw(canvas);
         }
@@ -87,7 +87,7 @@ public class LineDotGraphView extends View {
             scale += 0.2f*dir;
             if(scale > 1) {
                 dir = 0;
-                scale = 0;
+                scale = 1;
             }
             if(scale < 0) {
                 dir = 0;
@@ -95,7 +95,7 @@ public class LineDotGraphView extends View {
             }
         }
         private void startUpdating() {
-            dir = scale == 0?1:0;
+            dir = scale == 0?1:-1;
         }
         public int hashCode() {
             return (int)(x+h+scale+dir);
@@ -126,7 +126,7 @@ public class LineDotGraphView extends View {
                     }
                 }
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(75);
                     invalidate();
                 }
                 catch (Exception ex) {
