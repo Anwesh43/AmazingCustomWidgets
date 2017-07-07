@@ -1545,7 +1545,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showLineDotGraphView() {
-        LineDotGraphView.create(this,new int[]{10,20,30,5,50,60,36});
+        LineDotGraphView.create(this, new int[]{10, 20, 30, 5, 50, 60, 36}, new LineDotGraphView.OnSelectionListener() {
+            @Override
+            public void onSelect(int data) {
+                Toast.makeText(MainActivity.this,String.format("%d selected",data), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnSelect(int data) {
+                Toast.makeText(MainActivity.this,String.format("%d unselected",data), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
