@@ -17,6 +17,7 @@ public class MidDotLineView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     ConcurrentLinkedQueue<MidDotLine> midDotLines = new ConcurrentLinkedQueue<>();
     private int time = 0,w,h,size,n = 5;
+    private AnimationHandler animationHandler = new AnimationHandler();
     public MidDotLineView(Context context) {
         super(context);
     }
@@ -32,11 +33,15 @@ public class MidDotLineView extends View {
                 midDotLines.add(new MidDotLine(i));
             }
         }
+        for(MidDotLine midDotLine:midDotLines) {
+            midDotLine.draw(canvas);
+        }
         time++;
+        animationHandler.animate();
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+            animationHandler.startAnimating(event.getX(),event.getY());
         }
         return true;
     }
