@@ -80,6 +80,7 @@
       <module fileurl="file://$PROJECT_DIR$/messageui/messageui.iml" filepath="$PROJECT_DIR$/messageui/messageui.iml" />
       <module fileurl="file://$PROJECT_DIR$/messengerbutton/messengerbutton.iml" filepath="$PROJECT_DIR$/messengerbutton/messengerbutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/midcornerimage/midcornerimage.iml" filepath="$PROJECT_DIR$/midcornerimage/midcornerimage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/middotlineview/middotlineview.iml" filepath="$PROJECT_DIR$/middotlineview/middotlineview.iml" />
       <module fileurl="file://$PROJECT_DIR$/minustopause/minustopause.iml" filepath="$PROJECT_DIR$/minustopause/minustopause.iml" />
       <module fileurl="file://$PROJECT_DIR$/mirrorimagebutton/mirrorimagebutton.iml" filepath="$PROJECT_DIR$/mirrorimagebutton/mirrorimagebutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/modakbutton/modakbutton.iml" filepath="$PROJECT_DIR$/modakbutton/modakbutton.iml" />
