@@ -3,6 +3,7 @@ package com.anwesome.games.middotlineview;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.RectF;
@@ -37,7 +38,11 @@ public class MidDotLineView extends View {
             for(int i=0;i<n;i++) {
                 midDotLines.add(new MidDotLine(i));
             }
+            paint.setColor(Color.parseColor("#0277BD"));
+            paint.setStrokeWidth(size/12);
         }
+        canvas.drawColor(Color.parseColor("#212121"));
+
         for(MidDotLine midDotLine:midDotLines) {
             midDotLine.draw(canvas);
         }
