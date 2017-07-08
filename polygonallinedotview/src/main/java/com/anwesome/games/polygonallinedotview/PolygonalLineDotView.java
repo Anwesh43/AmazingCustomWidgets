@@ -2,6 +2,7 @@ package com.anwesome.games.polygonallinedotview;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.MotionEvent;
@@ -16,6 +17,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class PolygonalLineDotView extends View{
     private int n = 3,time = 0,w,h,size,deg;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private ConcurrentLinkedQueue<PolygonalLineDot> lineDots = new ConcurrentLinkedQueue<>();
     public PolygonalLineDotView(Context context,int n) {
         super(context);
         this.n = Math.max(n,this.n);
@@ -26,10 +28,17 @@ public class PolygonalLineDotView extends View{
             h = canvas.getHeight();
             size = Math.min(w,h)/2;
             deg = 360/n;
+            for(int i=0;i<n;i++) {
+                lineDots.add(new PolygonalLineDot(i));
+            }
         }
+        paint.setColor(Color.CYAN);
+        paint.setStrokeWidth(w/120);
         canvas.save();
         canvas.translate(w/2,h/2);
-
+        for(PolygonalLineDot lineDot:lineDots) {
+            lineDot.draw(canvas);
+        }
         canvas.restore();
         time++;
     }
