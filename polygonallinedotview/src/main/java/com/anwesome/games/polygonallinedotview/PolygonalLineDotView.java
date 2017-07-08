@@ -1,12 +1,17 @@
 package com.anwesome.games.polygonallinedotview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -124,5 +129,10 @@ public class PolygonalLineDotView extends View{
                 }
             }
         }
+    }
+    public static void create(Activity activity,int n) {
+        PolygonalLineDotView view = new PolygonalLineDotView(activity,n);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        activity.addContentView(view,new ViewGroup.LayoutParams(size.x,size.x));
     }
 }
