@@ -81,6 +81,9 @@ public class PolygonalLineDotView extends View{
             if(scale > 1) {
                 scale = 1;
                 dir = 0;
+                if(onClickListener != null) {
+                    onClickListener.onClick(index);
+                }
             }
             if(scale < 0) {
                 scale = 0;
@@ -133,9 +136,19 @@ public class PolygonalLineDotView extends View{
             }
         }
     }
-    public static void create(Activity activity,int n) {
+    private OnClickListener onClickListener;
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+    public static void create(Activity activity,int n,OnClickListener...onClickListeners) {
         PolygonalLineDotView view = new PolygonalLineDotView(activity,n);
+        if(onClickListeners.length == 1) {
+            view.setOnClickListener(onClickListeners[0]);
+        }
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(view,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    public interface OnClickListener {
+        void onClick(int index);
     }
 }
