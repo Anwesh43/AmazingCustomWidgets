@@ -1559,7 +1559,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showMidDotLineView() {
-        MidDotLineView.create(this,8);
+        MidDotLineView.create(this, 8, new MidDotLineView.OnExpandListener() {
+            @Override
+            public void onExpand(int index) {
+                Toast.makeText(MainActivity.this, String.format("expanded %d",index), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onClose(int index) {
+                Toast.makeText(MainActivity.this, String.format("collased %d",index), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
