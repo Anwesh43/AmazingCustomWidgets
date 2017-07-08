@@ -66,8 +66,11 @@ public class PolygonalLineDotView extends View{
         public void draw(Canvas canvas) {
             canvas.save();
             canvas.translate(x,y);
-            canvas.drawLine(0,0,x*(1-scale),y*(1-scale),paint);
+            canvas.drawLine(0,0,(-x)*(scale),(-y)*(scale),paint);
+            paint.setStyle(Paint.Style.FILL);
             canvas.drawArc(new RectF(-size/8,-size/8,size/8,size/8),0,360*scale,true,paint);
+            paint.setStyle(Paint.Style.STROKE);
+            canvas.drawCircle(0,0,size/8,paint);
             canvas.restore();
         }
         public boolean stopped() {
