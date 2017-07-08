@@ -113,6 +113,7 @@
     <orderEntry type="library" exported="" name="support-vector-drawable-23.4.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.4.0" level="project" />
     <orderEntry type="module" module-name="cornerborderimageview" exported="" />
+    <orderEntry type="module" module-name="polygonallinedotview" exported="" />
     <orderEntry type="module" module-name="middotlineview" exported="" />
     <orderEntry type="module" module-name="bordererpieimageeview" exported="" />
     <orderEntry type="module" module-name="dimensionsutil" exported="" />
