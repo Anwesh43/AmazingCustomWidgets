@@ -7,6 +7,8 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by anweshmishra on 09/07/17.
  */
@@ -52,6 +54,9 @@ public class PolygonalLineDotView extends View{
             canvas.drawArc(new RectF(-size/8,-size/8,size/8,size/8),0,360*scale,true,paint);
             canvas.restore();
         }
+        public boolean stopped() {
+            return dir == 0;
+        }
         public void update() {
             scale+=0.2f*dir;
             if(scale > 1) {
@@ -72,6 +77,33 @@ public class PolygonalLineDotView extends View{
                 dir = scale == 0?1:-1;
             }
             return condition;
+        }
+    }
+    private class AnimationHandler {
+        private ConcurrentLinkedQueue<PolygonalLineDot> tappedLineDots = new ConcurrentLinkedQueue<>();
+        private boolean animated = false;
+        public void update() {
+            if(animated) {
+                for(PolygonalLineDot polygonalLineDot:tappedLineDots) {
+                    polygonalLineDot.update();
+                    if(polygonalLineDot.stopped()) {
+                        tappedLineDots.remove(polygonalLineDot);
+                        if(tappedLineDots.size() == 0) {
+                            animated = false;
+                        }
+                    }
+                }
+                try {
+                    Thread.sleep(75);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
+                }
+            }
+        }
+        public void handleTap(float x,float y) {
+
         }
     }
 }
