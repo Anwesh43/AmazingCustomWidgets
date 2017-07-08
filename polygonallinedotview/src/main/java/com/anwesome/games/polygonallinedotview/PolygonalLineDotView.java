@@ -17,6 +17,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class PolygonalLineDotView extends View{
     private int n = 3,time = 0,w,h,size,deg;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private AnimationHandler animationHandler = new AnimationHandler();
     private ConcurrentLinkedQueue<PolygonalLineDot> lineDots = new ConcurrentLinkedQueue<>();
     public PolygonalLineDotView(Context context,int n) {
         super(context);
@@ -41,10 +42,11 @@ public class PolygonalLineDotView extends View{
         }
         canvas.restore();
         time++;
+        animationHandler.update();
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+            animationHandler.handleTap(event.getX(),event.getY());
         }
         return true;
     }
