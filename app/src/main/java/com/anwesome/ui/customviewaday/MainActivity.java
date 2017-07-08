@@ -1573,7 +1573,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showPolygonalLineDot() {
-        PolygonalLineDotView.create(this,6);
+        PolygonalLineDotView.create(this, 6, new PolygonalLineDotView.OnClickListener() {
+            @Override
+            public void onClick(int index) {
+                Toast.makeText(MainActivity.this, String.format("%d clicked",index), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
