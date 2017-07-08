@@ -112,7 +112,15 @@ public class PolygonalLineDotView extends View{
             }
         }
         public void handleTap(float x,float y) {
-
+            for(PolygonalLineDot lineDot:lineDots) {
+                if(lineDot.handleTap(x-w/2,y-h/2)) {
+                    tappedLineDots.add(lineDot);
+                    if(tappedLineDots.size() == 1) {
+                        animated = true;
+                        postInvalidate();
+                    }
+                }
+            }
         }
     }
 }
