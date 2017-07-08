@@ -90,6 +90,14 @@ public class MidDotLineView extends View {
                 scale = 0;
                 dir = 0;
             }
+            if(dir ==0 && onExpandListener != null) {
+                if(scale == 1) {
+                    onExpandListener.onExpand(index);
+                }
+                else {
+                    onExpandListener.onClose(index);
+                }
+            }
         }
         public boolean stopped() {
             return dir == 0;
@@ -144,12 +152,21 @@ public class MidDotLineView extends View {
                 }
             }
     }
-    public static void create(Activity activity,int...nVals) {
+    public static void create(Activity activity,int n,OnExpandListener...onExpandListeners) {
         MidDotLineView midDotLineView = new MidDotLineView(activity);
-        if(nVals.length == 1) {
-            midDotLineView.setN(nVals[0]);
+        midDotLineView.setN(n);
+        if(onExpandListeners.length == 1){
+            midDotLineView.setOnExpandListener(onExpandListeners[0]);
         }
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(midDotLineView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    private OnExpandListener onExpandListener;
+    public void setOnExpandListener(OnExpandListener onExpandListener) {
+        this.onExpandListener = onExpandListener;
+    }
+    public interface OnExpandListener {
+        void onExpand(int index);
+        void onClose(int index);
     }
 }
