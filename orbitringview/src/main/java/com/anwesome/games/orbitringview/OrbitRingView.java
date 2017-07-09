@@ -41,4 +41,12 @@ public class OrbitRingView extends View {
         public void handleTap(float x,float y) {
         }
     }
+    private class DrawingService {
+        public DrawingService(int w,int h) {
+
+        }
+        public void draw(Canvas canvas) {
+
+        }
+    }
 }
