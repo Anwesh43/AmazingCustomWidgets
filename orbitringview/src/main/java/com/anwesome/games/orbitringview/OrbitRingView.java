@@ -8,6 +8,8 @@ import android.graphics.Path;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by anweshmishra on 10/07/17.
  */
@@ -16,6 +18,7 @@ public class OrbitRingView extends View {
     private int n=3;
     private Renderer renderer = new Renderer();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private ConcurrentLinkedQueue<OrbitRing> orbitRings = new ConcurrentLinkedQueue<>();
     public OrbitRingView(Context context) {
         super(context);
     }
@@ -34,6 +37,7 @@ public class OrbitRingView extends View {
     private class Renderer {
         private int w,h,time = 0;
         private DrawingService drawingService;
+        private AnimationService animationService = new AnimationService();
         public void render(Canvas canvas) {
             if(time == 0) {
                 w = canvas.getWidth();
@@ -44,14 +48,20 @@ public class OrbitRingView extends View {
             time++;
         }
         public void handleTap(float x,float y) {
+            animationService.handleTap(x,y);
         }
     }
     private class DrawingService {
         public DrawingService(int w,int h) {
-
+            float size = 2*(Math.min(w,h))/3;
+            for(int i=0;i<n;i++) {
+                orbitRings.add(new OrbitRing(i,size));
+            }
         }
         public void draw(Canvas canvas) {
-
+            for(OrbitRing orbitRing:orbitRings) {
+                orbitRing.draw(canvas);
+            }
         }
     }
     private class AnimationService {
@@ -80,7 +90,7 @@ public class OrbitRingView extends View {
         private float x,y,r,scale = 0,dir = 0;
         public OrbitRing(int index,float size) {
             this.index = index;
-            this.r = size*(index+1);
+            this.r = (size*(index+1))/2;
             this.x = 0;
             this.y = -this.r;
         }
