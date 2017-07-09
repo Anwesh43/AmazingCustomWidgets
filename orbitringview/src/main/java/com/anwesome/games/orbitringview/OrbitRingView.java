@@ -31,11 +31,14 @@ public class OrbitRingView extends View {
     }
     private class Renderer {
         private int w,h,time = 0;
+        private DrawingService drawingService;
         public void render(Canvas canvas) {
             if(time == 0) {
                 w = canvas.getWidth();
                 h = canvas.getHeight();
+                drawingService = new DrawingService(w,h);
             }
+            drawingService.draw(canvas);
             time++;
         }
         public void handleTap(float x,float y) {
