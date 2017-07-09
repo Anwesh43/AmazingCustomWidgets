@@ -52,4 +52,25 @@ public class OrbitRingView extends View {
 
         }
     }
+    private class AnimationService {
+        private boolean animated = false;
+        public void animate() {
+            if(animated) {
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
+                }
+            }
+        }
+        public void handleTap(float x,float y) {
+            boolean tapped = false;
+            if(!animated && tapped) {
+                animated = true;
+                postInvalidate();
+            }
+        }
+    }
 }
