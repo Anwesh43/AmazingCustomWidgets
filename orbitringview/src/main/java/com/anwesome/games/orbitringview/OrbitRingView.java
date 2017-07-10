@@ -133,8 +133,8 @@ public class OrbitRingView extends View {
             canvas.drawCircle(0,0,r,paint);
             paint.setColor(Color.BLUE);
             Path path = new Path();
-            for(float i=0;i<deg;i+=10) {
-                float x= (float)(r*Math.cos((i+180*(index%2))*Math.PI/180)),y = (float)(r*Math.sin((i+180*(index%2))*Math.PI/180));
+            for(float i=0;i<=deg;i+=10) {
+                float x= (float)(r*Math.cos(((i-90)+180*(index%2))*Math.PI/180)),y = (float)(r*Math.sin(((i-90)+180*(index%2))*Math.PI/180));
                 if(i == 0) {
                     path.moveTo(x,y);
                 }
