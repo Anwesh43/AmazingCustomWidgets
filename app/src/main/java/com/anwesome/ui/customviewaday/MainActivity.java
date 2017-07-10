@@ -121,6 +121,7 @@ import com.anwesome.games.cornerborderimageview.CornerBorderImageView;
 import com.anwesome.games.linedotgraphview.LineDotGraphView;
 import com.anwesome.games.midcornerimage.MidCornerImageView;
 import com.anwesome.games.middotlineview.MidDotLineView;
+import com.anwesome.games.orbitringview.OrbitRingView;
 import com.anwesome.games.polygonallinedotview.PolygonalLineDotView;
 import com.anwesome.ui.polygonaltraverseview.PolygonalTraverseView;
 ////import com.anwesome.ui.rectbutton.RectButtonView;
@@ -194,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPolygonalLineDot();
+                showOrbitRingView();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1579,6 +1580,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, String.format("%d clicked",index), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showOrbitRingView() {
+        OrbitRingView.create(this,4);
     }
 }
 

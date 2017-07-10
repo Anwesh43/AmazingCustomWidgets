@@ -136,4 +136,5 @@ dependencies {
     compile project(':linedotgraphview')
     compile project(':middotlineview')
     compile project(':polygonallinedotview')
+    compile project(':orbitringview')
 }
