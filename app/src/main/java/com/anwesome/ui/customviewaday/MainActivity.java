@@ -1582,7 +1582,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showOrbitRingView() {
-        OrbitRingView.create(this,4);
+        OrbitRingView.create(this, 4, new OrbitRingView.OnSelectionListener() {
+            @Override
+            public void onSelect(int index) {
+                Toast.makeText(MainActivity.this,String.format("selected %d",index), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnSelect(int index) {
+                Toast.makeText(MainActivity.this, String.format("unselected %d",index), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
