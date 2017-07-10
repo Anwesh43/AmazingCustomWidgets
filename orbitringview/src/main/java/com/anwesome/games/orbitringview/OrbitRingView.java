@@ -155,6 +155,14 @@ public class OrbitRingView extends View {
                 dir = 0;
                 scale = 0;
             }
+            if(dir == 0 && onSelectionListener != null) {
+                if(scale == 1) {
+                    onSelectionListener.onSelect(index);
+                }
+                else {
+                    onSelectionListener.onUnSelect(index);
+                }
+            }
         }
         public boolean stopped() {
             return dir == 0;
@@ -170,10 +178,21 @@ public class OrbitRingView extends View {
             return condition;
         }
     }
-    public static void create(Activity activity,int n) {
+    public static void create(Activity activity,int n,OnSelectionListener...onSelectionListeners) {
         OrbitRingView orbitRingView = new OrbitRingView(activity);
         orbitRingView.setN(n);
+        if(onSelectionListeners.length == 1) {
+            orbitRingView.setOnSelectionListener(onSelectionListeners[0]);
+        }
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(orbitRingView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    private OnSelectionListener onSelectionListener;
+    public void setOnSelectionListener(OnSelectionListener onSelectionListener) {
+        this.onSelectionListener = onSelectionListener;
+    }
+    public interface OnSelectionListener {
+        void onSelect(int index);
+        void onUnSelect(int index);
     }
 }
