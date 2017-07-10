@@ -46,6 +46,7 @@ public class OrbitRingView extends View {
             }
             drawingService.draw(canvas);
             time++;
+            animationService.animate();
         }
         public void handleTap(float x,float y) {
             animationService.handleTap(x,y);
@@ -65,9 +66,17 @@ public class OrbitRingView extends View {
         }
     }
     private class AnimationService {
+        private ConcurrentLinkedQueue<OrbitRing> tappedRings = new ConcurrentLinkedQueue<>();
         private boolean animated = false;
         public void animate() {
             if(animated) {
+                for(OrbitRing orbitRing:tappedRings) {
+                    orbitRing.update();
+                    if(orbitRing.stopped()) {
+                        tappedRings.remove(orbitRing);
+                        animated = false;
+                    }
+                }
                 try {
                     Thread.sleep(50);
                     invalidate();
@@ -79,6 +88,12 @@ public class OrbitRingView extends View {
         }
         public void handleTap(float x,float y) {
             boolean tapped = false;
+            for(OrbitRing orbitRing:orbitRings) {
+                tapped = orbitRing.handleTap(x,y);
+                if(tapped) {
+                    break;
+                }
+            }
             if(!animated && tapped) {
                 animated = true;
                 postInvalidate();
