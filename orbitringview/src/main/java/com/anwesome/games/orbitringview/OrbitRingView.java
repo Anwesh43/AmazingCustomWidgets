@@ -54,12 +54,12 @@ public class OrbitRingView extends View {
             animationService.animate();
         }
         public void handleTap(float x,float y) {
-            animationService.handleTap(x,y);
+            animationService.handleTap(x-w/2,y-h/2);
         }
     }
     private class DrawingService {
         public DrawingService(int w,int h) {
-            float size = 2*(Math.min(w,h))/3;
+            float size = (5*(Math.min(w,h))/6)/n;
             for(int i=0;i<n;i++) {
                 orbitRings.add(new OrbitRing(i,size));
             }
@@ -85,7 +85,7 @@ public class OrbitRingView extends View {
                     }
                 }
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(75);
                     invalidate();
                 }
                 catch (Exception ex) {
@@ -98,6 +98,7 @@ public class OrbitRingView extends View {
             for(OrbitRing orbitRing:orbitRings) {
                 tapped = orbitRing.handleTap(x,y);
                 if(tapped) {
+                    tappedRings.add(orbitRing);
                     break;
                 }
             }
@@ -114,7 +115,7 @@ public class OrbitRingView extends View {
             this.index = index;
             this.r = (size*(index+1))/2;
             this.x = 0;
-            this.y = -this.r;
+            this.y = (2*(index%2)-1)*this.r;
         }
         public void draw(Canvas canvas) {
             float deg = 360*scale;
@@ -122,9 +123,9 @@ public class OrbitRingView extends View {
             canvas.translate(canvas.getWidth()/2,canvas.getHeight()/2);
             canvas.save();
             canvas.rotate(deg);
-            paint.setStyle(Paint.Style.STROKE);
+            paint.setStyle(Paint.Style.FILL);
             paint.setColor(Color.BLUE);
-            canvas.drawCircle(this.x,this.y,r/8,paint);
+            canvas.drawCircle(this.x,this.y,r/5,paint);
             canvas.restore();
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(r/60);
@@ -133,7 +134,7 @@ public class OrbitRingView extends View {
             paint.setColor(Color.BLUE);
             Path path = new Path();
             for(float i=0;i<deg;i+=10) {
-                float x= (float)(r*Math.cos(i*Math.PI/180)),y = (float)(r*Math.sin(i*Math.PI/180));
+                float x= (float)(r*Math.cos((i+180*(index%2))*Math.PI/180)),y = (float)(r*Math.sin((i+180*(index%2))*Math.PI/180));
                 if(i == 0) {
                     path.moveTo(x,y);
                 }
@@ -145,7 +146,7 @@ public class OrbitRingView extends View {
             canvas.restore();
         }
         public void update() {
-            scale += 0.2f*dir;
+            scale += 0.1f*dir;
             if(scale > 1) {
                 dir = 0;
                 scale = 1;
@@ -162,9 +163,9 @@ public class OrbitRingView extends View {
             return index;
         }
         public boolean handleTap(float x,float y) {
-            boolean condition =  x>=this.x-r/8 && x>=this.x+r/8 && y>=this.y-r/8 && y<=this.y+r/8 && dir == 0;
+            boolean condition =  x>=this.x-r/4 && x<=this.x+r/4 && y>=this.y-r/4 && y<=this.y+r/4 && dir == 0;
             if(condition) {
-                dir = scale >=0?1:-1;
+                dir = scale <=0?1:-1;
             }
             return condition;
         }
