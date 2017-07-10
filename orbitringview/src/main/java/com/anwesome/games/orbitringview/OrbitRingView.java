@@ -1,12 +1,17 @@
 package com.anwesome.games.orbitringview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -74,7 +79,9 @@ public class OrbitRingView extends View {
                     orbitRing.update();
                     if(orbitRing.stopped()) {
                         tappedRings.remove(orbitRing);
-                        animated = false;
+                        if(tappedRings.size() == 0) {
+                            animated = false;
+                        }
                     }
                 }
                 try {
@@ -161,5 +168,11 @@ public class OrbitRingView extends View {
             }
             return condition;
         }
+    }
+    public static void create(Activity activity,int n) {
+        OrbitRingView orbitRingView = new OrbitRingView(activity);
+        orbitRingView.setN(n);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        activity.addContentView(orbitRingView,new ViewGroup.LayoutParams(size.x,size.x));
     }
 }
