@@ -69,5 +69,25 @@ public class CircularPlateCollapser {
                 return x>=w/2-w/10 && x<=w/2+w/10 && y>=0 && y<=w/5;
             }
         }
+        private class StateContainer {
+            private float scale = 0,dir = 0;
+            public void update() {
+                scale += dir*0.1f;
+                if(scale > 1) {
+                    scale = 1;
+                    dir = 0;
+                }
+                if(scale < 0) {
+                    scale = 0;
+                    dir = 0;
+                }
+            }
+            public boolean stopped() {
+                return dir == 0;
+            }
+            public void startUpdating() {
+                dir = scale <= 0?1:-1;
+            }
+        }
     }
 }
