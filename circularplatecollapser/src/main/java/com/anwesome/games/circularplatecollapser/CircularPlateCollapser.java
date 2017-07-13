@@ -56,7 +56,7 @@ public class CircularPlateCollapser {
                 paint.setStyle(Paint.Style.STROKE);
                 canvas.drawArc(new RectF(-w/4,-w/4,w/4,w/4),0,360,true,paint);
                 paint.setStyle(Paint.Style.FILL);
-                canvas.drawArc(new RectF(-w/4,-w/4,w/4,w/4),0,deg,true,paint);
+                canvas.drawArc(new RectF(-w/4,-w/4,w/4,w/4),-90,deg,true,paint);
                 canvas.restore();
             }
         }
@@ -95,6 +95,14 @@ public class CircularPlateCollapser {
                     scale = 0;
                     dir = 0;
                 }
+                if(dir == 0 && onExpandCollapseListener != null) {
+                    if(scale <=0) {
+                        onExpandCollapseListener.onCollapse();
+                    }
+                    else {
+                        onExpandCollapseListener.onExpand();
+                    }
+                }
             }
             public boolean stopped() {
                 return dir == 0;
@@ -112,7 +120,7 @@ public class CircularPlateCollapser {
                         animated = false;
                     }
                     try {
-                        Thread.sleep(55);
+                        Thread.sleep(30);
                         invalidate();
                     }
                     catch (Exception ex) {
@@ -128,10 +136,21 @@ public class CircularPlateCollapser {
                 }
             }
         }
+        private OnExpandCollapseListener onExpandCollapseListener;
+        public void setOnExpandCollapseListener(OnExpandCollapseListener onExpandCollapseListener) {
+            this.onExpandCollapseListener = onExpandCollapseListener;
+        }
     }
-    public static void create(Activity activity) {
+    public static void create(Activity activity,OnExpandCollapseListener...listeners) {
         CircularPlateCollapserView circularPlateCollapserView = new CircularPlateCollapserView(activity);
         Point size = DimensionsUtil.getDeviceDimension(activity);
+        if(listeners.length == 1) {
+            circularPlateCollapserView.setOnExpandCollapseListener(listeners[0]);
+        }
         activity.addContentView(circularPlateCollapserView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    public interface OnExpandCollapseListener {
+        void onExpand();
+        void onCollapse();
     }
 }
