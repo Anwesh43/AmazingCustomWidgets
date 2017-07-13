@@ -35,7 +35,7 @@ public class CircularPlateCollapser {
                 circularPlate = new CircularPlate();
                 collapser = new Collapser();
             }
-            collapser.draw(canvas,360*stateContainer.scale);
+            collapser.draw(canvas,45*stateContainer.scale);
             circularPlate.draw(canvas,360*stateContainer.scale);
             time++;
             animationHandler.animate();
@@ -50,7 +50,7 @@ public class CircularPlateCollapser {
 
             public void draw(Canvas canvas,float deg) {
                 canvas.save();
-                canvas.translate(w/2,w/10+w/4);
+                canvas.translate(w/2,w/5+w/40+w/4);
                 paint.setColor(Color.BLUE);
                 paint.setStrokeWidth(w/60);
                 paint.setStyle(Paint.Style.STROKE);
@@ -112,7 +112,7 @@ public class CircularPlateCollapser {
                         animated = false;
                     }
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(55);
                         invalidate();
                     }
                     catch (Exception ex) {
