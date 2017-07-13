@@ -117,6 +117,7 @@ import android.widget.Toast;
 ////import com.anwesome.ui.plusbuttonrect.PlusButtonRectView;
 ////import com.anwesome.ui.plusminuslineview.PlusMinusLineView;
 import com.anwesome.games.bordererpieimageeview.BorderPieImageView;
+import com.anwesome.games.circularplatecollapser.CircularPlateCollapser;
 import com.anwesome.games.cornerborderimageview.CornerBorderImageView;
 import com.anwesome.games.linedotgraphview.LineDotGraphView;
 import com.anwesome.games.midcornerimage.MidCornerImageView;
@@ -195,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showOrbitRingView();
+                showCircularPlateCollapser();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1591,6 +1592,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onUnSelect(int index) {
                 Toast.makeText(MainActivity.this, String.format("unselected %d",index), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void showCircularPlateCollapser() {
+        CircularPlateCollapser.create(this, new CircularPlateCollapser.OnExpandCollapseListener() {
+            @Override
+            public void onExpand() {
+                Toast.makeText(MainActivity.this, "Expanded", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCollapse() {
+                Toast.makeText(MainActivity.this, "Collapsed", Toast.LENGTH_SHORT).show();
             }
         });
     }
