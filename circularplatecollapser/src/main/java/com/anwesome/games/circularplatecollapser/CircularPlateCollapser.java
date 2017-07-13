@@ -15,6 +15,7 @@ import android.view.View;
 public class CircularPlateCollapser {
     private static class CircularPlateCollapserView  extends View{
         private int time = 0,w,h;
+        private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         public CircularPlateCollapserView(Context context) {
             super(context);
         }
@@ -32,9 +33,8 @@ public class CircularPlateCollapser {
             return true;
         }
         private class CircularPlate {
-            private float deg = 0;
-            private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            public void draw(Canvas canvas) {
+
+            public void draw(Canvas canvas,float deg) {
                 canvas.save();
                 canvas.translate(w/2,w/10+w/4);
                 paint.setColor(Color.BLUE);
@@ -45,10 +45,29 @@ public class CircularPlateCollapser {
                 canvas.drawArc(new RectF(-w/4,-w/4,w/4,w/4),0,deg,true,paint);
                 canvas.restore();
             }
-            public void update(float scale) {
-                deg = 360*scale;
+        }
+        public class Collapser {
+            public void draw(Canvas canvas,float deg) {
+                canvas.save();
+                canvas.translate(w/2,w/10);
+                paint.setColor(Color.parseColor("#9E9E9E"));
+                canvas.drawCircle(0,0,w/10,paint);
+                paint.setColor(Color.BLACK);
+                paint.setStrokeWidth(w/50);
+                canvas.save();
+                canvas.rotate(deg);
+                for(int i=0;i<2;i++) {
+                    canvas.save();
+                    canvas.rotate(i*90);
+                    canvas.drawLine(0,-w/15,0,w/15,paint);
+                    canvas.restore();
+                }
+                canvas.restore();
+                canvas.restore();
+            }
+            public boolean handleTap(float x,float y) {
+                return x>=w/2-w/10 && x<=w/2+w/10 && y>=0 && y<=w/5;
             }
         }
     }
-
 }
