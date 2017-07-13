@@ -89,5 +89,22 @@ public class CircularPlateCollapser {
                 dir = scale <= 0?1:-1;
             }
         }
+        private class AnimationHandler {
+            private boolean animated = false;
+            public void animate() {
+                if(animated) {
+                    try {
+                        Thread.sleep(50);
+                        invalidate();
+                    }
+                    catch (Exception ex) {
+
+                    }
+                }
+            }
+            public void handleTap(float x,float y) {
+
+            }
+        }
     }
 }
