@@ -15,7 +15,11 @@ import android.view.View;
 public class CircularPlateCollapser {
     private static class CircularPlateCollapserView  extends View{
         private int time = 0,w,h;
+        private StateContainer stateContainer = new StateContainer();
+        private CircularPlate circularPlate;
+        private Collapser collapser;
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        private AnimationHandler animationHandler = new AnimationHandler();
         public CircularPlateCollapserView(Context context) {
             super(context);
         }
@@ -23,12 +27,17 @@ public class CircularPlateCollapser {
             if(time == 0) {
                 w = canvas.getWidth();
                 h = canvas.getHeight();
+                circularPlate = new CircularPlate();
+                collapser = new Collapser();
             }
+            collapser.draw(canvas,360*stateContainer.scale);
+            circularPlate.draw(canvas,360*stateContainer.scale);
             time++;
+            animationHandler.animate();
         }
         public boolean onTouchEvent(MotionEvent event) {
-            if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+            if(event.getAction() == MotionEvent.ACTION_DOWN && collapser!=null && collapser.handleTap(event.getX(),event.getY())){
+                animationHandler.startAnimation();
             }
             return true;
         }
@@ -93,6 +102,10 @@ public class CircularPlateCollapser {
             private boolean animated = false;
             public void animate() {
                 if(animated) {
+                    stateContainer.update();
+                    if(stateContainer.stopped()) {
+                        animated = false;
+                    }
                     try {
                         Thread.sleep(50);
                         invalidate();
@@ -102,8 +115,12 @@ public class CircularPlateCollapser {
                     }
                 }
             }
-            public void handleTap(float x,float y) {
-
+            public void startAnimation() {
+                if(!animated) {
+                    stateContainer.startUpdating();
+                    animated = true;
+                    postInvalidate();
+                }
             }
         }
     }
