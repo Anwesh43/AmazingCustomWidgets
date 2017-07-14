@@ -1610,7 +1610,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showCrossLineView() {
-        CrossLineView.create(this);
+        CrossLineView.create(this, new CrossLineView.OnCrossSelectionListener() {
+            @Override
+            public void onCrossSelected() {
+                Toast.makeText(MainActivity.this, "Selected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCrossUnSelected() {
+                Toast.makeText(MainActivity.this, "Unselected", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
