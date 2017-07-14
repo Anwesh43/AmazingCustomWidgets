@@ -73,6 +73,14 @@ public class CrossLineView extends View {
                 dir = 0;
                 scale = 0;
             }
+            if(dir == 0 && onCrossSelectionListener!=null) {
+                if(scale >= 1) {
+                    onCrossSelectionListener.onCrossSelected();
+                }
+                if(scale <= 0) {
+                    onCrossSelectionListener.onCrossUnSelected();
+                }
+            }
         }
         public void startUpdating() {
             dir = scale <= 0?1:-1;
@@ -109,9 +117,20 @@ public class CrossLineView extends View {
             }
         }
     }
-    public static void create(Activity activity) {
+    private OnCrossSelectionListener onCrossSelectionListener;
+    public void setOnCrossSelectionListener(OnCrossSelectionListener onCrossSelectionListener) {
+        this.onCrossSelectionListener = onCrossSelectionListener;
+    }
+    public static void create(Activity activity,OnCrossSelectionListener...listeners) {
         CrossLineView crossLineView = new CrossLineView(activity);
         Point size = DimensionsUtil.getDeviceDimension(activity);
+        if(listeners.length == 1) {
+            crossLineView.setOnCrossSelectionListener(listeners[0]);
+        }
         activity.addContentView(crossLineView,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    public interface OnCrossSelectionListener {
+        void onCrossSelected();
+        void onCrossUnSelected();
     }
 }
