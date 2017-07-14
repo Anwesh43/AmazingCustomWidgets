@@ -70,4 +70,32 @@ public class CrossLineView extends View {
             return dir == 0;
         }
     }
+    private class ViewRenderingController {
+        private StateContainer stateContainer = new StateContainer();
+        private CrossLine crossLine = new CrossLine();
+        private boolean animated = false;
+        public void render(Canvas canvas) {
+            crossLine.draw(canvas,stateContainer.scale);
+            if(animated) {
+                stateContainer.update();
+                if(stateContainer.stopped()) {
+                    animated = false;
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
+                }
+            }
+        }
+        public void handleTap(float x,float y) {
+            if(crossLine.handleTap(x,y) && !animated) {
+                stateContainer.startUpdating();
+                animated = true;
+                postInvalidate();
+            }
+        }
+    }
 }
