@@ -2,7 +2,9 @@ package com.anwesome.games.crosslineview;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -13,17 +15,39 @@ import android.view.View;
 public class CrossLineView extends View {
     private int w,h,time = 0;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    public CrossLineView(Context context) {
+    private CrossLineView(Context context) {
         super(context);
     }
     public void onDraw(Canvas canvas) {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            paint.setColor(Color.parseColor("#673ab7"));
+            paint.setStrokeWidth(5);
         }
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
         return true;
+    }
+    private class CrossLine {
+        public void draw(Canvas canvas,float scale) {
+            canvas.save();
+            canvas.translate(w/2,h/2);
+            paint.setStyle(Paint.Style.FILL);
+            canvas.drawArc(new RectF(-w/10,-w/10,w/10,w/10),0,360*scale,true,paint);
+            paint.setStyle(Paint.Style.STROKE);
+            canvas.drawCircle(0,0,w/10,paint);
+            for(int i=0;i<4;i++) {
+                canvas.save();
+                canvas.rotate(i*90+45);
+                canvas.drawLine(0,0,w/4*scale,0,paint);
+                canvas.restore();
+            }
+            canvas.restore();
+        }
+        public boolean handleTap(float x,float y) {
+            return x>=w/2 -w/10 && x<=w/2+w/10 && y>=h/2-w/10 && y<=h/2+w/10;
+        }
     }
 }
