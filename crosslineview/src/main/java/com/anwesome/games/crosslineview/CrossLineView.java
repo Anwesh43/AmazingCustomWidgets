@@ -50,4 +50,24 @@ public class CrossLineView extends View {
             return x>=w/2 -w/10 && x<=w/2+w/10 && y>=h/2-w/10 && y<=h/2+w/10;
         }
     }
+    public class StateContainer {
+        private float scale = 0,dir = 0;
+        public void update() {
+            scale+=0.15f*dir;
+            if(scale >= 1) {
+                dir = 0;
+                scale = 1;
+            }
+            if(scale <= 0) {
+                dir = 0;
+                scale = 0;
+            }
+        }
+        public void startUpdating() {
+            dir = scale <= 0?1:-1;
+        }
+        public boolean stopped() {
+            return dir == 0;
+        }
+    }
 }
