@@ -138,4 +138,5 @@ dependencies {
     compile project(':polygonallinedotview')
     compile project(':orbitringview')
     compile project(':circularplatecollapser')
+    compile project(':crosslineview')
 }

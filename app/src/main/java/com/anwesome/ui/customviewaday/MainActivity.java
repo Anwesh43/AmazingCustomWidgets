@@ -119,6 +119,7 @@ import android.widget.Toast;
 import com.anwesome.games.bordererpieimageeview.BorderPieImageView;
 import com.anwesome.games.circularplatecollapser.CircularPlateCollapser;
 import com.anwesome.games.cornerborderimageview.CornerBorderImageView;
+import com.anwesome.games.crosslineview.CrossLineView;
 import com.anwesome.games.linedotgraphview.LineDotGraphView;
 import com.anwesome.games.midcornerimage.MidCornerImageView;
 import com.anwesome.games.middotlineview.MidDotLineView;
@@ -196,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCircularPlateCollapser();
+                showCrossLineView();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1607,6 +1608,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Collapsed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showCrossLineView() {
+        CrossLineView.create(this);
     }
 }
 
