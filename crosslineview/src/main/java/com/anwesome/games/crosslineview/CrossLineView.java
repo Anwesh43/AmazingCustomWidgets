@@ -15,6 +15,7 @@ import android.view.View;
 public class CrossLineView extends View {
     private int w,h,time = 0;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private ViewRenderingController viewRenderingController;
     private CrossLineView(Context context) {
         super(context);
     }
@@ -24,10 +25,15 @@ public class CrossLineView extends View {
             h = canvas.getHeight();
             paint.setColor(Color.parseColor("#673ab7"));
             paint.setStrokeWidth(5);
+            viewRenderingController = new ViewRenderingController();
         }
+        viewRenderingController.render(canvas);
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            viewRenderingController.handleTap(event.getX(),event.getY());
+        }
         return true;
     }
     private class CrossLine {
