@@ -31,6 +31,8 @@ public class MultiArcView extends View {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            paint.setStrokeWidth(w/60);
+            paint.setStyle(Paint.Style.STROKE);
         }
         time++;
         animationHandler.render(canvas);
@@ -45,9 +47,9 @@ public class MultiArcView extends View {
         public void draw(Canvas canvas, float scale) {
             for(int i=0;i<n;i++) {
                 paint.setColor(Color.GRAY);
-                drawArc(canvas,paint,1,i);
+                drawArc(canvas,paint,1,i+1);
                 paint.setColor(Color.CYAN);
-                drawArc(canvas,paint,scale,i);
+                drawArc(canvas,paint,scale,i+1);
             }
         }
         private void drawArc(Canvas canvas,Paint paint,float scale,int i) {
@@ -108,8 +110,9 @@ public class MultiArcView extends View {
             }
         }
     }
-    public static void create(Activity activity) {
+    public static void create(Activity activity,int n) {
         MultiArcView multiArcView = new MultiArcView(activity);
+        multiArcView.setN(n);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(multiArcView,new ViewGroup.LayoutParams(size.x,size.y));
     }
