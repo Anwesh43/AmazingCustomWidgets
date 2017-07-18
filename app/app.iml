@@ -119,6 +119,7 @@
     <orderEntry type="module" module-name="bordererpieimageeview" exported="" />
     <orderEntry type="module" module-name="circularplatecollapser" exported="" />
     <orderEntry type="module" module-name="dimensionsutil" exported="" />
+    <orderEntry type="module" module-name="multiarcview" exported="" />
     <orderEntry type="module" module-name="linedotgraphview" exported="" />
     <orderEntry type="module" module-name="midcornerimage" exported="" />
     <orderEntry type="module" module-name="crosslineview" exported="" />
