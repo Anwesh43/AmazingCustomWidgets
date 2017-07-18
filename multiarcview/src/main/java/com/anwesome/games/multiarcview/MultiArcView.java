@@ -20,6 +20,10 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 public class MultiArcView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h,n=3;
+    private MultiArcSelectionListener multiArcSelectionListener;
+    public void setMultiArcSelectionListener(MultiArcSelectionListener multiArcSelectionListener) {
+        this.multiArcSelectionListener = multiArcSelectionListener;
+    }
     private AnimationHandler animationHandler = new AnimationHandler();
     public void setN(int n) {
         this.n = Math.max(this.n,n);
@@ -72,6 +76,14 @@ public class MultiArcView extends View {
                 dir = 0;
                 scale = 0;
             }
+            if(dir == 0 && multiArcSelectionListener != null) {
+                if(scale == 0) {
+                    multiArcSelectionListener.onSelected();
+                }
+                else {
+                    multiArcSelectionListener.onUnselected();
+                }
+            }
         }
         public void startUpdating() {
             if(dir == 0) {
@@ -110,10 +122,17 @@ public class MultiArcView extends View {
             }
         }
     }
-    public static void create(Activity activity,int n) {
+    public static void create(Activity activity,int n,MultiArcSelectionListener...multiArcSelectionListeners) {
         MultiArcView multiArcView = new MultiArcView(activity);
+        if(multiArcSelectionListeners.length == 1) {
+            multiArcView.setMultiArcSelectionListener(multiArcSelectionListeners[0]);
+        }
         multiArcView.setN(n);
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(multiArcView,new ViewGroup.LayoutParams(size.x,size.y));
+    }
+    public interface MultiArcSelectionListener {
+        void onSelected();
+        void onUnselected();
     }
 }
