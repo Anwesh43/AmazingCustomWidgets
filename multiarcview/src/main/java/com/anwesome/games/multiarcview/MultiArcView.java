@@ -1,12 +1,17 @@
 package com.anwesome.games.multiarcview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.anwesome.ui.dimensionsutil.DimensionsUtil;
 
 /**
  * Created by anweshmishra on 18/07/17.
@@ -102,5 +107,10 @@ public class MultiArcView extends View {
                 postInvalidate();
             }
         }
+    }
+    public static void create(Activity activity) {
+        MultiArcView multiArcView = new MultiArcView(activity);
+        Point size = DimensionsUtil.getDeviceDimension(activity);
+        activity.addContentView(multiArcView,new ViewGroup.LayoutParams(size.x,size.y));
     }
 }
