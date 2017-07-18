@@ -15,6 +15,7 @@ import android.view.View;
 public class MultiArcView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0,w,h,n=3;
+    private AnimationHandler animationHandler = new AnimationHandler();
     public void setN(int n) {
         this.n = Math.max(this.n,n);
     }
@@ -27,10 +28,11 @@ public class MultiArcView extends View {
             h = canvas.getHeight();
         }
         time++;
+        animationHandler.render(canvas);
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+            animationHandler.startAnimation();
         }
         return true;
     }
