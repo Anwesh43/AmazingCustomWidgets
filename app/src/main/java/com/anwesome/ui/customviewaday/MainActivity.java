@@ -1624,7 +1624,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showMutliArcView() {
-        MultiArcView.create(this,6);
+        MultiArcView.create(this, 6, new MultiArcView.MultiArcSelectionListener() {
+            @Override
+            public void onSelected() {
+                Toast.makeText(MainActivity.this, "Selected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnselected() {
+                Toast.makeText(MainActivity.this, "Unselected", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
