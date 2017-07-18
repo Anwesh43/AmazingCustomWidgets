@@ -73,4 +73,32 @@ public class MultiArcView extends View {
             return dir == 0;
         }
     }
+    private class AnimationHandler {
+        private boolean animated = false;
+        private StateContainer stateContainer = new StateContainer();
+        private MultiArc multiArc = new MultiArc();
+        public void render(Canvas canvas) {
+            multiArc.draw(canvas,stateContainer.scale);
+            if(animated) {
+                stateContainer.update();
+                if(stateContainer.stopped()) {
+                    animated = false;
+                }
+                try {
+                    Thread.sleep(50);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
+                }
+            }
+        }
+        public void startAnimation() {
+            if(!animated) {
+                animated = true;
+                stateContainer.startUpdating();
+                postInvalidate();
+            }
+        }
+    }
 }
