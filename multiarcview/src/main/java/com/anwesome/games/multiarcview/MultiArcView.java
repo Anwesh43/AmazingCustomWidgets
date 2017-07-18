@@ -51,4 +51,26 @@ public class MultiArcView extends View {
             canvas.restore();
         }
     }
+    private class StateContainer {
+        private float scale = 0,dir = 0;
+        public void update() {
+            scale += dir*0.2f;
+            if(scale > 1) {
+                dir = 0;
+                scale = 1;
+            }
+            if(scale < 0) {
+                dir = 0;
+                scale = 0;
+            }
+        }
+        public void startUpdating() {
+            if(dir == 0) {
+                dir = scale <= 0 ?1:-1;
+            }
+        }
+        public boolean stopped() {
+            return dir == 0;
+        }
+    }
 }
