@@ -77,7 +77,7 @@ public class MultiArcView extends View {
                 scale = 0;
             }
             if(dir == 0 && multiArcSelectionListener != null) {
-                if(scale == 0) {
+                if(scale >= 1) {
                     multiArcSelectionListener.onSelected();
                 }
                 else {
