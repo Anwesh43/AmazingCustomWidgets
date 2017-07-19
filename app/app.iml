@@ -113,16 +113,17 @@
     <orderEntry type="library" exported="" name="support-vector-drawable-23.4.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.4.0" level="project" />
     <orderEntry type="module" module-name="orbitringview" exported="" />
-    <orderEntry type="module" module-name="cornerborderimageview" exported="" />
     <orderEntry type="module" module-name="polygonallinedotview" exported="" />
+    <orderEntry type="module" module-name="circularplatecollapser" exported="" />
+    <orderEntry type="module" module-name="linedotgraphview" exported="" />
+    <orderEntry type="module" module-name="crosslineview" exported="" />
+    <orderEntry type="module" module-name="concoppocircview" exported="" />
+    <orderEntry type="module" module-name="cornerborderimageview" exported="" />
     <orderEntry type="module" module-name="middotlineview" exported="" />
     <orderEntry type="module" module-name="bordererpieimageeview" exported="" />
-    <orderEntry type="module" module-name="circularplatecollapser" exported="" />
     <orderEntry type="module" module-name="dimensionsutil" exported="" />
     <orderEntry type="module" module-name="multiarcview" exported="" />
-    <orderEntry type="module" module-name="linedotgraphview" exported="" />
     <orderEntry type="module" module-name="midcornerimage" exported="" />
-    <orderEntry type="module" module-name="crosslineview" exported="" />
     <orderEntry type="module" module-name="polygonaltraverseview" exported="" />
     <orderEntry type="library" exported="" scope="TEST" name="espresso-core-2.2.2" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="runner-0.5" level="project" />

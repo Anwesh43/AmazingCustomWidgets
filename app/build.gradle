@@ -140,4 +140,5 @@ dependencies {
     compile project(':circularplatecollapser')
     compile project(':crosslineview')
     compile project(':multiarcview')
+    compile project(':concoppocircview')
 }

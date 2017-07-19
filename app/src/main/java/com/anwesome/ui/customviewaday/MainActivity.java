@@ -118,6 +118,7 @@ import android.widget.Toast;
 ////import com.anwesome.ui.plusminuslineview.PlusMinusLineView;
 import com.anwesome.games.bordererpieimageeview.BorderPieImageView;
 import com.anwesome.games.circularplatecollapser.CircularPlateCollapser;
+import com.anwesome.games.concoppocircview.ConcOppoCircView;
 import com.anwesome.games.cornerborderimageview.CornerBorderImageView;
 import com.anwesome.games.crosslineview.CrossLineView;
 import com.anwesome.games.linedotgraphview.LineDotGraphView;
@@ -198,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMutliArcView();
+                showConcOppoCircView();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1635,6 +1636,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Unselected", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showConcOppoCircView() {
+        ConcOppoCircView.create(this);
     }
 }
 
