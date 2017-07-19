@@ -15,6 +15,7 @@ import android.view.View;
 public class ConcOppoCircView extends View {
     private int n=3,w,h,time = 0;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private AnimationHandler animationHandler = new AnimationHandler();
     public void setN(int n) {
         this.n = Math.max(n,this.n);
     }
@@ -28,11 +29,13 @@ public class ConcOppoCircView extends View {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(w/50);
         }
+        animationHandler.draw(canvas);
+        animationHandler.animate();
         time++;
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
+            animationHandler.startAnimation();
         }
         return true;
     }
