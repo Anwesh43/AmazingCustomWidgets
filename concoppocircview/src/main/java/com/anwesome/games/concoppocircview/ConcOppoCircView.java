@@ -54,4 +54,28 @@ public class ConcOppoCircView extends View {
             }
         }
     }
+    private class AnimationHandler {
+        private boolean animated = false;
+        private ConcOppoCirc concOppoCirc = new ConcOppoCirc();
+        public void animate() {
+            if(animated) {
+                try {
+                    Thread.sleep(75);
+                    invalidate();
+                }
+                catch (Exception ex) {
+
+                }
+            }
+        }
+        public void draw(Canvas canvas) {
+            concOppoCirc.draw(canvas,1);
+        }
+        public void startAnimation() {
+            if(!animated) {
+                animated = true;
+                postInvalidate();
+            }
+        }
+    }
 }
