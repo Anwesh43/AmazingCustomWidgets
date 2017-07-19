@@ -1638,7 +1638,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showConcOppoCircView() {
-        ConcOppoCircView.create(this);
+        ConcOppoCircView.create(this, 8, new ConcOppoCircView.OnSelectionListener() {
+            @Override
+            public void onSelect() {
+                Toast.makeText(MainActivity.this, "Selected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUnSelect() {
+                Toast.makeText(MainActivity.this, "UnSelected", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
