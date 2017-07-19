@@ -56,9 +56,14 @@ public class ConcOppoCircView extends View {
     }
     private class AnimationHandler {
         private boolean animated = false;
+        private StateContainer stateContainer = new StateContainer();
         private ConcOppoCirc concOppoCirc = new ConcOppoCirc();
         public void animate() {
             if(animated) {
+                stateContainer.update();
+                if(stateContainer.stopped()) {
+                    animated = false;
+                }
                 try {
                     Thread.sleep(75);
                     invalidate();
@@ -73,6 +78,7 @@ public class ConcOppoCircView extends View {
         }
         public void startAnimation() {
             if(!animated) {
+                stateContainer.startUpdating();
                 animated = true;
                 postInvalidate();
             }
