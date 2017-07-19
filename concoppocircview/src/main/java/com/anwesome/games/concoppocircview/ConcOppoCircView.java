@@ -99,6 +99,14 @@ public class ConcOppoCircView extends View {
             if(scale > 1 || scale <0) {
                 dir = 0;
                 scale = (scale > 1)?1:0;
+                if(onSelectionListener != null) {
+                    if(scale == 0) {
+                        onSelectionListener.onUnSelect();
+                    }
+                    else {
+                        onSelectionListener.onSelect();
+                    }
+                }
             }
         }
         public void startUpdating() {
