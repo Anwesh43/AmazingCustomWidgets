@@ -18,7 +18,7 @@ import com.anwesome.ui.dimensionsutil.DimensionsUtil;
  */
 
 public class ConcOppoCircView extends View {
-    private int n=3,w,h,time = 0;
+    private int n=6,w,h,time = 0;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private AnimationHandler animationHandler = new AnimationHandler();
     public void setN(int n) {
@@ -32,7 +32,7 @@ public class ConcOppoCircView extends View {
             w = canvas.getWidth();
             h = canvas.getHeight();
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(w/50);
+            paint.setStrokeWidth(w/60);
         }
         animationHandler.draw(canvas);
         animationHandler.animate();
@@ -53,7 +53,7 @@ public class ConcOppoCircView extends View {
                 }
                 canvas.save();
                 canvas.translate(w/2,h/2);
-                int r = (w/3)/(i+1);
+                int r = ((w/3)/(n))*(i+1);
                 paint.setColor(Color.GRAY);
                 canvas.drawCircle(0,0,r,paint);
                 paint.setColor(Color.parseColor("#01579B"));
@@ -73,7 +73,7 @@ public class ConcOppoCircView extends View {
                     animated = false;
                 }
                 try {
-                    Thread.sleep(75);
+                    Thread.sleep(100);
                     invalidate();
                 }
                 catch (Exception ex) {
@@ -82,7 +82,7 @@ public class ConcOppoCircView extends View {
             }
         }
         public void draw(Canvas canvas) {
-            concOppoCirc.draw(canvas,1);
+            concOppoCirc.draw(canvas,stateContainer.scale);
         }
         public void startAnimation() {
             if(!animated) {
