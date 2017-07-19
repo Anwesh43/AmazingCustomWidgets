@@ -110,12 +110,21 @@ public class ConcOppoCircView extends View {
             return dir == 0;
         }
     }
-    public static void create(Activity activity,int...ns) {
+    private OnSelectionListener onSelectionListener;
+    public void setOnSelectionListener(OnSelectionListener onSelectionListener) {
+        this.onSelectionListener = onSelectionListener;
+    }
+    public static void create(Activity activity,int n,OnSelectionListener...onSelectionListeners) {
         ConcOppoCircView view = new ConcOppoCircView(activity);
-        if(ns.length == 1) {
-            view.setN(ns[0]) ;
+        view.setN(n);
+        if(onSelectionListeners.length == 1) {
+            view.setOnSelectionListener(onSelectionListeners[0]);
         }
         Point size = DimensionsUtil.getDeviceDimension(activity);
         activity.addContentView(view,new ViewGroup.LayoutParams(size.x,size.x));
+    }
+    public interface OnSelectionListener {
+        void onSelect();
+        void onUnSelect();
     }
 }
