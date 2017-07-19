@@ -78,4 +78,22 @@ public class ConcOppoCircView extends View {
             }
         }
     }
+    private class StateContainer {
+        private float scale = 0,dir = 0;
+        public void update() {
+            scale += 0.2f*dir;
+            if(scale > 1 || scale <0) {
+                dir = 0;
+                scale = (scale > 1)?1:0;
+            }
+        }
+        public void startUpdating() {
+            if(dir == 0) {
+                dir = scale <= 0 ?1:-1;
+            }
+        }
+        public boolean stopped() {
+            return dir == 0;
+        }
+    }
 }
