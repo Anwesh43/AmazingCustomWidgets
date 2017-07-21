@@ -2,6 +2,7 @@ package com.anwesome.ui.customviewaday;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -195,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         final PolygonalTraverseView ppView = (PolygonalTraverseView)findViewById(R.id.ppview);
         ppView.setN(6);
         ppView.setOnClickListener(new View.OnClickListener() {
