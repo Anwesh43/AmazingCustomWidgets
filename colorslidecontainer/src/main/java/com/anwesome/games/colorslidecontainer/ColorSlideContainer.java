@@ -71,4 +71,20 @@ public class ColorSlideContainer extends View{
             return i == colorSlides.size();
         }
     }
+    private class ScreenIndicator {
+        private float deg = 0;
+        public void draw(Canvas canvas) {
+            int color = Color.parseColor("#9E9E9E");
+            int r = Color.red(color),g = Color.green(color),b = Color.blue(color);
+            paint.setColor(Color.argb(150,r,g,b));
+            float radius = Math.min(w,h)*((0.1f)/3);
+            canvas.drawArc(new RectF(-radius,-radius,radius,radius),deg,360-deg,true,paint);
+        }
+        public void update(float factor) {
+            deg = 360*factor;
+        }
+        public void reset() {
+            deg = 0;
+        }
+    }
 }
