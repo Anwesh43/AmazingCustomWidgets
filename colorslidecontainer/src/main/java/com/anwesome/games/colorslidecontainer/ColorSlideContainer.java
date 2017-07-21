@@ -1,5 +1,8 @@
 package com.anwesome.games.colorslidecontainer;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,6 +20,7 @@ public class ColorSlideContainer extends View{
     private int colors[];
     private int w,h,time = 0;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private AnimationHandler animationHandler = new AnimationHandler();
     public ColorSlideContainer(Context context,int colors[]) {
         super(context);
         this.colors = colors;
@@ -24,6 +28,9 @@ public class ColorSlideContainer extends View{
     }
     public void initColorSlides() {
 
+    }
+    public void update(float factor) {
+        postInvalidate();
     }
     public void onDraw(Canvas canvas) {
         if(time == 0) {
@@ -85,6 +92,21 @@ public class ColorSlideContainer extends View{
         }
         public void reset() {
             deg = 0;
+        }
+    }
+    private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
+        private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1);
+        public AnimationHandler() {
+            startAnim.addUpdateListener(this);
+            startAnim.addListener(this);
+            startAnim.setDuration(3000);
+        }
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            float factor = valueAnimator.getAnimatedFraction();
+            update(factor);
+        }
+        public void onAnimationEnd(Animator animator) {
+            startAnim.start();
         }
     }
 }
