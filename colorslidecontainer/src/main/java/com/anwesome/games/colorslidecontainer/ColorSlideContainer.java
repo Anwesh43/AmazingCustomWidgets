@@ -21,13 +21,22 @@ public class ColorSlideContainer extends View{
     private int w,h,time = 0;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private AnimationHandler animationHandler = new AnimationHandler();
+    private Screen mainScreen = new Screen(),minorScreen = new Screen();
     public ColorSlideContainer(Context context,int colors[]) {
         super(context);
         this.colors = colors;
         initColorSlides();
     }
     public void initColorSlides() {
-
+        int i = 0;
+        for(int color:colors) {
+            ColorSlide colorSlide = new ColorSlide(color);
+            mainScreen.addColorSlide(colorSlide);
+            if(i!=0) {
+                minorScreen.addColorSlide(colorSlide);
+            }
+            i++;
+        }
     }
     public void update(float factor) {
         postInvalidate();
@@ -37,6 +46,12 @@ public class ColorSlideContainer extends View{
             w = canvas.getWidth();
             h = canvas.getHeight();
         }
+        mainScreen.draw(canvas);
+        canvas.save();
+        canvas.translate(0.9f*w,0.9f*h);
+        canvas.scale(0.1f,0.1f);
+        minorScreen.draw(canvas);
+        canvas.restore();
         time++;
     }
     private class ColorSlide {
@@ -58,7 +73,7 @@ public class ColorSlideContainer extends View{
         public void addColorSlide(ColorSlide colorSlide) {
             colorSlides.add(colorSlide);
         }
-        public void draw(Canvas canvas,Paint paint) {
+        public void draw(Canvas canvas) {
             int index = 0;
             canvas.drawColor(Color.WHITE);
             for(ColorSlide colorSlide:colorSlides) {
@@ -106,7 +121,11 @@ public class ColorSlideContainer extends View{
             update(factor);
         }
         public void onAnimationEnd(Animator animator) {
-            startAnim.start();
+            mainScreen.incrementIndex();
+            minorScreen.incrementIndex();
+            if(!minorScreen.stopped()) {
+                startAnim.start();
+            }
         }
     }
 }
