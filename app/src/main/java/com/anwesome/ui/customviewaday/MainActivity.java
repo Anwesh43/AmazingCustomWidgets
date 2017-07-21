@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        ColorSlideContainer.prepare(this);
         final PolygonalTraverseView ppView = (PolygonalTraverseView)findViewById(R.id.ppview);
         ppView.setN(6);
         ppView.setOnClickListener(new View.OnClickListener() {
@@ -1654,7 +1654,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void showColorSlideContainer() {
-        ColorSlideContainer.create(this,getColors(new String[]{"#e91e63","#4caf50","#f44336","#3f51b5","#ffeb3b","#9c27b0","#ff9800"}));
+        ColorSlideContainer.create(this,getColors(new String[]{"#e91e63","#4caf50","#f44336","#3f51b5","#ffeb3b","#9c27b0","#ff5722"}));
     }
     private int[] getColors(String[] colorHexes) {
         int colors[] = new int[colorHexes.length];
