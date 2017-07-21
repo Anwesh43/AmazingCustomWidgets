@@ -118,6 +118,7 @@ import android.widget.Toast;
 ////import com.anwesome.ui.plusminuslineview.PlusMinusLineView;
 import com.anwesome.games.bordererpieimageeview.BorderPieImageView;
 import com.anwesome.games.circularplatecollapser.CircularPlateCollapser;
+import com.anwesome.games.colorslidecontainer.ColorSlideContainer;
 import com.anwesome.games.concoppocircview.ConcOppoCircView;
 import com.anwesome.games.cornerborderimageview.CornerBorderImageView;
 import com.anwesome.games.crosslineview.CrossLineView;
@@ -199,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
         ppView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showConcOppoCircView();
+                showColorSlideContainer();
                 ppView.setVisibility(View.INVISIBLE);
             }
         });
@@ -1649,6 +1650,16 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "UnSelected", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void showColorSlideContainer() {
+        ColorSlideContainer.create(this,getColors(new String[]{"#e91e63","#4caf50","#f44336","#3f51b5","#ffeb3b","#9c27b0","#ff9800"}));
+    }
+    private int[] getColors(String[] colorHexes) {
+        int colors[] = new int[colorHexes.length];
+        for(int i=0;i<colorHexes.length;i++) {
+            colors[i] = Color.parseColor(colorHexes[i]);
+        }
+        return colors;
     }
 }
 

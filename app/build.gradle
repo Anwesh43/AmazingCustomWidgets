@@ -141,4 +141,5 @@ dependencies {
     compile project(':crosslineview')
     compile project(':multiarcview')
     compile project(':concoppocircview')
+    compile project(':colorslidecontainer')
 }
