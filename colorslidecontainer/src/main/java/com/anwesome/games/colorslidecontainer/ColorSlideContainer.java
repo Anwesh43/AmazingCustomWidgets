@@ -22,6 +22,7 @@ public class ColorSlideContainer extends View{
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private AnimationHandler animationHandler = new AnimationHandler();
     private Screen mainScreen = new Screen(),minorScreen = new Screen();
+    private ScreenIndicator screenIndicator = new ScreenIndicator();
     public ColorSlideContainer(Context context,int colors[]) {
         super(context);
         this.colors = colors;
@@ -39,18 +40,24 @@ public class ColorSlideContainer extends View{
         }
     }
     public void update(float factor) {
+        screenIndicator.update(factor);
         postInvalidate();
     }
     public void onDraw(Canvas canvas) {
         if(time == 0) {
             w = canvas.getWidth();
             h = canvas.getHeight();
+            animationHandler.start();
         }
         mainScreen.draw(canvas);
         canvas.save();
         canvas.translate(0.9f*w,0.9f*h);
         canvas.scale(0.1f,0.1f);
         minorScreen.draw(canvas);
+        canvas.restore();
+        canvas.save();
+        canvas.translate(0.95f,0.95f);
+        screenIndicator.draw(canvas);
         canvas.restore();
         time++;
     }
@@ -126,6 +133,9 @@ public class ColorSlideContainer extends View{
             if(!minorScreen.stopped()) {
                 startAnim.start();
             }
+        }
+        public void start() {
+            startAnim.start();
         }
     }
 }
