@@ -10,6 +10,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
@@ -107,9 +109,9 @@ public class ColorSlideContainer extends View{
     private class ScreenIndicator {
         private float deg = 0;
         public void draw(Canvas canvas) {
-            int color = Color.parseColor("#9E9E9E");
+            int color = Color.parseColor("#6b6b6b");
             int r = Color.red(color),g = Color.green(color),b = Color.blue(color);
-            paint.setColor(Color.argb(150,r,g,b));
+            paint.setColor(Color.argb(175,r,g,b));
             float radius = Math.min(w,h)*((0.1f)/3);
             canvas.drawArc(new RectF(-radius,-radius,radius,radius),deg,360-deg,true,paint);
         }
@@ -146,5 +148,13 @@ public class ColorSlideContainer extends View{
     public static void create(Activity activity,int[] colors) {
         ColorSlideContainer colorSlideContainer = new ColorSlideContainer(activity,colors);
         activity.setContentView(colorSlideContainer);
+        if(activity instanceof AppCompatActivity) {
+            ActionBar actionBar = ((AppCompatActivity)activity).getSupportActionBar();
+            actionBar.hide();
+        }
+        else {
+            android.app.ActionBar actionBar = activity.getActionBar();
+            actionBar.hide();
+        }
     }
 }
