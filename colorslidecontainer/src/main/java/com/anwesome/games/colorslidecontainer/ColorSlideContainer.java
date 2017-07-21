@@ -55,10 +55,12 @@ public class ColorSlideContainer extends View{
         canvas.scale(0.1f,0.1f);
         minorScreen.draw(canvas);
         canvas.restore();
-        canvas.save();
-        canvas.translate(0.95f,0.95f);
-        screenIndicator.draw(canvas);
-        canvas.restore();
+        if(!minorScreen.stopped()) {
+            canvas.save();
+            canvas.translate(0.95f, 0.95f);
+            screenIndicator.draw(canvas);
+            canvas.restore();
+        }
         time++;
     }
     private class ColorSlide {
@@ -131,6 +133,7 @@ public class ColorSlideContainer extends View{
             mainScreen.incrementIndex();
             minorScreen.incrementIndex();
             if(!minorScreen.stopped()) {
+                screenIndicator.reset();
                 startAnim.start();
             }
         }
