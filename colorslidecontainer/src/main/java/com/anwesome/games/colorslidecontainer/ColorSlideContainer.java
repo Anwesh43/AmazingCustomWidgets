@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 import android.view.View;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -53,16 +54,14 @@ public class ColorSlideContainer extends View{
         }
         mainScreen.draw(canvas);
         canvas.save();
-        canvas.translate(0.9f*w,0.9f*h);
-        canvas.scale(0.1f,0.1f);
+        canvas.translate(0.8f*w,0.8f*h);
+        canvas.scale(0.2f,0.2f);
         minorScreen.draw(canvas);
         canvas.restore();
-        if(!minorScreen.stopped()) {
-            canvas.save();
-            canvas.translate(0.95f, 0.95f);
-            screenIndicator.draw(canvas);
-            canvas.restore();
-        }
+        canvas.save();
+        canvas.translate(0.9f*w, 0.9f*h);
+        screenIndicator.draw(canvas);
+        canvas.restore();
         time++;
     }
     private class ColorSlide {
@@ -86,9 +85,10 @@ public class ColorSlideContainer extends View{
         }
         public void draw(Canvas canvas) {
             int index = 0;
-            canvas.drawColor(Color.WHITE);
+            canvas.drawRect(new RectF(0,0,w,h),paint);
             for(ColorSlide colorSlide:colorSlides) {
                 if(index < i) {
+                    index++;
                     continue;
                 }
                 colorSlide.draw(canvas);
@@ -121,30 +121,29 @@ public class ColorSlideContainer extends View{
         }
     }
     private class AnimationHandler extends AnimatorListenerAdapter implements ValueAnimator.AnimatorUpdateListener{
-        private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1);
-        public AnimationHandler() {
-            startAnim.addUpdateListener(this);
-            startAnim.addListener(this);
-            startAnim.setDuration(3000);
-        }
+        private ValueAnimator startAnim;
         public void onAnimationUpdate(ValueAnimator valueAnimator) {
             float factor = valueAnimator.getAnimatedFraction();
             update(factor);
         }
         public void onAnimationEnd(Animator animator) {
+            Log.d("staus","ended");
             mainScreen.incrementIndex();
             minorScreen.incrementIndex();
             if(!minorScreen.stopped()) {
                 screenIndicator.reset();
-                startAnim.start();
+                start();
             }
         }
         public void start() {
+            startAnim = ValueAnimator.ofFloat(0,1);
+            startAnim.addUpdateListener(this);
+            startAnim.addListener(this);
+            startAnim.setDuration(3000);
             startAnim.start();
         }
     }
     public static void create(Activity activity,int[] colors) {
-        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         ColorSlideContainer colorSlideContainer = new ColorSlideContainer(activity,colors);
         activity.setContentView(colorSlideContainer);
     }
