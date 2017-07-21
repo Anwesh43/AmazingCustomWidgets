@@ -3,7 +3,9 @@ package com.anwesome.games.colorslidecontainer;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -140,5 +142,10 @@ public class ColorSlideContainer extends View{
         public void start() {
             startAnim.start();
         }
+    }
+    public static void create(Activity activity,int[] colors) {
+        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        ColorSlideContainer colorSlideContainer = new ColorSlideContainer(activity,colors);
+        activity.setContentView(colorSlideContainer);
     }
 }
