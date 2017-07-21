@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -112,7 +113,7 @@ public class ColorSlideContainer extends View{
             int color = Color.parseColor("#6b6b6b");
             int r = Color.red(color),g = Color.green(color),b = Color.blue(color);
             paint.setColor(Color.argb(175,r,g,b));
-            float radius = Math.min(w,h)*((0.1f)/3);
+            float radius = Math.min(w,h)*((0.2f)/3);
             canvas.drawArc(new RectF(-radius,-radius,radius,radius),deg,360-deg,true,paint);
         }
         public void update(float factor) {
@@ -148,6 +149,10 @@ public class ColorSlideContainer extends View{
     public static void create(Activity activity,int[] colors) {
         ColorSlideContainer colorSlideContainer = new ColorSlideContainer(activity,colors);
         activity.setContentView(colorSlideContainer);
+    }
+    public static void prepare(Activity activity) {
+        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if(activity instanceof AppCompatActivity) {
             ActionBar actionBar = ((AppCompatActivity)activity).getSupportActionBar();
             actionBar.hide();
