@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.View;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by anweshmishra on 21/07/17.
  */
@@ -41,6 +43,32 @@ public class ColorSlideContainer extends View{
         }
         public int hashCode() {
             return color;
+        }
+    }
+    private class Screen {
+        private ConcurrentLinkedQueue<ColorSlide> colorSlides = new ConcurrentLinkedQueue<>();
+        private int i = 0;
+        public void addColorSlide(ColorSlide colorSlide) {
+            colorSlides.add(colorSlide);
+        }
+        public void draw(Canvas canvas,Paint paint) {
+            int index = 0;
+            canvas.drawColor(Color.WHITE);
+            for(ColorSlide colorSlide:colorSlides) {
+                if(index < i) {
+                    continue;
+                }
+                colorSlide.draw(canvas);
+                break;
+            }
+        }
+        public void incrementIndex() {
+            if(i < colorSlides.size()) {
+                i++;
+            }
+        }
+        public boolean stopped() {
+            return i == colorSlides.size();
         }
     }
 }
